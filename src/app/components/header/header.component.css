@@ -4,19 +4,6 @@
   position: relative;
 }
 
-/* Animation for mobile menu */
-.mobile-nav-menu {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  transform-origin: top center;
-}
-
-.mobile-nav-menu.open, 
-.mobile-nav-menu.active {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 @media (max-width: 768px) {
   .mobile-nav-menu.open, 
