@@ -131,9 +131,12 @@ p {
         url('../img/huzur-home.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
+    width: 100%;
     transition: background 0.3s ease;
 }
 
@@ -144,6 +147,8 @@ p {
 .hero-content {
     max-width: 700px;
     margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
 }
 
 .hero-content h1 {
@@ -615,29 +620,7 @@ footer {
 /* Scroll to top button */
 a[routerLink], a[fragment], a[href], a[ng-click], a[click], a.btn, [routerLink], [fragment], a {
     cursor: pointer;
-  }
-  
-  #scrollToTop {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 99;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    background-color: #e76f51;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-  
-  #scrollToTop:hover {
-    background-color: #2a9d8f;
-    transform: translateY(-3px);
-    border-radius: 50px;
-  }
+}
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {

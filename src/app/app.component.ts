@@ -10,6 +10,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 
 import { AnimationService } from './services/animation.service';
 
@@ -26,7 +27,8 @@ import { AnimationService } from './services/animation.service';
     FaqComponent,
     TestimonialsComponent,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    ScrollToTopComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

@@ -12,17 +12,14 @@
   padding: 10px 15px;
   border-radius: 4px;
   transition: all 0.3s ease;
-  opacity: 1;
-  visibility: visible;
-  display: block !important;
+  opacity: 0;
+  visibility: hidden;
 }
 
-/* Will use this later once we confirm the button is visible 
 #scrollToTop.visible {
   opacity: 1;
   visibility: visible;
 }
-*/
 
 #scrollToTop:hover {
   background-color: #2a9d8f;

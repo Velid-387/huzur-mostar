@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
 
@@ -11,39 +11,36 @@ import { ScrollService } from '../../services/scroll.service';
 })
 export class FooterComponent implements OnInit {
   currentYear = new Date().getFullYear();
+  isVisible = false;
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      // Make button initially visible for testing
+      this.isVisible = true;
+      this.cdr.detectChanges();
+      console.log('Button should be visible:', this.isVisible);
+      
       this.setupScrollToTop();
     }
   }
 
   setupScrollToTop(): void {
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    
-    if (scrollToTopBtn) {
-      // Initially hide the button
-      scrollToTopBtn.style.display = 'none';
-      
-      // Add click event
-      scrollToTopBtn.addEventListener('click', () => {
-        this.scrollService.scrollToTop();
-      });
-      
-      // Show/hide based on scroll position
-      window.addEventListener('scroll', () => {
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-          scrollToTopBtn.style.display = 'block';
-        } else {
-          scrollToTopBtn.style.display = 'none';
-        }
-      });
-    }
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', () => {
+      const shouldBeVisible = document.body.scrollTop > 300 || document.documentElement.scrollTop > 300;
+      if (this.isVisible !== shouldBeVisible) {
+        this.isVisible = shouldBeVisible;
+        console.log('Scroll detected, visibility:', this.isVisible);
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   scrollToTop(): void {
+    console.log('Scroll to top clicked');
     this.scrollService.scrollToTop();
   }
 }
