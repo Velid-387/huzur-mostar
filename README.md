@@ -1,6 +1,8 @@
 # Huzur Mostar - Flower Shop Website
 
-![Huzur Mostar Logo](public/huzur-logo.png)
+<div align="center">
+  <img src="./public/huzur-logo.png" alt="Huzur Mostar Logo" width="150">
+</div>
 
 ## About The Project
 
