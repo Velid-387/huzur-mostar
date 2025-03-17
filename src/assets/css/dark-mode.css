@@ -1,0 +1,149 @@
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .animate-section {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #333);
+    border-top: 1px solid #555;
+    box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Header and Navigation */
+body.dark-mode header {
+    background-color: rgba(18, 18, 18, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .nav-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+body.dark-mode .nav-links a.active {
+    color: #e76f51;
+}
+
+body.dark-mode .nav-links a.inactive {
+    color: #333;
+    border-bottom: none;
+}
+
+body.dark-mode .nav-links a.selected {
+    color: #e76f51 !important;
+}
+
+body.dark-mode .mobile-nav-menu {
+    background-color: #121212;
+    color: #fff;
+}
+
+body.dark-mode .mobile-nav-menu a {
+    color: #fff;
+}
+
+body.dark-mode .mobile-nav-menu a:hover {
+    color: #ccc;
+}
+
+body.dark-mode .hamburger-menu span {
+    background-color: #fff;
+}
+
+/* Home Section */
+body.dark-mode #home {
+    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)),
+        url('../img/huzur-home.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+body.dark-mode .hero-content h1 {
+    color: #2a9d8f;
+}
+
+/* About Section */
+body.dark-mode #about {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .about-image {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Products Section */
+body.dark-mode #products {
+    background-color: #121212;
+}
+
+body.dark-mode .product-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .product-info h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .product-info p {
+    color: #aaa;
+}
+
+/* FAQ Section */
+body.dark-mode #faq {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .faq-item {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Testimonials Section */
+body.dark-mode #testimonials {
+    background-color: #121212;
+}
+
+body.dark-mode .testimonial-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .testimonial-info h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .testimonial-info p {
+    color: #aaa;
+}
+
+/* Contact Section */
+body.dark-mode #contact {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+/* Footer */
+body.dark-mode footer {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #333);
+    border-top: 1px solid #555;
+    box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+    body.dark-mode .nav-links.active {
+        background: #1e1e1e;
+    }
+}

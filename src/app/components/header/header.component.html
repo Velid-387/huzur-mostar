@@ -1,0 +1,38 @@
+<header>
+    <nav>
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-menu" id="mobileNavMenu">
+            <ul>
+                <li><a (click)="scrollToSection('home')">Početna</a></li>
+                <li><a (click)="scrollToSection('about')">O nama</a></li>
+                <li><a (click)="scrollToSection('products')">Naša ponuda</a></li>
+                <li><a (click)="scrollToSection('faq')">Najčešća pitanja</a></li>
+                <li><a (click)="scrollToSection('testimonials')">Drugi o nama</a></li>
+                <li><a (click)="scrollToSection('contact')">Kontakt</a></li>
+            </ul>
+        </div>
+        <div class="logo">
+            <img src="./assets/img/huzur-logo.png" alt="Logo">
+            Huzur<span>Mostar</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a (click)="scrollToSection('home')">Početna</a>
+            <a (click)="scrollToSection('about')">O nama</a>
+            <a (click)="scrollToSection('products')">Naša ponuda</a>
+            <a (click)="scrollToSection('faq')">Najčešća pitanja</a>
+            <a (click)="scrollToSection('testimonials')">Drugi o nama</a>
+            <a (click)="scrollToSection('contact')">Kontakt</a>
+        </div>
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <i class="fas fa-sun" id="sun-icon"></i>
+                <i class="fas fa-moon" id="moon-icon"></i>
+            </label>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,11 @@
+<section id="faq" class="animate-section">
+    <div class="container">
+        <h2 class="animate-item">Najčešće postavljena pitanja</h2>
+        <div class="faq-container">
+            <div class="faq-item animate-item" *ngFor="let item of faqItems">
+                <div class="faq-question">{{ item.question }}</div>
+                <div class="faq-answer">{{ item.answer }}</div>
+            </div>
+        </div>
+    </div>
+</section>
