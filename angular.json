@@ -24,10 +24,28 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "huzur-logo.png",
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/style.css",
+              "src/assets/css/dark-mode.css",
+              "src/assets/css/animations.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -90,7 +108,10 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/style.css",
+              "src/assets/css/dark-mode.css",
+              "src/assets/css/animations.css"
             ],
             "scripts": []
           }

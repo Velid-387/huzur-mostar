@@ -1,0 +1,184 @@
+/* Initial page load animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Page load animations */
+header {
+    animation: slideInFromTop 0.5s ease forwards;
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes delete-text {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+#home .hero-content {
+    animation: fadeIn 1s ease 0.3s forwards;
+    opacity: 0;
+}
+
+/* Scroll animations - these will be controlled by JavaScript */
+.animate-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-item.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered card animations */
+.product-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.product-card.animated {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.product-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.product-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.product-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.product-card:nth-child(4) {
+    animation-delay: 0.7s;
+}
+
+/* About section specific animations */
+#about .about-text.animated {
+    animation: slideInFromLeft 0.8s ease forwards;
+}
+
+#about .about-image.animated {
+    animation: slideInFromRight 0.8s ease forwards;
+}
+
+/* Contact form animation */
+.contact-form.animated {
+    animation: scaleIn 0.8s ease forwards;
+}
+
+/* Form submission animation */
+@keyframes formSuccess {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.form-status.success,
+.form-status.error {
+    animation: formSuccess 0.5s ease forwards;
+}
+
+/* Show the hamburger menu button on smaller devices */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}

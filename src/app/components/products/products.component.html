@@ -1,0 +1,16 @@
+<section id="products" class="animate-section">
+    <div class="container">
+        <h2 class="animate-item">Naša ponuda</h2>
+        <p class="animate-item">Browse our selection of handcrafted arrangements, perfect for any occasion.</p>
+        <div class="products-grid">
+            <div class="product-card animate-item" *ngFor="let product of products">
+                <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
+                <div class="product-info">
+                    <h3>{{ product.title }}</h3>
+                    <p>{{ product.description }}</p>
+                    <div class="price">{{ product.price }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
