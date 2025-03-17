@@ -583,11 +583,13 @@ footer {
 .mobile-nav-menu {
     display: none;
     position: absolute;
-    top: 50px;
+    top: 60px;
     left: 0;
     width: 100%;
     background-color: #f9f9f9;
     padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
 }
 .mobile-nav-menu ul {
     list-style: none;
@@ -596,14 +598,23 @@ footer {
 }
 
 .mobile-nav-menu li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .mobile-nav-menu a {
     color: #333;
     text-decoration: none;
+    font-size: 1.2rem;
+    display: block;
+    padding: 5px 0;
 }
 
+.mobile-nav-menu a:hover {
+    color: #e76f51;
+}
+
+.mobile-nav-menu.active,
 .mobile-nav-menu.open {
     display: block;
 }
@@ -626,6 +637,11 @@ a[routerLink], a[fragment], a[href], a[ng-click], a[click], a.btn, [routerLink],
 @media (max-width: 768px) {
     .nav-links {
         display: none;
+    }
+
+    /* Show hamburger menu on mobile */
+    .hamburger-menu {
+        display: block;
     }
 
     .about-content,
