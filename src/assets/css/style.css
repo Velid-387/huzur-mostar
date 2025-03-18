@@ -189,24 +189,41 @@ p {
 .btn:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
     background-color: var(--pastel-green);
     color: var(--text-dark);
-    box-shadow: 0 7px 15px rgba(200, 228, 178, 0.5);
+    box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
+    transform: translateY(-3px);
     animation: button-glow 1.5s infinite;
+}
+
+.btn:active, button:active, input[type="submit"]:active, input[type="button"]:active {
+    background-color: var(--dark-pink);
+    color: white;
+    box-shadow: 0 0 25px rgba(223, 123, 153, 0.9);
+    transform: translateY(1px);
+    animation: button-click-glow 0.5s;
 }
 
 @keyframes button-glow {
     0% {
-        box-shadow: 0 0 5px rgba(200, 228, 178, 0.4);
+        box-shadow: 0 0 10px rgba(200, 228, 178, 0.5);
     }
     50% {
-        box-shadow: 0 0 15px rgba(200, 228, 178, 0.6);
+        box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
     }
     100% {
-        box-shadow: 0 0 5px rgba(200, 228, 178, 0.4);
+        box-shadow: 0 0 10px rgba(200, 228, 178, 0.5);
     }
 }
 
-.btn:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
-    animation: button-glow 1.5s infinite;
+@keyframes button-click-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(223, 123, 153, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(223, 123, 153, 1);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(223, 123, 153, 0.6);
+    }
 }
 
 .btn.active, button.active, input[type="submit"].active, input[type="button"].active {
@@ -660,23 +677,30 @@ footer {
 .social-links a:hover {
     transform: translateY(-5px);
     background-color: var(--pastel-green);
-    box-shadow: 0 7px 15px rgba(200, 228, 178, 0.5);
+    box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
     animation: social-glow 1.5s infinite;
 }
 
-.social-links a:hover i {
-    color: var(--text-dark);
+.social-links a:active {
+    background-color: var(--dark-pink);
+    box-shadow: 0 0 25px rgba(223, 123, 153, 0.9);
+    transform: translateY(-2px);
+    animation: button-click-glow 0.5s;
+}
+
+.social-links a:active i {
+    color: white;
 }
 
 @keyframes social-glow {
     0% {
-        box-shadow: 0 0 5px rgba(200, 228, 178, 0.4);
+        box-shadow: 0 0 10px rgba(200, 228, 178, 0.5);
     }
     50% {
-        box-shadow: 0 0 15px rgba(200, 228, 178, 0.6);
+        box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
     }
     100% {
-        box-shadow: 0 0 5px rgba(200, 228, 178, 0.4);
+        box-shadow: 0 0 10px rgba(200, 228, 178, 0.5);
     }
 }
 
@@ -944,9 +968,17 @@ a[routerLink], a[fragment], a[href], a[ng-click], a[click], a.btn, [routerLink],
   #scrollToTop:hover {
     background-color: var(--pastel-green);
     color: var(--text-dark);
-    box-shadow: 0 7px 15px rgba(200, 228, 178, 0.5);
+    box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
     animation: button-glow 1.5s infinite;
   }
+
+#scrollToTop:active {
+    background-color: var(--dark-pink);
+    color: white;
+    box-shadow: 0 0 25px rgba(223, 123, 153, 0.9);
+    transform: translateY(1px);
+    animation: button-click-glow 0.5s;
+}
 
 /* Menu toggle for mobile */
 .menu-toggle {

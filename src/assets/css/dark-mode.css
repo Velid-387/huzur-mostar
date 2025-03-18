@@ -229,12 +229,20 @@ body.dark-mode .social-links i {
 
 body.dark-mode .social-links a:hover {
     background-color: var(--pastel-green-dark);
-    box-shadow: 0 7px 15px rgba(145, 180, 120, 0.4);
+    box-shadow: 0 0 20px rgba(145, 180, 120, 0.8);
+    transform: translateY(-5px);
     animation: dark-button-glow 1.5s infinite;
 }
 
 body.dark-mode .social-links a:hover i {
     color: var(--text-light);
+}
+
+body.dark-mode .social-links a:active {
+    background-color: var(--dark-pink-dark);
+    box-shadow: 0 0 25px rgba(181, 108, 130, 0.9);
+    transform: translateY(-2px);
+    animation: dark-button-click-glow 0.5s;
 }
 
 body.dark-mode #copyright {
@@ -264,19 +272,43 @@ body.dark-mode input[type="submit"]:hover,
 body.dark-mode input[type="button"]:hover {
     background-color: var(--pastel-green-dark);
     color: var(--text-light);
-    box-shadow: 0 7px 15px rgba(145, 180, 120, 0.4);
+    box-shadow: 0 0 20px rgba(145, 180, 120, 0.8);
+    transform: translateY(-3px);
     animation: dark-button-glow 1.5s infinite;
+}
+
+body.dark-mode .btn:active, 
+body.dark-mode button:active, 
+body.dark-mode input[type="submit"]:active, 
+body.dark-mode input[type="button"]:active {
+    background-color: var(--dark-pink-dark);
+    color: var(--text-light);
+    box-shadow: 0 0 25px rgba(181, 108, 130, 0.9);
+    transform: translateY(1px);
+    animation: dark-button-click-glow 0.5s;
 }
 
 @keyframes dark-button-glow {
     0% {
-        box-shadow: 0 0 5px rgba(145, 180, 120, 0.3);
+        box-shadow: 0 0 10px rgba(145, 180, 120, 0.5);
     }
     50% {
-        box-shadow: 0 0 15px rgba(145, 180, 120, 0.5);
+        box-shadow: 0 0 20px rgba(145, 180, 120, 0.8);
     }
     100% {
-        box-shadow: 0 0 5px rgba(145, 180, 120, 0.3);
+        box-shadow: 0 0 10px rgba(145, 180, 120, 0.5);
+    }
+}
+
+@keyframes dark-button-click-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(181, 108, 130, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(181, 108, 130, 1);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(181, 108, 130, 0.6);
     }
 }
 
@@ -309,8 +341,16 @@ body.dark-mode #scrollToTop {
 body.dark-mode #scrollToTop:hover {
     background-color: var(--pastel-green-dark);
     color: var(--text-light);
-    box-shadow: 0 7px 15px rgba(145, 180, 120, 0.4);
+    box-shadow: 0 0 20px rgba(145, 180, 120, 0.8);
     animation: dark-button-glow 1.5s infinite;
+}
+
+body.dark-mode #scrollToTop:active {
+    background-color: var(--dark-pink-dark);
+    color: var(--text-light);
+    box-shadow: 0 0 25px rgba(181, 108, 130, 0.9);
+    transform: translateY(1px);
+    animation: dark-button-click-glow 0.5s;
 }
 
 /* Dark mode heading colors */
