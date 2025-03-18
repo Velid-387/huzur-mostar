@@ -1,3 +1,6 @@
+/* Import Alex Brush font */
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -50,6 +53,7 @@ nav {
 .logo {
     display: flex;
     align-items: center;
+    font-size: 1.8rem;
 }
 
 .logo img {
@@ -154,13 +158,14 @@ section:first-of-type {
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
     margin-bottom: 1.5rem;
     color: var(--dark-pink);
 }
 
 h3 {
     color: var(--dark-green);
+    font-size: 2.2rem;
 }
 
 p {
@@ -184,6 +189,7 @@ p {
     overflow: hidden;
     text-align: center;
     box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
+    font-family: poppins, sans-serif;
 }
 
 .btn:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
@@ -312,7 +318,7 @@ section#home::after {
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 5.5rem;
     margin-bottom: 1.5rem;
     color: var(--dark-pink);
     width: 100%;
@@ -451,7 +457,8 @@ section#home::after {
 .price {
     font-weight: bold;
     color: var(--dark-pink);
-    font-size: 1.2rem;
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
 }
 
 /* FAQ section */
@@ -468,7 +475,7 @@ section#home::after {
 .faq-container h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #2a9d8f;
+    color: var(--dark-pink);
 }
 
 .faq-item {
@@ -547,6 +554,9 @@ section#home::after {
 
 .testimonial-name {
     color: var(--dark-green);
+    font-family: 'Alex Brush', cursive;
+    font-weight: 400;
+    letter-spacing: 0.5px;
 }
 
 /* Contact section */
@@ -650,8 +660,8 @@ footer {
 .social-links h3 {
     display: block;
     margin-bottom: 15px;
-    font-size: 1.3rem;
-    color: #2a9d8f;
+    font-size: 2rem;
+    color: var(--dark-pink);
 }
 
 .social-links a {
@@ -1029,4 +1039,66 @@ footer .social-links a:active {
   --dark-pink: #df7b99;         /* Deeper pink for contrast */
   --dark-green: #7cad7f;        /* Deeper green for contrast */
   --text-dark: #4a5759;         /* Dark slate for text */
+}
+
+/* Apply Alex Brush to selected elements */
+.logo, h1, h2, h3, .testimonial-name, .price, 
+.social-links h3, .form-status, .image-overlay,
+footer #copyright, .faq-container h2 {
+    font-family: 'Alex Brush', cursive;
+    font-weight: 400; /* Alex Brush looks better without extra weight */
+    letter-spacing: 0.5px;
+}
+
+/* Adjust price styling for cursive */
+.price {
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
+}
+
+/* Make social links heading match other elements */
+.social-links h3 {
+    color: var(--dark-pink);
+    font-size: 2rem;
+}
+
+/* Keep navigation links in sans-serif for better usability */
+.nav-links a, .mobile-nav-menu a {
+    font-family: poppins, sans-serif;
+}
+
+/* Form elements and body text remain readable */
+p, .form-group label, .form-group input, .form-group textarea {
+    font-family: poppins, sans-serif;
+}
+
+/* Size adjustments for cursive font */
+h1 {
+    font-size: 5.5rem;
+}
+
+h2 {
+    font-size: 3.2rem;
+}
+
+h3 {
+    font-size: 2.2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+}
+
+/* Product headings need to be more readable */
+.product-info h3 {
+    font-family: poppins, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* FAQ questions need to be readable */
+.faq-item .faq-question {
+    font-family: poppins, sans-serif;
+    font-weight: 600;
 }

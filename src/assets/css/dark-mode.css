@@ -215,7 +215,7 @@ body.dark-mode footer {
 }
 
 body.dark-mode .social-links h3 {
-    color: #2a9d8f;
+    color: var(--pastel-pink-dark);
 }
 
 body.dark-mode .social-links a {
