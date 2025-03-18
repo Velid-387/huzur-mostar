@@ -5,6 +5,9 @@
 [build.environment]
   NODE_VERSION = "18.18.0"
 
+[[plugins]]
+  package = "@netlify/angular-runtime"
+
 [dev]
   command = "npm run dev"
   port = 4200
