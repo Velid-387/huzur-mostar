@@ -557,6 +557,8 @@ section#home::after {
     font-family: 'Alex Brush', cursive;
     font-weight: 400;
     letter-spacing: 0.5px;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
 }
 
 /* Contact section */
@@ -731,50 +733,74 @@ body.dark-mode .social-links a:hover {
 
 .theme-switch {
     display: inline-block;
-    height: 24px;
     position: relative;
-    width: 48px;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
 }
 
 .theme-switch input {
     display: none;
 }
 
-.theme-switch i {
-    cursor: pointer;
-    font-size: 24px;
-    margin: 0 10px;
+/* SVG toggle container */
+.toggle-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.toggle-label {
-    margin-left: 10px;
-    font-size: 0.8rem;
+/* Sun styles */
+.sun-circle {
+    fill: var(--dark-pink);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center center;
+    filter: drop-shadow(0 0 1px rgba(223, 123, 153, 0.7));
 }
 
-#sun-icon {
-    display: block;
-    color: var(--pastel-yellow);
+.sun-rays {
+    stroke: var(--dark-pink);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center center;
+    opacity: 1;
 }
 
-#moon-icon {
-    display: none;
-    color: var(--pastel-lavender);
+/* Moon mask for crescent shape */
+.moon-mask {
+    fill: var(--bg-dark, #333a3c);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center center;
+    transform: scale(0);
 }
 
-input[type="checkbox"]:checked ~ #sun-icon {
-    display: none;
+/* Hover effect */
+.toggle-icon:hover .sun-circle,
+.toggle-icon:hover .sun-rays {
+    filter: drop-shadow(0 0 5px rgba(223, 123, 153, 0.9));
 }
 
-input[type="checkbox"]:checked ~ #moon-icon {
-    display: block;
+/* When toggle is checked (dark mode) */
+input:checked ~ .toggle-icon .sun-circle {
+    fill: var(--pastel-lavender);
 }
 
-input[type="checkbox"]:not(:checked) ~ #sun-icon {
-    display: block;
+input:checked ~ .toggle-icon .sun-rays {
+    opacity: 0;
+    transform: scale(0);
 }
 
-input[type="checkbox"]:not(:checked) ~ #moon-icon {
-    display: none;
+input:checked ~ .toggle-icon .moon-mask {
+    transform: scale(1);
+}
+
+input:checked ~ .toggle-icon:hover .sun-circle {
+    filter: drop-shadow(0 0 3px rgba(217, 198, 224, 0.8));
 }
 
 /* Style the hamburger menu button */
@@ -1042,7 +1068,7 @@ footer .social-links a:active {
 }
 
 /* Apply Alex Brush to selected elements */
-.logo, h1, h2, h3, .testimonial-name, .price, 
+.logo, h1, h2, h3, .testimonial-name, 
 .social-links h3, .form-status, .image-overlay,
 footer #copyright, .faq-container h2 {
     font-family: 'Alex Brush', cursive;
@@ -1050,10 +1076,13 @@ footer #copyright, .faq-container h2 {
     letter-spacing: 0.5px;
 }
 
-/* Adjust price styling for cursive */
+/* Adjust price styling for sans-serif */
 .price {
-    font-size: 1.6rem;
+    font-family: poppins, sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
     margin-top: 0.5rem;
+    color: var(--dark-pink);
 }
 
 /* Make social links heading match other elements */
@@ -1100,5 +1129,8 @@ h3 {
 /* FAQ questions need to be readable */
 .faq-item .faq-question {
     font-family: poppins, sans-serif;
+    font-size: 1.2rem;
     font-weight: 600;
+    color: var(--dark-green);
+    margin-bottom: 0.7rem;
 }

@@ -363,12 +363,21 @@ body.dark-mode h3 {
 }
 
 /* Dark mode toggle */
-body.dark-mode #sun-icon {
-    color: var(--pastel-yellow-dark);
+body.dark-mode .sun-circle {
+    fill: var(--pastel-lavender-dark);
 }
 
-body.dark-mode #moon-icon {
-    color: var(--pastel-lavender-dark);
+body.dark-mode .sun-rays {
+    opacity: 0;
+    stroke: var(--pastel-lavender-dark);
+}
+
+body.dark-mode .moon-mask {
+    fill: var(--bg-dark);
+}
+
+body.dark-mode .toggle-icon:hover .sun-circle {
+    filter: drop-shadow(0 0 3px rgba(176, 156, 184, 0.8));
 }
 
 /* FAQ item border in dark mode */
