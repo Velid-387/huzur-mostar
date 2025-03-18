@@ -61,7 +61,7 @@ nav {
 }
 
 .logo span {
-    color: #2a9d8f;
+    color: var(--dark-pink);
 }
 
 .nav-links {
@@ -87,7 +87,7 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(42, 157, 143, 0.1);
+    background-color: rgba(245, 192, 192, 0.2);
     border-radius: 20px;
     transform: scale(0);
     transition: transform 0.3s ease;
@@ -95,7 +95,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #2a9d8f;
+    color: var(--dark-pink);
     transform: translateY(-3px);
 }
 
@@ -104,20 +104,20 @@ nav {
 }
 
 .nav-links a.active {
-    color: #e76f51;
-    background-color: rgba(231, 111, 81, 0.1);
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.2);
+    color: var(--text-dark);
+    background-color: var(--pastel-pink);
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
 }
 
 @keyframes nav-glow {
     0% {
-        box-shadow: 0 0 5px rgba(231, 111, 81, 0.3);
+        box-shadow: 0 0 5px rgba(245, 192, 192, 0.4);
     }
     50% {
-        box-shadow: 0 0 15px rgba(231, 111, 81, 0.5);
+        box-shadow: 0 0 15px rgba(245, 192, 192, 0.6);
     }
     100% {
-        box-shadow: 0 0 5px rgba(231, 111, 81, 0.3);
+        box-shadow: 0 0 5px rgba(245, 192, 192, 0.4);
     }
 }
 
@@ -127,17 +127,12 @@ nav {
 
 .nav-links a.active {
     animation: nav-glow 1.5s infinite;
-    color: #e76f51;
+    color: var(--text-dark);
     font-weight: 600;
 }
 
-.nav-links a.inactive {
-    color: #333;
-    border-bottom: none;
-}
-
 .nav-links a.selected {
-    color: #e76f51;
+    color: var(--dark-pink);
 }
 
 /* Section common styles */
@@ -302,7 +297,7 @@ section#home::after {
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
-    color: #2a9d8f;
+    color: var(--dark-pink);
     width: 100%;
     text-align: center;
 }
@@ -871,7 +866,7 @@ input[type="checkbox"]:not(:checked) ~ #moon-icon {
 }
 
 .mobile-nav-menu a:hover {
-    color: #2a9d8f;
+    color: var(--dark-pink);
     transform: translateX(5px);
 }
 
@@ -880,9 +875,9 @@ input[type="checkbox"]:not(:checked) ~ #moon-icon {
 }
 
 .mobile-nav-menu a.active {
-    color: #e76f51;
-    background-color: rgba(231, 111, 81, 0.1);
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.2);
+    color: var(--text-dark);
+    background-color: var(--pastel-pink);
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
     animation: nav-glow 1.5s infinite;
     font-weight: 600;
 }
@@ -896,18 +891,18 @@ body.dark-mode .mobile-nav-menu a:before {
 }
 
 body.dark-mode .mobile-nav-menu a:hover {
-    color: #2a9d8f;
+    color: var(--dark-pink);
 }
 
 body.dark-mode .mobile-nav-menu a.active {
-    color: #e76f51;
-    background-color: rgba(231, 111, 81, 0.15);
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.3);
-    animation: dark-nav-glow 1.5s infinite;
+    color: var(--text-dark);
+    background-color: var(--pastel-pink);
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
+    animation: nav-glow 1.5s infinite;
 }
 
 body.dark-mode .mobile-nav-menu a:hover {
-    animation: dark-nav-glow 1.5s infinite;
+    animation: nav-glow 1.5s infinite;
 }
 
 /* Add theme-specific styles */

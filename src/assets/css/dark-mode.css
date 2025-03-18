@@ -36,22 +36,22 @@ body.dark-mode header {
 }
 
 body.dark-mode .nav-links a {
-    color: #e0e0e0;
+    color: var(--text-light);
     text-decoration: none;
 }
 
 body.dark-mode .nav-links a:before {
-    background-color: rgba(42, 157, 143, 0.2);
+    background-color: rgba(192, 154, 154, 0.2);
 }
 
 body.dark-mode .nav-links a:hover {
-    color: #2a9d8f;
+    color: var(--pastel-pink-dark);
 }
 
 body.dark-mode .nav-links a.active {
-    color: #e76f51;
-    background-color: rgba(231, 111, 81, 0.15);
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.3);
+    color: var(--text-light);
+    background-color: var(--pastel-pink-dark);
+    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
 }
 
 body.dark-mode .nav-links a:hover {
@@ -60,23 +60,18 @@ body.dark-mode .nav-links a:hover {
 
 @keyframes dark-nav-glow {
     0% {
-        box-shadow: 0 0 5px rgba(231, 111, 81, 0.4);
+        box-shadow: 0 0 5px rgba(192, 154, 154, 0.3);
     }
     50% {
-        box-shadow: 0 0 15px rgba(231, 111, 81, 0.6);
+        box-shadow: 0 0 15px rgba(192, 154, 154, 0.5);
     }
     100% {
-        box-shadow: 0 0 5px rgba(231, 111, 81, 0.4);
+        box-shadow: 0 0 5px rgba(192, 154, 154, 0.3);
     }
-}
-
-body.dark-mode .nav-links a.inactive {
-    color: #333;
-    border-bottom: none;
 }
 
 body.dark-mode .nav-links a.selected {
-    color: #e76f51 !important;
+    color: var(--pastel-pink-dark) !important;
 }
 
 body.dark-mode .mobile-nav-menu {
@@ -90,7 +85,18 @@ body.dark-mode .mobile-nav-menu a {
 }
 
 body.dark-mode .mobile-nav-menu a:hover {
-    color: #ccc;
+    color: var(--pastel-pink-dark);
+}
+
+body.dark-mode .mobile-nav-menu a.active {
+    color: var(--text-light);
+    background-color: var(--pastel-pink-dark);
+    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
+    animation: dark-nav-glow 1.5s infinite;
+}
+
+body.dark-mode .mobile-nav-menu a:hover {
+    animation: dark-nav-glow 1.5s infinite;
 }
 
 body.dark-mode .hamburger-menu span {
@@ -125,7 +131,7 @@ body.dark-mode #home .container {
 }
 
 body.dark-mode .hero-content h1 {
-    color: #2a9d8f;
+    color: var(--pastel-pink-dark);
     text-align: center;
 }
 
@@ -368,5 +374,10 @@ body.dark-mode .form-group textarea:focus {
 
 /* Price color in dark mode */
 body.dark-mode .price {
+    color: var(--pastel-pink-dark);
+}
+
+/* Logo color */
+body.dark-mode .logo span {
     color: var(--pastel-pink-dark);
 }
