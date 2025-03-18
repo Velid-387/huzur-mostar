@@ -141,6 +141,16 @@ body.dark-mode footer {
     box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.1);
 }
 
+/* Social links in dark mode */
+body.dark-mode .social-links i {
+    color: #4fd1c5;  /* Brighter teal in dark mode */
+}
+
+body.dark-mode .social-links a:hover i {
+    color: #ff8f6f;  /* Brighter orange in dark mode */
+    text-shadow: 0 0 10px rgba(231, 111, 81, 0.5);  /* Glow effect */
+}
+
 /* Mobile Menu */
 @media (max-width: 768px) {
     body.dark-mode .nav-links.active {
