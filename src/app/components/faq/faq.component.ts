@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-faq',
@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./faq.component.css']
 })
 export class FaqComponent implements OnInit {
+  private platformId = inject(PLATFORM_ID);
+  
   faqItems = [
     {
       question: 'How can I place an order?',
@@ -29,7 +31,9 @@ export class FaqComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.setupFaqToggle();
+    if (isPlatformBrowser(this.platformId)) {
+      this.setupFaqToggle();
+    }
   }
 
   setupFaqToggle(): void {
@@ -45,5 +49,15 @@ export class FaqComponent implements OnInit {
         });
       });
     }, 0);
+  }
+  
+  toggleFaq(event: Event): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const target = event.currentTarget as HTMLElement;
+      const parent = target.parentElement;
+      if (parent) {
+        parent.classList.toggle('active');
+      }
+    }
   }
 }

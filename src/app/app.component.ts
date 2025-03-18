@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -32,13 +32,15 @@ import { AnimationService } from './services/animation.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
-  constructor(private animationService: AnimationService) {}
+  private animationService = inject(AnimationService);
+  private platformId = inject(PLATFORM_ID);
   
   ngOnInit(): void {
-    // Initialize animations after view is loaded
-    setTimeout(() => {
-      this.animationService.initAnimations();
-    }, 100);
+    // Initialize animations after view is loaded, but only in browser
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.animationService.initAnimations();
+      }, 100);
+    }
   }
 }
