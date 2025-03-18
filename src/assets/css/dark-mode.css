@@ -229,3 +229,43 @@ body.dark-mode #copyright {
         background: #1e1e1e;
     }
 }
+
+/* Button styles for dark mode */
+body.dark-mode .btn, 
+body.dark-mode button, 
+body.dark-mode input[type="submit"], 
+body.dark-mode input[type="button"] {
+    background-color: #e76f51;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.3);
+}
+
+body.dark-mode .btn:hover, 
+body.dark-mode button:hover, 
+body.dark-mode input[type="submit"]:hover, 
+body.dark-mode input[type="button"]:hover {
+    background-color: #2a9d8f;
+    color: #ffffff;
+    box-shadow: 0 7px 15px rgba(42, 157, 143, 0.5);
+    animation: dark-button-glow 1.5s infinite;
+}
+
+@keyframes dark-button-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(42, 157, 143, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(42, 157, 143, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(42, 157, 143, 0.4);
+    }
+}
+
+body.dark-mode .btn.active, 
+body.dark-mode button.active, 
+body.dark-mode input[type="submit"].active, 
+body.dark-mode input[type="button"].active {
+    background-color: #2a9d8f;
+    animation: dark-button-glow 1.5s infinite;
+}

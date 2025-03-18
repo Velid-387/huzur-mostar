@@ -169,23 +169,65 @@ p {
     font-size: 1.1rem;
 }
 
-.btn {
+/* Buttons styled like nav links but with colors */
+.btn, button, input[type="submit"], input[type="button"] {
     display: inline-block;
-    background-color: #e76f51;
+    background-color: #e76f51; /* Orange background */
     color: #ffffff;
     padding: 0.8rem 1.5rem;
-    border-radius: 4px;
+    border-radius: 20px;
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.2);
 }
 
-.btn:hover {
-    background-color: #2a9d8f;
+.btn:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #2a9d8f; /* Green on hover */
     transform: translateY(-3px);
-    border-radius: 50px;
+    color: #ffffff;
+    box-shadow: 0 7px 15px rgba(42, 157, 143, 0.4);
+    animation: nav-glow 1.5s infinite;
+}
+
+@keyframes button-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(42, 157, 143, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(42, 157, 143, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(42, 157, 143, 0.3);
+    }
+}
+
+.btn:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    animation: button-glow 1.5s infinite;
+}
+
+.btn.active, button.active, input[type="submit"].active, input[type="button"].active {
+    background-color: #2a9d8f;
+    color: #ffffff;
+    animation: button-glow 1.5s infinite;
+}
+
+/* Special treatment for home button to keep its bounce */
+#home .btn {
+    animation: bounce 1.5s ease-in-out infinite !important;
+    margin: 0 auto;
+}
+
+#home .btn:hover {
+    background-color: #2a9d8f; /* Green on hover */
+    transform: translateY(-3px);
+    color: #ffffff;
+    box-shadow: 0 7px 15px rgba(42, 157, 143, 0.4);
 }
 
 .animate-section {
@@ -239,11 +281,6 @@ section#home::after {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#home .btn {
-    animation: bounce 1.5s ease-in-out infinite;
-    margin: 0 auto;
 }
 
 .hero-content {
