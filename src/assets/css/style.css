@@ -931,15 +931,22 @@ a[routerLink], a[fragment], a[href], a[ng-click], a[click], a.btn, [routerLink],
     background-color: #e76f51;
     color: #ffffff;
     cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 4px;
+    padding: 12px 15px;
+    border-radius: 20px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.2);
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   #scrollToTop:hover {
     background-color: #2a9d8f;
     transform: translateY(-3px);
-    border-radius: 50px;
+    box-shadow: 0 7px 15px rgba(42, 157, 143, 0.4);
+    animation: button-glow 1.5s infinite;
   }
 
 /* Menu toggle for mobile */

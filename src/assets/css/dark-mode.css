@@ -269,3 +269,16 @@ body.dark-mode input[type="button"].active {
     background-color: #2a9d8f;
     animation: dark-button-glow 1.5s infinite;
 }
+
+/* Scroll to top button dark mode */
+body.dark-mode #scrollToTop {
+    background-color: #e76f51;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.3);
+}
+
+body.dark-mode #scrollToTop:hover {
+    background-color: #2a9d8f;
+    box-shadow: 0 7px 15px rgba(42, 157, 143, 0.5);
+    animation: dark-button-glow 1.5s infinite;
+}
