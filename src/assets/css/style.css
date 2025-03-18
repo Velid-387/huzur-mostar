@@ -66,6 +66,7 @@ nav {
 
 .logo span {
     color: var(--dark-pink);
+    font-family: 'Alex Brush', cursive;
 }
 
 .nav-links {
