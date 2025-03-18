@@ -1,7 +1,18 @@
 /* Dark Mode Styles */
 body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
+    --pastel-pink-dark: #c09a9a;      /* Darker soft pink */
+    --pastel-peach-dark: #c7aa8e;     /* Darker peach */
+    --pastel-green-dark: #91b478;     /* Darker mint green */
+    --pastel-blue-dark: #84b5c1;      /* Darker sky blue */
+    --pastel-lavender-dark: #b09cb8;  /* Darker lavender */
+    --pastel-yellow-dark: #c5bb8b;    /* Darker soft yellow */
+    --dark-pink-dark: #b56c82;        /* Darker deep pink */
+    --dark-green-dark: #5a8d5e;       /* Darker deep green */
+    --bg-dark: #333a3c;               /* Dark background */
+    --text-light: #e9e9e9;            /* Light text for dark mode */
+    
+    background-color: var(--bg-dark);
+    color: var(--text-light);
 }
 
 body.dark-mode .animate-section {
@@ -202,21 +213,22 @@ body.dark-mode .social-links h3 {
 }
 
 body.dark-mode .social-links a {
-    background-color: #2d2d2d;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background-color: var(--pastel-pink-dark);
+    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
 }
 
 body.dark-mode .social-links i {
-    color: #2a9d8f;
+    color: var(--text-light);
 }
 
 body.dark-mode .social-links a:hover {
-    box-shadow: 0 7px 15px rgba(231, 111, 81, 0.6);
-    background-color: #383838;
+    background-color: var(--pastel-green-dark);
+    box-shadow: 0 7px 15px rgba(145, 180, 120, 0.4);
+    animation: dark-button-glow 1.5s infinite;
 }
 
 body.dark-mode .social-links a:hover i {
-    color: #e76f51;
+    color: var(--text-light);
 }
 
 body.dark-mode #copyright {
@@ -235,30 +247,30 @@ body.dark-mode .btn,
 body.dark-mode button, 
 body.dark-mode input[type="submit"], 
 body.dark-mode input[type="button"] {
-    background-color: #e76f51;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.3);
+    background-color: var(--pastel-pink-dark);
+    color: var(--text-light);
+    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
 }
 
 body.dark-mode .btn:hover, 
 body.dark-mode button:hover, 
 body.dark-mode input[type="submit"]:hover, 
 body.dark-mode input[type="button"]:hover {
-    background-color: #2a9d8f;
-    color: #ffffff;
-    box-shadow: 0 7px 15px rgba(42, 157, 143, 0.5);
+    background-color: var(--pastel-green-dark);
+    color: var(--text-light);
+    box-shadow: 0 7px 15px rgba(145, 180, 120, 0.4);
     animation: dark-button-glow 1.5s infinite;
 }
 
 @keyframes dark-button-glow {
     0% {
-        box-shadow: 0 0 5px rgba(42, 157, 143, 0.4);
+        box-shadow: 0 0 5px rgba(145, 180, 120, 0.3);
     }
     50% {
-        box-shadow: 0 0 15px rgba(42, 157, 143, 0.7);
+        box-shadow: 0 0 15px rgba(145, 180, 120, 0.5);
     }
     100% {
-        box-shadow: 0 0 5px rgba(42, 157, 143, 0.4);
+        box-shadow: 0 0 5px rgba(145, 180, 120, 0.3);
     }
 }
 
@@ -266,19 +278,95 @@ body.dark-mode .btn.active,
 body.dark-mode button.active, 
 body.dark-mode input[type="submit"].active, 
 body.dark-mode input[type="button"].active {
-    background-color: #2a9d8f;
+    background-color: var(--pastel-pink-dark);
     animation: dark-button-glow 1.5s infinite;
+}
+
+/* Home button in dark mode */
+body.dark-mode #home .btn {
+    background-color: var(--pastel-pink-dark);
+    color: var(--text-light);
+}
+
+body.dark-mode #home .btn:hover {
+    background-color: var(--pastel-green-dark);
+    color: var(--text-light);
 }
 
 /* Scroll to top button dark mode */
 body.dark-mode #scrollToTop {
-    background-color: #e76f51;
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.3);
+    background-color: var(--pastel-pink-dark);
+    color: var(--text-light);
+    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
 }
 
 body.dark-mode #scrollToTop:hover {
-    background-color: #2a9d8f;
-    box-shadow: 0 7px 15px rgba(42, 157, 143, 0.5);
+    background-color: var(--pastel-green-dark);
+    color: var(--text-light);
+    box-shadow: 0 7px 15px rgba(145, 180, 120, 0.4);
     animation: dark-button-glow 1.5s infinite;
+}
+
+/* Dark mode heading colors */
+body.dark-mode h2 {
+    color: var(--pastel-pink-dark);
+}
+
+body.dark-mode h3 {
+    color: var(--pastel-green-dark);
+}
+
+/* Dark mode toggle */
+body.dark-mode #sun-icon {
+    color: var(--pastel-yellow-dark);
+}
+
+body.dark-mode #moon-icon {
+    color: var(--pastel-lavender-dark);
+}
+
+/* FAQ item border in dark mode */
+body.dark-mode .faq-item {
+    border-left: 4px solid var(--pastel-pink-dark);
+    background-color: rgba(51, 58, 60, 0.6);
+}
+
+body.dark-mode .faq-item.animate-item {
+    border-left: 5px solid var(--dark-pink-dark);
+}
+
+body.dark-mode .faq-item.animate-item .faq-question {
+    color: var(--pastel-green-dark);
+}
+
+/* Testimonial card border in dark mode */
+body.dark-mode .testimonial-card {
+    background-color: rgba(51, 58, 60, 0.6);
+}
+
+body.dark-mode .testimonial-card.animate-item {
+    border-bottom: 5px solid var(--dark-pink-dark);
+}
+
+body.dark-mode .testimonial-name {
+    color: var(--pastel-green-dark);
+}
+
+/* Contact form input fields in dark mode */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background-color: rgba(51, 58, 60, 0.4);
+    color: var(--text-light);
+    border: 1px solid var(--pastel-blue-dark);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: var(--pastel-pink-dark);
+    box-shadow: 0 0 8px rgba(192, 154, 154, 0.4);
+}
+
+/* Price color in dark mode */
+body.dark-mode .price {
+    color: var(--pastel-pink-dark);
 }
