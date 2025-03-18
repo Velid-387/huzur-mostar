@@ -182,37 +182,64 @@ p {
         url('../img/huzur-home.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
     transition: background 0.3s ease;
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    padding: 6rem 0;
+}
+
+#home .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #home .btn {
     animation: bounce 1.5s ease-in-out infinite;
+    margin: 0 auto;
 }
 
 .hero-content {
     max-width: 700px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
     color: #2a9d8f;
+    width: 100%;
+    text-align: center;
 }
 
 .hero-content p {
     font-size: 1.3rem;
     margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
 }
 
 .animated-text-container {
-    white-space: normal;
+    width: 100%;
     min-height: 100px;
     overflow: hidden;
-    display: inline-block;
+    display: block;
+    text-align: center;
 }
 
 /* About section */
@@ -662,10 +689,8 @@ input[type="checkbox"]:not(:checked) ~ #moon-icon {
         top: 60px;
     }
 
-    .about-content,
-    .contact-container {
-        flex-direction: column;
-        gap: 2rem;
+    #home {
+        padding: 0 1rem;
     }
 
     .hero-content h1 {
@@ -674,6 +699,13 @@ input[type="checkbox"]:not(:checked) ~ #moon-icon {
 
     .hero-content p {
         font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+
+    .about-content,
+    .contact-container {
+        flex-direction: column;
+        gap: 2rem;
     }
 
     h2 {

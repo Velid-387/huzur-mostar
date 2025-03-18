@@ -84,14 +84,32 @@ body.dark-mode #home {
         url('../img/huzur-home.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
     transition: background 0.3s ease;
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    padding: 6rem 0;
+}
+
+body.dark-mode #home .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
 }
 
 body.dark-mode .hero-content h1 {
     color: #2a9d8f;
+    text-align: center;
+}
+
+body.dark-mode .hero-content p {
+    color: #e0e0e0;
+    text-align: center;
 }
 
 /* About Section */
