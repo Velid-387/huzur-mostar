@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DarkModeService } from '../../services/dark-mode.service';
@@ -16,9 +16,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
   
+  activeSection: string = 'home';
+  sections: string[] = ['home', 'about', 'products', 'faq', 'testimonials', 'contact'];
+  mobileMenuOpen: boolean = false;
+  
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.setupHamburgerMenu();
+      this.checkActiveSection();
     }
   }
 
@@ -34,15 +38,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  setupHamburgerMenu(): void {
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const mobileNavMenu = document.getElementById('mobileNavMenu');
-    
-    if (hamburgerMenu && mobileNavMenu) {
-      hamburgerMenu.addEventListener('click', () => {
-        hamburgerMenu.classList.toggle('active');
-        mobileNavMenu.classList.toggle('active');
-      });
+  toggleMobileMenu(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.mobileMenuOpen = !this.mobileMenuOpen;
     }
   }
 
@@ -56,18 +54,44 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkActiveSection();
+    }
+  }
+
+  checkActiveSection(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    
+    const scrollPosition = window.scrollY + 200; // Adding offset for better UX
+    
+    for (const section of this.sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const offsetTop = element.offsetTop;
+        const offsetHeight = element.offsetHeight;
+        
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          this.activeSection = section;
+          break;
+        }
+      }
+    }
+  }
+
+  isActive(section: string): boolean {
+    return this.activeSection === section;
+  }
+
   // Add this method to handle navigation clicks directly
   scrollToSection(sectionId: string): void {
+    this.activeSection = sectionId;
     this.scrollService.scrollToElementById(sectionId);
     
     // Close mobile menu if open
-    if (isPlatformBrowser(this.platformId)) {
-      const hamburgerMenu = document.getElementById('hamburgerMenu');
-      const mobileNavMenu = document.getElementById('mobileNavMenu');
-      if (hamburgerMenu && mobileNavMenu) {
-        hamburgerMenu.classList.remove('active');
-        mobileNavMenu.classList.remove('active');
-      }
+    if (isPlatformBrowser(this.platformId) && this.mobileMenuOpen) {
+      this.toggleMobileMenu();
     }
   }
 }
