@@ -626,19 +626,19 @@ body.dark-mode .social-links a:hover {
     color: #2a9d8f;
 }
 
-#checkbox:checked~#sun-icon {
+input[type="checkbox"]:checked ~ #sun-icon {
     display: none;
 }
 
-#checkbox:checked~#moon-icon {
+input[type="checkbox"]:checked ~ #moon-icon {
     display: block;
 }
 
-#checkbox:not(:checked)~#sun-icon {
+input[type="checkbox"]:not(:checked) ~ #sun-icon {
     display: block;
 }
 
-#checkbox:not(:checked)~#moon-icon {
+input[type="checkbox"]:not(:checked) ~ #moon-icon {
     display: none;
 }
 

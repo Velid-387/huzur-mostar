@@ -19,22 +19,18 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   activeSection: string = 'home';
   sections: string[] = ['home', 'about', 'products', 'faq', 'testimonials', 'contact'];
   mobileMenuOpen: boolean = false;
+  isDarkMode: boolean = false;
   
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.checkActiveSection();
+      this.isDarkMode = this.darkModeService.isDark();
     }
   }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const checkbox = document.getElementById('checkbox') as HTMLInputElement;
-      if (checkbox) {
-        checkbox.checked = this.darkModeService.isDark();
-        checkbox.addEventListener('change', () => {
-          this.darkModeService.toggleDarkMode();
-        });
-      }
+      // This will now be handled by Angular's property binding
     }
   }
 
@@ -46,12 +42,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   toggleDarkMode(): void {
     this.darkModeService.toggleDarkMode();
-    if (isPlatformBrowser(this.platformId)) {
-      const checkbox = document.getElementById('checkbox') as HTMLInputElement;
-      if (checkbox) {
-        checkbox.checked = this.darkModeService.isDark();
-      }
-    }
+    this.isDarkMode = this.darkModeService.isDark();
   }
 
   @HostListener('window:scroll', ['$event'])
