@@ -124,6 +124,25 @@ body.dark-mode #home {
     border-top: none;
 }
 
+/* Mobile styles for dark mode home section */
+@media (max-width: 768px) {
+    body.dark-mode #home {
+        background-attachment: scroll;
+        padding-top: 80px;
+        margin-top: 0;
+        border-top: none;
+    }
+    
+    body.dark-mode #home.animate-section {
+        border-top: none;
+        box-shadow: none;
+    }
+    
+    body.dark-mode .hero-content {
+        margin-top: 2rem;
+    }
+}
+
 body.dark-mode #home .container {
     width: 100%;
     max-width: 1200px;

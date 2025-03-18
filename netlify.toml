@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+  publish = "dist/huzur-mostar/browser"
+
+[build.environment]
+  NODE_VERSION = "18.18.0"
+
+[dev]
+  command = "npm run dev"
+  port = 4200
+  targetPort = 4200
+  publish = "dist/huzur-mostar/browser"
+  framework = "angular"
+  autoLaunch = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 

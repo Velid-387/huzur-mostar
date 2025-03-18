@@ -4,10 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && ng run huzur-mostar:server",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:huzur-mostar": "node dist/huzur-mostar/server/server.mjs"
+    "serve:ssr:huzur-mostar": "node dist/huzur-mostar/server/server.mjs",
+    "dev": "ng serve",
+    "netlify:serve": "netlify dev",
+    "netlify:build": "npm run build"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +24,6 @@
     "@angular/platform-server": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.1",
-    "@netlify/angular-runtime": "^2.3.0",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -31,6 +33,7 @@
     "@angular-devkit/build-angular": "^19.2.1",
     "@angular/cli": "^19.2.1",
     "@angular/compiler-cli": "^19.2.0",
+    "@netlify/angular-runtime": "^2.3.0",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
