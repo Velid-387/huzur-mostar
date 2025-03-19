@@ -24,7 +24,7 @@ body.dark-mode .animate-section {
 /* Exception for home section */
 body.dark-mode #home.animate-section {
     background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)),
-        url('../img/huzur-home.png');
+        url('../../assets/img/huzur-home.png');
     border-top: none;
     box-shadow: none;
 }
@@ -106,7 +106,7 @@ body.dark-mode .hamburger-menu span {
 /* Home Section */
 body.dark-mode #home {
     background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)),
-        url('../img/huzur-home.png');
+        url('../../assets/img/huzur-home.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
