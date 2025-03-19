@@ -789,6 +789,9 @@ body.dark-mode .social-links a:hover {
 /* When toggle is checked (dark mode) */
 input:checked ~ .toggle-icon .sun-circle {
     fill: var(--pastel-lavender);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 input:checked ~ .toggle-icon .sun-rays {
@@ -798,10 +801,26 @@ input:checked ~ .toggle-icon .sun-rays {
 
 input:checked ~ .toggle-icon .moon-mask {
     transform: scale(1);
+    animation: moon-appear 0.5s ease forwards;
+}
+
+@keyframes moon-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 input:checked ~ .toggle-icon:hover .sun-circle {
     filter: drop-shadow(0 0 3px rgba(217, 198, 224, 0.8));
+}
+
+input:checked ~ .toggle-icon:hover .moon-mask {
+    filter: drop-shadow(0 0 5px rgba(230, 220, 171, 0.8));
 }
 
 /* Style the hamburger menu button */
