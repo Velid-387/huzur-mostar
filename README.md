@@ -4,6 +4,8 @@
   <img src="./public/huzur-logo.png" alt="Huzur Mostar Logo" width="150">
 </div>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e1ca9ad1-bc84-4428-a4f1-cc59b5689888/deploy-status)](https://app.netlify.com/sites/huzurmostar-in-progress/deploys)
+
 ## About The Project
 
 Huzur Mostar is a modern, responsive website for a flower shop based in Mostar, Bosnia and Herzegovina. The site showcases the shop's products, services, and brand essence, providing visitors with a seamless experience to explore floral arrangements and connect with the business.
