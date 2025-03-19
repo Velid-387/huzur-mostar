@@ -25,8 +25,7 @@
                 
                 <div class="hours-section">
                     <h3>Radno vrijeme</h3>
-                    <p><span>Ponedjeljak - Petak:</span> 8:00 - 17:30</p>
-                    <p><span>Subota:</span> 8:00 - 15:00</p>
+                    <p><span>Ponedjeljak - Subota:</span> 8:00 - 17:30</p>
                     <p><span>Nedjelja:</span> Zatvoreno</p>
                 </div>
             </div>
@@ -52,7 +51,11 @@
         </div>
     </div>
     
-    <button id="scrollToTop" title="Scroll to top" (click)="scrollToTop()">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    <button 
+      id="scrollToTop" 
+      [class.visible]="isScrollButtonVisible"
+      title="Scroll to top" 
+      (click)="scrollToTop()"
+      aria-label="Scroll to top"
+    >↑</button>
 </footer>

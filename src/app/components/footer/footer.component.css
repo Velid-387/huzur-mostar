@@ -246,17 +246,27 @@ footer {
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 100;
-  opacity: 0.9;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  font-weight: bold;
+  font-size: 20px;
 }
 
-#scrollToTop i {
-  font-size: 1rem;
+#scrollToTop.visible {
+  opacity: 0.9;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 #scrollToTop:hover {
   transform: translateY(-5px);
   background-color: var(--pastel-pink, #f5c0c0);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+#scrollToTop.visible:hover {
+  transform: translateY(-5px);
 }
 
 @media (max-width: 768px) {
@@ -305,6 +315,7 @@ footer {
     right: 15px;
     width: 40px;
     height: 40px;
+    font-size: 18px;
   }
   
   .flower-decoration {

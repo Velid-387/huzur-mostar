@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
 
@@ -11,35 +11,26 @@ import { ScrollService } from '../../services/scroll.service';
 })
 export class FooterComponent implements OnInit {
   currentYear = new Date().getFullYear();
+  isScrollButtonVisible = false;
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.setupScrollToTop();
+      // Initial check of scroll position
+      this.checkScrollPosition();
     }
   }
 
-  setupScrollToTop(): void {
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    
-    if (scrollToTopBtn) {
-      // Initially hide the button
-      scrollToTopBtn.style.display = 'none';
+  @HostListener('window:scroll', [])
+  checkScrollPosition(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Get the height of the home section
+      const homeSection = document.getElementById('home');
+      const homeSectionHeight = homeSection ? homeSection.offsetHeight : 500; // Default if not found
       
-      // Add click event
-      scrollToTopBtn.addEventListener('click', () => {
-        this.scrollService.scrollToTop();
-      });
-      
-      // Show/hide based on scroll position
-      window.addEventListener('scroll', () => {
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-          scrollToTopBtn.style.display = 'block';
-        } else {
-          scrollToTopBtn.style.display = 'none';
-        }
-      });
+      // Show button only when scrolled past the home section
+      this.isScrollButtonVisible = window.scrollY > homeSectionHeight;
     }
   }
 
