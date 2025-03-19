@@ -455,3 +455,11 @@ body.dark-mode .price {
 body.dark-mode .logo span {
     color: var(--pastel-pink-dark);
 }
+
+/* Dark mode tap to flip indicator */
+@media (max-width: 768px) {
+    body.dark-mode .testimonial-card::after {
+        color: rgba(220, 220, 220, 0.8);
+        background-color: rgba(50, 50, 50, 0.5);
+    }
+}
