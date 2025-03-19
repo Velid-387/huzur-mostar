@@ -1156,7 +1156,7 @@ footer .social-links a:active {
 /* Apply Alex Brush to selected elements */
 .logo, h1, h2, h3, .testimonial-name, 
 .social-links h3, .form-status, .image-overlay,
-footer #copyright, .faq-container h2 {
+.faq-container h2 {
     font-family: 'Alex Brush', cursive;
     font-weight: 400; /* Alex Brush looks better without extra weight */
     letter-spacing: 0.5px;
