@@ -20,7 +20,7 @@ export class TestimonialsComponent implements OnInit {
       cardFlipping: false
     },
     {
-      content: 'Naručila sam aranžman za rođendan svoje majke i bila sam oduševljena. Kvaliteta cvjetova je izvanredna, a isporuka je bila točno na vrijeme.',
+      content: 'Naručila sam aranžman za rođendan svoje majke i bila sam oduševljena. Kvaliteta cvjetova je izvanredna, a isporuka je bila tačno na vrijeme.',
       name: 'Emina B.',
       imagePath: 'assets/img/products/huzur-buket-7.jpg',
       flipped: false,
