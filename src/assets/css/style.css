@@ -1,3 +1,6 @@
+/* Import Alex Brush font */
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -50,6 +53,7 @@ nav {
 .logo {
     display: flex;
     align-items: center;
+    font-size: 1.8rem;
 }
 
 .logo img {
@@ -61,7 +65,8 @@ nav {
 }
 
 .logo span {
-    color: #2a9d8f;
+    color: var(--dark-pink);
+    font-family: 'Alex Brush', cursive;
 }
 
 .nav-links {
@@ -87,7 +92,7 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(42, 157, 143, 0.1);
+    background-color: rgba(245, 192, 192, 0.2);
     border-radius: 20px;
     transform: scale(0);
     transition: transform 0.3s ease;
@@ -95,7 +100,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #2a9d8f;
+    color: var(--dark-pink);
     transform: translateY(-3px);
 }
 
@@ -104,20 +109,20 @@ nav {
 }
 
 .nav-links a.active {
-    color: #e76f51;
-    background-color: rgba(231, 111, 81, 0.1);
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.2);
+    color: var(--text-dark);
+    background-color: var(--pastel-pink);
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
 }
 
 @keyframes nav-glow {
     0% {
-        box-shadow: 0 0 5px rgba(231, 111, 81, 0.3);
+        box-shadow: 0 0 5px rgba(245, 192, 192, 0.4);
     }
     50% {
-        box-shadow: 0 0 15px rgba(231, 111, 81, 0.5);
+        box-shadow: 0 0 15px rgba(245, 192, 192, 0.6);
     }
     100% {
-        box-shadow: 0 0 5px rgba(231, 111, 81, 0.3);
+        box-shadow: 0 0 5px rgba(245, 192, 192, 0.4);
     }
 }
 
@@ -127,17 +132,12 @@ nav {
 
 .nav-links a.active {
     animation: nav-glow 1.5s infinite;
-    color: #e76f51;
+    color: var(--text-dark);
     font-weight: 600;
 }
 
-.nav-links a.inactive {
-    color: #333;
-    border-bottom: none;
-}
-
 .nav-links a.selected {
-    color: #e76f51;
+    color: var(--dark-pink);
 }
 
 /* Section common styles */
@@ -159,9 +159,14 @@ section:first-of-type {
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
     margin-bottom: 1.5rem;
-    color: #2a9d8f;
+    color: var(--dark-pink);
+}
+
+h3 {
+    color: var(--dark-green);
+    font-size: 2.2rem;
 }
 
 p {
@@ -169,23 +174,84 @@ p {
     font-size: 1.1rem;
 }
 
-.btn {
+/* Buttons styled like nav links but with colors */
+.btn, button, input[type="submit"], input[type="button"] {
     display: inline-block;
-    background-color: #e76f51;
-    color: #ffffff;
+    background-color: var(--pastel-pink);
+    color: var(--text-dark);
     padding: 0.8rem 1.5rem;
-    border-radius: 4px;
+    border-radius: 20px;
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
+    font-family: poppins, sans-serif;
 }
 
-.btn:hover {
-    background-color: #2a9d8f;
+.btn:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: var(--pastel-green);
+    color: var(--text-dark);
+    box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
     transform: translateY(-3px);
-    border-radius: 50px;
+    animation: button-glow 1.5s infinite;
+}
+
+.btn:active, button:active, input[type="submit"]:active, input[type="button"]:active {
+    background-color: var(--dark-pink);
+    color: white;
+    box-shadow: 0 0 25px rgba(223, 123, 153, 0.9);
+    transform: translateY(1px);
+    animation: button-click-glow 0.5s;
+}
+
+@keyframes button-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(200, 228, 178, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(200, 228, 178, 0.5);
+    }
+}
+
+@keyframes button-click-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(223, 123, 153, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(223, 123, 153, 1);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(223, 123, 153, 0.6);
+    }
+}
+
+.btn.active, button.active, input[type="submit"].active, input[type="button"].active {
+    background-color: var(--pastel-pink);
+    color: var(--text-dark);
+    animation: button-glow 1.5s infinite;
+}
+
+/* Special treatment for home button to keep its bounce */
+#home .btn {
+    animation: bounce 1.5s ease-in-out infinite !important;
+    background-color: var(--pastel-pink);
+    color: var(--text-dark);
+    margin: 0 auto;
+}
+
+#home .btn:hover {
+    background-color: var(--pastel-green);
+    transform: translateY(-3px);
+    color: var(--text-dark);
+    box-shadow: 0 7px 15px rgba(200, 228, 178, 0.5);
 }
 
 .animate-section {
@@ -241,11 +307,6 @@ section#home::after {
     align-items: center;
 }
 
-#home .btn {
-    animation: bounce 1.5s ease-in-out infinite;
-    margin: 0 auto;
-}
-
 .hero-content {
     max-width: 700px;
     margin: 0 auto;
@@ -258,9 +319,9 @@ section#home::after {
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 5.5rem;
     margin-bottom: 1.5rem;
-    color: #2a9d8f;
+    color: var(--dark-pink);
     width: 100%;
     text-align: center;
 }
@@ -396,8 +457,9 @@ section#home::after {
 
 .price {
     font-weight: bold;
-    color: #e76f51;
-    font-size: 1.2rem;
+    color: var(--dark-pink);
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
 }
 
 /* FAQ section */
@@ -414,7 +476,7 @@ section#home::after {
 .faq-container h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #2a9d8f;
+    color: var(--dark-pink);
 }
 
 .faq-item {
@@ -424,6 +486,7 @@ section#home::after {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s, background-color 0.3s ease;
+    border-left: 4px solid var(--pastel-pink);
 }
 
 .faq-item:hover {
@@ -443,14 +506,13 @@ section#home::after {
 }
 
 .faq-item.animate-item {
-    border-left: 5px solid #e05d3d;
+    border-left: 5px solid var(--dark-pink);
 }
-
 
 .faq-item.animate-item .faq-question {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #2a9d8f;
+    color: var(--dark-green);
 }
 
 /* Testimonials section */
@@ -485,14 +547,19 @@ section#home::after {
     flex: 0 0 auto;
     text-align: center;
     width: 200px;
-    border-bottom: 5px solid #e05d3d;
+    border-bottom: 5px solid var(--dark-pink);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial-name {
-    color: #2a9d8f;
+    color: var(--dark-green);
+    font-family: 'Alex Brush', cursive;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
 }
 
 /* Contact section */
@@ -528,7 +595,7 @@ section#home::after {
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--pastel-blue);
     border-radius: 4px;
     font-size: 1rem;
     background-color: #fff;
@@ -539,6 +606,13 @@ section#home::after {
 .form-group textarea {
     height: 150px;
     resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--pastel-pink);
+    box-shadow: 0 0 8px rgba(245, 192, 192, 0.4);
+    outline: none;
 }
 
 .form-status {
@@ -589,8 +663,8 @@ footer {
 .social-links h3 {
     display: block;
     margin-bottom: 15px;
-    font-size: 1.3rem;
-    color: #2a9d8f;
+    font-size: 2rem;
+    color: var(--dark-pink);
 }
 
 .social-links a {
@@ -600,26 +674,47 @@ footer {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #f5f5f5;
+    background-color: var(--pastel-pink);
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
     text-decoration: none;
     border: none;
 }
 
 .social-links i {
-    color: #2a9d8f;
+    color: var(--text-dark);
     font-size: 26px;
     transition: all 0.3s ease;
 }
 
 .social-links a:hover {
     transform: translateY(-5px);
-    box-shadow: 0 7px 15px rgba(231, 111, 81, 0.4);
+    background-color: var(--pastel-green);
+    box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
+    animation: social-glow 1.5s infinite;
 }
 
-.social-links a:hover i {
-    color: #e76f51;
+.social-links a:active {
+    background-color: var(--dark-pink);
+    box-shadow: 0 0 25px rgba(223, 123, 153, 0.9);
+    transform: translateY(-2px);
+    animation: button-click-glow 0.5s;
+}
+
+.social-links a:active i {
+    color: white;
+}
+
+@keyframes social-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(200, 228, 178, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(200, 228, 178, 0.5);
+    }
 }
 
 body.dark-mode .social-links a {
@@ -631,28 +726,6 @@ body.dark-mode .social-links a:hover {
     box-shadow: 0 7px 15px rgba(231, 111, 81, 0.6);
 }
 
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 5px rgba(231, 111, 81, 0.5);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(231, 111, 81, 0.8);
-    }
-    100% {
-        box-shadow: 0 0 5px rgba(231, 111, 81, 0.5);
-    }
-}
-
-.social-links a:hover {
-    animation: glow 1.5s infinite;
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-body.dark-mode .social-links a:hover {
-    animation: glow 1.5s infinite;
-    background-color: rgba(45, 45, 45, 0.9);
-}
-
 /* Dark mode toggle */
 .theme-switch-wrapper {
     display: flex;
@@ -661,50 +734,74 @@ body.dark-mode .social-links a:hover {
 
 .theme-switch {
     display: inline-block;
-    height: 24px;
     position: relative;
-    width: 48px;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
 }
 
 .theme-switch input {
     display: none;
 }
 
-.theme-switch i {
-    cursor: pointer;
-    font-size: 24px;
-    margin: 0 10px;
+/* SVG toggle container */
+.toggle-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.toggle-label {
-    margin-left: 10px;
-    font-size: 0.8rem;
+/* Sun styles */
+.sun-circle {
+    fill: var(--dark-pink);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center center;
+    filter: drop-shadow(0 0 1px rgba(223, 123, 153, 0.7));
 }
 
-#sun-icon {
-    display: block;
-    color: #e76f51;
+.sun-rays {
+    stroke: var(--dark-pink);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center center;
+    opacity: 1;
 }
 
-#moon-icon {
-    display: none;
-    color: #2a9d8f;
+/* Moon mask for crescent shape */
+.moon-mask {
+    fill: var(--bg-dark, #333a3c);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center center;
+    transform: scale(0);
 }
 
-input[type="checkbox"]:checked ~ #sun-icon {
-    display: none;
+/* Hover effect */
+.toggle-icon:hover .sun-circle,
+.toggle-icon:hover .sun-rays {
+    filter: drop-shadow(0 0 5px rgba(223, 123, 153, 0.9));
 }
 
-input[type="checkbox"]:checked ~ #moon-icon {
-    display: block;
+/* When toggle is checked (dark mode) */
+input:checked ~ .toggle-icon .sun-circle {
+    fill: var(--pastel-lavender);
 }
 
-input[type="checkbox"]:not(:checked) ~ #sun-icon {
-    display: block;
+input:checked ~ .toggle-icon .sun-rays {
+    opacity: 0;
+    transform: scale(0);
 }
 
-input[type="checkbox"]:not(:checked) ~ #moon-icon {
-    display: none;
+input:checked ~ .toggle-icon .moon-mask {
+    transform: scale(1);
+}
+
+input:checked ~ .toggle-icon:hover .sun-circle {
+    filter: drop-shadow(0 0 3px rgba(217, 198, 224, 0.8));
 }
 
 /* Style the hamburger menu button */
@@ -830,7 +927,7 @@ input[type="checkbox"]:not(:checked) ~ #moon-icon {
 }
 
 .mobile-nav-menu a:hover {
-    color: #2a9d8f;
+    color: var(--dark-pink);
     transform: translateX(5px);
 }
 
@@ -839,9 +936,9 @@ input[type="checkbox"]:not(:checked) ~ #moon-icon {
 }
 
 .mobile-nav-menu a.active {
-    color: #e76f51;
-    background-color: rgba(231, 111, 81, 0.1);
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.2);
+    color: var(--text-dark);
+    background-color: var(--pastel-pink);
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
     animation: nav-glow 1.5s infinite;
     font-weight: 600;
 }
@@ -855,18 +952,18 @@ body.dark-mode .mobile-nav-menu a:before {
 }
 
 body.dark-mode .mobile-nav-menu a:hover {
-    color: #2a9d8f;
+    color: var(--dark-pink);
 }
 
 body.dark-mode .mobile-nav-menu a.active {
-    color: #e76f51;
-    background-color: rgba(231, 111, 81, 0.15);
-    box-shadow: 0 4px 8px rgba(231, 111, 81, 0.3);
-    animation: dark-nav-glow 1.5s infinite;
+    color: var(--text-dark);
+    background-color: var(--pastel-pink);
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
+    animation: nav-glow 1.5s infinite;
 }
 
 body.dark-mode .mobile-nav-menu a:hover {
-    animation: dark-nav-glow 1.5s infinite;
+    animation: nav-glow 1.5s infinite;
 }
 
 /* Add theme-specific styles */
@@ -891,19 +988,34 @@ a[routerLink], a[fragment], a[href], a[ng-click], a[click], a.btn, [routerLink],
     font-size: 18px;
     border: none;
     outline: none;
-    background-color: #e76f51;
-    color: #ffffff;
+    background-color: var(--pastel-pink);
+    color: var(--text-dark);
     cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 4px;
+    padding: 12px 15px;
+    border-radius: 20px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   #scrollToTop:hover {
-    background-color: #2a9d8f;
-    transform: translateY(-3px);
-    border-radius: 50px;
+    background-color: var(--pastel-green);
+    color: var(--text-dark);
+    box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
+    animation: button-glow 1.5s infinite;
   }
+
+#scrollToTop:active {
+    background-color: var(--dark-pink);
+    color: white;
+    box-shadow: 0 0 25px rgba(223, 123, 153, 0.9);
+    transform: translateY(1px);
+    animation: button-click-glow 0.5s;
+}
 
 /* Menu toggle for mobile */
 .menu-toggle {
@@ -941,4 +1053,85 @@ footer .social-links a:active {
     text-decoration: none;
     border: none;
     outline: none;
+}
+
+/* Pastel color palette for a modern flower shop */
+:root {
+  --pastel-pink: #f5c0c0;       /* Soft pink */
+  --pastel-peach: #f8d6b3;      /* Peach */
+  --pastel-green: #c8e4b2;      /* Mint green */
+  --pastel-blue: #b5e3eb;       /* Sky blue */
+  --pastel-lavender: #d9c6e0;   /* Lavender */
+  --pastel-yellow: #f5e6ad;     /* Soft yellow */
+  --dark-pink: #df7b99;         /* Deeper pink for contrast */
+  --dark-green: #7cad7f;        /* Deeper green for contrast */
+  --text-dark: #4a5759;         /* Dark slate for text */
+}
+
+/* Apply Alex Brush to selected elements */
+.logo, h1, h2, h3, .testimonial-name, 
+.social-links h3, .form-status, .image-overlay,
+footer #copyright, .faq-container h2 {
+    font-family: 'Alex Brush', cursive;
+    font-weight: 400; /* Alex Brush looks better without extra weight */
+    letter-spacing: 0.5px;
+}
+
+/* Adjust price styling for sans-serif */
+.price {
+    font-family: poppins, sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    color: var(--dark-pink);
+}
+
+/* Make social links heading match other elements */
+.social-links h3 {
+    color: var(--dark-pink);
+    font-size: 2rem;
+}
+
+/* Keep navigation links in sans-serif for better usability */
+.nav-links a, .mobile-nav-menu a {
+    font-family: poppins, sans-serif;
+}
+
+/* Form elements and body text remain readable */
+p, .form-group label, .form-group input, .form-group textarea {
+    font-family: poppins, sans-serif;
+}
+
+/* Size adjustments for cursive font */
+h1 {
+    font-size: 5.5rem;
+}
+
+h2 {
+    font-size: 3.2rem;
+}
+
+h3 {
+    font-size: 2.2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+}
+
+/* Product headings need to be more readable */
+.product-info h3 {
+    font-family: poppins, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* FAQ questions need to be readable */
+.faq-item .faq-question {
+    font-family: poppins, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-green);
+    margin-bottom: 0.7rem;
 }
