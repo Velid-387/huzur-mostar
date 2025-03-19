@@ -138,6 +138,9 @@ body.dark-mode .hero-content h1 {
 body.dark-mode .hero-content p {
     color: #e0e0e0;
     text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* About Section */
@@ -259,6 +262,11 @@ body.dark-mode #copyright {
 @media (max-width: 768px) {
     body.dark-mode #home {
         padding: 0;
+    }
+    
+    body.dark-mode .hero-content p {
+        max-width: 85%;
+        padding: 0 10px;
     }
 }
 
