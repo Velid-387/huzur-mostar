@@ -713,7 +713,6 @@ footer {
     display: flex;
     justify-content: center;
     margin: 1.5rem 0;
-    flex-direction: column;
 }
 
 .social-links .links {

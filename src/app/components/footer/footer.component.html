@@ -1,22 +1,58 @@
 <footer>
+    <div class="flower-decoration left"></div>
+    <div class="flower-decoration right"></div>
+    
     <div class="container">
-        <div class="social-links">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-container">
+                    <img src="./assets/img/huzur-logo.png" alt="Huzur Mostar Logo">
+                    <span>Huzur<em>Mostar</em></span>
+                </div>
+                <p id="slogan">
+                    <span class="highlight">Huzur</span> nađite, 
+                    <span class="highlight">huzur</span> budite
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="contact-section">
+                    <h3>Kontakt</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Maršala Tita 134, Mostar</p>
+                    <p><i class="fas fa-phone"></i> +387 60 33 52 011</p>
+                    <p><i class="fas fa-envelope"></i> huzur.mostar&#64;gmail.com</p>
+                </div>
+                
+                <div class="hours-section">
+                    <h3>Radno vrijeme</h3>
+                    <p><span>Ponedjeljak - Petak:</span> 8:00 - 17:30</p>
+                    <p><span>Subota:</span> 8:00 - 15:00</p>
+                    <p><span>Nedjelja:</span> Zatvoreno</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-container">
             <h3>Pratite nas</h3>
-            <div class="links">
-                <a href="https://www.instagram.com/huzur.mostar/" target="_blank">
+            <div class="social-links">
+                <a href="https://www.instagram.com/huzur.mostar/" target="_blank" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.facebook.com/huzur.mostar" target="_blank">
-                    <i class="fab fa-facebook"></i>
+                <a href="https://www.facebook.com/huzur.mostar" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank">
-                    <i class="fa fa-map-marker"></i>
+                <a href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank" aria-label="Google Maps">
+                    <i class="fa fa-map-marker-alt"></i>
                 </a>
             </div>
         </div>
-        <button id="scrollToTop" title="Scroll to top" (click)="scrollToTop()">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        <p id="copyright">&copy; {{ currentYear }} Huzur Mostar. Sva prava pridržana.</p>
+        
+        <div class="footer-bottom">
+            <p id="copyright">&copy; {{ currentYear }} Huzur Mostar. Sva prava pridržana.</p>
+        </div>
     </div>
+    
+    <button id="scrollToTop" title="Scroll to top" (click)="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 </footer>
