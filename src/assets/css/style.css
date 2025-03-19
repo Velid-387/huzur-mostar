@@ -523,34 +523,90 @@ section#home::after {
 
 .testimonials-container {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    animation: linear 40s infinite scroll;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .testimonial-card {
-    background-color: #f8f9fa;
-    margin: 20px;
-    flex: 0 0 auto;
+    background-color: transparent;
+    margin: 0;
+    flex: 0 0 calc(30% - 30px);
     text-align: center;
-    width: 200px;
+    min-width: 280px;
+    height: 300px;
+    perspective: 1000px; /* 3D effect */
 }
 
-.testimonial-card p {
-    margin-top: 20px;
+.testimonial-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Flip the card when hovered */
+@media (min-width: 769px) {
+    .testimonial-card:hover .testimonial-card-inner {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Position the front and back sides */
+.testimonial-card-front, .testimonial-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the front side */
+.testimonial-card-front {
+    background-color: #f8f9fa;
+    padding: 30px 20px;
+    border-bottom: 5px solid var(--dark-pink);
+}
+
+/* Style the back side - rotated */
+.testimonial-card-back {
+    background-color: #f8f9fa;
+    transform: rotateY(180deg);
+    overflow: hidden;
+}
+
+.testimonial-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.testimonial-card p:first-of-type {
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 10px;
 }
 
 .testimonial-card.animate-item {
-    margin: 20px;
-    flex: 0 0 auto;
+    margin: 0;
     text-align: center;
-    width: 200px;
-    border-bottom: 5px solid var(--dark-pink);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial-name {
@@ -559,7 +615,13 @@ section#home::after {
     font-weight: 400;
     letter-spacing: 0.5px;
     font-size: 1.8rem;
-    margin-top: 0.5rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    margin-bottom: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Contact section */
@@ -871,6 +933,31 @@ input:checked ~ .toggle-icon:hover .moon-mask {
         top: 0;
         right: 0;
     }
+
+    .testimonials-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .testimonial-card {
+        margin: 0;
+        width: 100%;
+        flex: 0 0 100%;
+        height: 250px;
+    }
+    
+    .testimonial-card-inner {
+        /* No flip on mobile */
+        transform-style: preserve-3d;
+    }
+    
+    .testimonial-card-front, .testimonial-card-back {
+        height: 100%;
+    }
+    
+    .testimonial-name {
+        height: 50px;
+    }
 }
 
 .hamburger-menu span {
@@ -1043,27 +1130,6 @@ a[routerLink], a[fragment], a[href], a[ng-click], a[click], a.btn, [routerLink],
     font-size: 1.5rem;
 }
 
-@media (max-width: 768px) {
-    .testimonials-container {
-        flex-wrap: wrap;
-        justify-content: center;
-        animation: none;
-    }
-
-    .testimonial-card {
-        margin: 20px auto;
-        width: 80%;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: opacity 0.5s, transform 0.5s;
-    }
-
-    .testimonial-card.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Footer section social links */
 footer .social-links a,
 footer .social-links a:hover,
@@ -1090,7 +1156,7 @@ footer .social-links a:active {
 /* Apply Alex Brush to selected elements */
 .logo, h1, h2, h3, .testimonial-name, 
 .social-links h3, .form-status, .image-overlay,
-footer #copyright, .faq-container h2 {
+.faq-container h2 {
     font-family: 'Alex Brush', cursive;
     font-weight: 400; /* Alex Brush looks better without extra weight */
     letter-spacing: 0.5px;

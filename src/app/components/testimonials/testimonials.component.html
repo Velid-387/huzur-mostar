@@ -3,8 +3,15 @@
         <h2 class="animate-item">Šta naše mušterije kažu o nama</h2>
         <div class="testimonials-container">
             <div class="testimonial-card animate-item" *ngFor="let testimonial of testimonials">
-                <p>"{{ testimonial.content }}"</p>
-                <p class="testimonial-name">- {{ testimonial.name }}</p>
+                <div class="testimonial-card-inner" [class.flipped]="testimonial.flipped" (click)="toggleCardFlip(testimonial)">
+                    <div class="testimonial-card-front">
+                        <p>"{{ testimonial.content }}"</p>
+                        <p class="testimonial-name">{{ testimonial.name }}</p>
+                    </div>
+                    <div class="testimonial-card-back">
+                        <img [src]="testimonial.imagePath" [alt]="'Flowers for ' + testimonial.name">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

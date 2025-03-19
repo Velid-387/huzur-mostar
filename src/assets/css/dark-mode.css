@@ -185,17 +185,23 @@ body.dark-mode #testimonials {
     background-color: #121212;
 }
 
-body.dark-mode .testimonial-card {
-    background-color: #1e1e1e;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+body.dark-mode .testimonial-card-front {
+    background-color: rgba(51, 58, 60, 0.6);
+    border-bottom: 5px solid var(--dark-pink-dark);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-mode .testimonial-info h3 {
-    color: #e0e0e0;
+body.dark-mode .testimonial-card-back {
+    background-color: rgba(51, 58, 60, 0.6);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-mode .testimonial-info p {
-    color: #aaa;
+body.dark-mode .testimonial-card p:first-of-type {
+    color: var(--text-light);
+}
+
+body.dark-mode .testimonial-name {
+    color: var(--pastel-green-dark);
 }
 
 /* Contact Section */
@@ -426,19 +432,6 @@ body.dark-mode .faq-item.animate-item .faq-question {
     color: var(--pastel-green-dark);
 }
 
-/* Testimonial card border in dark mode */
-body.dark-mode .testimonial-card {
-    background-color: rgba(51, 58, 60, 0.6);
-}
-
-body.dark-mode .testimonial-card.animate-item {
-    border-bottom: 5px solid var(--dark-pink-dark);
-}
-
-body.dark-mode .testimonial-name {
-    color: var(--pastel-green-dark);
-}
-
 /* Contact form input fields in dark mode */
 body.dark-mode .form-group input,
 body.dark-mode .form-group textarea {
@@ -461,4 +454,22 @@ body.dark-mode .price {
 /* Logo color */
 body.dark-mode .logo span {
     color: var(--pastel-pink-dark);
+}
+
+/* Slogan in dark mode */
+body.dark-mode #slogan {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode #slogan .highlight {
+    color: var(--pastel-pink-dark);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode tap to flip indicator */
+@media (max-width: 768px) {
+    body.dark-mode .testimonial-card::after {
+        color: rgba(220, 220, 220, 0.8);
+        background-color: rgba(50, 50, 50, 0.5);
+    }
 }

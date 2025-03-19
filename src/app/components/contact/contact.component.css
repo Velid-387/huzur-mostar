@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+/* Slogan styles */
+#slogan {
+  font-family: 'Alex Brush', cursive;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  font-weight: normal;
+  color: var(--pastel-green-dark, #91b478);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+#slogan .highlight {
+  font-family: 'Alex Brush', cursive;
+  color: var(--pastel-pink-dark, #c09a9a);
+  letter-spacing: 0.18em;
+}
+
+#slogan:hover {
+  transform: scale(1.05);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments for the slogan */
+@media (max-width: 768px) {
+  #slogan {
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    margin-top: 40px;
+  }
+  
+  #slogan .highlight {
+    letter-spacing: 0.1em;
+  }
+}

@@ -1,0 +1,27 @@
+/* Footer styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+#slogan {
+  font-family: 'Alex Brush', cursive;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: normal;
+  color: var(--pastel-green-dark, #91b478);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  letter-spacing: 0.15em;
+}
+
+#slogan .highlight {
+  font-family: 'Alex Brush', cursive;
+  color: var(--pastel-pink-dark, #c09a9a);
+  letter-spacing: 0.18em;
+}
+
+#slogan:hover {
+  transform: scale(1.05);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
