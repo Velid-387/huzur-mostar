@@ -185,9 +185,14 @@ body.dark-mode #testimonials {
     background-color: #121212;
 }
 
-body.dark-mode .testimonial-card {
+body.dark-mode .testimonial-card-front {
     background-color: rgba(51, 58, 60, 0.6);
     border-bottom: 5px solid var(--dark-pink-dark);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .testimonial-card-back {
+    background-color: rgba(51, 58, 60, 0.6);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -424,9 +429,6 @@ body.dark-mode .faq-item.animate-item {
 }
 
 body.dark-mode .faq-item.animate-item .faq-question {
-    color: var(--pastel-green-dark);
-}
-
     color: var(--pastel-green-dark);
 }
 

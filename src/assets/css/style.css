@@ -532,19 +532,64 @@ section#home::after {
 }
 
 .testimonial-card {
-    background-color: #f8f9fa;
+    background-color: transparent;
     margin: 0;
     flex: 0 0 calc(30% - 30px);
     text-align: center;
     min-width: 280px;
     height: 300px;
+    perspective: 1000px; /* 3D effect */
+}
+
+.testimonial-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Flip the card when hovered */
+@media (min-width: 769px) {
+    .testimonial-card:hover .testimonial-card-inner {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Position the front and back sides */
+.testimonial-card-front, .testimonial-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-bottom: 5px solid var(--dark-pink);
     border-radius: 8px;
-    padding: 30px 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the front side */
+.testimonial-card-front {
+    background-color: #f8f9fa;
+    padding: 30px 20px;
+    border-bottom: 5px solid var(--dark-pink);
+}
+
+/* Style the back side - rotated */
+.testimonial-card-back {
+    background-color: #f8f9fa;
+    transform: rotateY(180deg);
+    overflow: hidden;
+}
+
+.testimonial-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .testimonial-card p:first-of-type {
@@ -562,11 +607,6 @@ section#home::after {
 .testimonial-card.animate-item {
     margin: 0;
     text-align: center;
-    height: 300px;
-    min-height: unset;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .testimonial-name {
@@ -906,8 +946,13 @@ input:checked ~ .toggle-icon:hover .moon-mask {
         height: 250px;
     }
     
-    .testimonial-card.animate-item {
-        height: 250px;
+    .testimonial-card-inner {
+        /* No flip on mobile */
+        transform-style: preserve-3d;
+    }
+    
+    .testimonial-card-front, .testimonial-card-back {
+        height: 100%;
     }
     
     .testimonial-name {
