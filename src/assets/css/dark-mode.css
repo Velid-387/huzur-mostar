@@ -186,16 +186,17 @@ body.dark-mode #testimonials {
 }
 
 body.dark-mode .testimonial-card {
-    background-color: #1e1e1e;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(51, 58, 60, 0.6);
+    border-bottom: 5px solid var(--dark-pink-dark);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-mode .testimonial-info h3 {
-    color: #e0e0e0;
+body.dark-mode .testimonial-card p:first-of-type {
+    color: var(--text-light);
 }
 
-body.dark-mode .testimonial-info p {
-    color: #aaa;
+body.dark-mode .testimonial-name {
+    color: var(--pastel-green-dark);
 }
 
 /* Contact Section */
@@ -426,16 +427,6 @@ body.dark-mode .faq-item.animate-item .faq-question {
     color: var(--pastel-green-dark);
 }
 
-/* Testimonial card border in dark mode */
-body.dark-mode .testimonial-card {
-    background-color: rgba(51, 58, 60, 0.6);
-}
-
-body.dark-mode .testimonial-card.animate-item {
-    border-bottom: 5px solid var(--dark-pink-dark);
-}
-
-body.dark-mode .testimonial-name {
     color: var(--pastel-green-dark);
 }
 
