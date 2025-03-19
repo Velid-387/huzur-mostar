@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && ng run huzur-mostar:server",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:huzur-mostar": "node dist/huzur-mostar/server/server.mjs",
@@ -34,7 +34,6 @@
     "@angular/cli": "^19.2.1",
     "@angular/compiler-cli": "^19.2.0",
     "@netlify/angular-runtime": "^2.3.0",
-    "@netlify/functions": "^3.0.2",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
