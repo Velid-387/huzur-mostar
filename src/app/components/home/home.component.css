@@ -1,0 +1,46 @@
+/* Home component specific styles */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content p {
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Ensure consistent positioning between light and dark mode */
+:host-context(body.dark-mode) .hero-content {
+  /* Same positioning and margin values as light mode */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
