@@ -256,6 +256,12 @@ body.dark-mode #copyright {
     }
 }
 
+@media (max-width: 768px) {
+    body.dark-mode #home {
+        padding: 0;
+    }
+}
+
 /* Button styles for dark mode */
 body.dark-mode .btn, 
 body.dark-mode button, 
