@@ -37,6 +37,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   toggleMobileMenu(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.mobileMenuOpen = !this.mobileMenuOpen;
+      
+      // Add this line to toggle active class on the hamburger menu
+      const hamburgerMenu = document.getElementById('hamburgerMenu');
+      if (hamburgerMenu) {
+        hamburgerMenu.classList.toggle('active');
+      }
     }
   }
 
