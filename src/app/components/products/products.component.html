@@ -4,10 +4,12 @@
         <p class="animate-item">Browse our selection of handcrafted arrangements, perfect for any occasion.</p>
         
         <div class="carousel-container animate-item">
-            <div class="carousel-wrapper" [style.transform]="'translateX(' + translateX + 'px)'">
+            <div class="carousel-wrapper" 
+                 [ngClass]="getCarouselWrapperClass()"
+                 [style.transform]="'translateX(' + translateX + 'px)'">
                 <div class="product-card" 
                     *ngFor="let product of products; let i = index"
-                    [class.active]="i === activeIndex"
+                    [class.active]="isActive(i)"
                     [class.left]="isLeftProduct(i)"
                     [class.right]="isRightProduct(i)">
                     <div class="product-card-inner">
@@ -17,7 +19,7 @@
                             <p>{{ product.description }}</p>
                             <div class="price">{{ product.price }}</div>
                         </div>
-                        <div class="auto-scroll-indicator" *ngIf="i === activeIndex">
+                        <div class="auto-scroll-indicator" *ngIf="showTimer(i)">
                             <svg class="timer-svg" viewBox="0 0 32 32">
                                 <circle class="timer-background" cx="16" cy="16" r="14"></circle>
                                 <circle class="timer-progress" 
@@ -42,8 +44,8 @@
             <div class="carousel-dots">
                 <span 
                     class="dot" 
-                    *ngFor="let product of products; let i = index"
-                    [class.active]="i === activeIndex"
+                    *ngFor="let product of originalProducts; let i = index"
+                    [class.active]="i === realActiveIndex"
                     (click)="goToProduct(i)">
                 </span>
             </div>

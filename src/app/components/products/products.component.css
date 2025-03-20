@@ -16,6 +16,11 @@
   will-change: transform;
 }
 
+/* Disable transition for instant position jumps */
+.carousel-wrapper.no-transition {
+  transition: none !important;
+}
+
 /* Product Card Styles */
 .product-card {
   min-width: 33.333%;
@@ -32,7 +37,6 @@
 .product-card-inner {
   background-color: var(--card-bg, #fff);
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
   height: 100%;
