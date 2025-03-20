@@ -13,42 +13,42 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   
   originalProducts = [
     {
-      imgSrc: 'assets/img/products/huzur-buket-5.png',
+      imgSrc: 'assets/img/products/huzur-buket-14.png',
       imgAlt: 'Spring Bouquet',
       title: 'Spring Delight',
       description: 'A vibrant mix of seasonal spring flowers including tulips, daffodils, and hyacinths.',
       price: '45.99 KM'
     },
     {
-      imgSrc: 'assets/img/products/huzur-buket-10.jpg',
+      imgSrc: 'assets/img/products/huzur-buket-12.png',
       imgAlt: 'Rose Arrangement',
       title: 'Classic Romance',
       description: 'Elegant arrangement of premium red roses, perfect for expressing love and appreciation.',
       price: '59.99 KM'
     },
     {
-      imgSrc: 'assets/img/products/huzur-cvijece-1.png',
+      imgSrc: 'assets/img/products/huzur-kucno-cvijece-2.png',
       imgAlt: 'Succulent Garden',
       title: 'Succulent Garden',
       description: 'Low-maintenance succulent arrangement in a stylish container, perfect for home or office.',
       price: '39.99 KM'
     },
     {
-      imgSrc: 'assets/img/products/huzur-box-1.png',
+      imgSrc: 'assets/img/products/huzur-box-2.png',
       imgAlt: 'Box',
       title: 'Box',
       description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
       price: '65.99 KM'
     },
     {
-      imgSrc: 'assets/img/products/huzur-buket-3.png',
+      imgSrc: 'assets/img/products/huzur-buket-13.png',
       imgAlt: 'Bouquet',
       title: 'Bouquet',
       description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
       price: '29.99 KM'
     },
     {
-      imgSrc: 'assets/img/products/huzur-kucno-cvijece-1.png',
+      imgSrc: 'assets/img/products/huzur-kucno-cvijece-3.png',
       imgAlt: 'For Home',
       title: 'For Home',
       description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
