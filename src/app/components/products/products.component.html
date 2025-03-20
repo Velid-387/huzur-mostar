@@ -2,14 +2,41 @@
     <div class="container">
         <h2 class="animate-item">Naša ponuda</h2>
         <p class="animate-item">Browse our selection of handcrafted arrangements, perfect for any occasion.</p>
-        <div class="products-grid">
-            <div class="product-card animate-item" *ngFor="let product of products">
-                <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
-                <div class="product-info">
-                    <h3>{{ product.title }}</h3>
-                    <p>{{ product.description }}</p>
-                    <div class="price">{{ product.price }}</div>
+        
+        <div class="carousel-container animate-item">
+            <div class="carousel-wrapper" [style.transform]="'translateX(' + translateX + 'px)'">
+                <div class="product-card" 
+                    *ngFor="let product of products; let i = index"
+                    [class.active]="i === activeIndex"
+                    [class.left]="isLeftProduct(i)"
+                    [class.right]="isRightProduct(i)">
+                    <div class="product-card-inner">
+                        <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
+                        <div class="product-info">
+                            <h3>{{ product.title }}</h3>
+                            <p>{{ product.description }}</p>
+                            <div class="price">{{ product.price }}</div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-control prev" (click)="prevProduct()" aria-label="Previous product">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-control next" (click)="nextProduct()" aria-label="Next product">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="carousel-dots">
+                <span 
+                    class="dot" 
+                    *ngFor="let product of products; let i = index"
+                    [class.active]="i === activeIndex"
+                    (click)="goToProduct(i)">
+                </span>
             </div>
         </div>
     </div>
