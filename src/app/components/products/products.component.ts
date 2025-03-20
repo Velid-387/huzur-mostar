@@ -53,6 +53,13 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'For Home',
       description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
       price: '10.99 KM'
+    },
+    {
+      imgSrc: 'assets/img/products/huzur-magnet-1.png',
+      imgAlt: 'Magnet',
+      title: 'Magnet',
+      description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
+      price: '10.99 KM'
     }
   ];
 
