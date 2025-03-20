@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       price: '45.99 KM'
     },
     {
-      imgSrc: 'assets/img/products/huzur-buket-2.png',
+      imgSrc: 'assets/img/products/huzur-buket-10.jpg',
       imgAlt: 'Rose Arrangement',
       title: 'Classic Romance',
       description: 'Elegant arrangement of premium red roses, perfect for expressing love and appreciation.',
@@ -56,16 +56,30 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   ];
 
+  // Create extended products array for seamless infinite scrolling
+  get extendedProducts(): any[] {
+    // We don't actually extend the array in the component, we just handle it in the display logic
+    return this.products;
+  }
+
   // Carousel properties
-  activeIndex: number = 0;
+  activeIndex: number = 1; // Start with second item (index 1) to show 3 items properly from the start
   translateX: number = 0;
   carouselInterval: any;
+  timerAnimation: any;
+  timerProgress: number = 88; // Initial value for stroke-dashoffset (full circle = 88)
   isMobile: boolean = false;
   autoScrollDelay: number = 5000; // 5 seconds
+  isTransitioning: boolean = false;
+  animationTimestep: number = 50; // Update timer every 50ms
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.checkScreenSize();
+      // Set initial position after a short delay to ensure DOM is ready
+      setTimeout(() => {
+        this.updateTranslateX();
+      }, 100);
       this.startAutoScroll();
     }
   }
@@ -73,6 +87,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.stopAutoScroll();
+      this.stopTimerAnimation();
     }
   }
 
@@ -86,6 +101,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   startAutoScroll(): void {
     this.stopAutoScroll(); // Clear any existing interval
+    this.startTimerAnimation();
     this.carouselInterval = setInterval(() => {
       this.nextProduct();
     }, this.autoScrollDelay);
@@ -95,29 +111,82 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (this.carouselInterval) {
       clearInterval(this.carouselInterval);
     }
+    this.stopTimerAnimation();
   }
 
   resetAutoScroll(): void {
     this.stopAutoScroll();
+    this.resetTimerProgress();
     this.startAutoScroll();
   }
 
+  startTimerAnimation(): void {
+    this.stopTimerAnimation();
+    this.resetTimerProgress();
+    
+    let elapsed = 0;
+    this.timerAnimation = setInterval(() => {
+      elapsed += this.animationTimestep;
+      const progress = elapsed / this.autoScrollDelay;
+      // Calculate stroke-dashoffset (88 = full circle, 0 = complete)
+      this.timerProgress = 88 * (1 - progress);
+      
+      if (elapsed >= this.autoScrollDelay) {
+        this.resetTimerProgress();
+      }
+    }, this.animationTimestep);
+  }
+
+  stopTimerAnimation(): void {
+    if (this.timerAnimation) {
+      clearInterval(this.timerAnimation);
+    }
+  }
+
+  resetTimerProgress(): void {
+    this.timerProgress = 88; // Reset to full circle
+  }
+
   nextProduct(): void {
+    if (this.isTransitioning) return;
+    
+    this.isTransitioning = true;
     this.activeIndex = (this.activeIndex + 1) % this.products.length;
     this.updateTranslateX();
     this.resetAutoScroll();
+    
+    // Reset transitioning state after animation completes
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 500); // Match this to your CSS transition duration
   }
 
   prevProduct(): void {
+    if (this.isTransitioning) return;
+    
+    this.isTransitioning = true;
     this.activeIndex = (this.activeIndex - 1 + this.products.length) % this.products.length;
     this.updateTranslateX();
     this.resetAutoScroll();
+    
+    // Reset transitioning state after animation completes
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 500); // Match this to your CSS transition duration
   }
 
   goToProduct(index: number): void {
+    if (this.isTransitioning || index === this.activeIndex) return;
+    
+    this.isTransitioning = true;
     this.activeIndex = index;
     this.updateTranslateX();
     this.resetAutoScroll();
+    
+    // Reset transitioning state after animation completes
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 500); // Match this to your CSS transition duration
   }
 
   updateTranslateX(): void {
@@ -142,30 +211,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
   isLeftProduct(index: number): boolean {
     if (this.isMobile) return false;
     
-    // Check if this product should be positioned to the left of the active one
     if (this.products.length <= 3) {
       return index === (this.activeIndex - 1 + this.products.length) % this.products.length;
     }
     
-    // For handling the edge cases with circular navigation
-    return (
-      index === (this.activeIndex - 1 + this.products.length) % this.products.length ||
-      index === (this.activeIndex - 2 + this.products.length) % this.products.length
-    );
+    // For handling the edge cases with circular navigation - improved logic
+    const normalizedIndex = (index - this.activeIndex + this.products.length) % this.products.length;
+    return normalizedIndex === this.products.length - 1 || normalizedIndex === this.products.length - 2;
   }
 
   isRightProduct(index: number): boolean {
     if (this.isMobile) return false;
     
-    // Check if this product should be positioned to the right of the active one
     if (this.products.length <= 3) {
       return index === (this.activeIndex + 1) % this.products.length;
     }
     
-    // For handling the edge cases with circular navigation
-    return (
-      index === (this.activeIndex + 1) % this.products.length ||
-      index === (this.activeIndex + 2) % this.products.length
-    );
+    // For handling the edge cases with circular navigation - improved logic
+    const normalizedIndex = (index - this.activeIndex + this.products.length) % this.products.length;
+    return normalizedIndex === 1 || normalizedIndex === 2;
   }
 }
