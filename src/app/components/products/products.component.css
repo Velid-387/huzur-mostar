@@ -128,13 +128,13 @@
 
 .timer-background {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.3);
+  /* stroke: rgba(255, 255, 255, 0.3); */
   stroke-width: 3;
 }
 
 .timer-progress {
   fill: none;
-  stroke: var(--primary-color, #b06ab3);
+  stroke: var(--dark-pink);
   stroke-width: 3;
   stroke-dasharray: 88; /* 2 * PI * radius */
   stroke-linecap: round;
@@ -146,7 +146,7 @@
 }
 
 :host-context(body.dark-mode) .timer-progress {
-  stroke: var(--dark-primary-color, #c778e2);
+  stroke: var(--dark-pink-dark);
 }
 
 /* Navigation Controls */
@@ -205,7 +205,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: var(--dark-pink);
+  background-color: var(--pastel-pink);
   margin: 0 5px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -222,24 +222,24 @@
 }
 
 :host-context(body.dark-mode) .carousel-control {
-  background-color: var(--dark-primary-color, #c778e2);
+  background-color: var(--pastel-pink-dark);
   color: #fff;
 }
 
 :host-context(body.dark-mode) .carousel-control:hover {
-  background-color: var(--dark-primary-hover, #d78eed);
+  background-color: var(--pastel-green-dark);
 }
 
 :host-context(body.dark-mode) .dot {
-  background-color: rgba(199, 120, 226, 0.3);
+  background-color: var(--dark-pink-dark)
 }
 
 :host-context(body.dark-mode) .dot.active {
-  background-color: var(--dark-primary-color, #c778e2);
+  background-color: var(--pastel-pink-dark);
 }
 
 :host-context(body.dark-mode) .price {
-  color: var(--dark-primary-color, #c778e2);
+  color: var(--pastel-pink-dark);
 }
 
 /* Enhanced focus effect for central card */
