@@ -1212,14 +1212,6 @@ h3 {
     font-size: 1.8rem;
 }
 
-/* Product headings need to be more readable */
-.product-info h3 {
-    font-family: poppins, sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
 /* FAQ questions need to be readable */
 .faq-item .faq-question {
     font-family: poppins, sans-serif;
