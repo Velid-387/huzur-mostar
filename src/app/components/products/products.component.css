@@ -373,3 +373,56 @@
   z-index: 3;
   pointer-events: none;
 }
+
+/* Product Sections */
+.product-section {
+  margin-bottom: 4rem;
+}
+
+.product-section:last-child {
+  margin-bottom: 2rem;
+}
+
+.product-section h3 {
+  font-family: 'Alex Brush', cursive;
+  font-size: 2.2rem;
+  color: var(--pastel-green-dark, #91b478);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.product-section > p {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: var(--text-dark, #666);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Dark mode adjustments for product sections */
+:host-context(body.dark-mode) .product-section h3 {
+  color: var(--pastel-green, #c8e4b2);
+}
+
+:host-context(body.dark-mode) .product-section > p {
+  color: var(--text-light, #aaa);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .product-section {
+    margin-bottom: 3rem;
+  }
+
+  .product-section h3 {
+    font-size: 1.8rem;
+  }
+
+  .product-section > p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  /* ... existing mobile styles ... */
+}

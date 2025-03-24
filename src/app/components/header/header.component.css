@@ -58,3 +58,177 @@
 :host-context(body.dark-mode) .hamburger-menu span {
   background-color: var(--dark-text, #fff);
 }
+
+/* Dropdown styles */
+.has-dropdown {
+    position: relative;
+}
+
+.has-dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.has-dropdown i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Desktop dropdown styles */
+.nav-links .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--background-color, #fff);
+    border: 1px solid var(--border-color, #e0e0e0);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 8px 0;
+}
+
+.nav-links .dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-links .dropdown-menu li {
+    list-style: none;
+}
+
+.nav-links .dropdown-menu a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text-color, #333);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-links .dropdown-menu a:hover {
+    background-color: var(--hover-color, rgba(0, 0, 0, 0.05));
+    color: var(--primary-color, #d14d72);
+}
+
+.nav-links .dropdown-menu a.active {
+    background-color: var(--primary-color, #d14d72);
+    color: white;
+}
+
+/* Mobile dropdown styles */
+.mobile-nav-menu .has-dropdown {
+    width: 100%;
+}
+
+.mobile-nav-menu .dropdown-menu {
+    position: static;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: height 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
+    overflow: hidden;
+}
+
+.mobile-nav-menu .dropdown-menu.active {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    transition: height 0.3s ease, opacity 0.3s ease;
+    margin: 5px 0;
+}
+
+.mobile-nav-menu .dropdown-menu a {
+    padding: 10px 20px 10px 35px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.mobile-nav-menu .dropdown-menu a:hover {
+    opacity: 1;
+    background-color: var(--hover-color, rgba(0, 0, 0, 0.05));
+}
+
+.mobile-nav-menu .dropdown-menu a.active {
+    color: var(--primary-color, #d14d72);
+    background-color: transparent;
+}
+
+/* Dark mode adjustments */
+:host-context(body.dark-mode) .nav-links .dropdown-menu {
+    background: var(--dark-background, #1a1a1a);
+    border-color: var(--dark-border-color, #2d2d2d);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+:host-context(body.dark-mode) .nav-links .dropdown-menu a {
+    color: var(--text-light, #fff);
+}
+
+:host-context(body.dark-mode) .nav-links .dropdown-menu a:hover {
+    background-color: var(--dark-hover-color, rgba(255, 255, 255, 0.1));
+    color: var(--primary-color-light, #ff6b98);
+}
+
+:host-context(body.dark-mode) .mobile-nav-menu .dropdown-menu a.active {
+    color: var(--primary-color-light, #ff6b98);
+}
+
+/* CSS Variables */
+:root {
+    --hover-color: rgba(0, 0, 0, 0.05);
+    --dark-hover-color: rgba(255, 255, 255, 0.1);
+    --border-color: #e0e0e0;
+    --dark-border-color: #2d2d2d;
+    --background-color: #fff;
+    --dark-background: #1a1a1a;
+    --text-color: #333;
+    --text-light: #fff;
+    --primary-color: #d14d72;
+    --primary-color-light: #ff6b98;
+}
+
+/* Mobile menu adjustments */
+@media (max-width: 768px) {
+    .mobile-nav-menu ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .mobile-nav-menu li {
+        margin: 0;
+        border-bottom: 1px solid var(--border-color, #e0e0e0);
+    }
+
+    .mobile-nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .mobile-nav-menu a {
+        padding: 15px 20px;
+        display: block;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .mobile-nav-menu .has-dropdown > a {
+        justify-content: space-between;
+    }
+
+    :host-context(body.dark-mode) .mobile-nav-menu li {
+        border-color: var(--dark-border-color, #2d2d2d);
+    }
+}
