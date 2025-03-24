@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, inject, PLATFORM_ID, HostListener } from '@angular/core';
+import { Component, OnInit, inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DarkModeService } from '../../services/dark-mode.service';
@@ -11,7 +11,7 @@ import { ScrollService } from '../../services/scroll.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit {
   private darkModeService = inject(DarkModeService);
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
@@ -20,6 +20,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   sections: string[] = ['home', 'about', 'products', 'faq', 'testimonials', 'contact'];
   mobileMenuOpen: boolean = false;
   isDarkMode: boolean = false;
+  isProductsDropdownOpen: boolean = false;
+  
+  productSections = [
+    { id: 'driedFlowers', name: 'Suho cvijeće' },
+    { id: 'freshFlowers', name: 'Svježe cvijeće' },
+    { id: 'magnets', name: 'Magneti' }
+  ];
   
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -28,15 +35,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      // This will now be handled by Angular's property binding
-    }
-  }
-
   toggleMobileMenu(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.mobileMenuOpen = !this.mobileMenuOpen;
+      this.isProductsDropdownOpen = false;
 
       const hamburgerMenu = document.getElementById('hamburgerMenu');
       if (hamburgerMenu) {
@@ -62,6 +64,21 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     
     const scrollPosition = window.scrollY + 200;
     
+    // First check product subsections
+    for (const section of this.productSections) {
+      const element = document.getElementById(section.id);
+      if (element) {
+        const offsetTop = element.offsetTop;
+        const offsetHeight = element.offsetHeight;
+        
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          this.activeSection = section.id;
+          return;
+        }
+      }
+    }
+    
+    // Then check main sections
     for (const section of this.sections) {
       const element = document.getElementById(section);
       if (element) {
@@ -77,15 +94,39 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   isActive(section: string): boolean {
+    if (section === 'products') {
+      return this.activeSection === section || this.productSections.some(s => s.id === this.activeSection);
+    }
     return this.activeSection === section;
   }
 
-  scrollToSection(sectionId: string): void {
+  toggleProductsDropdown(event: Event): void {
+    if (isPlatformBrowser(this.platformId)) {
+      event.stopPropagation();
+      this.isProductsDropdownOpen = !this.isProductsDropdownOpen;
+    }
+  }
+
+  @HostListener('document:click')
+  closeDropdown(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isProductsDropdownOpen = false;
+    }
+  }
+
+  scrollToSection(sectionId: string, event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    
     this.activeSection = sectionId;
     this.scrollService.scrollToElementById(sectionId);
 
-    if (isPlatformBrowser(this.platformId) && this.mobileMenuOpen) {
-      this.toggleMobileMenu();
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.mobileMenuOpen) {
+        this.toggleMobileMenu();
+      }
+      this.isProductsDropdownOpen = false;
     }
   }
 }

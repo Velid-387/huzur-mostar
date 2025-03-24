@@ -7,12 +7,24 @@
         </div>
         <div class="mobile-nav-menu" id="mobileNavMenu" [class.active]="mobileMenuOpen">
             <ul>
-                <li><a (click)="scrollToSection('home')" [class.active]="isActive('home')">Početna</a></li>
-                <li><a (click)="scrollToSection('about')" [class.active]="isActive('about')">O nama</a></li>
-                <li><a (click)="scrollToSection('products')" [class.active]="isActive('products')">Naša ponuda</a></li>
-                <li><a (click)="scrollToSection('faq')" [class.active]="isActive('faq')">Najčešća pitanja</a></li>
-                <li><a (click)="scrollToSection('testimonials')" [class.active]="isActive('testimonials')">Drugi o nama</a></li>
-                <li><a (click)="scrollToSection('contact')" [class.active]="isActive('contact')">Kontakt</a></li>
+                <li><a (click)="scrollToSection('home', $event)" [class.active]="isActive('home')">Početna</a></li>
+                <li><a (click)="scrollToSection('about', $event)" [class.active]="isActive('about')">O nama</a></li>
+                <li class="has-dropdown">
+                    <a (click)="toggleProductsDropdown($event)" [class.active]="isActive('products')">
+                        Naša ponuda
+                        <i class="fas" [class.fa-chevron-down]="!isProductsDropdownOpen" [class.fa-chevron-up]="isProductsDropdownOpen"></i>
+                    </a>
+                    <ul class="dropdown-menu" [class.active]="isProductsDropdownOpen">
+                        <li *ngFor="let section of productSections">
+                            <a (click)="scrollToSection(section.id, $event)" [class.active]="activeSection === section.id">
+                                {{ section.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a></li>
+                <li><a (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a></li>
+                <li><a (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a></li>
             </ul>
         </div>
         <div class="logo">
@@ -20,12 +32,24 @@
             Huzur<span>Mostar</span>
         </div>
         <div class="nav-links" id="navLinks">
-            <a (click)="scrollToSection('home')" [class.active]="isActive('home')">Početna</a>
-            <a (click)="scrollToSection('about')" [class.active]="isActive('about')">O nama</a>
-            <a (click)="scrollToSection('products')" [class.active]="isActive('products')">Naša ponuda</a>
-            <a (click)="scrollToSection('faq')" [class.active]="isActive('faq')">Najčešća pitanja</a>
-            <a (click)="scrollToSection('testimonials')" [class.active]="isActive('testimonials')">Drugi o nama</a>
-            <a (click)="scrollToSection('contact')" [class.active]="isActive('contact')">Kontakt</a>
+            <a (click)="scrollToSection('home', $event)" [class.active]="isActive('home')">Početna</a>
+            <a (click)="scrollToSection('about', $event)" [class.active]="isActive('about')">O nama</a>
+            <div class="nav-item has-dropdown" [class.active]="isProductsDropdownOpen">
+                <a (click)="toggleProductsDropdown($event)" [class.active]="isActive('products')">
+                    Naša ponuda
+                    <i class="fas" [class.fa-chevron-down]="!isProductsDropdownOpen" [class.fa-chevron-up]="isProductsDropdownOpen"></i>
+                </a>
+                <ul class="dropdown-menu" [class.active]="isProductsDropdownOpen">
+                    <li *ngFor="let section of productSections">
+                        <a (click)="scrollToSection(section.id, $event)" [class.active]="activeSection === section.id">
+                            {{ section.name }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a>
+            <a (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a>
+            <a (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a>
         </div>
         <div class="theme-switch-wrapper">
             <label class="theme-switch" for="checkbox">

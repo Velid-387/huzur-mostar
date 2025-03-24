@@ -1,6 +1,29 @@
 import { Component, OnInit, OnDestroy, HostListener, inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
+interface Product {
+  imgSrc: string;
+  imgAlt: string;
+  title: string;
+  description: string;
+  price: string;
+}
+
+interface CarouselState {
+  products: any[];
+  originalProducts: Product[];
+  activeIndex: number;
+  realActiveIndex: number;
+  translateX: number;
+  carouselInterval: any;
+  timerAnimation: any;
+  timerProgress: number;
+  isTransitioning: boolean;
+  cardWidth: number;
+  containerWidth: number;
+  skipTransition: boolean;
+}
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -11,84 +34,116 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   
-  originalProducts = [
+  // Product categories
+  driedFlowers: Product[] = [
     {
-      imgSrc: 'assets/img/products/huzur-buket-14.png',
-      imgAlt: 'Spring Bouquet',
-      title: 'Spring Delight',
-      description: 'A vibrant mix of seasonal spring flowers including tulips, daffodils, and hyacinths.',
+      imgSrc: 'assets/img/products/huzur-buket-9.png',
+      imgAlt: 'Dried Flower Bouquet',
+      title: 'Eternal Spring',
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.',
       price: '45.99 KM'
     },
     {
+      imgSrc: 'assets/img/products/huzur-buket-10.png',
+      imgAlt: 'Dried Flower Bouquet',
+      title: 'Eternal Spring',
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.',
+      price: '45.99 KM'
+    },
+    {
+      imgSrc: 'assets/img/products/huzur-buket-11.png',
+      imgAlt: 'Dried Flower Bouquet',
+      title: 'Eternal Spring',
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.',
+      price: '45.99 KM'
+    }
+  ];
+
+  freshFlowers: Product[] = [
+    {
       imgSrc: 'assets/img/products/huzur-buket-12.png',
-      imgAlt: 'Rose Arrangement',
+      imgAlt: 'Fresh Flower Bouquet',
       title: 'Classic Romance',
-      description: 'Elegant arrangement of premium red roses, perfect for expressing love and appreciation.',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.',
       price: '59.99 KM'
     },
     {
-      imgSrc: 'assets/img/products/huzur-kucno-cvijece-2.png',
-      imgAlt: 'Succulent Garden',
-      title: 'Succulent Garden',
-      description: 'Low-maintenance succulent arrangement in a stylish container, perfect for home or office.',
-      price: '39.99 KM'
-    },
-    {
-      imgSrc: 'assets/img/products/huzur-box-2.png',
-      imgAlt: 'Box',
-      title: 'Box',
-      description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
-      price: '65.99 KM'
-    },
-    {
       imgSrc: 'assets/img/products/huzur-buket-13.png',
-      imgAlt: 'Bouquet',
-      title: 'Bouquet',
-      description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
-      price: '29.99 KM'
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.',
+      price: '59.99 KM'
     },
     {
-      imgSrc: 'assets/img/products/huzur-kucno-cvijece-3.png',
-      imgAlt: 'For Home',
-      title: 'For Home',
-      description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
+      imgSrc: 'assets/img/products/huzur-buket-14.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.',
+      price: '59.99 KM'
+    }
+  ];
+
+  magnets: Product[] = [
+    {
+      imgSrc: 'assets/img/products/huzur-magnet-1.png',
+      imgAlt: 'Decorative Magnet',
+      title: 'Floral Magnet',
+      description: 'Beautiful decorative magnets featuring preserved flowers.',
       price: '10.99 KM'
     },
     {
       imgSrc: 'assets/img/products/huzur-magnet-1.png',
-      imgAlt: 'Magnet',
-      title: 'Magnet',
-      description: 'Exotic arrangement featuring bird of paradise, orchids, and tropical foliage.',
+      imgAlt: 'Decorative Magnet',
+      title: 'Floral Magnet',
+      description: 'Beautiful decorative magnets featuring preserved flowers.',
+      price: '10.99 KM'
+    },
+    {
+      imgSrc: 'assets/img/products/huzur-magnet-1.png',
+      imgAlt: 'Decorative Magnet',
+      title: 'Floral Magnet',
+      description: 'Beautiful decorative magnets featuring preserved flowers.',
       price: '10.99 KM'
     }
   ];
 
-  // The products array with clones for infinite scrolling
-  products: any[] = [];
+  // Carousel states for each category
+  carouselStates: { [key: string]: CarouselState } = {
+    driedFlowers: this.initializeCarouselState(this.driedFlowers),
+    freshFlowers: this.initializeCarouselState(this.freshFlowers),
+    magnets: this.initializeCarouselState(this.magnets)
+  };
 
   numberOfClones: number = 2;
-  
-  // Carousel properties
-  activeIndex: number = 0;
-  realActiveIndex: number = 0;
-  translateX: number = 0;
-  carouselInterval: any;
-  timerAnimation: any;
-  timerProgress: number = 88;
   isMobile: boolean = false;
   autoScrollDelay: number = 5000;
-  isTransitioning: boolean = false;
   animationTimestep: number = 50;
-  cardWidth: number = 0;
-  containerWidth: number = 0;
-  skipTransition: boolean = false;
+
+  private initializeCarouselState(products: Product[]): CarouselState {
+    return {
+      products: [],
+      originalProducts: products,
+      activeIndex: 0,
+      realActiveIndex: 0,
+      translateX: 0,
+      carouselInterval: null,
+      timerAnimation: null,
+      timerProgress: 88,
+      isTransitioning: false,
+      cardWidth: 0,
+      containerWidth: 0,
+      skipTransition: false
+    };
+  }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.createExtendedProductsArray();
-
-      this.activeIndex = this.numberOfClones;
-      this.realActiveIndex = 0;
+      Object.keys(this.carouselStates).forEach(key => {
+        const state = this.carouselStates[key];
+        this.createExtendedProductsArray(state);
+        state.activeIndex = this.numberOfClones;
+        state.realActiveIndex = 0;
+      });
       
       this.checkScreenSize();
     }
@@ -97,36 +152,43 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
-        this.calculateDimensions();
-        this.updateTranslateX();
-        this.startAutoScroll();
+        Object.keys(this.carouselStates).forEach(key => {
+          this.calculateDimensions(key);
+          this.updateTranslateX(key);
+          this.startAutoScroll(key);
+        });
       }, 100);
     }
   }
 
   ngOnDestroy(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.stopAutoScroll();
-      this.stopTimerAnimation();
+      Object.keys(this.carouselStates).forEach(key => {
+        this.stopAutoScroll(key);
+        this.stopTimerAnimation(key);
+      });
     }
   }
   
-  createExtendedProductsArray(): void {
-    this.products = [];
+  createExtendedProductsArray(state: CarouselState): void {
+    state.products = [];
 
+    // Add clones from end
     for (let i = 0; i < this.numberOfClones; i++) {
-      const index = this.originalProducts.length - this.numberOfClones + i;
+      const index = state.originalProducts.length - this.numberOfClones + i;
       if (index >= 0) {
-        this.products.push({...this.originalProducts[index], isClone: true, originalIndex: index});
+        state.products.push({...state.originalProducts[index], isClone: true, originalIndex: index});
       }
     }
     
-    this.originalProducts.forEach((product, index) => {
-      this.products.push({...product, isClone: false, originalIndex: index});
+    // Add original products
+    state.originalProducts.forEach((product, index) => {
+      state.products.push({...product, isClone: false, originalIndex: index});
     });
 
+    // Add clones from start
     for (let i = 0; i < this.numberOfClones; i++) {
-      this.products.push({...this.originalProducts[i], isClone: true, originalIndex: i});
+      state.products.push({...state.originalProducts[i], isClone: true, originalIndex: i});
     }
   }
 
@@ -134,187 +196,189 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   checkScreenSize(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = window.innerWidth < 768;
-      this.calculateDimensions();
-      this.updateTranslateX(true);
+      Object.keys(this.carouselStates).forEach(key => {
+        this.calculateDimensions(key);
+        this.updateTranslateX(key, true);
+      });
     }
   }
   
-  calculateDimensions(): void {
+  calculateDimensions(category: string): void {
     if (!isPlatformBrowser(this.platformId)) return;
     
-    const container = document.querySelector('.carousel-container') as HTMLElement;
+    const container = document.querySelector(`#${category} .carousel-container`) as HTMLElement;
     if (!container) return;
     
-    this.containerWidth = container.offsetWidth;
+    const state = this.carouselStates[category];
+    state.containerWidth = container.offsetWidth;
     
     if (this.isMobile) {
-      this.cardWidth = this.containerWidth;
+      state.cardWidth = state.containerWidth;
     } else {
-      this.cardWidth = this.containerWidth / 3;
+      state.cardWidth = state.containerWidth / 3;
     }
   }
 
-  startAutoScroll(): void {
-    this.stopAutoScroll();
-    this.startTimerAnimation();
-    this.carouselInterval = setInterval(() => {
-      this.nextProduct();
+  startAutoScroll(category: string): void {
+    const state = this.carouselStates[category];
+    this.stopAutoScroll(category);
+    this.startTimerAnimation(category);
+    state.carouselInterval = setInterval(() => {
+      this.nextProduct(category);
     }, this.autoScrollDelay);
   }
 
-  stopAutoScroll(): void {
-    if (this.carouselInterval) {
-      clearInterval(this.carouselInterval);
+  stopAutoScroll(category: string): void {
+    const state = this.carouselStates[category];
+    if (state.carouselInterval) {
+      clearInterval(state.carouselInterval);
     }
-    this.stopTimerAnimation();
+    this.stopTimerAnimation(category);
   }
 
-  resetAutoScroll(): void {
-    this.stopAutoScroll();
-    this.resetTimerProgress();
-    this.startAutoScroll();
+  resetAutoScroll(category: string): void {
+    this.stopAutoScroll(category);
+    this.resetTimerProgress(category);
+    this.startAutoScroll(category);
   }
 
-  startTimerAnimation(): void {
-    this.stopTimerAnimation();
-    this.resetTimerProgress();
+  startTimerAnimation(category: string): void {
+    const state = this.carouselStates[category];
+    this.stopTimerAnimation(category);
+    this.resetTimerProgress(category);
     
     let elapsed = 0;
-    this.timerAnimation = setInterval(() => {
+    state.timerAnimation = setInterval(() => {
       elapsed += this.animationTimestep;
       const progress = elapsed / this.autoScrollDelay;
-      // Calculate stroke-dashoffset (88 = full circle, 0 = complete)
-      this.timerProgress = 88 * (1 - progress);
+      state.timerProgress = 88 * (1 - progress);
       
       if (elapsed >= this.autoScrollDelay) {
-        this.resetTimerProgress();
+        this.resetTimerProgress(category);
       }
     }, this.animationTimestep);
   }
 
-  stopTimerAnimation(): void {
-    if (this.timerAnimation) {
-      clearInterval(this.timerAnimation);
+  stopTimerAnimation(category: string): void {
+    const state = this.carouselStates[category];
+    if (state.timerAnimation) {
+      clearInterval(state.timerAnimation);
     }
   }
 
-  resetTimerProgress(): void {
-    this.timerProgress = 88; // Reset to full circle
+  resetTimerProgress(category: string): void {
+    this.carouselStates[category].timerProgress = 88;
   }
   
-  // Method to handle infinite loop transition
-  handleInfiniteLoop(): void {
+  handleInfiniteLoop(category: string): void {
     if (!isPlatformBrowser(this.platformId)) return;
   
-    if (this.activeIndex >= this.originalProducts.length + this.numberOfClones) {
-      const newIndex = this.numberOfClones + (this.activeIndex - (this.originalProducts.length + this.numberOfClones));
+    const state = this.carouselStates[category];
+    if (state.activeIndex >= state.originalProducts.length + this.numberOfClones) {
+      const newIndex = this.numberOfClones + (state.activeIndex - (state.originalProducts.length + this.numberOfClones));
 
-      this.skipTransition = true;
-
-      this.activeIndex = newIndex;
-      this.realActiveIndex = newIndex - this.numberOfClones;
-      this.updateTranslateX(true);
+      state.skipTransition = true;
+      state.activeIndex = newIndex;
+      state.realActiveIndex = newIndex - this.numberOfClones;
+      this.updateTranslateX(category, true);
 
       setTimeout(() => {
-        this.skipTransition = false;
+        state.skipTransition = false;
       }, 50);
-    }
-    
-    // Check if we need to jump to the end (we're at the beginning clones)
-    else if (this.activeIndex < this.numberOfClones) {
-      const newIndex = this.originalProducts.length + this.activeIndex;
+    } else if (state.activeIndex < this.numberOfClones) {
+      const newIndex = state.originalProducts.length + state.activeIndex;
 
-      this.skipTransition = true;
-
-      this.activeIndex = newIndex;
-      this.realActiveIndex = newIndex - this.numberOfClones;
-      this.updateTranslateX(true);
+      state.skipTransition = true;
+      state.activeIndex = newIndex;
+      state.realActiveIndex = newIndex - this.numberOfClones;
+      this.updateTranslateX(category, true);
 
       setTimeout(() => {
-        this.skipTransition = false;
+        state.skipTransition = false;
       }, 50);
     }
   }
 
-  nextProduct(): void {
-    if (this.isTransitioning) return;
+  nextProduct(category: string): void {
+    const state = this.carouselStates[category];
+    if (state.isTransitioning) return;
     
-    this.isTransitioning = true;
-    this.activeIndex++;
-    this.realActiveIndex = (this.activeIndex - this.numberOfClones + this.originalProducts.length) % this.originalProducts.length;
-    this.updateTranslateX();
-    this.resetAutoScroll();
+    state.isTransitioning = true;
+    state.activeIndex++;
+    state.realActiveIndex = (state.activeIndex - this.numberOfClones + state.originalProducts.length) % state.originalProducts.length;
+    this.updateTranslateX(category);
+    this.resetAutoScroll(category);
 
     setTimeout(() => {
-      this.handleInfiniteLoop();
-      this.isTransitioning = false;
+      this.handleInfiniteLoop(category);
+      state.isTransitioning = false;
     }, 500);
   }
 
-  prevProduct(): void {
-    if (this.isTransitioning) return;
+  prevProduct(category: string): void {
+    const state = this.carouselStates[category];
+    if (state.isTransitioning) return;
     
-    this.isTransitioning = true;
-    this.activeIndex--;
-    this.realActiveIndex = (this.activeIndex - this.numberOfClones + this.originalProducts.length) % this.originalProducts.length;
-    this.updateTranslateX();
-    this.resetAutoScroll();
+    state.isTransitioning = true;
+    state.activeIndex--;
+    state.realActiveIndex = (state.activeIndex - this.numberOfClones + state.originalProducts.length) % state.originalProducts.length;
+    this.updateTranslateX(category);
+    this.resetAutoScroll(category);
 
     setTimeout(() => {
-      this.handleInfiniteLoop();
-      this.isTransitioning = false;
+      this.handleInfiniteLoop(category);
+      state.isTransitioning = false;
     }, 500);
   }
 
-  goToProduct(index: number): void {
-    if (this.isTransitioning || index === this.realActiveIndex) return;
+  goToProduct(category: string, index: number): void {
+    const state = this.carouselStates[category];
+    if (state.isTransitioning || index === state.realActiveIndex) return;
     
-    this.isTransitioning = true;
-    this.activeIndex = index + this.numberOfClones;
-    this.realActiveIndex = index;
-    this.updateTranslateX();
-    this.resetAutoScroll();
+    state.isTransitioning = true;
+    state.activeIndex = index + this.numberOfClones;
+    state.realActiveIndex = index;
+    this.updateTranslateX(category);
+    this.resetAutoScroll(category);
 
     setTimeout(() => {
-      this.isTransitioning = false;
+      state.isTransitioning = false;
     }, 500);
   }
 
-  updateTranslateX(skipAnimation: boolean = false): void {
+  updateTranslateX(category: string, skipAnimation: boolean = false): void {
     if (!isPlatformBrowser(this.platformId)) return;
     
+    const state = this.carouselStates[category];
     if (this.isMobile) {
-      this.translateX = -this.activeIndex * this.cardWidth;
+      state.translateX = -state.activeIndex * state.cardWidth;
     } else {
-      this.translateX = -this.activeIndex * this.cardWidth + (this.containerWidth / 2 - this.cardWidth / 2);
+      state.translateX = -state.activeIndex * state.cardWidth + (state.containerWidth / 2 - state.cardWidth / 2);
     }
   }
 
-  isLeftProduct(index: number): boolean {
+  isLeftProduct(category: string, index: number): boolean {
     if (this.isMobile) return false;
-    
-    return index === this.activeIndex - 1;
+    const state = this.carouselStates[category];
+    return index === state.activeIndex - 1;
   }
 
-  isRightProduct(index: number): boolean {
+  isRightProduct(category: string, index: number): boolean {
     if (this.isMobile) return false;
-    
-    return index === this.activeIndex + 1;
+    const state = this.carouselStates[category];
+    return index === state.activeIndex + 1;
   }
   
-  isActive(index: number): boolean {
-    return index === this.activeIndex;
+  isActive(category: string, index: number): boolean {
+    return index === this.carouselStates[category].activeIndex;
   }
   
-  getCarouselWrapperClass(): string {
-    return this.skipTransition ? 'no-transition' : '';
+  getCarouselWrapperClass(category: string): string {
+    return this.carouselStates[category].skipTransition ? 'no-transition' : '';
   }
   
-  showTimer(index: number): boolean {
-    if (this.isMobile) {
-      return index === this.activeIndex;
-    } else {
-      return index === this.activeIndex;
-    }
+  showTimer(category: string, index: number): boolean {
+    const state = this.carouselStates[category];
+    return index === state.activeIndex;
   }
 }
