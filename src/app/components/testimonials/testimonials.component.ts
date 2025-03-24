@@ -62,39 +62,31 @@ export class TestimonialsComponent implements OnInit {
 
   toggleCardFlip(testimonial: any): void {
     if (isPlatformBrowser(this.platformId)) {
-      // If we're already in the middle of flipping, don't do anything
       if (testimonial.cardFlipping) return;
-      
-      // Set the cardFlipping state to prevent multiple clicks
+
       testimonial.cardFlipping = true;
       
-      // Toggle the flipped state for this specific testimonial
       testimonial.flipped = !testimonial.flipped;
       
-      // If card is flipped to show the back side and we're on mobile, set timer to flip back
       if (testimonial.flipped && this.isMobileDevice()) {
         setTimeout(() => {
           testimonial.flipped = false;
           
-          // Allow a small delay after flip-back animation completes before enabling clicks again
           setTimeout(() => {
             testimonial.cardFlipping = false;
-          }, 600); // Match the transition time in CSS
+          }, 600);
         }, 3000);
       } else {
-        // For desktop or when flipping back manually, re-enable clicks after animation completes
         setTimeout(() => {
           testimonial.cardFlipping = false;
-        }, 600); // Match the transition time in CSS
+        }, 600);
       }
     }
   }
   
-  // Helper method to detect if the current device is mobile
   private isMobileDevice(): boolean {
     if (!isPlatformBrowser(this.platformId)) return false;
     
-    // Check window width to determine if it's a mobile device
     return window.innerWidth <= 768;
   }
 }

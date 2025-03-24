@@ -409,8 +409,8 @@ body.dark-mode h3 {
 /* Dark mode toggle */
 body.dark-mode .sun-circle {
     fill: var(--pastel-lavender-dark);
-    opacity: 0; /* Hide the sun circle completely in dark mode */
-    transform: scale(0); /* Scale it down to ensure it's not visible */
+    opacity: 0;
+    transform: scale(0);
 }
 
 body.dark-mode .sun-rays {
@@ -419,9 +419,9 @@ body.dark-mode .sun-rays {
 }
 
 body.dark-mode .moon-mask {
-    fill: #e6dcab; /* Light yellow-gray color for the crescent moon */
-    transform: scale(0.9); /* Make it slightly larger */
-    filter: drop-shadow(0 0 3px rgba(230, 220, 171, 0.7)); /* Add glow effect */
+    fill: #e6dcab;
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 3px rgba(230, 220, 171, 0.7));
 }
 
 body.dark-mode .toggle-icon:hover {
@@ -432,14 +432,14 @@ body.dark-mode .toggle-icon:hover {
 }
 
 body.dark-mode .toggle-icon:hover .sun-circle {
-    filter: none; /* Remove sun glow effect in dark mode */
-    opacity: 0; /* Keep sun hidden on hover in dark mode */
+    filter: none;
+    opacity: 0;
 }
 
 body.dark-mode .toggle-icon:hover .moon-mask {
-    fill: #f5ecc6; /* Slightly brighter color on hover */
-    filter: drop-shadow(0 0 5px rgba(245, 236, 198, 0.9)); /* Enhanced glow effect */
-    transform: scale(1); /* Slightly larger on hover */
+    fill: #f5ecc6;
+    filter: drop-shadow(0 0 5px rgba(245, 236, 198, 0.9));
+    transform: scale(1);
 }
 
 /* FAQ item border in dark mode */
