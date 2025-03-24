@@ -4,8 +4,8 @@
   display: none; /* Hidden by default on desktop */
   flex-direction: column;
   justify-content: space-between;
-  height: 20px; /* Reduced from 24px */
-  width: 25px; /* Reduced from 30px */
+  height: 20px;
+  width: 25px;
   z-index: 100;
   transition: all 0.3s ease;
   position: relative;
@@ -14,30 +14,29 @@
 
 .hamburger-menu span {
   display: block;
-  height: 2px; /* Reduced from 3px */
+  height: 2px;
   width: 100%;
   border-radius: 2px;
-  background-color: var(--primary-color, #333); /* Fallback color if variable not set */
+  background-color: var(--primary-color, #333);
   transition: all 0.3s ease;
   position: absolute;
 }
 
-/* Position the spans correctly for the hamburger */
 .hamburger-menu span:nth-child(1) {
   top: 0;
 }
 
 .hamburger-menu span:nth-child(2) {
-  top: 9px; /* Adjusted from 10px */
+  top: 9px;
 }
 
 .hamburger-menu span:nth-child(3) {
-  top: 18px; /* Adjusted from 20px */
+  top: 18px;
 }
 
 /* X animation when active */
 .hamburger-menu.active span:nth-child(1) {
-  transform: translateY(9px) rotate(45deg); /* Adjusted from 10px */
+  transform: translateY(9px) rotate(45deg);
 }
 
 .hamburger-menu.active span:nth-child(2) {
@@ -45,7 +44,7 @@
 }
 
 .hamburger-menu.active span:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg); /* Adjusted from 10px */
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Make hamburger menu visible on mobile */
@@ -57,5 +56,5 @@
 
 /* Dark mode styles */
 :host-context(body.dark-mode) .hamburger-menu span {
-  background-color: var(--dark-text, #fff); /* Fallback color if variable not set */
+  background-color: var(--dark-text, #fff);
 }

@@ -32,6 +32,8 @@
   user-select: none;
   filter: blur(1px);
   position: relative;
+  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+  will-change: transform, opacity, filter;
 }
 
 .product-card-inner {
@@ -43,7 +45,6 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  /* Ensure stable dimensions to prevent layout shifts */
   min-height: 450px;
 }
 
@@ -91,7 +92,6 @@
   background-color: transparent;
   flex: 1;
   transition: all 0.3s ease;
-  /* Prevent content shifts during transitions */
   height: 170px;
   position: relative;
 }
@@ -151,7 +151,6 @@
 
 .timer-background {
   fill: none;
-  /* stroke: rgba(255, 255, 255, 0.3); */
   stroke-width: 3;
 }
 
@@ -296,7 +295,6 @@
   
   .product-card-inner {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    /* Ensure stable dimensions on mobile */
     min-height: 420px;
   }
   
@@ -362,12 +360,6 @@
 
 .animate-item.animated .product-card {
   animation: fadeInScale 0.8s forwards;
-}
-
-/* Ensure cards don't shift during transitions */
-.product-card {
-  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
-  will-change: transform, opacity, filter;
 }
 
 /* Create a gradient overlay at carousel edges */

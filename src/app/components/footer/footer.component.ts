@@ -17,7 +17,6 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Initial check of scroll position
       this.checkScrollPosition();
     }
   }
@@ -25,11 +24,9 @@ export class FooterComponent implements OnInit {
   @HostListener('window:scroll', [])
   checkScrollPosition(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Get the height of the home section
       const homeSection = document.getElementById('home');
-      const homeSectionHeight = homeSection ? homeSection.offsetHeight : 500; // Default if not found
+      const homeSectionHeight = homeSection ? homeSection.offsetHeight : 500;
       
-      // Show button only when scrolled past the home section
       this.isScrollButtonVisible = window.scrollY > homeSectionHeight;
     }
   }

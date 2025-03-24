@@ -65,32 +65,28 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // The products array with clones for infinite scrolling
   products: any[] = [];
-  
-  // Number of clones to add at beginning and end
+
   numberOfClones: number = 2;
   
   // Carousel properties
-  // This will be updated after clones are added
   activeIndex: number = 0;
-  realActiveIndex: number = 0; // Index in original products array
+  realActiveIndex: number = 0;
   translateX: number = 0;
   carouselInterval: any;
   timerAnimation: any;
-  timerProgress: number = 88; // Initial value for stroke-dashoffset
+  timerProgress: number = 88;
   isMobile: boolean = false;
-  autoScrollDelay: number = 5000; // 5 seconds
+  autoScrollDelay: number = 5000;
   isTransitioning: boolean = false;
-  animationTimestep: number = 50; // Update timer every 50ms
+  animationTimestep: number = 50;
   cardWidth: number = 0;
   containerWidth: number = 0;
   skipTransition: boolean = false;
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Create the extended products array with clones
       this.createExtendedProductsArray();
-      
-      // Set initial active index to after the clones
+
       this.activeIndex = this.numberOfClones;
       this.realActiveIndex = 0;
       
@@ -100,7 +96,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Set initial position after DOM is ready
       setTimeout(() => {
         this.calculateDimensions();
         this.updateTranslateX();
@@ -116,12 +111,9 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   
-  // Create an extended array with clones at beginning and end
   createExtendedProductsArray(): void {
-    // Clear existing array
     this.products = [];
-    
-    // Add clones at beginning (last items of original array)
+
     for (let i = 0; i < this.numberOfClones; i++) {
       const index = this.originalProducts.length - this.numberOfClones + i;
       if (index >= 0) {
@@ -129,12 +121,10 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
     
-    // Add all original products
     this.originalProducts.forEach((product, index) => {
       this.products.push({...product, isClone: false, originalIndex: index});
     });
-    
-    // Add clones at end (first items of original array)
+
     for (let i = 0; i < this.numberOfClones; i++) {
       this.products.push({...this.originalProducts[i], isClone: true, originalIndex: i});
     }
@@ -145,7 +135,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = window.innerWidth < 768;
       this.calculateDimensions();
-      this.updateTranslateX(true); // skip animation
+      this.updateTranslateX(true);
     }
   }
   
@@ -165,7 +155,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   startAutoScroll(): void {
-    this.stopAutoScroll(); // Clear any existing interval
+    this.stopAutoScroll();
     this.startTimerAnimation();
     this.carouselInterval = setInterval(() => {
       this.nextProduct();
@@ -215,21 +205,16 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   // Method to handle infinite loop transition
   handleInfiniteLoop(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    
-    // Check if we need to jump to the beginning (we're at the end clones)
+  
     if (this.activeIndex >= this.originalProducts.length + this.numberOfClones) {
-      // Set the new active index to be just after the beginning clones
       const newIndex = this.numberOfClones + (this.activeIndex - (this.originalProducts.length + this.numberOfClones));
-      
-      // Turn off transitions
+
       this.skipTransition = true;
-      
-      // Update activeIndex and jump
+
       this.activeIndex = newIndex;
       this.realActiveIndex = newIndex - this.numberOfClones;
       this.updateTranslateX(true);
-      
-      // Re-enable transitions after a small delay
+
       setTimeout(() => {
         this.skipTransition = false;
       }, 50);
@@ -237,18 +222,14 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     
     // Check if we need to jump to the end (we're at the beginning clones)
     else if (this.activeIndex < this.numberOfClones) {
-      // Set the new active index to be before the end clones
       const newIndex = this.originalProducts.length + this.activeIndex;
-      
-      // Turn off transitions
+
       this.skipTransition = true;
-      
-      // Update activeIndex and jump
+
       this.activeIndex = newIndex;
       this.realActiveIndex = newIndex - this.numberOfClones;
       this.updateTranslateX(true);
-      
-      // Re-enable transitions after a small delay
+
       setTimeout(() => {
         this.skipTransition = false;
       }, 50);
@@ -263,12 +244,11 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.realActiveIndex = (this.activeIndex - this.numberOfClones + this.originalProducts.length) % this.originalProducts.length;
     this.updateTranslateX();
     this.resetAutoScroll();
-    
-    // Reset transitioning state after animation completes
+
     setTimeout(() => {
       this.handleInfiniteLoop();
       this.isTransitioning = false;
-    }, 500); // Match this to your CSS transition duration
+    }, 500);
   }
 
   prevProduct(): void {
@@ -279,12 +259,11 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.realActiveIndex = (this.activeIndex - this.numberOfClones + this.originalProducts.length) % this.originalProducts.length;
     this.updateTranslateX();
     this.resetAutoScroll();
-    
-    // Reset transitioning state after animation completes
+
     setTimeout(() => {
       this.handleInfiniteLoop();
       this.isTransitioning = false;
-    }, 500); // Match this to your CSS transition duration
+    }, 500);
   }
 
   goToProduct(index: number): void {
@@ -295,57 +274,46 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.realActiveIndex = index;
     this.updateTranslateX();
     this.resetAutoScroll();
-    
-    // Reset transitioning state after animation completes
+
     setTimeout(() => {
       this.isTransitioning = false;
-    }, 500); // Match this to your CSS transition duration
+    }, 500);
   }
 
   updateTranslateX(skipAnimation: boolean = false): void {
     if (!isPlatformBrowser(this.platformId)) return;
     
     if (this.isMobile) {
-      // On mobile, just center the active card
       this.translateX = -this.activeIndex * this.cardWidth;
     } else {
-      // On desktop, adjust for showing 3 cards with active in center
       this.translateX = -this.activeIndex * this.cardWidth + (this.containerWidth / 2 - this.cardWidth / 2);
     }
   }
 
-  // Determine if a card should be displayed with the "left" class
   isLeftProduct(index: number): boolean {
     if (this.isMobile) return false;
     
-    // The previous card is always left
     return index === this.activeIndex - 1;
   }
 
-  // Determine if a card should be displayed with the "right" class
   isRightProduct(index: number): boolean {
     if (this.isMobile) return false;
     
-    // The next card is always right
     return index === this.activeIndex + 1;
   }
   
-  // Check if a card is active based on display index
   isActive(index: number): boolean {
     return index === this.activeIndex;
   }
   
-  // Get class for carousel wrapper based on transition state
   getCarouselWrapperClass(): string {
     return this.skipTransition ? 'no-transition' : '';
   }
   
-  // Get class for auto-scroll indicator
   showTimer(index: number): boolean {
     if (this.isMobile) {
       return index === this.activeIndex;
     } else {
-      // Only show timer on the active (center) card
       return index === this.activeIndex;
     }
   }

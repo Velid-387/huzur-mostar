@@ -24,7 +24,6 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      // Here you would typically send the form data to your backend
       console.log(this.contactForm.value);
       this.formStatus = 'Poruka uspješno poslana!';
       this.contactForm.reset();

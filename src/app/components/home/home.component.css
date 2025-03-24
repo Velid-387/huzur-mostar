@@ -62,7 +62,6 @@
 
 /* Ensure consistent positioning between light and dark mode */
 :host-context(body.dark-mode) .hero-content {
-  /* Same positioning and margin values as light mode */
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,4 +1,3 @@
-/* Import Alex Brush font */
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 
 /* Reset and base styles */
@@ -58,10 +57,8 @@ nav {
 
 .logo img {
     width: 30px;
-    /* adjust the width to your liking */
     height: auto;
     margin-right: 10px;
-    /* add some space between the image and the text */
 }
 
 .logo span {
@@ -323,7 +320,6 @@ section#home::after {
 
 .hero-content h1 {
     font-size: 5.5rem;
-    /* margin-bottom: 1.5rem; */
     color: var(--dark-pink);
     width: 100%;
     text-align: center;
@@ -724,13 +720,6 @@ footer {
     margin: 0 auto;
 }
 
-.social-links h3 {
-    display: block;
-    margin-bottom: 15px;
-    font-size: 2rem;
-    color: var(--dark-pink);
-}
-
 .social-links a {
     display: flex;
     align-items: center;
@@ -844,7 +833,6 @@ body.dark-mode .social-links a:hover {
     transform: scale(0);
 }
 
-/* Hover effect */
 .toggle-icon:hover .sun-circle,
 .toggle-icon:hover .sun-rays {
     filter: drop-shadow(0 0 5px rgba(223, 123, 153, 0.9));
@@ -1080,7 +1068,6 @@ body.dark-mode .mobile-nav-menu a:hover {
     animation: nav-glow 1.5s infinite;
 }
 
-/* Add theme-specific styles */
 .light-theme .hamburger-menu span {
     background-color: #666;
 }
@@ -1163,10 +1150,10 @@ footer .social-links a:active {
 
 /* Apply Alex Brush to selected elements */
 .logo, h1, h2, h3, .testimonial-name, 
-.social-links h3, .form-status, .image-overlay,
+.form-status, .image-overlay,
 .faq-container h2 {
     font-family: 'Alex Brush', cursive;
-    font-weight: 400; /* Alex Brush looks better without extra weight */
+    font-weight: 400;
     letter-spacing: 0.5px;
 }
 
@@ -1177,12 +1164,6 @@ footer .social-links a:active {
     font-weight: bold;
     margin-top: 0.5rem;
     color: var(--dark-pink);
-}
-
-/* Make social links heading match other elements */
-.social-links h3 {
-    color: var(--dark-pink);
-    font-size: 2rem;
 }
 
 /* Keep navigation links in sans-serif for better usability */
@@ -1212,7 +1193,6 @@ h3 {
     font-size: 1.8rem;
 }
 
-/* FAQ questions need to be readable */
 .faq-item .faq-question {
     font-family: poppins, sans-serif;
     font-size: 1.2rem;

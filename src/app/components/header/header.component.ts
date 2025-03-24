@@ -37,8 +37,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   toggleMobileMenu(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.mobileMenuOpen = !this.mobileMenuOpen;
-      
-      // Add this line to toggle active class on the hamburger menu
+
       const hamburgerMenu = document.getElementById('hamburgerMenu');
       if (hamburgerMenu) {
         hamburgerMenu.classList.toggle('active');
@@ -61,7 +60,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   checkActiveSection(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     
-    const scrollPosition = window.scrollY + 200; // Adding offset for better UX
+    const scrollPosition = window.scrollY + 200;
     
     for (const section of this.sections) {
       const element = document.getElementById(section);
@@ -81,12 +80,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     return this.activeSection === section;
   }
 
-  // Add this method to handle navigation clicks directly
   scrollToSection(sectionId: string): void {
     this.activeSection = sectionId;
     this.scrollService.scrollToElementById(sectionId);
-    
-    // Close mobile menu if open
+
     if (isPlatformBrowser(this.platformId) && this.mobileMenuOpen) {
       this.toggleMobileMenu();
     }
