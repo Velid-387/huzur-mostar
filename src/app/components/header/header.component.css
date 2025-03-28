@@ -47,6 +47,27 @@
   transform: translateY(-9px) rotate(-45deg);
 }
 
+.logo a {
+  font-family: 'Alex Brush', cursive;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Mobile styles to ensure nav links stack properly */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
+
 /* Make hamburger menu visible on mobile */
 @media (max-width: 768px) {
   .hamburger-menu {

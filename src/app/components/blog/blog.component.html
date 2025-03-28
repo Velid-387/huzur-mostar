@@ -1,0 +1,71 @@
+<section id="blog" class="animate-section">
+  <div class="container">
+    <h1 class="blog-title animate-item">Blog Huzur Mostar</h1>
+    <p class="blog-intro animate-item">
+      Dobrodošli na naš blog! Ovdje dijelimo savjete o njezi cvijeća, inspiraciju za uređenje prostora, 
+      i zanimljivosti iz svijeta floralistike.
+    </p>
+    
+    <div class="blog-posts-container">
+      <div class="blog-post animate-item" *ngFor="let post of blogPosts">
+        <div class="blog-post-image">
+          <img [src]="post.image" [alt]="post.title">
+        </div>
+        <div class="blog-post-content">
+          <span class="blog-post-date">{{ post.date }}</span>
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.excerpt }}</p>
+          <a [routerLink]="['/blog', post.slug]" class="btn blog-btn">Pročitaj više</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Show message if no posts are available -->
+    <div class="no-posts" *ngIf="blogPosts.length === 0">
+      <p>Trenutno nema dostupnih članaka. Molimo vas, provjerite ponovno kasnije.</p>
+    </div>
+    
+    <!-- Pagination controls -->
+    <div class="pagination" *ngIf="totalPages > 1">
+      <!-- Previous button -->
+      <button 
+        class="pagination-btn prev" 
+        [class.disabled]="currentPage === 1"
+        (click)="loadPage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+        aria-label="Previous page"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      
+      <!-- Page numbers -->
+      <ng-container *ngFor="let page of getPageNumbers()">
+        <ng-container *ngIf="page !== -1; else ellipsis">
+          <button 
+            class="pagination-btn" 
+            [class.active]="currentPage === page"
+            (click)="loadPage(page)"
+            [attr.aria-current]="currentPage === page ? 'page' : null"
+            [attr.aria-label]="'Page ' + page"
+          >
+            {{ page }}
+          </button>
+        </ng-container>
+        <ng-template #ellipsis>
+          <span class="pagination-ellipsis" aria-hidden="true">...</span>
+        </ng-template>
+      </ng-container>
+      
+      <!-- Next button -->
+      <button 
+        class="pagination-btn next" 
+        [class.disabled]="currentPage === totalPages"
+        (click)="loadPage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+        aria-label="Next page"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section> 
