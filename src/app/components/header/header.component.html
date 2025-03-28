@@ -25,11 +25,14 @@
                 <li><a (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a></li>
                 <li><a (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a></li>
                 <li><a (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a></li>
+                <li><a routerLink="/blog">Blog</a></li>
             </ul>
         </div>
         <div class="logo">
-            <img src="./assets/img/huzur-logo.png" alt="Logo">
-            Huzur<span>Mostar</span>
+            <a routerLink="/">
+                <img src="./assets/img/huzur-logo.png" alt="Logo">
+                Huzur<span>Mostar</span>
+            </a>
         </div>
         <div class="nav-links" id="navLinks">
             <a (click)="scrollToSection('home', $event)" [class.active]="isActive('home')">Početna</a>
@@ -50,6 +53,7 @@
             <a (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a>
             <a (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a>
             <a (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a>
+            <a routerLink="/blog">Blog</a>
         </div>
         <div class="theme-switch-wrapper">
             <label class="theme-switch" for="checkbox">

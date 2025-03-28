@@ -1,0 +1,30 @@
+<section id="blog" class="animate-section">
+  <div class="container">
+    <h1 class="blog-title animate-item">Blog Huzur Mostar</h1>
+    <p class="blog-intro animate-item">
+      Dobrodošli na naš blog! Ovdje dijelimo savjete o njezi cvijeća, inspiraciju za uređenje prostora, 
+      i zanimljivosti iz svijeta floralistike.
+    </p>
+    
+    <div class="blog-posts-container">
+      <div class="blog-post animate-item" *ngFor="let post of blogPosts">
+        <div class="blog-post-image">
+          <img [src]="post.image" [alt]="post.title">
+        </div>
+        <div class="blog-post-content">
+          <span class="blog-post-date">{{ post.date }}</span>
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.excerpt }}</p>
+          <a href="#" class="btn blog-btn">Pročitaj više</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="pagination">
+      <button class="pagination-btn active">1</button>
+      <button class="pagination-btn">2</button>
+      <button class="pagination-btn">3</button>
+      <button class="pagination-btn next">Sljedeća</button>
+    </div>
+  </div>
+</section> 

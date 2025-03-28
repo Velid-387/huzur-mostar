@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { DarkModeService } from '../../services/dark-mode.service';
 import { ScrollService } from '../../services/scroll.service';
 
@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   private darkModeService = inject(DarkModeService);
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
+  private router = inject(Router);
   
   activeSection: string = 'home';
   sections: string[] = ['home', 'about', 'products', 'faq', 'testimonials', 'contact'];
@@ -119,8 +120,19 @@ export class HeaderComponent implements OnInit {
       event.stopPropagation();
     }
     
-    this.activeSection = sectionId;
-    this.scrollService.scrollToElementById(sectionId);
+    // If on blog page, navigate to home page first
+    if (this.isOnBlogPage()) {
+      this.router.navigateByUrl('/').then(() => {
+        // After navigation, scroll to the section (with a small delay to ensure components are loaded)
+        setTimeout(() => {
+          this.activeSection = sectionId;
+          this.scrollService.scrollToElementById(sectionId);
+        }, 100);
+      });
+    } else {
+      this.activeSection = sectionId;
+      this.scrollService.scrollToElementById(sectionId);
+    }
 
     if (isPlatformBrowser(this.platformId)) {
       if (this.mobileMenuOpen) {
@@ -128,5 +140,9 @@ export class HeaderComponent implements OnInit {
       }
       this.isProductsDropdownOpen = false;
     }
+  }
+
+  isOnBlogPage(): boolean {
+    return this.router.url.includes('/blog');
   }
 }
