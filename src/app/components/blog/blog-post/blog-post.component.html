@@ -1,0 +1,26 @@
+<section id="blog-post" class="animate-section" *ngIf="post">
+  <div class="container">
+    <div class="blog-post-header animate-item">
+      <button class="back-button" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i> Nazad na blog
+      </button>
+      <span class="blog-post-date">{{ post.date }}</span>
+      <h1 class="blog-post-title">{{ post.title }}</h1>
+    </div>
+    
+    <div class="blog-post-featured-image animate-item">
+      <img [src]="post.image" [alt]="post.title">
+    </div>
+    
+    <div class="blog-post-content animate-item" [innerHTML]="post.content"></div>
+    
+    <div class="blog-post-footer animate-item">
+      <button class="btn share-btn">
+        <i class="fas fa-share-alt"></i> Podijeli članak
+      </button>
+      <button class="back-button" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i> Nazad na blog
+      </button>
+    </div>
+  </div>
+</section> 

@@ -87,6 +87,7 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
   margin-top: 3rem;
 }
@@ -100,9 +101,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.pagination-btn:hover {
+.pagination-btn:hover:not(.disabled) {
   background-color: var(--primary-color);
   color: white;
 }
@@ -112,9 +116,43 @@
   color: white;
 }
 
+.pagination-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+  width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.pagination-btn.prev,
 .pagination-btn.next {
-  width: auto;
-  padding: 0 1rem;
+  width: 40px;
+}
+
+.no-posts {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+/* Dark mode styles for pagination */
+:host-context(body.dark-mode) .pagination-btn {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+:host-context(body.dark-mode) .pagination-btn:hover:not(.disabled),
+:host-context(body.dark-mode) .pagination-btn.active {
+  background-color: var(--primary-color);
+}
+
+:host-context(body.dark-mode) .no-posts {
+  background-color: #2a2a2a;
 }
 
 /* Dark mode */
@@ -129,16 +167,6 @@
 
 :host-context(body.dark-mode) .blog-post-date {
   color: #aaa;
-}
-
-:host-context(body.dark-mode) .pagination-btn {
-  background-color: #333;
-  color: #f0f0f0;
-}
-
-:host-context(body.dark-mode) .pagination-btn:hover,
-:host-context(body.dark-mode) .pagination-btn.active {
-  background-color: var(--primary-color);
 }
 
 /* Responsive styles */
