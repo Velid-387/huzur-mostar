@@ -2,8 +2,6 @@
 
 Kada zima prekrije krajolik bijelim plaštom, većina vrta ulazi u stanje mirovanja. Međutim, postoje hrabre biljke koje prkose hladnoći i donose boju u najhladnije doba godine. Ovo cvijeće ne samo da unosi život u zimski vrt, već može donijeti radost i u vaš dom tijekom najhladnijih mjeseci.
 
-![Zimsko cvijeće](https://images.unsplash.com/photo-1610397648930-477b8c7f0943?q=80&w=1200&auto=format&fit=crop)
-
 ## Zašto je zimsko cvijeće posebno?
 
 Zimsko cvijeće ima posebnu čar jer:

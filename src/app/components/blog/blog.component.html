@@ -33,6 +33,7 @@
         [class.disabled]="currentPage === 1"
         (click)="loadPage(currentPage - 1)"
         [disabled]="currentPage === 1"
+        aria-label="Previous page"
       >
         <i class="fas fa-chevron-left"></i>
       </button>
@@ -44,12 +45,14 @@
             class="pagination-btn" 
             [class.active]="currentPage === page"
             (click)="loadPage(page)"
+            [attr.aria-current]="currentPage === page ? 'page' : null"
+            [attr.aria-label]="'Page ' + page"
           >
             {{ page }}
           </button>
         </ng-container>
         <ng-template #ellipsis>
-          <span class="pagination-ellipsis">...</span>
+          <span class="pagination-ellipsis" aria-hidden="true">...</span>
         </ng-template>
       </ng-container>
       
@@ -59,6 +62,7 @@
         [class.disabled]="currentPage === totalPages"
         (click)="loadPage(currentPage + 1)"
         [disabled]="currentPage === totalPages"
+        aria-label="Next page"
       >
         <i class="fas fa-chevron-right"></i>
       </button>

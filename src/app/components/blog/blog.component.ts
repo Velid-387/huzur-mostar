@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { AnimationService } from '../../services/animation.service';
 import { BlogService, BlogPostMetadata } from '../../services/blog.service';
 
@@ -15,6 +15,8 @@ export class BlogComponent implements OnInit {
   private platformId = inject(PLATFORM_ID);
   private animationService = inject(AnimationService);
   private blogService = inject(BlogService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
   
   // Pagination variables
   currentPage: number = 1;
@@ -32,10 +34,29 @@ export class BlogComponent implements OnInit {
       // Set page title
       document.title = 'Blog - Huzur Mostar';
       
-      // Get total pages and load first page
-      this.blogService.getTotalPages(this.itemsPerPage).subscribe(totalPages => {
-        this.totalPages = totalPages;
-        this.loadPage(1);
+      // Get the page from query parameters
+      this.route.queryParams.subscribe(params => {
+        const pageParam = params['page'];
+        let requestedPage = pageParam ? parseInt(pageParam, 10) : 1;
+        
+        // Ensure the page number is valid
+        if (isNaN(requestedPage) || requestedPage < 1) {
+          requestedPage = 1;
+        }
+        
+        // Get total pages and then load the requested page
+        this.blogService.getTotalPages(this.itemsPerPage).subscribe(totalPages => {
+          this.totalPages = totalPages;
+          
+          // Make sure we don't try to access a page beyond what's available
+          if (requestedPage > totalPages) {
+            requestedPage = totalPages;
+            // Update URL to reflect the corrected page
+            this.updateUrlWithPage(requestedPage);
+          }
+          
+          this.loadPageContent(requestedPage);
+        });
       });
       
       // Initialize animations
@@ -45,11 +66,44 @@ export class BlogComponent implements OnInit {
     }
   }
   
+  /**
+   * Navigate to a specific page and update the URL
+   */
   loadPage(pageNumber: number): void {
     // Validate page number
     if (pageNumber < 1) pageNumber = 1;
     if (pageNumber > this.totalPages) pageNumber = this.totalPages;
     
+    // Update URL with the new page parameter
+    this.updateUrlWithPage(pageNumber);
+    
+    // Also load the page content immediately to prevent empty page issues
+    this.loadPageContent(pageNumber);
+  }
+  
+  /**
+   * Update the URL with the page parameter
+   */
+  private updateUrlWithPage(pageNumber: number): void {
+    // Only update URL if we're in a browser
+    if (isPlatformBrowser(this.platformId)) {
+      // Don't add page parameter if it's page 1
+      const queryParams = pageNumber > 1 ? { page: pageNumber.toString() } : {};
+      
+      // Update the URL without reloading the component
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: queryParams,
+        queryParamsHandling: 'merge', // Keep other query params if there are any
+        replaceUrl: pageNumber === 1 // Replace URL for page 1 to keep clean URLs
+      });
+    }
+  }
+  
+  /**
+   * Load content for the specified page
+   */
+  private loadPageContent(pageNumber: number): void {
     // Update current page
     this.currentPage = pageNumber;
     
@@ -61,6 +115,11 @@ export class BlogComponent implements OnInit {
       if (isPlatformBrowser(this.platformId)) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+      
+      // Initialize animations for new content
+      setTimeout(() => {
+        this.animationService.initAnimations();
+      }, 100);
     });
   }
   

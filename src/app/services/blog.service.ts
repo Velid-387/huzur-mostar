@@ -92,7 +92,7 @@ export class BlogService {
       title: 'Kako uzgojiti lavandu u svom vrtu',
       excerpt: 'Savjeti za uzgoj mirisne i lijepog lavande koja će privući pčele i druge korisne insekte.',
       date: '15.02.2024',
-      image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1626120101334-bae20ef1e78d?q=80&w=3024&auto=format&fit=crop',
       slug: 'kako-uzgojiti-lavandu-u-svom-vrtu',
       fileName: 'uzgoj-lavande.md'
     },
@@ -101,7 +101,7 @@ export class BlogService {
       title: 'Upoznajte egzotično cvijeće',
       excerpt: 'Zavirite u svijet neobičnih i rijetkih cvjetnih vrsta koje dolaze iz svih krajeva svijeta.',
       date: '10.02.2024',
-      image: 'https://images.unsplash.com/photo-1561848055-8dfe6e241082?q=80&w=1200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1488928741225-2aaf732c96cc?q=80&w=3540&auto=format&fit=crop',
       slug: 'upoznajte-egzoticno-cvijece',
       fileName: 'egzoticno-cvijece.md'
     }

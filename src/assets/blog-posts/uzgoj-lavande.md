@@ -2,8 +2,6 @@
 
 Lavanda je prekrasna, mirisna i mnogostruko korisna biljka koja može biti krasan dodatak vašem vrtu. Osim što će vas razveseliti svojim intenzivnim mirisom i lijepim cvjetovima, lavanda će privući pčele i druge korisne insekte, a možete je koristiti za izradu mirisnih vrećica, eteričnih ulja, čajeva i dekoracija.
 
-![Lavanda u vrtu](https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop)
-
 ## Vrste lavande za uzgoj
 
 Postoji više vrsta lavande koje možete uzgajati, svaka sa svojim jedinstvenim karakteristikama:
