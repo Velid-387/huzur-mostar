@@ -470,11 +470,6 @@ body.dark-mode .form-group textarea:focus {
     box-shadow: 0 0 8px rgba(192, 154, 154, 0.4);
 }
 
-/* Price color in dark mode */
-body.dark-mode .price {
-    color: var(--pastel-pink-dark);
-}
-
 /* Logo color */
 body.dark-mode .logo span {
     color: var(--pastel-pink-dark);

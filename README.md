@@ -18,7 +18,7 @@ The name "Huzur" represents peace and tranquility in all aspects of life - refle
 - **Single Page Application** - Smooth scrolling between sections
 - **Dark/Light Mode** - Toggle between color themes
 - **Animated Elements** - Subtle animations enhance user experience
-- **Product Showcase** - Display of floral arrangements with images, descriptions and prices
+- **Product Showcase** - Display of floral arrangements with images and descriptions
 - **Contact Form** - Easy way for customers to reach out
 - **Social Media Integration** - Links to Instagram, Facebook and location
 - **FAQ Section** - Answers to common customer questions
