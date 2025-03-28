@@ -6,7 +6,6 @@ interface Product {
   imgAlt: string;
   title: string;
   description: string;
-  price: string;
 }
 
 interface CarouselState {
@@ -40,22 +39,19 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       imgSrc: 'assets/img/products/huzur-buket-9.png',
       imgAlt: 'Dried Flower Bouquet',
       title: 'Eternal Spring',
-      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.',
-      price: '45.99 KM'
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
     },
     {
       imgSrc: 'assets/img/products/huzur-buket-10.png',
       imgAlt: 'Dried Flower Bouquet',
       title: 'Eternal Spring',
-      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.',
-      price: '45.99 KM'
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
     },
     {
       imgSrc: 'assets/img/products/huzur-buket-11.png',
       imgAlt: 'Dried Flower Bouquet',
       title: 'Eternal Spring',
-      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.',
-      price: '45.99 KM'
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
     }
   ];
 
@@ -64,22 +60,19 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       imgSrc: 'assets/img/products/huzur-buket-12.png',
       imgAlt: 'Fresh Flower Bouquet',
       title: 'Classic Romance',
-      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.',
-      price: '59.99 KM'
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
     },
     {
       imgSrc: 'assets/img/products/huzur-buket-13.png',
       imgAlt: 'Fresh Flower Bouquet',
       title: 'Classic Romance',
-      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.',
-      price: '59.99 KM'
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
     },
     {
       imgSrc: 'assets/img/products/huzur-buket-14.png',
       imgAlt: 'Fresh Flower Bouquet',
       title: 'Classic Romance',
-      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.',
-      price: '59.99 KM'
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
     }
   ];
 
@@ -88,22 +81,19 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       imgSrc: 'assets/img/products/huzur-magnet-1.png',
       imgAlt: 'Decorative Magnet',
       title: 'Floral Magnet',
-      description: 'Beautiful decorative magnets featuring preserved flowers.',
-      price: '10.99 KM'
+      description: 'Beautiful decorative magnets featuring preserved flowers.'
     },
     {
       imgSrc: 'assets/img/products/huzur-magnet-1.png',
       imgAlt: 'Decorative Magnet',
       title: 'Floral Magnet',
-      description: 'Beautiful decorative magnets featuring preserved flowers.',
-      price: '10.99 KM'
+      description: 'Beautiful decorative magnets featuring preserved flowers.'
     },
     {
       imgSrc: 'assets/img/products/huzur-magnet-1.png',
       imgAlt: 'Decorative Magnet',
       title: 'Floral Magnet',
-      description: 'Beautiful decorative magnets featuring preserved flowers.',
-      price: '10.99 KM'
+      description: 'Beautiful decorative magnets featuring preserved flowers.'
     }
   ];
 

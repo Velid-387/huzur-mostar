@@ -454,13 +454,6 @@ section#home::after {
     color: #666;
 }
 
-.price {
-    font-weight: bold;
-    color: var(--dark-pink);
-    font-size: 1.6rem;
-    margin-top: 0.5rem;
-}
-
 /* FAQ section */
 #faq {
     background-color: #f8f9fa;
@@ -1155,15 +1148,6 @@ footer .social-links a:active {
     font-family: 'Alex Brush', cursive;
     font-weight: 400;
     letter-spacing: 0.5px;
-}
-
-/* Adjust price styling for sans-serif */
-.price {
-    font-family: poppins, sans-serif;
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
-    color: var(--dark-pink);
 }
 
 /* Keep navigation links in sans-serif for better usability */
