@@ -107,8 +107,8 @@
 }
 
 .pagination-btn:hover:not(.disabled) {
-  background-color: var(--primary-color);
-  color: white;
+  border-color: var(--primary-color-light, #ff6b98);
+  color: var(--primary-color-light, #ff6b98);
 }
 
 .pagination-btn.active {

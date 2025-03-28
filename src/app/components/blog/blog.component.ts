@@ -107,6 +107,11 @@ export class BlogComponent implements OnInit {
     // Update current page
     this.currentPage = pageNumber;
     
+    // Store current page in session storage for navigation back from blog posts
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.setItem('blogCurrentPage', pageNumber.toString());
+    }
+    
     // Get posts for current page from service
     this.blogService.getPostsForPage(pageNumber, this.itemsPerPage).subscribe(posts => {
       this.blogPosts = posts;
