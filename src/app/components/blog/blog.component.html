@@ -15,7 +15,7 @@
           <span class="blog-post-date">{{ post.date }}</span>
           <h2>{{ post.title }}</h2>
           <p>{{ post.excerpt }}</p>
-          <a [routerLink]="['/blog', post.id]" class="btn blog-btn">Pročitaj više</a>
+          <a [routerLink]="['/blog', post.slug]" class="btn blog-btn">Pročitaj više</a>
         </div>
       </div>
     </div>
@@ -26,29 +26,40 @@
     </div>
     
     <!-- Pagination controls -->
-    <div class="pagination" *ngIf="totalPages > 0">
-      <!-- Previous page button -->
-      <button class="pagination-btn prev" [disabled]="currentPage === 1" 
-              [class.disabled]="currentPage === 1" (click)="prevPage()">
+    <div class="pagination" *ngIf="totalPages > 1">
+      <!-- Previous button -->
+      <button 
+        class="pagination-btn prev" 
+        [class.disabled]="currentPage === 1"
+        (click)="loadPage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
         <i class="fas fa-chevron-left"></i>
       </button>
       
-      <!-- Page number buttons -->
+      <!-- Page numbers -->
       <ng-container *ngFor="let page of getPageNumbers()">
-        <!-- Show ellipsis -->
-        <span class="pagination-ellipsis" *ngIf="page === -1">...</span>
-        
-        <!-- Show page number button -->
-        <button class="pagination-btn" *ngIf="page !== -1"
-                [class.active]="page === currentPage"
-                (click)="loadPage(page)">
-          {{ page }}
-        </button>
+        <ng-container *ngIf="page !== -1; else ellipsis">
+          <button 
+            class="pagination-btn" 
+            [class.active]="currentPage === page"
+            (click)="loadPage(page)"
+          >
+            {{ page }}
+          </button>
+        </ng-container>
+        <ng-template #ellipsis>
+          <span class="pagination-ellipsis">...</span>
+        </ng-template>
       </ng-container>
       
-      <!-- Next page button -->
-      <button class="pagination-btn next" [disabled]="currentPage === totalPages"
-              [class.disabled]="currentPage === totalPages" (click)="nextPage()">
+      <!-- Next button -->
+      <button 
+        class="pagination-btn next" 
+        [class.disabled]="currentPage === totalPages"
+        (click)="loadPage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
         <i class="fas fa-chevron-right"></i>
       </button>
     </div>

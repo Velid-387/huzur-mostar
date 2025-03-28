@@ -1,26 +1,44 @@
-<section id="blog-post" class="animate-section" *ngIf="post">
+<section id="blog-post" class="animate-section">
   <div class="container">
-    <div class="blog-post-header animate-item">
-      <button class="back-button" (click)="goBack()">
-        <i class="fas fa-arrow-left"></i> Nazad na blog
-      </button>
-      <span class="blog-post-date">{{ post.date }}</span>
-      <h1 class="blog-post-title">{{ post.title }}</h1>
+    <!-- Loading state -->
+    <div class="loading-state animate-item" *ngIf="loading">
+      <div class="spinner"></div>
+      <p>Učitavanje članka...</p>
     </div>
     
-    <div class="blog-post-featured-image animate-item">
-      <img [src]="post.image" [alt]="post.title">
-    </div>
-    
-    <div class="blog-post-content animate-item" [innerHTML]="post.content"></div>
-    
-    <div class="blog-post-footer animate-item">
-      <button class="btn share-btn">
-        <i class="fas fa-share-alt"></i> Podijeli članak
-      </button>
+    <!-- Error state -->
+    <div class="error-state animate-item" *ngIf="error">
+      <h2>Članak nije pronađen</h2>
+      <p>Žao nam je, ali traženi članak nije pronađen ili se dogodila greška.</p>
       <button class="back-button" (click)="goBack()">
         <i class="fas fa-arrow-left"></i> Nazad na blog
       </button>
     </div>
+    
+    <!-- Blog post content -->
+    <ng-container *ngIf="post && !loading && !error">
+      <div class="blog-post-header animate-item">
+        <button class="back-button" (click)="goBack()">
+          <i class="fas fa-arrow-left"></i> Nazad na blog
+        </button>
+        <span class="blog-post-date">{{ post.date }}</span>
+        <h1 class="blog-post-title">{{ post.title }}</h1>
+      </div>
+      
+      <div class="blog-post-featured-image animate-item">
+        <img [src]="post.image" [alt]="post.title">
+      </div>
+      
+      <div class="blog-post-content animate-item" [innerHTML]="post.content"></div>
+      
+      <div class="blog-post-footer animate-item">
+        <button class="btn share-btn">
+          <i class="fas fa-share-alt"></i> Podijeli članak
+        </button>
+        <button class="back-button" (click)="goBack()">
+          <i class="fas fa-arrow-left"></i> Nazad na blog
+        </button>
+      </div>
+    </ng-container>
   </div>
 </section> 

@@ -2,6 +2,7 @@ import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AnimationService } from '../../services/animation.service';
+import { BlogService, BlogPostMetadata } from '../../services/blog.service';
 
 @Component({
   selector: 'app-blog',
@@ -13,81 +14,15 @@ import { AnimationService } from '../../services/animation.service';
 export class BlogComponent implements OnInit {
   private platformId = inject(PLATFORM_ID);
   private animationService = inject(AnimationService);
+  private blogService = inject(BlogService);
   
   // Pagination variables
   currentPage: number = 1;
   itemsPerPage: number = 6;
   totalPages: number = 1;
   
-  // Sample blog posts data - in a real app this would come from a service
-  allBlogPosts = [
-    {
-      id: 1,
-      title: 'Kako pravilno njegovati suho cvijeće',
-      excerpt: 'Otkrijte kako da vaši aranžmani od suhog cvijeća traju duže i zadrže svoj lijep izgled.',
-      date: '25.03.2024',
-      image: 'assets/img/blog/blog-post-1.jpg'
-    },
-    {
-      id: 2,
-      title: 'Najbolje biljke za vaš dom',
-      excerpt: 'Vodič za izbor idealnih sobnih biljaka prema prostoru i uvjetima u vašem domu.',
-      date: '20.03.2024',
-      image: 'assets/img/blog/blog-post-2.jpg'
-    },
-    {
-      id: 3,
-      title: 'Značenja različitog cvijeća',
-      excerpt: 'Saznajte što različite vrste cvijeća simboliziraju kada ih poklanjate nekome.',
-      date: '15.03.2024',
-      image: 'assets/img/blog/blog-post-3.jpg'
-    },
-    {
-      id: 4,
-      title: 'Kreativni načini uređenja doma cvijećem',
-      excerpt: 'Inspirirajte se kreativnim idejama kako unijeti prirodnu ljepotu u vaš dom pomoću cvjetnih aranžmana.',
-      date: '10.03.2024',
-      image: 'assets/img/blog/blog-post-4.jpg'
-    },
-    {
-      id: 5,
-      title: 'Kako napraviti vlastiti terrarij',
-      excerpt: 'Naučite kako stvoriti prekrasan minijaturni vrt u staklenoj posudi za jedinstvenu kućnu dekoraciju.',
-      date: '05.03.2024',
-      image: 'assets/img/blog/blog-post-5.jpg'
-    },
-    {
-      id: 6,
-      title: 'Najbolje cvijeće za posebne prigode',
-      excerpt: 'Koji cvijet odabrati za rođendan, godišnjicu, vjenčanje ili neku drugu važnu priliku?',
-      date: '28.02.2024',
-      image: 'assets/img/blog/blog-post-6.jpg'
-    },
-    {
-      id: 7,
-      title: 'Cvijeće koje cvjeta zimi',
-      excerpt: 'Upoznajte biljke koje donose boju i život u vaš dom i tijekom najhladnijih mjeseci.',
-      date: '22.02.2024',
-      image: 'assets/img/blog/blog-post-7.jpg'
-    },
-    {
-      id: 8,
-      title: 'Kako uzgojiti lavandu u svom vrtu',
-      excerpt: 'Savjeti za uzgoj mirisne i lijepog lavande koja će privući pčele i druge korisne insekte.',
-      date: '15.02.2024',
-      image: 'assets/img/blog/blog-post-8.jpg'
-    },
-    {
-      id: 9,
-      title: 'Upoznajte egzotično cvijeće',
-      excerpt: 'Zavirite u svijet neobičnih i rijetkih cvjetnih vrsta koje dolaze iz svih krajeva svijeta.',
-      date: '10.02.2024',
-      image: 'assets/img/blog/blog-post-9.jpg'
-    }
-  ];
-  
   // Posts to display on current page
-  blogPosts: any[] = [];
+  blogPosts: BlogPostMetadata[] = [];
   
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -97,11 +32,11 @@ export class BlogComponent implements OnInit {
       // Set page title
       document.title = 'Blog - Huzur Mostar';
       
-      // Calculate total pages
-      this.totalPages = Math.ceil(this.allBlogPosts.length / this.itemsPerPage);
-      
-      // Load first page of posts
-      this.loadPage(1);
+      // Get total pages and load first page
+      this.blogService.getTotalPages(this.itemsPerPage).subscribe(totalPages => {
+        this.totalPages = totalPages;
+        this.loadPage(1);
+      });
       
       // Initialize animations
       setTimeout(() => {
@@ -118,77 +53,44 @@ export class BlogComponent implements OnInit {
     // Update current page
     this.currentPage = pageNumber;
     
-    // Calculate start and end indices
-    const startIndex = (pageNumber - 1) * this.itemsPerPage;
-    const endIndex = Math.min(startIndex + this.itemsPerPage, this.allBlogPosts.length);
-    
-    // Get posts for current page
-    this.blogPosts = this.allBlogPosts.slice(startIndex, endIndex);
-    
-    // Scroll to top when changing pages
-    if (isPlatformBrowser(this.platformId)) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Get posts for current page from service
+    this.blogService.getPostsForPage(pageNumber, this.itemsPerPage).subscribe(posts => {
+      this.blogPosts = posts;
+      
+      // Scroll to top when changing pages
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
   }
   
-  nextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.loadPage(this.currentPage + 1);
-    }
-  }
-  
-  prevPage(): void {
-    if (this.currentPage > 1) {
-      this.loadPage(this.currentPage - 1);
-    }
-  }
-  
-  // Generate an array of page numbers for pagination
+  // Helper function to generate an array for pagination
   getPageNumbers(): number[] {
-    const pageNumbers: number[] = [];
-    const maxButtonsToShow = 5; // Show at most 5 page buttons
-    
-    if (this.totalPages <= maxButtonsToShow) {
-      // If total pages is small, show all page numbers
-      for (let i = 1; i <= this.totalPages; i++) {
-        pageNumbers.push(i);
-      }
+    // Create an array of page numbers to display
+    // If there are more than 5 pages, we'll use ellipsis
+    if (this.totalPages <= 5) {
+      // If 5 or fewer pages, show all numbers
+      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
     } else {
-      // Always include first page
-      pageNumbers.push(1);
+      // If more than 5 pages, handle the display with ellipsis
+      const pages: number[] = [];
       
-      // Include current page and neighbors
-      let startPage = Math.max(2, this.currentPage - 1);
-      let endPage = Math.min(this.totalPages - 1, this.currentPage + 1);
+      // Always show first page
+      pages.push(1);
       
-      // Adjust if at the beginning or end
-      if (this.currentPage <= 2) {
-        endPage = 3;
-      } else if (this.currentPage >= this.totalPages - 1) {
-        startPage = this.totalPages - 2;
+      // Determine range around current page
+      if (this.currentPage <= 3) {
+        // First few pages: show 1, 2, 3, ..., last
+        pages.push(2, 3, -1, this.totalPages);
+      } else if (this.currentPage >= this.totalPages - 2) {
+        // Last few pages: show 1, ..., last-2, last-1, last
+        pages.push(-1, this.totalPages - 2, this.totalPages - 1, this.totalPages);
+      } else {
+        // Middle pages: show 1, ..., current-1, current, current+1, ..., last
+        pages.push(-1, this.currentPage - 1, this.currentPage, this.currentPage + 1, -1, this.totalPages);
       }
       
-      // Add ellipsis if needed
-      if (startPage > 2) {
-        pageNumbers.push(-1); // -1 represents ellipsis
-      }
-      
-      // Add middle pages
-      for (let i = startPage; i <= endPage; i++) {
-        pageNumbers.push(i);
-      }
-      
-      // Add ellipsis if needed
-      if (endPage < this.totalPages - 1) {
-        pageNumbers.push(-1); // -1 represents ellipsis
-      }
-      
-      // Always include last page
-      if (this.totalPages > 1) {
-        pageNumbers.push(this.totalPages);
-      }
+      return pages;
     }
-    
-    return pageNumbers;
   }
 } 
