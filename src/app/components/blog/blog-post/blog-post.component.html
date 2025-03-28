@@ -28,8 +28,16 @@
       
       <div class="blog-post-content animate-item" [innerHTML]="post.content"></div>
       
+      <!-- Share result notification -->
+      <div *ngIf="shareResult" 
+          class="share-notification animate-item"
+          [ngClass]="{'success': shareResult.success, 'error': !shareResult.success}">
+        <i class="fas" [ngClass]="{'fa-check-circle': shareResult.success, 'fa-exclamation-circle': !shareResult.success}"></i>
+        {{ shareResult.message }}
+      </div>
+      
       <div class="blog-post-footer animate-item">
-        <button class="btn share-btn">
+        <button class="btn share-btn" (click)="sharePost()">
           <i class="fas fa-share-alt"></i> Podijeli članak
         </button>
         <button class="back-button" (click)="goBack()">

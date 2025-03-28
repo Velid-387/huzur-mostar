@@ -194,6 +194,69 @@
   margin-right: 0.5rem;
 }
 
+/* Share notification styles */
+.share-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: fadeInUp 0.3s forwards, fadeOut 0.3s forwards 2.7s;
+}
+
+.share-notification.success {
+  background-color: #e6f7e9;
+  color: #28a745;
+  border-left: 4px solid #28a745;
+}
+
+.share-notification.error {
+  background-color: #fff2f0;
+  color: #dc3545;
+  border-left: 4px solid #dc3545;
+}
+
+.share-notification i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Dark mode styles for share notification */
+:host-context(body.dark-mode) .share-notification.success {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: #5bcc76;
+}
+
+:host-context(body.dark-mode) .share-notification.error {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: #f27583;
+}
+
 /* Dark mode styles */
 :host-context(body.dark-mode) .loading-state p,
 :host-context(body.dark-mode) .error-state p {
