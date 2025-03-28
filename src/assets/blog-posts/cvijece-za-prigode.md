@@ -2,8 +2,6 @@
 
 Odabir pravog cvijeća za posebnu prigodu može biti jednako važan kao i sam poklon. Različite vrste cvijeća nose različite poruke i simboliku, a poznavanje značenja može vam pomoći da izrazite točno one osjećaje koje želite prenijeti dragoj osobi.
 
-![Cvijeće za posebne prigode](https://images.unsplash.com/photo-1496861083958-175bb1bd5702?q=80&w=1200&auto=format&fit=crop)
-
 ## Cvijeće za rođendane
 
 Rođendanski buket trebao bi odražavati osobnost slavljenika i slaviti njihovu jedinstvenost.
