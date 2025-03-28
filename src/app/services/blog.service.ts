@@ -29,7 +29,7 @@ export class BlogService {
       title: 'Kako pravilno njegovati suho cvijeće',
       excerpt: 'Otkrijte kako da vaši aranžmani od suhog cvijeća traju duže i zadrže svoj lijep izgled.',
       date: '25.03.2024',
-      image: 'https://images.unsplash.com/photo-1602928883548-1a283157a2fd?q=80&w=1200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1531058240690-006c446962d8?q=80&w=3540&auto=format&fit=crop',
       slug: 'kako-pravilno-njegovati-suho-cvijece',
       fileName: 'suho-cvijece.md'
     },
@@ -47,7 +47,7 @@ export class BlogService {
       title: 'Značenja različitog cvijeća',
       excerpt: 'Saznajte što različite vrste cvijeća simboliziraju kada ih poklanjate nekome.',
       date: '15.03.2024',
-      image: 'https://images.unsplash.com/photo-1494336934272-f0efcedfc8d7?q=80&w=1200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1561334251-b306baba437a?q=80&w=3474&auto=format&fit=crop',
       slug: 'znacenja-razlicitog-cvijeca',
       fileName: 'simbolika-cvijeca.md'
     },
@@ -56,7 +56,7 @@ export class BlogService {
       title: 'Kreativni načini uređenja doma cvijećem',
       excerpt: 'Inspirirajte se kreativnim idejama kako unijeti prirodnu ljepotu u vaš dom pomoću cvjetnih aranžmana.',
       date: '10.03.2024',
-      image: 'https://images.unsplash.com/photo-1484900536541-c5dca93c3533?q=80&w=1200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1491295005076-7840bcf778ec?w=900&auto=format&fit=crop',
       slug: 'kreativni-nacini-uredjenja-doma-cvijecem',
       fileName: 'uredjenje-doma-cvijecem.md'
     },
@@ -65,7 +65,7 @@ export class BlogService {
       title: 'Kako napraviti vlastiti terrarij',
       excerpt: 'Naučite kako stvoriti prekrasan minijaturni vrt u staklenoj posudi za jedinstvenu kućnu dekoraciju.',
       date: '05.03.2024',
-      image: 'https://images.unsplash.com/photo-1508988545998-68303d3fdb85?q=80&w=1200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1483137646075-6f011a268012?q=80&w=3685&auto=format&fit=crop',
       slug: 'kako-napraviti-vlastiti-terrarij',
       fileName: 'terrarij.md'
     },
@@ -74,7 +74,7 @@ export class BlogService {
       title: 'Najbolje cvijeće za posebne prigode',
       excerpt: 'Koji cvijet odabrati za rođendan, godišnjicu, vjenčanje ili neku drugu važnu priliku?',
       date: '28.02.2024',
-      image: 'https://images.unsplash.com/photo-1496861083958-175bb1bd5702?q=80&w=1200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1549229226-18bc891dea25?q=80&w=3540&auto=format&fit=crop',
       slug: 'najbolje-cvijece-za-posebne-prigode',
       fileName: 'cvijece-za-prigode.md'
     },
