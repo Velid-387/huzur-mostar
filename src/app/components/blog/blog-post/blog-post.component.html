@@ -17,16 +17,13 @@
     
     <!-- Blog post content -->
     <ng-container *ngIf="post && !loading && !error">
-      <div class="blog-post-header animate-item">
-        <button class="back-button" (click)="goBack()">
-          <i class="fas fa-arrow-left"></i> Nazad na blog
-        </button>
-        <span class="blog-post-date">{{ post.date }}</span>
-        <h1 class="blog-post-title">{{ post.title }}</h1>
-      </div>
       
       <div class="blog-post-featured-image animate-item">
         <img [src]="post.image" [alt]="post.title">
+      </div>
+
+      <div class="blog-post-header animate-item">
+        <span class="blog-post-date">{{ post.date }}</span>
       </div>
       
       <div class="blog-post-content animate-item" [innerHTML]="post.content"></div>
