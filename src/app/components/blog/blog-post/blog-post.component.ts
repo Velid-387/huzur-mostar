@@ -25,8 +25,15 @@ export class BlogPostComponent implements OnInit {
   // Store the referrer page information
   private referrerPage: string | null = null;
   
+  // To track if sharing is supported and show result messages
+  shareSupported: boolean = false;
+  shareResult: { success: boolean; message: string } | null = null;
+  
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      // Check if Web Share API is supported
+      this.shareSupported = !!navigator.share;
+      
       // Store the referrer page information if available
       this.storeReferrerPage();
       
@@ -93,6 +100,63 @@ export class BlogPostComponent implements OnInit {
     if (!this.referrerPage && sessionStorage.getItem('blogCurrentPage')) {
       this.referrerPage = sessionStorage.getItem('blogCurrentPage');
     }
+  }
+  
+  /**
+   * Share the current article using Web Share API if available,
+   * with fallback to copying the URL to clipboard
+   */
+  sharePost(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.post) {
+      return;
+    }
+    
+    // Get the current URL
+    const url = window.location.href;
+    
+    // If Web Share API is available, use it
+    if (navigator.share) {
+      navigator.share({
+        title: this.post.title,
+        text: this.post.excerpt || 'Provjerite ovaj članak na Huzur Mostar blogu!',
+        url: url
+      })
+      .then(() => {
+        this.showShareResult(true, 'Članak uspješno podijeljen!');
+      })
+      .catch((error) => {
+        // Don't show error if user just canceled
+        if (error.name !== 'AbortError') {
+          this.showShareResult(false, 'Došlo je do greške prilikom dijeljenja.');
+        }
+      });
+    } 
+    // Fallback to clipboard
+    else if (navigator.clipboard) {
+      navigator.clipboard.writeText(url)
+        .then(() => {
+          this.showShareResult(true, 'Link kopiran u međuspremnik!');
+        })
+        .catch(() => {
+          this.showShareResult(false, 'Nije moguće kopirati link.');
+        });
+    }
+    // Show message if neither is available
+    else {
+      this.showShareResult(false, 'Dijeljenje nije podržano na ovom uređaju.');
+    }
+  }
+  
+  /**
+   * Display share result message and hide it after timeout
+   */
+  private showShareResult(success: boolean, message: string): void {
+    this.shareResult = { success, message };
+    
+    // Hide the message after 3 seconds
+    setTimeout(() => {
+      this.shareResult = null;
+    }, 3000);
   }
   
   /**
