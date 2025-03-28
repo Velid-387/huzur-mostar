@@ -7,7 +7,7 @@ import { OnSameUrlNavigation } from '@angular/router';
 
 // Define router options
 const routerOptions = {
-  scrollPositionRestoration: 'enabled',
+  scrollPositionRestoration: 'top',
   anchorScrolling: 'enabled',
   scrollOffset: [0, 64], // Adjust based on your header height
   onSameUrlNavigation: 'reload' as OnSameUrlNavigation

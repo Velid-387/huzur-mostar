@@ -44,6 +44,9 @@ export class BlogComponent implements OnInit {
       // Any browser-specific initialization
       document.title = 'Blog - Huzur Mostar';
       
+      // Scroll to top when blog page loads
+      window.scrollTo(0, 0);
+      
       // Initialize animations
       setTimeout(() => {
         this.animationService.initAnimations();

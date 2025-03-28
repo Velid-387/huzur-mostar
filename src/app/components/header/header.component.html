@@ -25,7 +25,7 @@
                 <li><a (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a></li>
                 <li><a (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a></li>
                 <li><a (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a></li>
-                <li><a routerLink="/blog">Blog</a></li>
+                <li><a routerLink="/blog" [class.active]="isOnBlogPage()" (click)="toggleMobileMenu()">Blog</a></li>
             </ul>
         </div>
         <div class="logo">
@@ -53,7 +53,7 @@
             <a (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a>
             <a (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a>
             <a (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a>
-            <a routerLink="/blog">Blog</a>
+            <a routerLink="/blog" [class.active]="isOnBlogPage()">Blog</a>
         </div>
         <div class="theme-switch-wrapper">
             <label class="theme-switch" for="checkbox">
