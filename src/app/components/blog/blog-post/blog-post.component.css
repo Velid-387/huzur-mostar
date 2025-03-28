@@ -177,8 +177,8 @@
 }
 
 .back-button:hover {
-  background-color: var(--primary-color);
-  color: white;
+  border-color: var(--primary-color-light, #ff6b98);
+  color: var(--primary-color-light, #ff6b98);
 }
 
 .back-button i {
@@ -224,6 +224,17 @@
 :host-context(body.dark-mode) .blog-post-content hr,
 :host-context(body.dark-mode) .blog-post-footer {
   border-top-color: #444;
+}
+
+/* For dark theme, use pink background on hover */
+:host-context(body.dark-mode) .back-button {
+  border-color: var(--primary-color-light, #ff6b98);
+  color: var(--primary-color-light, #ff6b98);
+}
+
+:host-context(body.dark-mode) .back-button:hover {
+  background-color: var(--primary-color-light, #ff6b98);
+  color: #222;
 }
 
 /* Responsive styles */

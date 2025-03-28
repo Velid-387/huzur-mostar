@@ -29,7 +29,7 @@ export class BlogService {
       title: 'Kako pravilno njegovati suho cvijeće',
       excerpt: 'Otkrijte kako da vaši aranžmani od suhog cvijeća traju duže i zadrže svoj lijep izgled.',
       date: '25.03.2024',
-      image: 'https://unsplash.com/photos/a-person-holding-a-bouquet-of-flowers-on-top-of-a-wooden-table-IrPRpV3x9wU',
+      image: 'https://images.unsplash.com/photo-1602928883548-1a283157a2fd?q=80&w=1200&auto=format&fit=crop',
       slug: 'kako-pravilno-njegovati-suho-cvijece',
       fileName: 'suho-cvijece.md'
     },
@@ -38,7 +38,7 @@ export class BlogService {
       title: 'Najbolje biljke za vaš dom',
       excerpt: 'Vodič za izbor idealnih sobnih biljaka prema prostoru i uvjetima u vašem domu.',
       date: '20.03.2024',
-      image: 'assets/img/blog/blog-post-2.jpg',
+      image: 'https://images.unsplash.com/photo-1463320898484-cdee8141c787?q=80&w=1200&auto=format&fit=crop',
       slug: 'najbolje-biljke-za-vas-dom',
       fileName: 'sobne-biljke.md'
     },
@@ -47,7 +47,7 @@ export class BlogService {
       title: 'Značenja različitog cvijeća',
       excerpt: 'Saznajte što različite vrste cvijeća simboliziraju kada ih poklanjate nekome.',
       date: '15.03.2024',
-      image: 'assets/img/blog/blog-post-3.jpg',
+      image: 'https://images.unsplash.com/photo-1494336934272-f0efcedfc8d7?q=80&w=1200&auto=format&fit=crop',
       slug: 'znacenja-razlicitog-cvijeca',
       fileName: 'simbolika-cvijeca.md'
     },
@@ -56,7 +56,7 @@ export class BlogService {
       title: 'Kreativni načini uređenja doma cvijećem',
       excerpt: 'Inspirirajte se kreativnim idejama kako unijeti prirodnu ljepotu u vaš dom pomoću cvjetnih aranžmana.',
       date: '10.03.2024',
-      image: 'assets/img/blog/blog-post-4.jpg',
+      image: 'https://images.unsplash.com/photo-1484900536541-c5dca93c3533?q=80&w=1200&auto=format&fit=crop',
       slug: 'kreativni-nacini-uredjenja-doma-cvijecem',
       fileName: 'uredjenje-doma-cvijecem.md'
     },
@@ -65,7 +65,7 @@ export class BlogService {
       title: 'Kako napraviti vlastiti terrarij',
       excerpt: 'Naučite kako stvoriti prekrasan minijaturni vrt u staklenoj posudi za jedinstvenu kućnu dekoraciju.',
       date: '05.03.2024',
-      image: 'assets/img/blog/blog-post-5.jpg',
+      image: 'https://images.unsplash.com/photo-1508988545998-68303d3fdb85?q=80&w=1200&auto=format&fit=crop',
       slug: 'kako-napraviti-vlastiti-terrarij',
       fileName: 'terrarij.md'
     },
@@ -74,7 +74,7 @@ export class BlogService {
       title: 'Najbolje cvijeće za posebne prigode',
       excerpt: 'Koji cvijet odabrati za rođendan, godišnjicu, vjenčanje ili neku drugu važnu priliku?',
       date: '28.02.2024',
-      image: 'assets/img/blog/blog-post-6.jpg',
+      image: 'https://images.unsplash.com/photo-1496861083958-175bb1bd5702?q=80&w=1200&auto=format&fit=crop',
       slug: 'najbolje-cvijece-za-posebne-prigode',
       fileName: 'cvijece-za-prigode.md'
     },
@@ -83,7 +83,7 @@ export class BlogService {
       title: 'Cvijeće koje cvjeta zimi',
       excerpt: 'Upoznajte biljke koje donose boju i život u vaš dom i tijekom najhladnijih mjeseci.',
       date: '22.02.2024',
-      image: 'assets/img/blog/blog-post-7.jpg',
+      image: 'https://images.unsplash.com/photo-1610397648930-477b8c7f0943?q=80&w=1200&auto=format&fit=crop',
       slug: 'cvijece-koje-cvjeta-zimi',
       fileName: 'zimsko-cvijece.md'
     },
@@ -92,7 +92,7 @@ export class BlogService {
       title: 'Kako uzgojiti lavandu u svom vrtu',
       excerpt: 'Savjeti za uzgoj mirisne i lijepog lavande koja će privući pčele i druge korisne insekte.',
       date: '15.02.2024',
-      image: 'assets/img/blog/blog-post-8.jpg',
+      image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop',
       slug: 'kako-uzgojiti-lavandu-u-svom-vrtu',
       fileName: 'uzgoj-lavande.md'
     },
@@ -101,7 +101,7 @@ export class BlogService {
       title: 'Upoznajte egzotično cvijeće',
       excerpt: 'Zavirite u svijet neobičnih i rijetkih cvjetnih vrsta koje dolaze iz svih krajeva svijeta.',
       date: '10.02.2024',
-      image: 'assets/img/blog/blog-post-9.jpg',
+      image: 'https://images.unsplash.com/photo-1561848055-8dfe6e241082?q=80&w=1200&auto=format&fit=crop',
       slug: 'upoznajte-egzoticno-cvijece',
       fileName: 'egzoticno-cvijece.md'
     }
