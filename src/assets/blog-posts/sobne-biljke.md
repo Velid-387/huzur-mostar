@@ -12,8 +12,6 @@ Pri odabiru sobnih biljaka, važno je uzeti u obzir nekoliko faktora:
 - **Koliko vremena** možete posvetiti održavanju biljke
 - **Imate li kućne ljubimce** (neke biljke mogu biti toksične za životinje)
 
-![Sobne biljke](assets/img/blog/blog-post-2.jpg)
-
 ## Najbolje biljke za prostorije s malo svjetla
 
 Ne dobivaju sve prostorije jednaku količinu prirodnog svjetla. Ako imate prostoriju koja ne prima puno sunca, ove biljke su idealan izbor:

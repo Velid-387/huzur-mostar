@@ -9,6 +9,7 @@ import { TestimonialsComponent } from '../testimonials/testimonials.component';
 import { ContactComponent } from '../contact/contact.component';
 
 import { AnimationService } from '../../services/animation.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-landing',
@@ -27,9 +28,13 @@ import { AnimationService } from '../../services/animation.service';
 })
 export class LandingComponent implements OnInit {
   private animationService = inject(AnimationService);
+  private titleService = inject(TitleService);
   private platformId = inject(PLATFORM_ID);
   
   ngOnInit(): void {
+    // Set the default title
+    this.titleService.setTitle();
+    
     // Initialize animations after view is loaded, but only in browser
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {

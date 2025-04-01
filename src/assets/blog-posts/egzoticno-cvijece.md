@@ -2,8 +2,6 @@
 
 Egzotično cvijeće donosi u naše domove djelić daleke prirode, izvanredne boje, neobične oblike i često fascinantne priče. Ove biljke, koje dolaze iz tropskih i suptropskih područja širom svijeta, mogu transformirati vaš dom ili vrt u raskošnu oazu.
 
-![Egzotično cvijeće](https://images.unsplash.com/photo-1561848055-8dfe6e241082?q=80&w=1200&auto=format&fit=crop)
-
 ## Fascinantne vrste egzotičnog cvijeća
 
 ### 1. Rajska ptica (Strelitzia reginae)

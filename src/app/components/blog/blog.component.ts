@@ -1,8 +1,10 @@
-import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
+import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AnimationService } from '../../services/animation.service';
 import { BlogService, BlogPostMetadata } from '../../services/blog.service';
+import { TitleService } from '../../services/title.service';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-blog',
@@ -11,12 +13,18 @@ import { BlogService, BlogPostMetadata } from '../../services/blog.service';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private animationService = inject(AnimationService);
   private blogService = inject(BlogService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private titleService = inject(TitleService);
+  private location = inject(Location);
+  
+  // Subscriptions
+  private routerSubscription?: Subscription;
+  private locationSubscription = new Subscription();
   
   // Pagination variables
   currentPage: number = 1;
@@ -32,12 +40,24 @@ export class BlogComponent implements OnInit {
       window.scrollTo(0, 0);
       
       // Set page title
-      document.title = 'Blog - Huzur Mostar';
+      this.titleService.setTitle('Blog');
       
       // Get the page from query parameters
       this.route.queryParams.subscribe(params => {
         const pageParam = params['page'];
-        let requestedPage = pageParam ? parseInt(pageParam, 10) : 1;
+        let requestedPage: number;
+        
+        if (pageParam) {
+          // If there's a page parameter in the URL, use that
+          requestedPage = parseInt(pageParam, 10);
+        } else {
+          // If no page parameter, check session storage
+          const storedPage = sessionStorage.getItem('blogCurrentPage');
+          requestedPage = storedPage ? parseInt(storedPage, 10) : 1;
+          
+          // Clear the stored page after using it
+          sessionStorage.removeItem('blogCurrentPage');
+        }
         
         // Ensure the page number is valid
         if (isNaN(requestedPage) || requestedPage < 1) {
@@ -51,10 +71,10 @@ export class BlogComponent implements OnInit {
           // Make sure we don't try to access a page beyond what's available
           if (requestedPage > totalPages) {
             requestedPage = totalPages;
-            // Update URL to reflect the corrected page
-            this.updateUrlWithPage(requestedPage);
           }
           
+          // Update URL and load content
+          this.updateUrlWithPage(requestedPage);
           this.loadPageContent(requestedPage);
         });
       });
@@ -64,6 +84,14 @@ export class BlogComponent implements OnInit {
         this.animationService.initAnimations();
       }, 100);
     }
+  }
+  
+  ngOnDestroy(): void {
+    // Clean up subscriptions
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+    this.locationSubscription.unsubscribe();
   }
   
   /**
@@ -87,15 +115,17 @@ export class BlogComponent implements OnInit {
   private updateUrlWithPage(pageNumber: number): void {
     // Only update URL if we're in a browser
     if (isPlatformBrowser(this.platformId)) {
-      // Don't add page parameter if it's page 1
-      const queryParams = pageNumber > 1 ? { page: pageNumber.toString() } : {};
-      
       // Update the URL without reloading the component
       this.router.navigate([], {
         relativeTo: this.route,
-        queryParams: queryParams,
+        queryParams: pageNumber > 1 ? { page: pageNumber.toString() } : {},
         queryParamsHandling: 'merge', // Keep other query params if there are any
-        replaceUrl: pageNumber === 1 // Replace URL for page 1 to keep clean URLs
+        replaceUrl: false // Don't replace URL to maintain history
+      }).then(() => {
+        // If we're on page 1, ensure the URL is clean by removing the page parameter
+        if (pageNumber === 1) {
+          this.location.replaceState('/blog');
+        }
       });
     }
   }
@@ -106,11 +136,6 @@ export class BlogComponent implements OnInit {
   private loadPageContent(pageNumber: number): void {
     // Update current page
     this.currentPage = pageNumber;
-    
-    // Store current page in session storage for navigation back from blog posts
-    if (isPlatformBrowser(this.platformId)) {
-      sessionStorage.setItem('blogCurrentPage', pageNumber.toString());
-    }
     
     // Get posts for current page from service
     this.blogService.getPostsForPage(pageNumber, this.itemsPerPage).subscribe(posts => {

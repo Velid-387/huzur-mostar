@@ -29,8 +29,6 @@ Svako rukovanje može dovesti do lomljenja osjetljivih dijelova. Kada čistite p
 
 Jak propuh može oštetiti osjetljive dijelove suhog cvijeća. Izbjegavajte postavljanje aranžmana blizu ventilatora, klima uređaja ili često otvaranih vrata.
 
-![Suho cvijeće](https://unsplash.com/photos/a-person-holding-a-bouquet-of-flowers-on-top-of-a-wooden-table-IrPRpV3x9wU)
-
 ## Najbolje vrste cvijeća za sušenje
 
 Nisu sve vrste cvijeća jednako pogodne za sušenje. Evo nekoliko vrsta koje daju izvanredne rezultate:

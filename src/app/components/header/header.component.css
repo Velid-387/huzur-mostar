@@ -208,6 +208,10 @@
     color: var(--primary-color-light, #ff6b98);
 }
 
+:host-context(body.dark-mode) .logo a {
+  color: var(--pastel-green, #c8e4b2);
+}
+
 /* CSS Variables */
 :root {
     --hover-color: rgba(0, 0, 0, 0.05);

@@ -12,7 +12,7 @@
           <img [src]="post.image" [alt]="post.title">
         </div>
         <div class="blog-post-content">
-          <span class="blog-post-date">{{ post.date }}</span>
+          <span class="blog-post-date">{{ post.date }} • {{ post.readingTime }}</span>
           <h2>{{ post.title }}</h2>
           <p>{{ post.excerpt }}</p>
           <a [routerLink]="['/blog', post.slug]" class="btn blog-btn">Pročitaj više</a>
