@@ -33,7 +33,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1531058240690-006c446962d8?q=80&w=3540&auto=format&fit=crop',
       slug: 'kako-pravilno-njegovati-suho-cvijece',
       fileName: 'suho-cvijece.md',
-      readingTime: '5 min'
+      readingTime: ''
     },
     {
       id: 2,
@@ -43,7 +43,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1463320898484-cdee8141c787?q=80&w=1200&auto=format&fit=crop',
       slug: 'najbolje-biljke-za-vas-dom',
       fileName: 'sobne-biljke.md',
-      readingTime: '7 min'
+      readingTime: ''
     },
     {
       id: 3,
@@ -53,7 +53,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1561334251-b306baba437a?q=80&w=3474&auto=format&fit=crop',
       slug: 'znacenja-razlicitog-cvijeca',
       fileName: 'simbolika-cvijeca.md',
-      readingTime: '3 min'
+      readingTime: ''
     },
     {
       id: 4,
@@ -63,7 +63,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1491295005076-7840bcf778ec?w=900&auto=format&fit=crop',
       slug: 'kreativni-nacini-uredjenja-doma-cvijecem',
       fileName: 'uredjenje-doma-cvijecem.md',
-      readingTime: '6 min'
+      readingTime: ''
     },
     {
       id: 5,
@@ -73,7 +73,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1483137646075-6f011a268012?q=80&w=3685&auto=format&fit=crop',
       slug: 'kako-napraviti-vlastiti-terrarij',
       fileName: 'terrarij.md',
-      readingTime: '4 min'
+      readingTime: ''
     },
     {
       id: 6,
@@ -83,7 +83,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1549229226-18bc891dea25?q=80&w=3540&auto=format&fit=crop',
       slug: 'najbolje-cvijece-za-posebne-prigode',
       fileName: 'cvijece-za-prigode.md',
-      readingTime: '3 min'
+      readingTime: ''
     },
     {
       id: 7,
@@ -93,7 +93,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1610397648930-477b8c7f0943?q=80&w=1200&auto=format&fit=crop',
       slug: 'cvijece-koje-cvjeta-zimi',
       fileName: 'zimsko-cvijece.md',
-      readingTime: '5 min'
+      readingTime: ''
     },
     {
       id: 8,
@@ -103,7 +103,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1626120101334-bae20ef1e78d?q=80&w=3024&auto=format&fit=crop',
       slug: 'kako-uzgojiti-lavandu-u-svom-vrtu',
       fileName: 'uzgoj-lavande.md',
-      readingTime: '4 min'
+      readingTime: ''
     },
     {
       id: 9,
@@ -113,7 +113,7 @@ export class BlogService {
       image: 'https://images.unsplash.com/photo-1488928741225-2aaf732c96cc?q=80&w=3540&auto=format&fit=crop',
       slug: 'upoznajte-egzoticno-cvijece',
       fileName: 'egzoticno-cvijece.md',
-      readingTime: '3 min'
+      readingTime: ''
     }
   ];
 
@@ -129,10 +129,26 @@ export class BlogService {
    * Get all blog post metadata (without content)
    */
   getAllPostsMetadata(): Observable<BlogPostMetadata[]> {
-    // Return the metadata array sorted by date (newest first)
-    return of([...this.blogPostsMetadata].sort((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    }));
+    // Create an array of observables for loading each post's content
+    const postObservables = this.blogPostsMetadata.map(metadata =>
+      this.loadMarkdownContent(metadata.fileName).pipe(
+        map(content => ({
+          ...metadata,
+          readingTime: this.calculateReadingTime(content)
+        })),
+        catchError(error => {
+          console.error(`Error loading blog post ${metadata.id}:`, error);
+          return of(metadata); // Return original metadata if loading fails
+        })
+      )
+    );
+
+    // Combine all observables and sort by date
+    return forkJoin(postObservables).pipe(
+      map(posts => posts.sort((a, b) => 
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+      ))
+    );
   }
 
   /**
