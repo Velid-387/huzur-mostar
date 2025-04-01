@@ -2,8 +2,6 @@
 
 Kućne biljke unose život, boju i svježinu u svaki prostor. Osim što su estetski ugodne, mnoge kućne biljke pročišćavaju zrak, smanjuju stres i stvaraju ugodniju atmosferu. Bez obzira jeste li iskusni botaničar ili tek počinjete svoju zelenu avanturu, postoji savršena biljka za vaš dom.
 
-![Kućne biljke](https://images.unsplash.com/photo-1509423350716-97f9360b4e09?q=80&w=1200&auto=format&fit=crop)
-
 ## Za početnike: Izdržljive biljke koje je teško ubiti
 
 Ako ste novi u svijetu kućnih biljaka ili nemate "zeleni palac", ove biljke će vam pružiti zadovoljstvo uzgoja bez previše stresa.

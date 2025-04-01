@@ -2,8 +2,6 @@
 
 Terrariyi su predivni minijaturni ekosistemi zatvoreni u staklenoj posudi, koji stvaraju fascinantni mikrokozmos biljnog svijeta u vašem domu. Osim što su vizualno atraktivni, oni zahtijevaju minimalno održavanje, što ih čini savršenim za zaposlene ljubitelje biljaka ili one koji tek počinju svoju zelenu avanturu.
 
-![Terrarij](https://images.unsplash.com/photo-1508988545998-68303d3fdb85?q=80&w=1200&auto=format&fit=crop)
-
 ## Što je terrarij?
 
 Terrarij je minijaturni vrt u staklenoj posudi, koji oponaša prirodni ekosistem. Staklo omogućava svjetlosti da prodre do biljaka, ali istovremeno zadržava vlagu, stvarajući mali ciklus vode unutar posude. Voda isparava iz tla, kondenzira se na stijenkama stakla i ponovno pada na biljke, stvarajući samoodrživi sustav koji zahtijeva minimalno održavanje.

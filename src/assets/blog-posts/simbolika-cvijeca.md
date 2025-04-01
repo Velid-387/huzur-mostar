@@ -2,8 +2,6 @@
 
 Cvijeće nije samo lijepo za gledanje – svaka vrsta nosi svoje simbolično značenje. Kada poklanjate cvijeće, vi zapravo šaljete poruku, pa je korisno znati što različite vrste simboliziraju.
 
-![Značenje cvijeća](assets/img/blog/blog-post-3.jpg)
-
 ## Ruže: Kraljice cvijeća
 
 Najpoznatije cvijeće kada je riječ o simbolici, ruže imaju različita značenja ovisno o boji:

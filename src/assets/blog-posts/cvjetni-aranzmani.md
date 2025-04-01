@@ -2,8 +2,6 @@
 
 Cvjetni aranžmani su više od običnog buketa cvijeća - oni su umjetnička djela koja kombiniraju boje, teksture, oblike i prostorne odnose. Savladavanje vještine izrade cvjetnih aranžmana može transformirati obične cvjetove u fascinantne kompozicije koje oduševljavaju osjetila i prenose emocije.
 
-![Cvjetni aranžman](https://images.unsplash.com/photo-1558697697-b13a5eb7f761?q=80&w=1200&auto=format&fit=crop)
-
 ## Osnovni stilovi cvjetnih aranžmana
 
 ### 1. Ikebana

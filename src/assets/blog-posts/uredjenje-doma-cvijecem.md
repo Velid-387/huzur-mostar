@@ -2,8 +2,6 @@
 
 Cvijeće ne mora biti rezervirano samo za posebne prilike. Uključivanje cvjetnih aranžmana u vaš svakodnevni životni prostor može transformirati atmosferu vašeg doma i pozitivno utjecati na vaše raspoloženje.
 
-![Uređenje doma cvijećem](https://images.unsplash.com/photo-1484900536541-c5dca93c3533?q=80&w=1200&auto=format&fit=crop)
-
 ## Zašto cvjetni aranžmani poboljšavaju dom?
 
 Prije nego što zaronimo u kreativne ideje, razmislimo zašto su cvjetni aranžmani tako važan element uređenja interijera:
