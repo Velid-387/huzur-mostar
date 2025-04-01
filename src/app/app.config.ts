@@ -4,6 +4,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import { OnSameUrlNavigation } from '@angular/router';
+import { provideClientHydration } from '@angular/platform-browser';
 
 // Define router options
 const routerOptions = {
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
       withRouterConfig(routerOptions)
     ),
     provideHttpClient(),
-    provideAnimations()
+    provideAnimations(),
+    provideClientHydration()
   ]
 };

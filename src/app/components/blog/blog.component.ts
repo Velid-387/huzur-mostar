@@ -3,6 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { AnimationService } from '../../services/animation.service';
 import { BlogService, BlogPostMetadata } from '../../services/blog.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-blog',
@@ -17,6 +18,7 @@ export class BlogComponent implements OnInit {
   private blogService = inject(BlogService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private titleService = inject(TitleService);
   
   // Pagination variables
   currentPage: number = 1;
@@ -32,7 +34,7 @@ export class BlogComponent implements OnInit {
       window.scrollTo(0, 0);
       
       // Set page title
-      document.title = 'Blog - Huzur Mostar';
+      this.titleService.setTitle('Blog');
       
       // Get the page from query parameters
       this.route.queryParams.subscribe(params => {

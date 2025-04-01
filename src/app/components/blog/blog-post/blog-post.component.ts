@@ -3,6 +3,7 @@ import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { AnimationService } from '../../../services/animation.service';
 import { BlogService, BlogPost } from '../../../services/blog.service';
+import { TitleService } from '../../../services/title.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -18,6 +19,7 @@ export class BlogPostComponent implements OnInit {
   private animationService = inject(AnimationService);
   private blogService = inject(BlogService);
   private location = inject(Location);
+  private titleService = inject(TitleService);
   
   post: BlogPost | null = null;
   loading: boolean = true;
@@ -54,7 +56,7 @@ export class BlogPostComponent implements OnInit {
               
               if (post) {
                 // Set page title
-                document.title = `${post.title} - Huzur Mostar`;
+                this.titleService.setTitle(post.title);
                 
                 // Initialize animations
                 setTimeout(() => {
@@ -62,13 +64,13 @@ export class BlogPostComponent implements OnInit {
                 }, 100);
               } else {
                 this.error = true;
-                document.title = 'Post Not Found - Huzur Mostar';
+                this.titleService.setTitle('Post Not Found');
               }
             },
             error: () => {
               this.loading = false;
               this.error = true;
-              document.title = 'Error - Huzur Mostar';
+              this.titleService.setTitle('Error');
             }
           });
         } else {
