@@ -42,14 +42,22 @@ export class BlogComponent implements OnInit, OnDestroy {
       // Set page title
       this.titleService.setTitle('Blog');
       
-      // Get the stored page from session storage if available
-      const storedPage = sessionStorage.getItem('blogCurrentPage');
-      let initialPage = storedPage ? parseInt(storedPage, 10) : 1;
-      
       // Get the page from query parameters
       this.route.queryParams.subscribe(params => {
         const pageParam = params['page'];
-        let requestedPage = pageParam ? parseInt(pageParam, 10) : initialPage;
+        let requestedPage: number;
+        
+        if (pageParam) {
+          // If there's a page parameter in the URL, use that
+          requestedPage = parseInt(pageParam, 10);
+        } else {
+          // If no page parameter, check session storage
+          const storedPage = sessionStorage.getItem('blogCurrentPage');
+          requestedPage = storedPage ? parseInt(storedPage, 10) : 1;
+          
+          // Clear the stored page after using it
+          sessionStorage.removeItem('blogCurrentPage');
+        }
         
         // Ensure the page number is valid
         if (isNaN(requestedPage) || requestedPage < 1) {
@@ -128,11 +136,6 @@ export class BlogComponent implements OnInit, OnDestroy {
   private loadPageContent(pageNumber: number): void {
     // Update current page
     this.currentPage = pageNumber;
-    
-    // Store current page in session storage for navigation back from blog posts
-    if (isPlatformBrowser(this.platformId)) {
-      sessionStorage.setItem('blogCurrentPage', pageNumber.toString());
-    }
     
     // Get posts for current page from service
     this.blogService.getPostsForPage(pageNumber, this.itemsPerPage).subscribe(posts => {

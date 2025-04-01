@@ -36,8 +36,10 @@ export class BlogPostComponent implements OnInit {
       // Check if Web Share API is supported
       this.shareSupported = !!navigator.share;
       
-      // Store the referrer page information if available
-      this.storeReferrerPage();
+      // Store the current page number from URL or default to 1
+      const urlParams = new URLSearchParams(window.location.search);
+      const currentPage = urlParams.get('page') || '1';
+      sessionStorage.setItem('blogCurrentPage', currentPage);
       
       // Scroll to top when component loads
       window.scrollTo(0, 0);
