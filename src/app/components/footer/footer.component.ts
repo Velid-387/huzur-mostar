@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { ScrollService } from '../../services/scroll.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class FooterComponent implements OnInit {
   isScrollButtonVisible = false;
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
+  private router = inject(Router);
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -34,5 +35,17 @@ export class FooterComponent implements OnInit {
 
   scrollToTop(): void {
     this.scrollService.scrollToTop();
+  }
+  
+  navigateWithScrollToTop(path: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Prevent default behavior
+      event?.preventDefault();
+      
+      // Manually navigate and scroll
+      this.router.navigateByUrl(path).then(() => {
+        window.scrollTo(0, 0);
+      });
+    }
   }
 }

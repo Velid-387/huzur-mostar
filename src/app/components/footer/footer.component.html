@@ -49,8 +49,8 @@
         <div class="footer-bottom">
             <p id="copyright">&copy; {{ currentYear }} Huzur Mostar. Sva prava pridržana.</p>
             <div class="footer-legal-links">
-                <a routerLink="/terms">Uslovi korištenja</a>
-                <a routerLink="/privacy">Politika privatnosti</a>
+                <a routerLink="/terms" (click)="navigateWithScrollToTop('/terms')">Uslovi korištenja</a>
+                <a routerLink="/privacy" (click)="navigateWithScrollToTop('/privacy')">Politika privatnosti</a>
             </div>
             <p class="made-with-love">Napravljeno s <i class="fas fa-heart"></i> ljubavlju</p>
         </div>

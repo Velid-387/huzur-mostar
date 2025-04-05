@@ -8,7 +8,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 
 // Define router options
 const routerOptions = {
-  scrollPositionRestoration: 'top',
+  scrollPositionRestoration: 'enabled',
   anchorScrolling: 'enabled',
   scrollOffset: [0, 64], // Adjust based on your header height
   onSameUrlNavigation: 'reload' as OnSameUrlNavigation
