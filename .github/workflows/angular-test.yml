@@ -27,6 +27,12 @@ jobs:
     - name: Install dependencies
       run: npm ci
     
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
+    
+    - name: Verify Angular CLI installation
+      run: ng version
+    
     - name: Install Chrome for testing
       run: |
         wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -41,13 +47,13 @@ jobs:
     
     - name: Run tests
       id: test
-      run: npx karma start ./karma.conf.js --single-run --browsers=ChromeHeadlessCI --no-progress
+      run: ng test --no-watch --browsers=ChromeHeadlessCI
     
     - name: Build
-      run: npm run build --if-present
+      run: ng build
 
     - name: Generate test coverage report
-      run: npx karma start ./karma.conf.js --single-run --browsers=ChromeHeadlessCI --code-coverage --no-progress
+      run: ng test --no-watch --browsers=ChromeHeadlessCI --code-coverage
       
     - name: Archive code coverage results
       if: always()
@@ -99,8 +105,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
+    
     - name: Build
-      run: npm run build
+      run: ng build
       
     # Add your deployment step here, such as:
     # - name: Deploy to Netlify
