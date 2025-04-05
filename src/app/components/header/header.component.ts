@@ -46,8 +46,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.routerSubscription = this.router.events.pipe(
         filter(event => event instanceof NavigationEnd)
       ).subscribe(() => {
-        // Reset activeSection on blog page
-        if (this.isOnBlogPage()) {
+        // Reset activeSection on blog, terms, or privacy page
+        if (this.isOnBlogPage() || this.isOnLegalPage()) {
           this.activeSection = '';
         } else {
           this.handleNavigationToHome();
@@ -82,14 +82,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    if (isPlatformBrowser(this.platformId) && !this.isOnBlogPage()) {
+    if (isPlatformBrowser(this.platformId) && !this.isOnBlogPage() && !this.isOnLegalPage()) {
       this.checkActiveSection();
     }
   }
 
   checkActiveSection(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    if (this.isOnBlogPage()) return; // Skip if on blog page
+    if (this.isOnBlogPage() || this.isOnLegalPage()) return; // Skip if on blog or legal page
     
     const scrollPosition = window.scrollY;
     let foundActiveSection = false; // Track if we found an active section
@@ -167,9 +167,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
+  isOnBlogPage(): boolean {
+    // Get the current URL directly from the router
+    return this.router.url.startsWith('/blog');
+  }
+
+  isOnLegalPage(): boolean {
+    // Check if on terms or privacy pages
+    return this.router.url === '/terms' || this.router.url === '/privacy';
+  }
+
   isActive(section: string): boolean {
-    // If on blog page, only the blog link should be active
-    if (this.isOnBlogPage()) {
+    // If on blog or legal pages, no section should be active
+    if (this.isOnBlogPage() || this.isOnLegalPage()) {
       return false;
     }
     
@@ -199,8 +209,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       event.stopPropagation();
     }
     
-    // If on blog page, navigate to home page first
-    if (this.isOnBlogPage()) {
+    // If on blog or legal page, navigate to home page first
+    if (this.isOnBlogPage() || this.isOnLegalPage()) {
       this.activeSection = sectionId; // Set active section immediately for better UX
       this.router.navigateByUrl('/').then(() => {
         // After navigation, scroll to the section (with a small delay to ensure components are loaded)
@@ -239,10 +249,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.checkActiveSection();
       }
     }
-  }
-
-  isOnBlogPage(): boolean {
-    // Get the current URL directly from the router
-    return this.router.url.startsWith('/blog');
   }
 }
