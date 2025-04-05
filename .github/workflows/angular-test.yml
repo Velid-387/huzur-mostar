@@ -49,7 +49,7 @@ jobs:
       id: test
       run: |
         export CHROME_BIN=/usr/bin/google-chrome
-        ng test --no-watch --browsers=ChromeHeadlessCI --no-progress
+        ng test --no-watch --browsers=ChromeHeadless --no-progress
     
     - name: Build
       run: ng build
@@ -57,7 +57,7 @@ jobs:
     - name: Generate test coverage report
       run: |
         export CHROME_BIN=/usr/bin/google-chrome
-        ng test --no-watch --browsers=ChromeHeadlessCI --code-coverage --no-progress
+        ng test --no-watch --browsers=ChromeHeadless --code-coverage --no-progress
       
     - name: Archive code coverage results
       if: always()
