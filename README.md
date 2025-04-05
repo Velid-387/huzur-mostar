@@ -5,6 +5,19 @@
 </div>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e1ca9ad1-bc84-4428-a4f1-cc59b5689888/deploy-status)](https://app.netlify.com/sites/huzurmostar-in-progress/deploys)
+![Angular Tests](https://github.com/yourusername/huzur-mostar/actions/workflows/angular-test.yml/badge.svg)
+
+## Continuous Integration
+
+This project uses GitHub Actions for continuous integration. Every time code is pushed or a pull request is created:
+
+1. All unit tests are automatically run
+2. Code coverage reports are generated
+3. The application is built to verify there are no build errors
+4. Status comments are added to pull requests
+5. When code is merged to main/master, it triggers an automatic deployment
+
+To see test results, check the "Actions" tab in the GitHub repository.
 
 ## About The Project
 

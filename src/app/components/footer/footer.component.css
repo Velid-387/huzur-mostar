@@ -229,6 +229,23 @@ footer {
   margin: 0;
 }
 
+.made-with-love {
+  font-size: 0.9rem;
+  color: var(--text-dark, #666);
+  margin-top: 0.5rem;
+}
+
+.made-with-love i {
+  color: var(--pastel-pink-dark, #c09a9a);
+  animation: heartbeat 1.5s infinite;
+  margin: 0 0.2rem;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
 #scrollToTop {
   position: fixed;
   bottom: 25px;
@@ -449,4 +466,20 @@ footer {
 
 :host-context(body.dark-mode) .flower-decoration.right {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23a8c68e" d="M512,255.1c0,35.38-28.62,64-64,64h-8.88c-5.27,39.15-32.73,71.23-70.38,81.21C364.8,461.7,310.6,512,243.9,512c-46.2,0-86.46-25.29-107.5-62.64c-26.51-5.85-49.69-21.56-64.92-43.42C28.23,392.9,0,355.5,0,312c0-24.18,9.42-46.17,24.78-62.58C9.14,230.9,0,207.9,0,182.6c0-57.69,46.8-104.5,104.5-104.5c0.875,0,1.75,0.013,2.625,0.038C121.3,34.58,164.5,0,215.9,0c16.63,0,32.5,3.625,46.75,10.12C275.6,4,291.9,0,309.8,0c84.98,0,154,69.02,154,154c0,13.77-1.82,27.28-5.339,40.26C487.6,207.6,512,229.1,512,255.1z"/></svg>');
+}
+
+:host-context(body.dark-mode) #copyright {
+  color: #888;
+}
+
+:host-context(body.dark-mode) .made-with-love {
+  color: #888;
+}
+
+:host-context(body.dark-mode) .made-with-love i {
+  color: var(--pastel-pink, #f5c0c0);
+}
+
+:host-context(body.dark-mode) .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.05);
 }
