@@ -5,7 +5,7 @@
 </div>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e1ca9ad1-bc84-4428-a4f1-cc59b5689888/deploy-status)](https://app.netlify.com/sites/huzurmostar-in-progress/deploys)
-![Angular Tests](https://github.com/yourusername/huzur-mostar/actions/workflows/angular-test.yml/badge.svg)
+[![Angular Tests](https://github.com/Velid-387/huzur-mostar/actions/workflows/angular-test.yml/badge.svg)](https://github.com/Velid-387/huzur-mostar/actions/workflows/angular-test.yml)
 
 ## Continuous Integration
 
