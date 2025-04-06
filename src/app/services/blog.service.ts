@@ -158,7 +158,7 @@ export class BlogService {
     const wordsPerMinute = 200; // Average reading speed
     const wordCount = content.trim().split(/\s+/).length;
     const minutes = Math.ceil(wordCount / wordsPerMinute);
-    return `${minutes} min citanja`;
+    return `${minutes} min čitanja`;
   }
 
   /**
