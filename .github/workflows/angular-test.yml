@@ -55,7 +55,18 @@ jobs:
       id: test
       run: |
         export CHROME_BIN=/usr/bin/google-chrome
-        ng test --no-watch --browsers=ChromeHeadless --no-progress
+        RESULTS=$(ng test --no-watch --browsers=ChromeHeadless --no-progress || true)
+        TOTAL=$(echo "$RESULTS" | grep -o '[0-9]\+ specs' | grep -o '[0-9]\+' || echo "0")
+        FAILED=$(echo "$RESULTS" | grep -o '[0-9]\+ failures' | grep -o '[0-9]\+' || echo "0")
+        PASSED=$((TOTAL - FAILED))
+        echo "tests_executed=$TOTAL" >> $GITHUB_OUTPUT
+        echo "tests_passed=$PASSED" >> $GITHUB_OUTPUT
+        echo "tests_failed=$FAILED" >> $GITHUB_OUTPUT
+        
+        # Exit with error if tests failed
+        if [ "$FAILED" -gt "0" ]; then
+          exit 1
+        fi
     
     - name: Build
       run: ng build
