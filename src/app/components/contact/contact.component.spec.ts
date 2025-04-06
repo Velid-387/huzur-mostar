@@ -2,17 +2,24 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ContactComponent } from './contact.component';
+import { Router } from '@angular/router';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
   let mockForm: any;
   let mockInputs: any[] = [];
+  let routerSpy: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
+    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    
     await TestBed.configureTestingModule({
       imports: [ContactComponent, ReactiveFormsModule],
-      providers: [FormBuilder]
+      providers: [
+        FormBuilder,
+        { provide: Router, useValue: routerSpy }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ContactComponent);
@@ -119,7 +126,7 @@ describe('ContactComponent', () => {
     // Check that the form was created with the correct attributes
     expect(document.createElement).toHaveBeenCalledWith('form');
     expect(mockForm.method).toBe('POST');
-    expect(mockForm.action).toBe('/');
+    expect(mockForm.action).toBe('/form-success');
     expect(mockForm.setAttribute).toHaveBeenCalledWith('netlify', 'true');
     expect(mockForm.setAttribute).toHaveBeenCalledWith('name', 'contact');
     

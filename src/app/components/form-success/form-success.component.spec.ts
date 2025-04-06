@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 
 import { FormSuccessComponent } from './form-success.component';
 
@@ -8,7 +9,10 @@ describe('FormSuccessComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormSuccessComponent]
+      imports: [FormSuccessComponent, RouterModule],
+      providers: [
+        { provide: ActivatedRoute, useValue: {} }
+      ]
     })
     .compileComponents();
 
