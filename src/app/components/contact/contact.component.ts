@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class ContactComponent {
   contactForm: FormGroup;
   formStatus: string = '';
+  isSubmitting: boolean = false;
 
   constructor(private fb: FormBuilder) { 
     this.contactForm = this.fb.group({
@@ -24,9 +25,29 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log(this.contactForm.value);
-      this.formStatus = 'Poruka uspješno poslana!';
-      this.contactForm.reset();
+      this.isSubmitting = true;
+      this.formStatus = 'Slanje poruke...';
+      
+      const formData = new FormData();
+      formData.append('form-name', 'contact');
+      Object.keys(this.contactForm.value).forEach(key => {
+        formData.append(key, this.contactForm.value[key]);
+      });
+      
+      fetch('/', {
+        method: 'POST',
+        body: formData
+      })
+      .then(() => {
+        this.formStatus = 'Poruka uspješno poslana!';
+        this.contactForm.reset();
+        this.isSubmitting = false;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        this.formStatus = 'Došlo je do greške. Pokušajte ponovo.';
+        this.isSubmitting = false;
+      });
     } else {
       this.formStatus = 'Molimo popunite sva polja.';
     }
