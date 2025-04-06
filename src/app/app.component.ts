@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule, isPlatformBrowser, ViewportScroller } from '@angular/common';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
@@ -34,6 +35,8 @@ import { AnimationService } from './services/animation.service';
 export class AppComponent implements OnInit {
   private animationService = inject(AnimationService);
   private platformId = inject(PLATFORM_ID);
+  private router = inject(Router);
+  private viewportScroller = inject(ViewportScroller);
   
   ngOnInit(): void {
     // Initialize animations after view is loaded, but only in browser
@@ -41,6 +44,19 @@ export class AppComponent implements OnInit {
       setTimeout(() => {
         this.animationService.initAnimations();
       }, 100);
+      
+      // Handle navigation end events
+      this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      ).subscribe(() => {
+        // Scroll to top of page
+        window.scrollTo(0, 0);
+        
+        // Re-initialize animations on navigation
+        setTimeout(() => {
+          this.animationService.initAnimations();
+        }, 100);
+      });
     }
   }
 }

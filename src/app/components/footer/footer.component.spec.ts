@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PLATFORM_ID } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { FooterComponent } from './footer.component';
 import { ScrollService } from '../../services/scroll.service';
@@ -8,13 +10,20 @@ describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
   let scrollServiceSpy: jasmine.SpyObj<ScrollService>;
+  let router: Router;
 
   beforeEach(async () => {
-    // Create a spy for the ScrollService
+    // Create spies for the services
     scrollServiceSpy = jasmine.createSpyObj('ScrollService', ['scrollToTop']);
 
     await TestBed.configureTestingModule({
-      imports: [FooterComponent],
+      imports: [
+        FooterComponent,
+        RouterTestingModule.withRoutes([
+          { path: 'terms', component: {} as any },
+          { path: 'privacy', component: {} as any }
+        ])
+      ],
       providers: [
         { provide: ScrollService, useValue: scrollServiceSpy },
         { provide: PLATFORM_ID, useValue: 'browser' }
@@ -23,6 +32,8 @@ describe('FooterComponent', () => {
 
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
+    spyOn(router, 'navigateByUrl').and.returnValue(Promise.resolve(true));
     fixture.detectChanges();
   });
 
@@ -41,7 +52,7 @@ describe('FooterComponent', () => {
   it('should have scroll-to-top button initially hidden', () => {
     expect(component.isScrollButtonVisible).toBeFalse();
     
-    const button = fixture.debugElement.query(By.css('.scroll-to-top'));
+    const button = fixture.debugElement.query(By.css('#scrollToTop'));
     if (button) {
       // If button exists in DOM, it should be hidden
       expect(button.nativeElement.classList.contains('visible')).toBeFalse();
@@ -80,7 +91,7 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
     
     // Find and click the button
-    const button = fixture.debugElement.query(By.css('.scroll-to-top'));
+    const button = fixture.debugElement.query(By.css('#scrollToTop'));
     if (button) {
       button.triggerEventHandler('click', null);
       
@@ -91,5 +102,12 @@ describe('FooterComponent', () => {
       component.scrollToTop();
       expect(scrollServiceSpy.scrollToTop).toHaveBeenCalled();
     }
+  });
+
+  it('should navigate with scroll to top when navigateWithScrollToTop is called', () => {
+    const testPath = '/terms';
+    component.navigateWithScrollToTop(testPath);
+    
+    expect(router.navigateByUrl).toHaveBeenCalledWith(testPath);
   });
 });

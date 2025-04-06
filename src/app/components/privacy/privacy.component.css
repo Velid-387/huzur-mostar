@@ -1,0 +1,76 @@
+#privacy {
+  padding: 120px 0 60px;
+  background-color: #fff;
+}
+
+.privacy-content {
+  background-color: #fafafa;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+}
+
+.privacy-content h3 {
+    color: var(--pastel-green-dark, #91b478);
+    margin: 30px 0 15px;
+    font-weight: 600;
+}
+
+.privacy-content p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.privacy-content ul {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.privacy-content li {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.privacy-content a {
+  color: var(--pastel-green-dark, #91b478);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.privacy-content a:hover {
+  border-color: var(--pastel-green-dark, #91b478);
+}
+
+:host-context(body.dark-mode) #privacy {
+  background-color: #222;
+  color: #e1e1e1;
+}
+
+:host-context(body.dark-mode) .privacy-content {
+  background-color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+:host-context(body.dark-mode) .privacy-content h3 {
+  color: var(--pastel-green, #c8e4b2);
+}
+
+:host-context(body.dark-mode) .privacy-content a {
+  color: var(--pastel-green, #c8e4b2);
+}
+
+:host-context(body.dark-mode) .privacy-content a:hover {
+  border-color: var(--pastel-green, #c8e4b2);
+}
+
+@media (max-width: 768px) {
+  #privacy {
+    padding: 100px 0 40px;
+  }
+  
+  .privacy-content {
+    padding: 20px;
+  }
+} 
