@@ -11,7 +11,7 @@
                 <p><strong>Email:</strong> huzur.mostar&#64;gmail.com</p>
             </div>
             <div class="contact-form animate-item">
-                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" name="contact" data-netlify="true" netlify-honeypot="bot-field" method="POST">
+                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" name="contact" action="/form-success" data-netlify="true" netlify-honeypot="bot-field" method="POST">
                     <input type="hidden" name="form-name" value="contact" />
                     <p class="hidden" style="display: none;">
                         <label>Don't fill this out if you're human: <input name="bot-field" /></label>
