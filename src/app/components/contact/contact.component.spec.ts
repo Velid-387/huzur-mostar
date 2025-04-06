@@ -6,12 +6,10 @@ import { ContactComponent } from './contact.component';
 describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
-  let originalFetch: any;
+  let mockForm: any;
+  let mockInputs: any[] = [];
 
   beforeEach(async () => {
-    // Store the original fetch
-    originalFetch = window.fetch;
-
     await TestBed.configureTestingModule({
       imports: [ContactComponent, ReactiveFormsModule],
       providers: [FormBuilder]
@@ -20,11 +18,6 @@ describe('ContactComponent', () => {
     fixture = TestBed.createComponent(ContactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  afterEach(() => {
-    // Restore the original fetch
-    window.fetch = originalFetch;
   });
 
   it('should create', () => {
@@ -74,12 +67,36 @@ describe('ContactComponent', () => {
   });
 
   it('should accept form with valid data', fakeAsync(() => {
-    // Mock fetch to return a successful response
-    window.fetch = jasmine.createSpy('fetch').and.returnValue(
-      Promise.resolve({
-        ok: true
-      })
-    );
+    // Reset the mock arrays
+    mockForm = {
+      method: '',
+      action: '',
+      style: { display: '' },
+      setAttribute: jasmine.createSpy('setAttribute'),
+      appendChild: jasmine.createSpy('appendChild'),
+      submit: jasmine.createSpy('submit')
+    };
+    
+    mockInputs = [];
+    
+    // Mock document.createElement to return different elements based on the tag
+    spyOn(document, 'createElement').and.callFake((tag: string) => {
+      if (tag === 'form') {
+        return mockForm;
+      } else if (tag === 'input') {
+        const input = {
+          type: '',
+          name: '',
+          value: ''
+        };
+        mockInputs.push(input);
+        return input;
+      }
+      return document.createElement(tag);
+    });
+    
+    // Mock document.body.appendChild
+    spyOn(document.body, 'appendChild').and.returnValue(document.body);
     
     // Fill the form with valid data
     component.contactForm.setValue({
@@ -99,23 +116,29 @@ describe('ContactComponent', () => {
     expect(component.formStatus).toBe('Slanje poruke...');
     expect(component.isSubmitting).toBeTrue();
     
-    // Check that fetch was called with the correct data
-    expect(fetch).toHaveBeenCalledWith('/', jasmine.any(Object));
+    // Check that the form was created with the correct attributes
+    expect(document.createElement).toHaveBeenCalledWith('form');
+    expect(mockForm.method).toBe('POST');
+    expect(mockForm.action).toBe('/');
+    expect(mockForm.setAttribute).toHaveBeenCalledWith('netlify', 'true');
+    expect(mockForm.setAttribute).toHaveBeenCalledWith('name', 'contact');
     
-    // Resolve all promises
-    tick();
-    fixture.detectChanges();
+    // Check that the form was appended to the body
+    expect(document.body.appendChild).toHaveBeenCalledWith(mockForm);
     
-    // Check that the success message is displayed and form is reset
-    expect(component.formStatus).toBe('Poruka uspješno poslana!');
-    expect(component.isSubmitting).toBeFalse();
+    // Check that the form fields were created
+    expect(mockInputs.length).toBe(5); // form-name + 4 form fields
     
-    // FormGroup.reset() sets values to null, not empty strings
-    const resetFormValue = component.contactForm.value;
-    expect(resetFormValue.name).toBeFalsy();
-    expect(resetFormValue.email).toBeFalsy();
-    expect(resetFormValue.subject).toBeFalsy();
-    expect(resetFormValue.message).toBeFalsy();
+    // Check that the form-name field exists and has the correct value
+    const formNameField = mockInputs.find(input => input.name === 'form-name');
+    expect(formNameField).toBeTruthy();
+    expect(formNameField.value).toBe('contact');
+    
+    // Simulate setTimeout callback
+    tick(100);
+    
+    // Check that form was submitted
+    expect(mockForm.submit).toHaveBeenCalled();
   }));
 
   it('should display validation errors when fields are touched', () => {
@@ -134,30 +157,4 @@ describe('ContactComponent', () => {
       expect(errorEl.nativeElement.textContent).toContain('required');
     }
   });
-
-  it('should handle submission errors', fakeAsync(() => {
-    // Mock fetch to return an error
-    window.fetch = jasmine.createSpy('fetch').and.returnValue(
-      Promise.reject(new Error('Network error'))
-    );
-
-    // Fill the form with valid data
-    component.contactForm.setValue({
-      name: 'Test User',
-      email: 'test@example.com',
-      subject: 'Test Subject',
-      message: 'Test message content'
-    });
-    
-    // Submit the form
-    component.onSubmit();
-    
-    // Resolve all promises (including the rejected one)
-    tick();
-    fixture.detectChanges();
-    
-    // Check that the error message is displayed
-    expect(component.formStatus).toBe('Došlo je do greške. Pokušajte ponovo.');
-    expect(component.isSubmitting).toBeFalse();
-  }));
 });
