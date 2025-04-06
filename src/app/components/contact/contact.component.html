@@ -11,24 +11,30 @@
                 <p><strong>Email:</strong> huzur.mostar&#64;gmail.com</p>
             </div>
             <div class="contact-form animate-item">
-                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" name="contact" data-netlify="true" netlify-honeypot="bot-field" method="POST">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p class="hidden" style="display: none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" formControlName="name">
+                        <input type="text" id="name" name="name" formControlName="name">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" formControlName="email">
+                        <input type="email" id="email" name="email" formControlName="email">
                     </div>
                     <div class="form-group">
                         <label for="subject">Subject</label>
-                        <input type="text" id="subject" formControlName="subject">
+                        <input type="text" id="subject" name="subject" formControlName="subject">
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" formControlName="message"></textarea>
+                        <textarea id="message" name="message" formControlName="message"></textarea>
                     </div>
-                    <button type="submit" class="btn" [disabled]="contactForm.invalid">Pošalji poruku</button>
+                    <button type="submit" class="btn" [disabled]="contactForm.invalid || isSubmitting">
+                        {{ isSubmitting ? 'Slanje...' : 'Pošalji poruku' }}
+                    </button>
                     <div class="form-status">{{ formStatus }}</div>
                 </form>
             </div>
