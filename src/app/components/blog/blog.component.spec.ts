@@ -36,7 +36,7 @@ describe('BlogComponent', () => {
       image: 'test-image-1.jpg',
       slug: 'test-blog-post-1',
       fileName: 'test1.md',
-      readingTime: '3 min citanja'
+      readingTime: '3 min čitanja'
     },
     {
       id: 2,
@@ -46,7 +46,7 @@ describe('BlogComponent', () => {
       image: 'test-image-2.jpg',
       slug: 'test-blog-post-2',
       fileName: 'test2.md',
-      readingTime: '5 min citanja'
+      readingTime: '5 min čitanja'
     }
   ];
 

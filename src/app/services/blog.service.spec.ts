@@ -81,10 +81,10 @@ describe('BlogService', () => {
     const calculateReadingTime = (service as any).calculateReadingTime;
     
     // Test with short content
-    expect(calculateReadingTime('Short test content')).toBe('1 min citanja');
+    expect(calculateReadingTime('Short test content')).toBe('1 min čitanja');
     
     // Test with longer content (create a string with 2000+ words)
     const longContent = Array(2001).fill('word').join(' ');
-    expect(calculateReadingTime(longContent)).toBe('11 min citanja');
+    expect(calculateReadingTime(longContent)).toBe('11 min čitanja');
   });
 }); 
