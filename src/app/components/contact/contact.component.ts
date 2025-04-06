@@ -28,26 +28,41 @@ export class ContactComponent {
       this.isSubmitting = true;
       this.formStatus = 'Slanje poruke...';
       
-      const formData = new FormData();
-      formData.append('form-name', 'contact');
+      // Create the form element
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = '/';
+      form.setAttribute('netlify', 'true');
+      form.setAttribute('name', 'contact');
+      form.style.display = 'none';
+      
+      // Add form-name field
+      let formNameField = document.createElement('input');
+      formNameField.type = 'hidden';
+      formNameField.name = 'form-name';
+      formNameField.value = 'contact';
+      form.appendChild(formNameField);
+      
+      // Add form fields from the Angular form
       Object.keys(this.contactForm.value).forEach(key => {
-        formData.append(key, this.contactForm.value[key]);
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = this.contactForm.value[key];
+        form.appendChild(input);
       });
       
-      fetch('/', {
-        method: 'POST',
-        body: formData
-      })
-      .then(() => {
+      // Append to body, submit the form, then remove it
+      document.body.appendChild(form);
+      
+      // Submit the form
+      setTimeout(() => {
+        form.submit();
+        // Note: We won't reach the code below due to page navigation
         this.formStatus = 'Poruka uspješno poslana!';
         this.contactForm.reset();
         this.isSubmitting = false;
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        this.formStatus = 'Došlo je do greške. Pokušajte ponovo.';
-        this.isSubmitting = false;
-      });
+      }, 100);
     } else {
       this.formStatus = 'Molimo popunite sva polja.';
     }
