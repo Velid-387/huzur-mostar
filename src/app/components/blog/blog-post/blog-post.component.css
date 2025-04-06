@@ -83,11 +83,18 @@
   object-fit: cover;
 }
 
+#blog-post .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
 .blog-post-content {
   max-width: 800px;
   margin: 0 auto 3rem;
   line-height: 1.8;
   font-size: 1.1rem;
+  padding: 0 1rem;
 }
 
 .blog-post-content h1,
@@ -114,11 +121,24 @@
 
 .blog-post-content ul, .blog-post-content ol {
   margin-bottom: 1.5rem;
-  padding-left: 2rem;
+  padding-left: 2.5rem;
+  list-style-position: outside;
 }
 
-.blog-post-content li {
+.blog-post-content ul li, .blog-post-content ol li {
   margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+/* Ensure the list items have proper padding and spacing */
+.blog-post-content ul li {
+  display: list-item;
+  padding: 0.2rem 0 0.2rem 0.5rem;
+}
+
+.blog-post-content ol li {
+  display: list-item;
+  padding: 0.2rem 0 0.2rem 0.5rem;
 }
 
 .blog-post-content strong {
@@ -303,15 +323,24 @@
 /* Responsive styles */
 @media (max-width: 768px) {
   #blog-post {
-    padding: 4rem 1rem;
+    padding: 4rem 0.5rem;
   }
 
-  .blog-post-title {
-    font-size: 2.2rem;
+  #blog-post .container {
+    padding: 0 1rem;
   }
 
   .blog-post-content {
     font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .blog-post-content ul, .blog-post-content ol {
+    padding-left: 2rem;
+  }
+  
+  .blog-post-title {
+    font-size: 2.2rem;
   }
   
   .blog-post-content h1 { font-size: 1.8rem; }
