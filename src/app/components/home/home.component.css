@@ -30,6 +30,9 @@
   width: 30px;
   height: 45px;
   z-index: 20;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 .chevron {
@@ -159,4 +162,9 @@
   100% {
     box-shadow: 0 0 5px rgba(192, 154, 154, 0.4);
   }
+}
+
+/* Add space for when the ngIf removes the indicator */
+:host-context(section#home) {
+  position: relative;
 }

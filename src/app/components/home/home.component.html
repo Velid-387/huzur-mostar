@@ -9,7 +9,7 @@
             <a (click)="scrollToSection('products')" class="btn">Istražite našu ponudu</a>
         </div>
     </div>
-    <div class="scroll-indicator-bottom">
+    <div class="scroll-indicator-bottom" *ngIf="showScrollIndicator">
         <div class="chevron"></div>
         <div class="chevron"></div>
         <div class="chevron"></div>
