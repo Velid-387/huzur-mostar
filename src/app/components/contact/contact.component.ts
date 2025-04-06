@@ -52,7 +52,7 @@ export class ContactComponent {
         form.appendChild(input);
       });
       
-      // Append to body, submit the form, then remove it
+      // Append to body, submit the form
       document.body.appendChild(form);
       
       // Submit the form

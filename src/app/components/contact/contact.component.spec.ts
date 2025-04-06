@@ -6,11 +6,13 @@ import { ContactComponent } from './contact.component';
 describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
-  let originalFetch: any;
+  let createElementOriginal: any;
+  let appendChildOriginal: any;
 
   beforeEach(async () => {
-    // Store the original fetch
-    originalFetch = window.fetch;
+    // Store original DOM methods
+    createElementOriginal = document.createElement;
+    appendChildOriginal = document.body.appendChild;
 
     await TestBed.configureTestingModule({
       imports: [ContactComponent, ReactiveFormsModule],
@@ -23,8 +25,9 @@ describe('ContactComponent', () => {
   });
 
   afterEach(() => {
-    // Restore the original fetch
-    window.fetch = originalFetch;
+    // Restore original DOM methods
+    document.createElement = createElementOriginal;
+    document.body.appendChild = appendChildOriginal;
   });
 
   it('should create', () => {
@@ -74,12 +77,21 @@ describe('ContactComponent', () => {
   });
 
   it('should accept form with valid data', fakeAsync(() => {
-    // Mock fetch to return a successful response
-    window.fetch = jasmine.createSpy('fetch').and.returnValue(
-      Promise.resolve({
-        ok: true
-      })
-    );
+    // Create a real HTML form element for mocking
+    const mockForm = document.createElement('form');
+    mockForm.method = '';
+    mockForm.action = '';
+    
+    // Add spies to the mock form
+    spyOn(mockForm, 'setAttribute').and.callThrough();
+    spyOn(mockForm, 'appendChild').and.callThrough();
+    spyOn(mockForm, 'submit').and.callThrough();
+    
+    // Mock document.createElement
+    spyOn(document, 'createElement').and.returnValue(mockForm);
+    
+    // Mock document.body.appendChild
+    spyOn(document.body, 'appendChild');
     
     // Fill the form with valid data
     component.contactForm.setValue({
@@ -99,23 +111,21 @@ describe('ContactComponent', () => {
     expect(component.formStatus).toBe('Slanje poruke...');
     expect(component.isSubmitting).toBeTrue();
     
-    // Check that fetch was called with the correct data
-    expect(fetch).toHaveBeenCalledWith('/', jasmine.any(Object));
+    // Check that the form was created correctly
+    expect(document.createElement).toHaveBeenCalledWith('form');
+    expect(mockForm.method).toBe('POST');
+    expect(mockForm.action).toBe('/');
+    expect(mockForm.setAttribute).toHaveBeenCalledWith('netlify', 'true');
+    expect(mockForm.setAttribute).toHaveBeenCalledWith('name', 'contact');
     
-    // Resolve all promises
-    tick();
-    fixture.detectChanges();
+    // Check that the form was appended to the body
+    expect(document.body.appendChild).toHaveBeenCalledWith(mockForm);
     
-    // Check that the success message is displayed and form is reset
-    expect(component.formStatus).toBe('Poruka uspješno poslana!');
-    expect(component.isSubmitting).toBeFalse();
+    // Simulate setTimeout callback
+    tick(100);
     
-    // FormGroup.reset() sets values to null, not empty strings
-    const resetFormValue = component.contactForm.value;
-    expect(resetFormValue.name).toBeFalsy();
-    expect(resetFormValue.email).toBeFalsy();
-    expect(resetFormValue.subject).toBeFalsy();
-    expect(resetFormValue.message).toBeFalsy();
+    // Check that form was submitted
+    expect(mockForm.submit).toHaveBeenCalled();
   }));
 
   it('should display validation errors when fields are touched', () => {
@@ -134,30 +144,4 @@ describe('ContactComponent', () => {
       expect(errorEl.nativeElement.textContent).toContain('required');
     }
   });
-
-  it('should handle submission errors', fakeAsync(() => {
-    // Mock fetch to return an error
-    window.fetch = jasmine.createSpy('fetch').and.returnValue(
-      Promise.reject(new Error('Network error'))
-    );
-
-    // Fill the form with valid data
-    component.contactForm.setValue({
-      name: 'Test User',
-      email: 'test@example.com',
-      subject: 'Test Subject',
-      message: 'Test message content'
-    });
-    
-    // Submit the form
-    component.onSubmit();
-    
-    // Resolve all promises (including the rejected one)
-    tick();
-    fixture.detectChanges();
-    
-    // Check that the error message is displayed
-    expect(component.formStatus).toBe('Došlo je do greške. Pokušajte ponovo.');
-    expect(component.isSubmitting).toBeFalse();
-  }));
 });
