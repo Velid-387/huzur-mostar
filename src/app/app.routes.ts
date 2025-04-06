@@ -8,6 +8,7 @@ export const routes: Routes = [
   { path: 'blog/:id', loadComponent: () => import('./components/blog/blog-post/blog-post.component').then(c => c.BlogPostComponent) },
   { path: 'terms', component: TermsComponent },
   { path: 'privacy', component: PrivacyComponent },
+  { path: 'form-success', loadComponent: () => import('./components/form-success/form-success.component').then(c => c.FormSuccessComponent) },
   // Add a wildcard route that redirects to the home page for any unknown routes
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

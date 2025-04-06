@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +15,7 @@ export class ContactComponent {
   formStatus: string = '';
   isSubmitting: boolean = false;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private router: Router) { 
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -31,7 +32,7 @@ export class ContactComponent {
       // Create the form element
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = '/';
+      form.action = '/form-success';
       form.setAttribute('netlify', 'true');
       form.setAttribute('name', 'contact');
       form.style.display = 'none';
@@ -58,10 +59,7 @@ export class ContactComponent {
       // Submit the form
       setTimeout(() => {
         form.submit();
-        // Note: We won't reach the code below due to page navigation
-        this.formStatus = 'Poruka uspješno poslana!';
-        this.contactForm.reset();
-        this.isSubmitting = false;
+        // Note: The page will navigate to the success page due to the form action
       }, 100);
     } else {
       this.formStatus = 'Molimo popunite sva polja.';

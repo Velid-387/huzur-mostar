@@ -21,3 +21,15 @@
     
     # HSTS (Strict Transport Security) - Uncomment if you have HTTPS enabled
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Handle SPA routing - ensure all paths serve the index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Specific redirect for form submissions
+[[redirects]]
+  from = "/form-success"
+  to = "/index.html"
+  status = 200
