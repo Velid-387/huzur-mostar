@@ -6,14 +6,10 @@ import { ContactComponent } from './contact.component';
 describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
-  let createElementOriginal: any;
-  let appendChildOriginal: any;
+  let mockForm: any;
+  let mockInputs: any[] = [];
 
   beforeEach(async () => {
-    // Store original DOM methods
-    createElementOriginal = document.createElement;
-    appendChildOriginal = document.body.appendChild;
-
     await TestBed.configureTestingModule({
       imports: [ContactComponent, ReactiveFormsModule],
       providers: [FormBuilder]
@@ -22,12 +18,6 @@ describe('ContactComponent', () => {
     fixture = TestBed.createComponent(ContactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  afterEach(() => {
-    // Restore original DOM methods
-    document.createElement = createElementOriginal;
-    document.body.appendChild = appendChildOriginal;
   });
 
   it('should create', () => {
@@ -77,21 +67,36 @@ describe('ContactComponent', () => {
   });
 
   it('should accept form with valid data', fakeAsync(() => {
-    // Create a real HTML form element for mocking
-    const mockForm = document.createElement('form');
-    mockForm.method = '';
-    mockForm.action = '';
+    // Reset the mock arrays
+    mockForm = {
+      method: '',
+      action: '',
+      style: { display: '' },
+      setAttribute: jasmine.createSpy('setAttribute'),
+      appendChild: jasmine.createSpy('appendChild'),
+      submit: jasmine.createSpy('submit')
+    };
     
-    // Add spies to the mock form
-    spyOn(mockForm, 'setAttribute').and.callThrough();
-    spyOn(mockForm, 'appendChild').and.callThrough();
-    spyOn(mockForm, 'submit').and.callThrough();
+    mockInputs = [];
     
-    // Mock document.createElement
-    spyOn(document, 'createElement').and.returnValue(mockForm);
+    // Mock document.createElement to return different elements based on the tag
+    spyOn(document, 'createElement').and.callFake((tag: string) => {
+      if (tag === 'form') {
+        return mockForm;
+      } else if (tag === 'input') {
+        const input = {
+          type: '',
+          name: '',
+          value: ''
+        };
+        mockInputs.push(input);
+        return input;
+      }
+      return document.createElement(tag);
+    });
     
     // Mock document.body.appendChild
-    spyOn(document.body, 'appendChild');
+    spyOn(document.body, 'appendChild').and.returnValue(document.body);
     
     // Fill the form with valid data
     component.contactForm.setValue({
@@ -111,7 +116,7 @@ describe('ContactComponent', () => {
     expect(component.formStatus).toBe('Slanje poruke...');
     expect(component.isSubmitting).toBeTrue();
     
-    // Check that the form was created correctly
+    // Check that the form was created with the correct attributes
     expect(document.createElement).toHaveBeenCalledWith('form');
     expect(mockForm.method).toBe('POST');
     expect(mockForm.action).toBe('/');
@@ -120,6 +125,14 @@ describe('ContactComponent', () => {
     
     // Check that the form was appended to the body
     expect(document.body.appendChild).toHaveBeenCalledWith(mockForm);
+    
+    // Check that the form fields were created
+    expect(mockInputs.length).toBe(5); // form-name + 4 form fields
+    
+    // Check that the form-name field exists and has the correct value
+    const formNameField = mockInputs.find(input => input.name === 'form-name');
+    expect(formNameField).toBeTruthy();
+    expect(formNameField.value).toBe('contact');
     
     // Simulate setTimeout callback
     tick(100);
