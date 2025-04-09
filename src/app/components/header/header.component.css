@@ -6,7 +6,7 @@
   justify-content: space-between;
   height: 20px;
   width: 25px;
-  z-index: 100;
+  z-index: 1000;
   transition: all 0.3s ease;
   position: relative;
   margin-right: 15px;
@@ -228,9 +228,74 @@
 
 /* Mobile menu adjustments */
 @media (max-width: 768px) {
+    body.mobile-menu-open {
+        overflow: hidden;
+    }
+    
+    /* Add padding to main content to account for fixed header */
+    ::ng-deep main {
+        padding-top: 60px;
+    }
+    
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        background-color: var(--background-color, #fff);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        height: 60px;
+    }
+    
+    :host-context(body.dark-mode) header {
+        background-color: var(--dark-background, #1a1a1a);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Keep the logo centered and visible */
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    /* Position hamburger to the left */
+    .hamburger-menu {
+        position: absolute;
+        left: 15px;
+    }
+    
+    /* Position theme switch to the right */
+    .theme-switch-wrapper {
+        position: absolute;
+        right: 15px;
+    }
+    
+    .mobile-nav-menu {
+        position: fixed;
+        top: 60px; /* Height of the header */
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 60px); /* Full height minus header */
+        background-color: var(--background-color, #fff);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        padding-top: 20px;
+    }
+
+    .mobile-nav-menu.active {
+        right: 0;
+    }
+
     .mobile-nav-menu ul {
         padding: 0;
         margin: 0;
+        height: calc(100% - 80px); /* Make room for contact number */
+        display: flex;
+        flex-direction: column;
     }
 
     .mobile-nav-menu li {
@@ -255,5 +320,60 @@
 
     :host-context(body.dark-mode) .mobile-nav-menu li {
         border-color: var(--dark-border-color, #2d2d2d);
+    }
+    
+    .mobile-nav-menu .contact-number {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        padding: 15px 20px;
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-color, #d14d72);
+        border-top: 1px solid var(--border-color, #e0e0e0);
+    }
+    
+    .mobile-nav-menu .contact-number a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 15px;
+        color: var(--primary-color, #d14d72);
+        border: 1px solid var(--primary-color, #d14d72);
+        border-radius: 25px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        background-color: transparent;
+        margin: 0 auto;
+        width: auto;
+    }
+    
+    .mobile-nav-menu .contact-number a i {
+        margin-right: 8px;
+    }
+    
+    .mobile-nav-menu .contact-number a:hover {
+        background-color: var(--primary-color, #d14d72);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(209, 77, 114, 0.3);
+    }
+    
+    :host-context(body.dark-mode) .mobile-nav-menu .contact-number {
+        border-color: var(--dark-border-color, #2d2d2d);
+        color: var(--primary-color-light, #ff6b98);
+    }
+    
+    :host-context(body.dark-mode) .mobile-nav-menu .contact-number a {
+        color: var(--primary-color-light, #ff6b98);
+        border-color: var(--primary-color-light, #ff6b98);
+    }
+    
+    :host-context(body.dark-mode) .mobile-nav-menu .contact-number a:hover {
+        background-color: var(--primary-color-light, #ff6b98);
+        color: var(--dark-background, #1a1a1a);
+        box-shadow: 0 4px 8px rgba(255, 107, 152, 0.3);
     }
 }

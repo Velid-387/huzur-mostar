@@ -67,10 +67,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       this.mobileMenuOpen = !this.mobileMenuOpen;
       this.isProductsDropdownOpen = false;
-
-      const hamburgerMenu = document.getElementById('hamburgerMenu');
-      if (hamburgerMenu) {
-        hamburgerMenu.classList.toggle('active');
+      
+      // Add a class to the body to prevent scrolling when menu is open
+      if (this.mobileMenuOpen) {
+        document.body.classList.add('mobile-menu-open');
+      } else {
+        document.body.classList.remove('mobile-menu-open');
       }
     }
   }
