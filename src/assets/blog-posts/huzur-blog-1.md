@@ -34,4 +34,4 @@ Da sve iskrene nade i iskrene želje kao i iskreni ljudi huzur budu i huzur nađ
 
 ---
 
-*Huzur sretan ti prvi mali veliki rođendan 💕* 
+*Huzur sretan ti prvi mali veliki rođendan 🎉* 
