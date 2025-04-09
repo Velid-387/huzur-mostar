@@ -232,25 +232,18 @@
         overflow: hidden;
     }
     
-    /* Add padding to main content to account for fixed header */
-    ::ng-deep main {
-        padding-top: 60px;
-    }
-    
+    /* Update header z-index for mobile to be higher than desktop */
     header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
         z-index: 1001;
-        background-color: var(--background-color, #fff);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        height: 60px;
     }
     
-    :host-context(body.dark-mode) header {
-        background-color: var(--dark-background, #1a1a1a);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    nav {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+        position: relative;
     }
     
     /* Keep the logo centered and visible */
@@ -262,22 +255,22 @@
     
     /* Position hamburger to the left */
     .hamburger-menu {
-        position: absolute;
-        left: 15px;
+        position: relative;
+        margin: 0;
     }
     
     /* Position theme switch to the right */
     .theme-switch-wrapper {
-        position: absolute;
-        right: 15px;
+        position: relative;
+        margin: 0;
     }
     
     .mobile-nav-menu {
         position: fixed;
-        top: 60px; /* Height of the header */
+        top: 70px; /* Match the header height */
         right: -100%;
         width: 100%;
-        height: calc(100vh - 60px); /* Full height minus header */
+        height: calc(100vh - 70px); /* Full height minus header */
         background-color: var(--background-color, #fff);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         z-index: 999;
@@ -293,7 +286,7 @@
     .mobile-nav-menu ul {
         padding: 0;
         margin: 0;
-        height: calc(100% - 80px); /* Make room for contact number */
+        height: calc(100% - 100px); /* Make room for contact number */
         display: flex;
         flex-direction: column;
     }
@@ -324,56 +317,102 @@
     
     .mobile-nav-menu .contact-number {
         position: absolute;
-        bottom: 20px;
+        bottom: 0;
         left: 0;
         width: 100%;
-        padding: 15px 20px;
+        padding: 20px;
         text-align: center;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--primary-color, #d14d72);
+        background-color: var(--background-color, #fff);
         border-top: 1px solid var(--border-color, #e0e0e0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .mobile-nav-menu .contact-number a {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 10px 15px;
-        color: var(--primary-color, #d14d72);
-        border: 1px solid var(--primary-color, #d14d72);
+        padding: 12px 20px;
+        color: var(--text-dark, #4a5759);
+        background-color: var(--pastel-pink, #f5c0c0);
         border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 500;
         text-decoration: none;
         transition: all 0.3s ease;
-        background-color: transparent;
-        margin: 0 auto;
-        width: auto;
+        box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
     }
     
     .mobile-nav-menu .contact-number a i {
         margin-right: 8px;
+        font-size: 1rem;
     }
     
     .mobile-nav-menu .contact-number a:hover {
-        background-color: var(--primary-color, #d14d72);
-        color: white;
+        background-color: var(--pastel-green, #c8e4b2);
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(209, 77, 114, 0.3);
+        box-shadow: 0 0 20px rgba(200, 228, 178, 0.8);
     }
     
     :host-context(body.dark-mode) .mobile-nav-menu .contact-number {
+        background-color: var(--dark-background, #1a1a1a);
         border-color: var(--dark-border-color, #2d2d2d);
-        color: var(--primary-color-light, #ff6b98);
     }
     
     :host-context(body.dark-mode) .mobile-nav-menu .contact-number a {
-        color: var(--primary-color-light, #ff6b98);
-        border-color: var(--primary-color-light, #ff6b98);
+        background-color: var(--pastel-pink-dark, #c09a9a);
+        color: var(--text-light, #fff);
+        box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
     }
     
     :host-context(body.dark-mode) .mobile-nav-menu .contact-number a:hover {
-        background-color: var(--primary-color-light, #ff6b98);
-        color: var(--dark-background, #1a1a1a);
-        box-shadow: 0 4px 8px rgba(255, 107, 152, 0.3);
+        background-color: var(--pastel-green-dark, #91b478);
+        box-shadow: 0 0 20px rgba(145, 180, 120, 0.8);
+    }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  height: 70px;
+}
+
+:host-context(body.dark-mode) header {
+  background-color: var(--dark-background, #1a1a1a);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 100%;
+}
+
+/* Add padding to main content to account for fixed header */
+::ng-deep main {
+  padding-top: 70px;
+}
+
+/* Override nav styling for mobile */
+@media (max-width: 768px) {
+    nav {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+        position: relative;
     }
 }
