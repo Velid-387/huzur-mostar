@@ -75,13 +75,18 @@ body.dark-mode .nav-links a.selected {
 }
 
 body.dark-mode .mobile-nav-menu {
-    background-color: #1e1e1e;
-    color: #fff;
+    background-color: var(--dark-background, #1a1a1a);
+    color: var(--text-light, #fff);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+body.dark-mode .mobile-nav-menu .contact-number {
+    background-color: var(--dark-background, #1a1a1a);
+    border-top-color: var(--dark-border-color, #2d2d2d);
+}
+
 body.dark-mode .mobile-nav-menu a {
-    color: #fff;
+    color: var(--text-light, #fff);
 }
 
 body.dark-mode .mobile-nav-menu a:hover {

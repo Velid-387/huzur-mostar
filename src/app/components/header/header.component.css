@@ -273,16 +273,15 @@
         top: 70px; /* Match the header height */
         left: 0;
         width: 100%;
-        height: calc(100vh - 70px); /* Full height minus header */
+        height: calc(100vh - 70px); /* Full viewport height minus header height */
         background-color: var(--background-color, #fff);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         z-index: 999;
-        transition: transform 0.3s ease;
-        overflow-y: auto;
-        padding-top: 20px;
         transform: translateX(-100%);
-        visibility: visible;
-        display: block;
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
     }
 
     .mobile-nav-menu.active {
@@ -290,11 +289,10 @@
     }
 
     .mobile-nav-menu ul {
-        padding: 0;
+        padding: 20px;
         margin: 0;
-        height: calc(100% - 100px); /* Make room for contact number */
-        display: flex;
-        flex-direction: column;
+        list-style: none;
+        flex: 1;
     }
 
     .mobile-nav-menu li {
@@ -326,9 +324,10 @@
     }
 
     .mobile-nav-menu .contact-number {
-        padding: 15px 20px;
-        margin-top: 10px;
+        padding: 20px;
+        margin-top: auto;
         border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+        background-color: inherit;
     }
 
     .mobile-nav-menu .contact-number a {
@@ -358,9 +357,20 @@
         margin-right: 8px;
     }
 
+    .mobile-nav-menu .contact-number .made-with-love {
+        font-size: 1rem;
+        margin-top: 0.8rem;
+        color: inherit;
+    }
+
     /* Dark mode adjustments for contact number */
     :host-context(body.dark-mode) .mobile-nav-menu .contact-number {
-        border-top-color: var(--dark-border-color, rgba(255, 255, 255, 0.1));
+        border-top-color: var(--dark-border-color, #2d2d2d);
+        background-color: var(--dark-background, #1a1a1a);
+    }
+
+    :host-context(body.dark-mode) .mobile-nav-menu .contact-number .made-with-love {
+        color: var(--text-light, #fff);
     }
 
     :host-context(body.dark-mode) .mobile-nav-menu .contact-number a {
