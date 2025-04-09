@@ -65,15 +65,8 @@
                 }
               ],
               "outputHashing": "all",
-              "optimization": {
-                "scripts": true,
-                "styles": true,
-                "fonts": false
-              },
-              "sourceMap": false,
-              "namedChunks": false,
-              "vendorChunk": true,
-              "buildOptimizer": true
+              "optimization": true,
+              "sourceMap": false
             },
             "development": {
               "optimization": false,
