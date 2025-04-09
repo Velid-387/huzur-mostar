@@ -5,29 +5,6 @@
             <span></span>
             <span></span>
         </div>
-        <div class="mobile-nav-menu" id="mobileNavMenu" [class.active]="mobileMenuOpen">
-            <ul>
-                <li><a (click)="scrollToSection('home', $event)" [class.active]="isActive('home')">Početna</a></li>
-                <li><a (click)="scrollToSection('about', $event)" [class.active]="isActive('about')">O nama</a></li>
-                <li class="has-dropdown">
-                    <a (click)="toggleProductsDropdown($event)" [class.active]="isActive('products')">
-                        Naša ponuda
-                        <i class="fas" [class.fa-chevron-down]="!isProductsDropdownOpen" [class.fa-chevron-up]="isProductsDropdownOpen"></i>
-                    </a>
-                    <ul class="dropdown-menu" [class.active]="isProductsDropdownOpen">
-                        <li *ngFor="let section of productSections">
-                            <a (click)="scrollToSection(section.id, $event)" [class.active]="activeSection === section.id">
-                                {{ section.name }}
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a></li>
-                <li><a (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a></li>
-                <li><a (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a></li>
-                <li><a routerLink="/blog" [class.active]="isOnBlogPage()" (click)="toggleMobileMenu()">Blog</a></li>
-            </ul>
-        </div>
         <div class="logo">
             <a routerLink="/">
                 <img src="./assets/img/huzur-logo.png" alt="Logo">
@@ -83,3 +60,32 @@
         </div>
     </nav>
 </header>
+
+<!-- Mobile menu outside header to slide below header -->
+<div class="mobile-nav-menu" id="mobileNavMenu" [class.active]="mobileMenuOpen">
+    <ul>
+        <li><a (click)="scrollToSection('home', $event)" [class.active]="isActive('home')">Početna</a></li>
+        <li><a (click)="scrollToSection('about', $event)" [class.active]="isActive('about')">O nama</a></li>
+        <li class="has-dropdown">
+            <a (click)="toggleProductsDropdown($event)" [class.active]="isActive('products')">
+                Naša ponuda
+                <i class="fas" [class.fa-chevron-down]="!isProductsDropdownOpen" [class.fa-chevron-up]="isProductsDropdownOpen"></i>
+            </a>
+            <ul class="dropdown-menu" [class.active]="isProductsDropdownOpen">
+                <li *ngFor="let section of productSections">
+                    <a (click)="scrollToSection(section.id, $event)" [class.active]="activeSection === section.id">
+                        {{ section.name }}
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li><a (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a></li>
+        <li><a (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a></li>
+        <li><a (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a></li>
+        <li><a routerLink="/blog" [class.active]="isOnBlogPage()" (click)="toggleMobileMenu()">Blog</a></li>
+    </ul>
+    <div class="contact-number">
+        <a href="tel:+387603352011"><i class="fas fa-phone"></i> +387 60 33 52 011</a>
+        <p class="made-with-love">Cvjećara u <i class="fas fa-heart"></i> Mostara</p>
+    </div>
+</div>

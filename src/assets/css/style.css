@@ -277,7 +277,6 @@ p {
     width: 100%;
     position: relative;
     min-height: 100vh;
-    padding: 6rem 0;
     margin-top: 0;
     border-top: none;
 }
@@ -889,7 +888,6 @@ input:checked ~ .toggle-icon:hover .moon-mask {
     }
 
     #home {
-        padding: 4rem 1rem;
         min-height: calc(100vh - 60px);
     }
 
@@ -1179,4 +1177,45 @@ h3 {
     font-weight: 600;
     color: var(--dark-green);
     margin-bottom: 0.7rem;
+}
+
+.mobile-nav-menu .contact-number {
+    padding: 15px 20px;
+    margin-top: 10px;
+    border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    text-align: center;
+}
+
+.mobile-nav-menu .contact-number a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(209, 77, 114, 0.7) 0%, rgba(255, 107, 152, 0.7) 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(209, 77, 114, 0.15);
+    width: 100%;
+    animation: pulse 2s infinite;
+}
+
+.mobile-nav-menu .contact-number .made-with-love {
+    font-size: 1rem;
+    margin-top: 0.8rem;
+}
+
+.mobile-nav-menu .contact-number .made-with-love i {
+    color: var(--pastel-pink-dark, #c09a9a);
+    animation: heartbeat 1.5s infinite;
+    margin: 0 0.2rem;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
 }
