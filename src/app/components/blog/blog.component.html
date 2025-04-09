@@ -2,10 +2,12 @@
   <div class="container">
     <h1 class="blog-title animate-item">Blog Huzur Mostar</h1>
     <p class="blog-intro animate-item">
-      Dobrodošli na naš blog! Ovdje dijelimo savjete o njezi cvijeća, inspiraciju za uređenje prostora, 
-      i zanimljivosti iz svijeta floralistike.
+      Huzur blog je jedna nova dimenzija cvijetnog druženja i nastavak huzur priče. Jedan netipični blog o životnom putu
+      jedne fine poduzetničke priče, priče o cvijeću, o sreći, o nadi i svemu pozitivnom što huzur oči pokušavaju
+      pronaći u svijetu koji ga okružuje.
+      Da svakim novim blogom Huzur budemo i Huzur nađemo.
     </p>
-    
+
     <div class="blog-posts-container">
       <div class="blog-post animate-item" *ngFor="let post of blogPosts">
         <div class="blog-post-image">
@@ -19,35 +21,25 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Show message if no posts are available -->
     <div class="no-posts" *ngIf="blogPosts.length === 0">
       <p>Trenutno nema dostupnih članaka. Molimo vas, provjerite ponovno kasnije.</p>
     </div>
-    
+
     <!-- Pagination controls -->
     <div class="pagination" *ngIf="totalPages > 1">
       <!-- Previous button -->
-      <button 
-        class="pagination-btn prev" 
-        [class.disabled]="currentPage === 1"
-        (click)="loadPage(currentPage - 1)"
-        [disabled]="currentPage === 1"
-        aria-label="Previous page"
-      >
+      <button class="pagination-btn prev" [class.disabled]="currentPage === 1" (click)="loadPage(currentPage - 1)"
+        [disabled]="currentPage === 1" aria-label="Previous page">
         <i class="fas fa-chevron-left"></i>
       </button>
-      
+
       <!-- Page numbers -->
       <ng-container *ngFor="let page of getPageNumbers()">
         <ng-container *ngIf="page !== -1; else ellipsis">
-          <button 
-            class="pagination-btn" 
-            [class.active]="currentPage === page"
-            (click)="loadPage(page)"
-            [attr.aria-current]="currentPage === page ? 'page' : null"
-            [attr.aria-label]="'Page ' + page"
-          >
+          <button class="pagination-btn" [class.active]="currentPage === page" (click)="loadPage(page)"
+            [attr.aria-current]="currentPage === page ? 'page' : null" [attr.aria-label]="'Page ' + page">
             {{ page }}
           </button>
         </ng-container>
@@ -55,17 +47,12 @@
           <span class="pagination-ellipsis" aria-hidden="true">...</span>
         </ng-template>
       </ng-container>
-      
+
       <!-- Next button -->
-      <button 
-        class="pagination-btn next" 
-        [class.disabled]="currentPage === totalPages"
-        (click)="loadPage(currentPage + 1)"
-        [disabled]="currentPage === totalPages"
-        aria-label="Next page"
-      >
+      <button class="pagination-btn next" [class.disabled]="currentPage === totalPages"
+        (click)="loadPage(currentPage + 1)" [disabled]="currentPage === totalPages" aria-label="Next page">
         <i class="fas fa-chevron-right"></i>
       </button>
     </div>
   </div>
-</section> 
+</section>
