@@ -61,6 +61,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
     }
+    
+    // Remove mobile menu class when component is destroyed
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.remove('mobile-menu-open');
+    }
   }
 
   toggleMobileMenu(): void {
@@ -68,11 +73,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.mobileMenuOpen = !this.mobileMenuOpen;
       this.isProductsDropdownOpen = false;
       
-      // Add a class to the body to prevent scrolling when menu is open
+      // Toggle body class to prevent scrolling
       if (this.mobileMenuOpen) {
         document.body.classList.add('mobile-menu-open');
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
       } else {
         document.body.classList.remove('mobile-menu-open');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
       }
     }
   }
