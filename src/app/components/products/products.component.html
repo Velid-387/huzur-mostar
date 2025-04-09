@@ -1,74 +1,21 @@
 <section id="products" class="animate-section">
     <div class="container">
         <h2 class="animate-item">Naša ponuda</h2>
-        <p class="animate-item">Browse our selection of handcrafted arrangements, perfect for any occasion.</p>
-        
-        <!-- Dried Flowers Section -->
-        <div id="driedFlowers" class="product-section animate-item">
-            <h3>Huzur aranžmani sa suhim cvijećem</h3>
-            <p>Bezvremenske kompozicije koje zadržavaju svoju ljepotu zauvijek.</p>
-            
-            <div class="carousel-container">
-                <div class="carousel-wrapper" 
-                     [ngClass]="getCarouselWrapperClass('driedFlowers')"
-                     [style.transform]="'translateX(' + carouselStates['driedFlowers'].translateX + 'px)'">
-                    <div class="product-card" 
-                        *ngFor="let product of carouselStates['driedFlowers'].products; let i = index"
-                        [class.active]="isActive('driedFlowers', i)"
-                        [class.left]="isLeftProduct('driedFlowers', i)"
-                        [class.right]="isRightProduct('driedFlowers', i)">
-                        <div class="product-card-inner">
-                            <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
-                            <div class="product-info">
-                                <h3>{{ product.title }}</h3>
-                                <p>{{ product.description }}</p>
-                            </div>
-                            <div class="auto-scroll-indicator" *ngIf="showTimer('driedFlowers', i)">
-                                <svg class="timer-svg" viewBox="0 0 32 32">
-                                    <circle class="timer-background" cx="16" cy="16" r="14"></circle>
-                                    <circle class="timer-progress" 
-                                            cx="16" cy="16" r="14" 
-                                            [style.strokeDashoffset]="carouselStates['driedFlowers'].timerProgress">
-                                    </circle>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="carousel-controls">
-                    <button class="carousel-control prev" (click)="prevProduct('driedFlowers')" aria-label="Previous product">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-control next" (click)="nextProduct('driedFlowers')" aria-label="Next product">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                
-                <div class="carousel-dots">
-                    <span 
-                        class="dot" 
-                        *ngFor="let product of carouselStates['driedFlowers'].originalProducts; let i = index"
-                        [class.active]="i === carouselStates['driedFlowers'].realActiveIndex"
-                        (click)="goToProduct('driedFlowers', i)">
-                    </span>
-                </div>
-            </div>
-        </div>
+        <p class="animate-item">Uživajte u odabranoj huzur ponudi ručno rađenih cvijetnih aranžmana prilagođenih
+            raznoraznim životnim prilikama.</p>
 
         <!-- Fresh Flowers Section -->
         <div id="freshFlowers" class="product-section animate-item">
             <h3>Huzur aranžmani sa svježim cvijećem</h3>
-            <p>Prekrasni buketi svježeg cvijeća za svaku priliku.</p>
-            
+            <p>Unikatni cvijetni aranžmani svježeg cvijeća pripremljeni s ljubavlju i pažnjom da upotpune svaku priliku.
+                U ponudi se nalaze buketi, ikebane, aranžmani u vazni, korpice, cvijetni boxevi.</p>
+
             <div class="carousel-container">
-                <div class="carousel-wrapper" 
-                     [ngClass]="getCarouselWrapperClass('freshFlowers')"
-                     [style.transform]="'translateX(' + carouselStates['freshFlowers'].translateX + 'px)'">
-                    <div class="product-card" 
+                <div class="carousel-wrapper" [ngClass]="getCarouselWrapperClass('freshFlowers')"
+                    [style.transform]="'translateX(' + carouselStates['freshFlowers'].translateX + 'px)'">
+                    <div class="product-card"
                         *ngFor="let product of carouselStates['freshFlowers'].products; let i = index"
-                        [class.active]="isActive('freshFlowers', i)"
-                        [class.left]="isLeftProduct('freshFlowers', i)"
+                        [class.active]="isActive('freshFlowers', i)" [class.left]="isLeftProduct('freshFlowers', i)"
                         [class.right]="isRightProduct('freshFlowers', i)">
                         <div class="product-card-inner">
                             <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
@@ -79,28 +26,28 @@
                             <div class="auto-scroll-indicator" *ngIf="showTimer('freshFlowers', i)">
                                 <svg class="timer-svg" viewBox="0 0 32 32">
                                     <circle class="timer-background" cx="16" cy="16" r="14"></circle>
-                                    <circle class="timer-progress" 
-                                            cx="16" cy="16" r="14" 
-                                            [style.strokeDashoffset]="carouselStates['freshFlowers'].timerProgress">
+                                    <circle class="timer-progress" cx="16" cy="16" r="14"
+                                        [style.strokeDashoffset]="carouselStates['freshFlowers'].timerProgress">
                                     </circle>
                                 </svg>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="carousel-controls">
-                    <button class="carousel-control prev" (click)="prevProduct('freshFlowers')" aria-label="Previous product">
+                    <button class="carousel-control prev" (click)="prevProduct('freshFlowers')"
+                        aria-label="Previous product">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="carousel-control next" (click)="nextProduct('freshFlowers')" aria-label="Next product">
+                    <button class="carousel-control next" (click)="nextProduct('freshFlowers')"
+                        aria-label="Next product">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-                
+
                 <div class="carousel-dots">
-                    <span 
-                        class="dot" 
+                    <span class="dot"
                         *ngFor="let product of carouselStates['freshFlowers'].originalProducts; let i = index"
                         [class.active]="i === carouselStates['freshFlowers'].realActiveIndex"
                         (click)="goToProduct('freshFlowers', i)">
@@ -109,19 +56,70 @@
             </div>
         </div>
 
-        <!-- Magnets Section -->
-        <div id="magnets" class="product-section animate-item">
-            <h3>Huzur magneti</h3>
-            <p>Jedinstveni magneti s cvjetnim motivima za vaš dom.</p>
-            
+        <!-- Dried Flowers Section -->
+        <div id="driedFlowers" class="product-section animate-item">
+            <h3>Huzur aranžmani sa suhim cvijećem</h3>
+            <p>Bezvremenske cvijetne kompozicije u čijoj ljepoti se uživa na duge staze.
+                U ponudi se nalaze buketići/magnetići, aranžmani u vazni.</p>
+
             <div class="carousel-container">
-                <div class="carousel-wrapper" 
-                     [ngClass]="getCarouselWrapperClass('magnets')"
-                     [style.transform]="'translateX(' + carouselStates['magnets'].translateX + 'px)'">
-                    <div class="product-card" 
-                        *ngFor="let product of carouselStates['magnets'].products; let i = index"
-                        [class.active]="isActive('magnets', i)"
-                        [class.left]="isLeftProduct('magnets', i)"
+                <div class="carousel-wrapper" [ngClass]="getCarouselWrapperClass('driedFlowers')"
+                    [style.transform]="'translateX(' + carouselStates['driedFlowers'].translateX + 'px)'">
+                    <div class="product-card"
+                        *ngFor="let product of carouselStates['driedFlowers'].products; let i = index"
+                        [class.active]="isActive('driedFlowers', i)" [class.left]="isLeftProduct('driedFlowers', i)"
+                        [class.right]="isRightProduct('driedFlowers', i)">
+                        <div class="product-card-inner">
+                            <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
+                            <div class="product-info">
+                                <h3>{{ product.title }}</h3>
+                                <p>{{ product.description }}</p>
+                            </div>
+                            <div class="auto-scroll-indicator" *ngIf="showTimer('driedFlowers', i)">
+                                <svg class="timer-svg" viewBox="0 0 32 32">
+                                    <circle class="timer-background" cx="16" cy="16" r="14"></circle>
+                                    <circle class="timer-progress" cx="16" cy="16" r="14"
+                                        [style.strokeDashoffset]="carouselStates['driedFlowers'].timerProgress">
+                                    </circle>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-control prev" (click)="prevProduct('driedFlowers')"
+                        aria-label="Previous product">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-control next" (click)="nextProduct('driedFlowers')"
+                        aria-label="Next product">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="carousel-dots">
+                    <span class="dot"
+                        *ngFor="let product of carouselStates['driedFlowers'].originalProducts; let i = index"
+                        [class.active]="i === carouselStates['driedFlowers'].realActiveIndex"
+                        (click)="goToProduct('driedFlowers', i)">
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Potted plants -->
+        <div id="magnets" class="product-section animate-item">
+            <h3>Huzur lončanice</h3>
+            <p>Raznovrsne saksijske sobne i vrtne biljke su idealan način da životni prostor istovremeno oplemene i
+                unesu i
+                dašak topline i dašak svježine.</p>
+
+            <div class="carousel-container">
+                <div class="carousel-wrapper" [ngClass]="getCarouselWrapperClass('magnets')"
+                    [style.transform]="'translateX(' + carouselStates['magnets'].translateX + 'px)'">
+                    <div class="product-card" *ngFor="let product of carouselStates['magnets'].products; let i = index"
+                        [class.active]="isActive('magnets', i)" [class.left]="isLeftProduct('magnets', i)"
                         [class.right]="isRightProduct('magnets', i)">
                         <div class="product-card-inner">
                             <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
@@ -132,29 +130,27 @@
                             <div class="auto-scroll-indicator" *ngIf="showTimer('magnets', i)">
                                 <svg class="timer-svg" viewBox="0 0 32 32">
                                     <circle class="timer-background" cx="16" cy="16" r="14"></circle>
-                                    <circle class="timer-progress" 
-                                            cx="16" cy="16" r="14" 
-                                            [style.strokeDashoffset]="carouselStates['magnets'].timerProgress">
+                                    <circle class="timer-progress" cx="16" cy="16" r="14"
+                                        [style.strokeDashoffset]="carouselStates['magnets'].timerProgress">
                                     </circle>
                                 </svg>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="carousel-controls">
-                    <button class="carousel-control prev" (click)="prevProduct('magnets')" aria-label="Previous product">
+                    <button class="carousel-control prev" (click)="prevProduct('magnets')"
+                        aria-label="Previous product">
                         <i class="fas fa-chevron-left"></i>
                     </button>
                     <button class="carousel-control next" (click)="nextProduct('magnets')" aria-label="Next product">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-                
+
                 <div class="carousel-dots">
-                    <span 
-                        class="dot" 
-                        *ngFor="let product of carouselStates['magnets'].originalProducts; let i = index"
+                    <span class="dot" *ngFor="let product of carouselStates['magnets'].originalProducts; let i = index"
                         [class.active]="i === carouselStates['magnets'].realActiveIndex"
                         (click)="goToProduct('magnets', i)">
                     </span>

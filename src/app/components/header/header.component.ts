@@ -26,9 +26,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isProductsDropdownOpen: boolean = false;
   
   productSections = [
-    { id: 'driedFlowers', name: 'Suho cvijeće' },
     { id: 'freshFlowers', name: 'Svježe cvijeće' },
-    { id: 'magnets', name: 'Magneti' }
+    { id: 'driedFlowers', name: 'Suho cvijeće' },
+    { id: 'magnets', name: 'Lončanice' }
   ];
   
   ngOnInit(): void {
