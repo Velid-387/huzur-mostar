@@ -1,6 +1,9 @@
 [build]
-  command = "ng build"
+  command = "npm run build:netlify"
   publish = "dist/huzur-mostar/browser"
+  [build.environment]
+    NODE_OPTIONS = "--max-old-space-size=4096"
+    NODE_VERSION = "20.11.1"
 
 [[headers]]
   for = "/*"
