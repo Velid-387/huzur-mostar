@@ -324,6 +324,54 @@
     :host-context(body.dark-mode) .mobile-nav-menu li {
         border-color: var(--dark-border-color, #2d2d2d);
     }
+
+    .mobile-nav-menu .contact-number {
+        padding: 15px 20px;
+        margin-top: 10px;
+        border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    }
+
+    .mobile-nav-menu .contact-number a {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 25px;
+        background: linear-gradient(135deg, var(--primary-color, #d14d72) 0%, var(--primary-color-light, #ff6b98) 100%);
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(209, 77, 114, 0.2);
+        width: 100%;
+    }
+
+    .mobile-nav-menu .contact-number a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(209, 77, 114, 0.3);
+        background: linear-gradient(135deg, var(--primary-color-light, #ff6b98) 0%, var(--primary-color, #d14d72) 100%);
+    }
+
+    .mobile-nav-menu .contact-number i {
+        margin-right: 8px;
+    }
+
+    /* Dark mode adjustments for contact number */
+    :host-context(body.dark-mode) .mobile-nav-menu .contact-number {
+        border-top-color: var(--dark-border-color, rgba(255, 255, 255, 0.1));
+    }
+
+    :host-context(body.dark-mode) .mobile-nav-menu .contact-number a {
+        background: linear-gradient(135deg, var(--primary-color-light, #ff6b98) 0%, var(--primary-color, #d14d72) 100%);
+        box-shadow: 0 4px 15px rgba(255, 107, 152, 0.2);
+    }
+
+    :host-context(body.dark-mode) .mobile-nav-menu .contact-number a:hover {
+        background: linear-gradient(135deg, var(--primary-color, #d14d72) 0%, var(--primary-color-light, #ff6b98) 100%);
+        box-shadow: 0 6px 20px rgba(255, 107, 152, 0.3);
+    }
 }
 
 /* Remove the duplicate mobile menu styles that were added */
