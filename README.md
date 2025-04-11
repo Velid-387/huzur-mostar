@@ -36,6 +36,11 @@ The name "Huzur" represents peace and tranquility in all aspects of life - refle
 - **Social Media Integration** - Links to Instagram, Facebook and location
 - **FAQ Section** - Answers to common customer questions
 - **Testimonials** - Customer reviews and feedback
+- **Blog Section** - Articles and updates about floral arrangements and events
+- **Wedding Services** - Special section dedicated to wedding arrangements
+- **Privacy Policy** - Detailed information about data handling
+- **Terms of Service** - User agreement and service terms
+- **Success Feedback** - Form submission confirmation pages
 
 ## Technology Stack
 
@@ -79,6 +84,19 @@ huzur-mostar/
 ├── src/                    # Source files
 │   ├── app/                # Application components and services
 │   │   ├── components/     # UI components
+│   │   │   ├── about/      # About section
+│   │   │   ├── blog/       # Blog section
+│   │   │   ├── contact/    # Contact form
+│   │   │   ├── faq/        # FAQ section
+│   │   │   ├── footer/     # Footer component
+│   │   │   ├── header/     # Header/Navigation
+│   │   │   ├── home/       # Home page
+│   │   │   ├── landing/    # Landing page
+│   │   │   ├── mladenci/   # Wedding services
+│   │   │   ├── privacy/    # Privacy policy
+│   │   │   ├── products/   # Product showcase
+│   │   │   ├── terms/      # Terms of service
+│   │   │   └── testimonials/ # Customer reviews
 │   │   ├── services/       # Services for animations, scrolling, etc.
 │   │   ├── app.config.ts   # App configuration
 │   │   └── app.routes.ts   # Routing configuration
