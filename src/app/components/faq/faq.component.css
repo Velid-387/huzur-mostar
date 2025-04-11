@@ -6,6 +6,15 @@
 
 .faq-answer ::ng-deep ul,
 .faq-answer ::ng-deep ol {
-    margin-left: 1rem;
     padding-left: 1rem;
+} 
+
+.faq-answer ::ng-deep ul {
+    list-style: none;
+}
+
+.faq-answer ::ng-deep ul li::before {
+    content: "💐";
+    margin-right: 0.5rem;
+    display: inline-block;
 } 
