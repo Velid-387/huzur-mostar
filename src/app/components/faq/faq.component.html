@@ -4,7 +4,7 @@
         <div class="faq-container">
             <div class="faq-item animate-item" *ngFor="let item of faqItems">
                 <div class="faq-question" (click)="toggleFaq($event)">{{ item.question }}</div>
-                <div class="faq-answer">{{ item.answer }}</div>
+                <div class="faq-answer" [innerHTML]="item.answer"></div>
             </div>
         </div>
     </div>
