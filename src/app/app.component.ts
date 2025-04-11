@@ -4,12 +4,6 @@ import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
-import { ProductsComponent } from './components/products/products.component';
-import { FaqComponent } from './components/faq/faq.component';
-import { TestimonialsComponent } from './components/testimonials/testimonials.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { AnimationService } from './services/animation.service';
@@ -21,12 +15,6 @@ import { AnimationService } from './services/animation.service';
     CommonModule, 
     RouterOutlet,
     HeaderComponent,
-    HomeComponent,
-    AboutComponent,
-    ProductsComponent,
-    FaqComponent,
-    TestimonialsComponent,
-    ContactComponent,
     FooterComponent
   ],
   templateUrl: './app.component.html',
