@@ -36,9 +36,6 @@ export class BlogComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Scroll to top when blog page loads
-      window.scrollTo(0, 0);
-      
       // Set page title
       this.titleService.setTitle('Blog');
       
@@ -141,9 +138,12 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.blogService.getPostsForPage(pageNumber, this.itemsPerPage).subscribe(posts => {
       this.blogPosts = posts;
       
-      // Scroll to top when changing pages
-      if (isPlatformBrowser(this.platformId)) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Only scroll to top when explicitly changing pages, not during initial load
+      if (isPlatformBrowser(this.platformId) && document.activeElement instanceof HTMLElement) {
+        const isPageButton = document.activeElement.closest('.pagination-btn');
+        if (isPageButton) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       }
       
       // Initialize animations for new content

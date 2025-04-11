@@ -49,9 +49,6 @@ export class AppComponent implements OnInit {
       this.router.events.pipe(
         filter(event => event instanceof NavigationEnd)
       ).subscribe(() => {
-        // Scroll to top of page
-        window.scrollTo(0, 0);
-        
         // Re-initialize animations on navigation
         setTimeout(() => {
           this.animationService.initAnimations();

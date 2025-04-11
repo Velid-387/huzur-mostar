@@ -16,20 +16,21 @@ export class ScrollService {
       filter(event => event instanceof Scroll)
     ).subscribe((event: Scroll) => {
       if (event.position) {
-        // Backward navigation
-        this.viewportScroller.scrollToPosition(event.position);
+        // Backward navigation - use the stored position
+        setTimeout(() => {
+          if (event.position) {
+            this.viewportScroller.scrollToPosition(event.position);
+          }
+        });
       } else if (event.anchor) {
         // Anchor navigation
         setTimeout(() => {
-          // Add null check here
           if (event.anchor) {
             this.scrollToElementById(event.anchor);
           }
-        }, 100);
-      } else {
-        // Forward navigation
-        this.viewportScroller.scrollToPosition([0, 0]);
+        });
       }
+      // For forward navigation, let the router handle it
     });
   }
 

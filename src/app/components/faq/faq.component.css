@@ -1,0 +1,20 @@
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+} 
+
+.faq-answer ::ng-deep ul,
+.faq-answer ::ng-deep ol {
+    padding-left: 1rem;
+} 
+
+.faq-answer ::ng-deep ul {
+    list-style: none;
+}
+
+.faq-answer ::ng-deep ul li::before {
+    content: "💐";
+    margin-right: 0.5rem;
+    display: inline-block;
+} 

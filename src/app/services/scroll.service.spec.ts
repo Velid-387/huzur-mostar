@@ -31,7 +31,7 @@ describe('ScrollService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should handle backward navigation with position', () => {
+  it('should handle backward navigation with position', (done) => {
     // Create Scroll instance that matches what the service is expecting
     const scrollEvent = new Scroll(
       new NavigationEnd(1, 'url', 'urlAfterRedirects'),
@@ -42,11 +42,15 @@ describe('ScrollService', () => {
     // Trigger the Scroll event
     routerEventsSubject.next(scrollEvent);
 
-    // Verify the service called the viewport scroller with the correct position
-    expect(viewportScroller.scrollToPosition).toHaveBeenCalledWith([100, 200]);
+    // Need to wait for the setTimeout in the service
+    setTimeout(() => {
+      expect(viewportScroller.scrollToPosition).toHaveBeenCalledWith([100, 200]);
+      done();
+    });
   });
 
-  it('should handle forward navigation (no position, no anchor)', () => {
+  // We no longer test forward navigation as we're letting the router handle it
+  it('should let router handle forward navigation', () => {
     // Create Scroll instance that matches what the service is expecting
     const scrollEvent = new Scroll(
       new NavigationEnd(1, 'url', 'urlAfterRedirects'),
@@ -57,8 +61,8 @@ describe('ScrollService', () => {
     // Trigger the Scroll event
     routerEventsSubject.next(scrollEvent);
 
-    // Verify the service scrolled to top
-    expect(viewportScroller.scrollToPosition).toHaveBeenCalledWith([0, 0]);
+    // Verify the service did not call scrollToPosition
+    expect(viewportScroller.scrollToPosition).not.toHaveBeenCalled();
   });
 
   it('should handle anchor navigation', (done) => {
@@ -79,7 +83,7 @@ describe('ScrollService', () => {
     setTimeout(() => {
       expect(service.scrollToElementById).toHaveBeenCalledWith('test-anchor');
       done();
-    }, 150); // Wait slightly longer than the setTimeout in the service
+    });
   });
 
   it('should scroll to element by ID', () => {

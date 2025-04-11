@@ -22,11 +22,11 @@ export class FaqComponent implements OnInit {
     },
     {
       question: 'Kako se kreću cijene buketa?',
-      answer: 'Cijene buketa variraju od želje kupaca. | Buketi veličine S 15-25KM | Buketi veličine M 30-45KM | Buketi veličine L 50-70KM | Buketi veličine XL 75-95KM | Buketi veličine XXL <100KM'
+      answer: 'Cijene buketa variraju od želje kupaca:<ul><li>Buketi veličine S: 15-25KM</li><li>Buketi veličine M: 30-45KM</li><li>Buketi veličine L: 50-70KM</li><li>Buketi veličine XL: 75-95KM</li><li>Buketi veličine XXL: &gt;100KM</li></ul>'
     },
     {
       question: 'Koji su načini plaćanja?',
-      answer: 'Dostupne opcije plaćanja su gotovinsko i elektrnosko/žiralno plaćanje.'
+      answer: 'Dostupne opcije plaćanja su gotovinsko i elektronsko/žiralno plaćanje.'
     },
     {
       question: 'Da li u ponudi imate dostavu?',
