@@ -11,7 +11,8 @@ const routerOptions = {
   scrollPositionRestoration: 'enabled',
   anchorScrolling: 'enabled',
   scrollOffset: [0, 64], // Adjust based on your header height
-  onSameUrlNavigation: 'reload' as OnSameUrlNavigation
+  onSameUrlNavigation: 'reload' as OnSameUrlNavigation,
+  enableViewTransitions: true
 };
 
 export const appConfig: ApplicationConfig = {
