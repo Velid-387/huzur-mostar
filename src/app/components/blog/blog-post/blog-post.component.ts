@@ -41,8 +41,8 @@ export class BlogPostComponent implements OnInit {
       const currentPage = urlParams.get('page') || '1';
       sessionStorage.setItem('blogCurrentPage', currentPage);
       
-      // Scroll to top when component loads
-      window.scrollTo(0, 0);
+      // Store referrer page information
+      this.storeReferrerPage();
       
       // Get the post slug from the route parameters
       this.route.paramMap.subscribe(params => {
@@ -60,7 +60,7 @@ export class BlogPostComponent implements OnInit {
                 // Set page title
                 this.titleService.setTitle(post.title);
                 
-                // Initialize animations
+                // Initialize animations after a short delay to ensure content is rendered
                 setTimeout(() => {
                   this.animationService.initAnimations();
                 }, 100);
