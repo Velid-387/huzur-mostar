@@ -26,7 +26,7 @@ export class FaqComponent implements OnInit {
     },
     {
       question: 'Koji su načini plaćanja?',
-      answer: 'Dostupne opcije plaćanja su gotovinsko i elektrnosko/žiralno plaćanje.'
+      answer: 'Dostupne opcije plaćanja su gotovinsko i elektronsko/žiralno plaćanje.'
     },
     {
       question: 'Da li u ponudi imate dostavu?',

@@ -4,7 +4,7 @@
 
 ### Jesen
 
-"Sve što možeš zamisliti, možeš i ostvariti."
+*"Sve što možeš zamisliti, možeš i ostvariti."*
 Zvuči predobro da bi bilo istinito, a u isto vrijeme i preprivlačno da bi se želja tek tako odbacila.
 Želja za huzurom je davno prerasla u ideju, ali je čekala pravo vrijeme za konkretizaciju sa realnim planovima i koracima ka realizaciji.
 Bliski, iskreni i pozitivni ljudi su pored početnog kapitala najbitniji faktor na putu realizacije jedne ideje.
@@ -34,4 +34,4 @@ Da sve iskrene nade i iskrene želje kao i iskreni ljudi huzur budu i huzur nađ
 
 ---
 
-*Huzur sretan ti prvi mali veliki rođendan 🎉* 
+*Huzur, sretan ti prvi mali veliki rođendan 🎉* 
