@@ -3,3 +3,9 @@
     margin: 0 auto;
     padding: 20px;
 } 
+
+.faq-answer ::ng-deep ul,
+.faq-answer ::ng-deep ol {
+    margin-left: 1rem;
+    padding-left: 1rem;
+} 
