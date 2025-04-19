@@ -16,6 +16,7 @@
 .hero-content p {
   margin-bottom: 2rem;
   max-width: 600px;
+  color: inherit;
 }
 
 /* Scroll indicator styling */
@@ -138,11 +139,7 @@
 
 /* Ensure consistent positioning between light and dark mode */
 :host-context(body.dark-mode) .hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  color: var(--text-color-dark, #fff); /* Text color for dark mode */
 }
 
 /* Dark mode chevron styling */
@@ -167,4 +164,52 @@
 /* Add space for when the ngIf removes the indicator */
 :host-context(section#home) {
   position: relative;
+}
+
+#home {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.slideshow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Slide overlay styles for light mode */
+.slide::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.65); /* Light semi-transparent overlay */
+}
+
+/* Dark mode styles */
+:host-context(body.dark-mode) .slide::after {
+  background: rgba(0, 0, 0, 0.65); /* Dark semi-transparent overlay */
 }
