@@ -1,4 +1,10 @@
 <section id="home" class="animate-section">
+    <div class="slideshow-container">
+        <div class="slide" *ngFor="let image of backgroundImages; let i = index" 
+             [ngClass]="{'active': currentImageIndex === i}"
+             [style.backgroundImage]="'url(' + image + ')'">
+        </div>
+    </div>
     <div class="container">
         <div class="hero-content animate-item">
             <div class="animated-text-container">

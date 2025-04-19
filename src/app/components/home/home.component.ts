@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, HostListener, PLATFORM_ID } from '@angular/core';
+import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
 
@@ -9,15 +9,36 @@ import { ScrollService } from '../../services/scroll.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
   
   showScrollIndicator: boolean = true;
+  backgroundImages = [
+    'assets/img/home/huzur-home.png',
+    'assets/img/home/huzur-home-1.png',
+    'assets/img/home/huzur-home-2.png',
+    'assets/img/home/huzur-home-3.png',
+    'assets/img/home/huzur-home-4.png',
+    'assets/img/home/huzur-home-5.png'
+  ];
+  currentImageIndex = 0;
+  private slideInterval: any;
+  
+  constructor() { }
   
   ngOnInit(): void {
-    // Initialize with scroll indicator visible
-    this.showScrollIndicator = true;
+    if (isPlatformBrowser(this.platformId)) {
+      this.startSlideshow();
+      // Initialize with scroll indicator visible
+      this.showScrollIndicator = true;
+    }
+  }
+  
+  ngOnDestroy() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.stopSlideshow();
+    }
   }
   
   @HostListener('window:scroll', ['$event'])
@@ -36,6 +57,22 @@ export class HomeComponent implements OnInit {
   }
   
   scrollToSection(sectionId: string): void {
-    this.scrollService.scrollToElementById(sectionId);
+    if (isPlatformBrowser(this.platformId)) {
+      this.scrollService.scrollToElementById(sectionId);
+    }
+  }
+
+  private startSlideshow() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.slideInterval = setInterval(() => {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.backgroundImages.length;
+      }, 5000);
+    }
+  }
+
+  private stopSlideshow() {
+    if (isPlatformBrowser(this.platformId) && this.slideInterval) {
+      clearInterval(this.slideInterval);
+    }
   }
 }
