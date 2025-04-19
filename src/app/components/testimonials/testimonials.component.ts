@@ -13,44 +13,44 @@ export class TestimonialsComponent implements OnInit {
   
   testimonials = [
     {
-      content: 'Cvijeće koje sam dobila od Huzura bilo je prelijepo! Svježe, mirisno i predivno aranžirano. Svi su me pitali odakle je.',
-      name: 'Amina H.',
-      imagePath: 'assets/img/products/huzur-buket-6.png',
+      content: 'Hvala vama što se nam ukrasili ovaj dan. Baš mi je bilo lagano komunicirati s vama, još jedna od mnogih dokaza u nizu da su žene sjajne u poslu!',
+      name: '#huzurljudi',
+      imagePath: 'assets/img/testimonials/recenzija-1.png',
       flipped: false,
       cardFlipping: false
     },
     {
-      content: 'Naručila sam aranžman za rođendan svoje majke i bila sam oduševljena. Kvaliteta cvjetova je izvanredna, a isporuka je bila tačno na vrijeme.',
-      name: 'Emina B.',
-      imagePath: 'assets/img/products/huzur-buket-7.png',
+      content: 'Mali buket nam se baš, baš, baš svidio, očarane smo, i veliki nam se svidio, ali mali je posebnost, baš se prijateljica obradovala. Mašallah.',
+      name: '#huzurljudi',
+      imagePath: 'assets/img/testimonials/recenzija-2.png',
       flipped: false,
       cardFlipping: false
     },
     {
-      content: 'Huzur je moj prvi izbor za sve cvjetne potrebe. Njihovi aranžmani su uvijek prekrasni i dugotrajni, a osoblje ljubazno i profesionalno.',
-      name: 'Amir M.',
-      imagePath: 'assets/img/products/huzur-buket-11.png',
+      content: 'Želim vam se iskreno zahvaliti na predivnom buketu! Potpuno je nadmašio sva moja očekivanja. Kad sam rekla da želim da cvijeće priča, zaista ste to ostvarile! Svaka čast na vašoj kreativnosti i trudu. Vaš Huzur diplomant.',
+      name: '#huzurljudi',
+      imagePath: 'assets/img/testimonials/recenzija-3.png',
       flipped: false,
       cardFlipping: false
     },
     {
-      content: 'Oduševljena sam uslugom i kreativnošću koju Huzur pruža. Svaki put kad naručim, dobivam nešto posebno što nadmašuje moja očekivanja.',
-      name: 'Lejla S.',
-      imagePath: 'assets/img/products/huzur-buket-9.png',
+      content: 'Pišem vam samo da vas pohvalim. Vaš trud i rad. Hvala vam što postojite, što svakodnevno svojim postojanjem i radom dijelite toliko ljepote i pozitivizma. Uživam gledati kako rastete. Allah vam bereket povećao.',
+      name: '#huzurljudi',
+      imagePath: 'assets/img/testimonials/recenzija-4.png',
       flipped: false,
       cardFlipping: false
     },
     {
-      content: 'Naručio sam buket za godišnjicu braka i bio sam vrlo impresioniran kvalitetom i svježinom cvijeća. Definitivno ću ponovno koristiti njihove usluge.',
-      name: 'Edin D.',
-      imagePath: 'assets/img/products/huzur-buket-10.png',
+      content: 'Vau, koje ste vi osvježenje u ovom gradu.',
+      name: '#huzurljudi',
+      imagePath: 'assets/img/testimonials/recenzija-5.png',
       flipped: false,
       cardFlipping: false
     },
     {
-      content: 'Cvijeće za moje vjenčanje bilo je savršeno! Huzur je razumio točno što sam želio i isporučio čarobne aranžmane koji su oduševili sve goste.',
-      name: 'Selma K.',
-      imagePath: 'assets/img/products/huzur-buket-8.png',
+      content: 'Tamo nećete kupiti samo cvijet, tamo ćete dotaknuti svoj svijet. Huzur mir i spokoj znači, a valjda cvijeće tako i zrači.',
+      name: '#huzurljudi',
+      imagePath: 'assets/img/testimonials/recenzija-6.png',
       flipped: false,
       cardFlipping: false
     }
