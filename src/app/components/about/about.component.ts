@@ -15,4 +15,14 @@ export class AboutComponent {
   scrollToSection(sectionId: string): void {
     this.scrollService.scrollToElementById(sectionId);
   }
+
+  toggleImageOverlay(event: Event): void {
+    const target = event.currentTarget as HTMLElement;
+    if (window.innerWidth <= 768) { // Only for mobile devices
+      target.classList.add('active');
+      setTimeout(() => {
+        target.classList.remove('active');
+      }, 3000); // Remove effect after 3 seconds
+    }
+  }
 }

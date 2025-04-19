@@ -20,7 +20,7 @@
                     nije miran.</p>
                 <a (click)="scrollToSection('contact')" class="btn">Kontaktirajte nas</a>
             </div>
-            <div class="about-image animate-item">
+            <div class="about-image animate-item" (click)="toggleImageOverlay($event)">
                 <img src="assets/img/huzur-radnja.png" alt="Our flower shop" class="image">
                 <div class="image-overlay">Maršala Tita 134</div>
             </div>
