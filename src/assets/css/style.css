@@ -944,20 +944,62 @@ input:checked ~ .toggle-icon:hover .moon-mask {
         margin: 0;
         width: 100%;
         flex: 0 0 100%;
-        height: 250px;
+        min-height: 300px;
+        height: auto;
     }
     
     .testimonial-card-inner {
         /* No flip on mobile */
         transform-style: preserve-3d;
+        min-height: 300px;
+        height: auto;
     }
     
-    .testimonial-card-front, .testimonial-card-back {
+    .testimonial-card-front {
+        min-height: 300px;
+        height: auto;
+        background-color: #f8f9fa;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .testimonial-card-back {
+        min-height: 300px;
         height: 100%;
+        padding: 0;
+        background-color: #f8f9fa;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .testimonial-card-back img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .testimonial-card p:first-of-type {
+        flex: 1;
+        padding: 20px 15px 70px;
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.6;
+        overflow: visible;
     }
     
     .testimonial-name {
         height: 50px;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        font-size: 1.8rem;
+    }
+
+    body.dark-mode .testimonial-card-front,
+    body.dark-mode .testimonial-card-back {
+        background-color: var(--bg-dark);
     }
 }
 
