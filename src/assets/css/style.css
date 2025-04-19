@@ -386,12 +386,26 @@ section#home::after {
     transition: opacity 0.3s ease;
 }
 
-.about-image:hover .image {
-    opacity: 0.5;
+/* Desktop hover effect */
+@media (min-width: 769px) {
+    .about-image:hover .image {
+        opacity: 0.5;
+    }
+
+    .about-image:hover .image-overlay {
+        opacity: 1;
+    }
 }
 
-.about-image:hover .image-overlay {
-    opacity: 1;
+/* Mobile click effect with timeout */
+@media (max-width: 768px) {
+    .about-image.active .image {
+        opacity: 0.5;
+    }
+
+    .about-image.active .image-overlay {
+        opacity: 1;
+    }
 }
 
 /* Products section */
