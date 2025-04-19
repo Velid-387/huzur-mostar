@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   showScrollIndicator: boolean = true;
   backgroundImages = [
+    'assets/img/home/huzur-home.png',
     'assets/img/home/huzur-home-1.png',
     'assets/img/home/huzur-home-2.png',
     'assets/img/home/huzur-home-3.png',
