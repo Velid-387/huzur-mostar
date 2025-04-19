@@ -170,6 +170,18 @@
     position: relative;
     min-height: 100vh;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .slideshow-container {
@@ -212,4 +224,33 @@
 /* Dark mode styles */
 :host-context(body.dark-mode) .slide::after {
   background: rgba(0, 0, 0, 0.65); /* Dark semi-transparent overlay */
+}
+
+/* Ensure dark mode maintains the same layout */
+:host-context(body.dark-mode) #home {
+    min-height: 100vh;
+}
+
+:host-context(body.dark-mode) .container {
+    height: 100vh;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    #home, 
+    :host-context(body.dark-mode) #home {
+        min-height: 100vh;
+    }
+
+    .container,
+    :host-context(body.dark-mode) .container {
+        height: 100vh;
+    }
+
+    .hero-content {
+        padding: 2rem 1rem;
+        margin-top: 1rem;
+        width: 100%;
+        max-width: 100%;
+    }
 }
