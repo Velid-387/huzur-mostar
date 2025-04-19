@@ -36,19 +36,49 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   // Product categories
   driedFlowers: Product[] = [
     {
-      imgSrc: 'assets/img/products/huzur-buket-9.png',
+      imgSrc: 'assets/img/products/magnets/magnet-1.png',
       imgAlt: 'Dried Flower Bouquet',
       title: 'Eternal Spring',
       description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
     },
     {
-      imgSrc: 'assets/img/products/huzur-buket-10.png',
+      imgSrc: 'assets/img/products/dry-flowers/suhi-aranzman-1.png',
       imgAlt: 'Dried Flower Bouquet',
       title: 'Eternal Spring',
       description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
     },
     {
-      imgSrc: 'assets/img/products/huzur-buket-11.png',
+      imgSrc: 'assets/img/products/magnets/magnet-2.png',
+      imgAlt: 'Dried Flower Bouquet',
+      title: 'Eternal Spring',
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
+    },
+    {
+      imgSrc: 'assets/img/products/magnets/magnet-3.png',
+      imgAlt: 'Dried Flower Bouquet',
+      title: 'Eternal Spring',
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
+    },
+    {
+      imgSrc: 'assets/img/products/dry-flowers/suhi-aranzman-2.png',
+      imgAlt: 'Dried Flower Bouquet',
+      title: 'Eternal Spring',
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
+    },
+    {
+      imgSrc: 'assets/img/products/magnets/magnet-4.png',
+      imgAlt: 'Dried Flower Bouquet',
+      title: 'Eternal Spring',
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
+    },
+    {
+      imgSrc: 'assets/img/products/magnets/magnet-5.png',
+      imgAlt: 'Dried Flower Bouquet',
+      title: 'Eternal Spring',
+      description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
+    },
+    {
+      imgSrc: 'assets/img/products/dry-flowers/suhi-aranzman-3.png',
       imgAlt: 'Dried Flower Bouquet',
       title: 'Eternal Spring',
       description: 'A timeless arrangement of preserved flowers that maintain their beauty forever.'
@@ -57,19 +87,67 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   freshFlowers: Product[] = [
     {
-      imgSrc: 'assets/img/products/huzur-buket-12.png',
+      imgSrc: 'assets/img/products/bouquets/buket-1.png',
       imgAlt: 'Fresh Flower Bouquet',
       title: 'Classic Romance',
       description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
     },
     {
-      imgSrc: 'assets/img/products/huzur-buket-13.png',
+      imgSrc: 'assets/img/products/bouquets/buket-2.png',
       imgAlt: 'Fresh Flower Bouquet',
       title: 'Classic Romance',
       description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
     },
     {
-      imgSrc: 'assets/img/products/huzur-buket-14.png',
+      imgSrc: 'assets/img/products/bouquets/buket-3.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
+    },
+    {
+      imgSrc: 'assets/img/products/bouquets/buket-4.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
+    },
+    {
+      imgSrc: 'assets/img/products/bouquets/buket-5.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
+    },
+    {
+      imgSrc: 'assets/img/products/bouquets/buket-6.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
+    },
+    {
+      imgSrc: 'assets/img/products/bouquets/buket-7.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
+    },
+    {
+      imgSrc: 'assets/img/products/bouquets/buket-8.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
+    },
+    {
+      imgSrc: 'assets/img/products/bouquets/buket-9.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
+    },
+    {
+      imgSrc: 'assets/img/products/bouquets/buket-10.png',
+      imgAlt: 'Fresh Flower Bouquet',
+      title: 'Classic Romance',
+      description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
+    },
+    {
+      imgSrc: 'assets/img/products/bouquets/buket-11.png',
       imgAlt: 'Fresh Flower Bouquet',
       title: 'Classic Romance',
       description: 'Elegant arrangement of premium fresh roses, perfect for expressing love.'
@@ -78,19 +156,43 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   magnets: Product[] = [
     {
-      imgSrc: 'assets/img/products/huzur-magnet-1.png',
+      imgSrc: 'assets/img/products/potted-plants/loncanica-1.png',
       imgAlt: 'Decorative Magnet',
       title: 'Floral Magnet',
       description: 'Beautiful decorative magnets featuring preserved flowers.'
     },
     {
-      imgSrc: 'assets/img/products/huzur-magnet-1.png',
+      imgSrc: 'assets/img/products/potted-plants/loncanica-2.png',
       imgAlt: 'Decorative Magnet',
       title: 'Floral Magnet',
       description: 'Beautiful decorative magnets featuring preserved flowers.'
     },
     {
-      imgSrc: 'assets/img/products/huzur-magnet-1.png',
+      imgSrc: 'assets/img/products/potted-plants/loncanica-3.png',
+      imgAlt: 'Decorative Magnet',
+      title: 'Floral Magnet',
+      description: 'Beautiful decorative magnets featuring preserved flowers.'
+    },
+    {
+      imgSrc: 'assets/img/products/potted-plants/loncanica-4.png',
+      imgAlt: 'Decorative Magnet',
+      title: 'Floral Magnet',
+      description: 'Beautiful decorative magnets featuring preserved flowers.'
+    },
+    {
+      imgSrc: 'assets/img/products/potted-plants/loncanica-5.png',
+      imgAlt: 'Decorative Magnet',
+      title: 'Floral Magnet',
+      description: 'Beautiful decorative magnets featuring preserved flowers.'
+    },
+    {
+      imgSrc: 'assets/img/products/potted-plants/loncanica-6.png',
+      imgAlt: 'Decorative Magnet',
+      title: 'Floral Magnet',
+      description: 'Beautiful decorative magnets featuring preserved flowers.'
+    },
+    {
+      imgSrc: 'assets/img/products/potted-plants/loncanica-7.png',
       imgAlt: 'Decorative Magnet',
       title: 'Floral Magnet',
       description: 'Beautiful decorative magnets featuring preserved flowers.'
