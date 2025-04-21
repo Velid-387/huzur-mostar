@@ -41,7 +41,7 @@ export class TestimonialsComponent implements OnInit {
       cardFlipping: false
     },
     {
-      content: 'Vau, koje ste vi osvježenje u ovom gradu.',
+      content: 'Wow, koje ste vi osvježenje u ovom gradu.',
       name: '#huzurljudi',
       imagePath: 'assets/img/testimonials/recenzija-5.png',
       flipped: false,
