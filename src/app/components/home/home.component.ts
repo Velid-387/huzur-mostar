@@ -15,12 +15,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   showScrollIndicator: boolean = true;
   backgroundImages = [
-    'assets/img/home/huzur-home.png',
-    'assets/img/home/huzur-home-1.png',
-    'assets/img/home/huzur-home-2.png',
-    'assets/img/home/huzur-home-3.png',
-    'assets/img/home/huzur-home-4.png',
-    'assets/img/home/huzur-home-5.png'
+    'assets/img/home/huzur-home.jpg',
+    'assets/img/home/huzur-home-1.jpg',
+    'assets/img/home/huzur-home-2.jpg',
+    'assets/img/home/huzur-home-3.jpg',
+    'assets/img/home/huzur-home-4.jpg',
+    'assets/img/home/huzur-home-5.jpg'
   ];
   currentImageIndex = 0;
   private slideInterval: any;
