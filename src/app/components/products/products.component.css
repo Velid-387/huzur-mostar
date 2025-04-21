@@ -14,6 +14,7 @@
   transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
   width: 100%;
   will-change: transform;
+  align-items: stretch;
 }
 
 /* Disable transition for instant position jumps */
@@ -34,6 +35,7 @@
   filter: blur(1px);
   position: relative;
   will-change: transform, opacity, filter;
+  flex: 0 0 33.333%;
 }
 
 .product-card-inner {
@@ -45,7 +47,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 450px;
+  min-height: 500px;
 }
 
 .product-card.active {
@@ -69,7 +71,7 @@
 /* Card Content */
 .product-img {
   width: 100%;
-  height: 280px;
+  height: 300px;
   object-fit: cover;
   transition: transform 0.5s ease;
   background-color: transparent;
@@ -84,21 +86,20 @@
 }
 
 .product-info {
-  padding: 20px;
+  padding: 25px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background-color: transparent;
   flex: 1;
   transition: all 0.3s ease;
-  height: 170px;
+  min-height: 200px;
   position: relative;
 }
 
 .product-info h3 {
   font-family: 'Alex Brush', cursive;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   transition: all 0.3s ease;
   font-size: 1.3rem;
   color: var(--pastel-green-dark, #91b478);
@@ -107,6 +108,7 @@
   font-weight: 600;
   position: relative;
   display: inline-block;
+  line-height: 1.3;
 }
 
 /* Larger title for active card */
@@ -124,10 +126,10 @@
 .product-info p {
   margin-bottom: 15px;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.5;
   transition: all 0.3s ease;
-  max-height: 120px;
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
 }
 
 /* Larger text for active card */
@@ -284,34 +286,66 @@
 
 /* Mobile styles - prevent flickering and maintain control appearance */
 @media (max-width: 768px) {
+  .carousel-container {
+    padding: 20px 0;
+  }
+
   .product-card {
     min-width: 100%;
     padding: 0 10px;
-    opacity: 1;
-    transform: none;
-    filter: none;
+    flex: 0 0 100%;
+  }
+
+  .carousel-wrapper {
+    align-items: center;
+  }
+
+  .product-card.left,
+  .product-card.right {
+    opacity: 0;
+    visibility: hidden;
   }
 
   .product-card.active {
-    transform: none;
+    opacity: 1;
+    transform: scale(1);
+    z-index: 5;
   }
 
   .product-card-inner {
+    min-height: 450px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    min-height: 420px;
   }
 
-  .product-card.active .product-card-inner {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  .product-img {
+    height: 250px;
   }
 
-  /* Maintain control button shape and size */
+  .product-info {
+    padding: 20px 15px;
+    min-height: 180px;
+  }
+
+  .product-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .product-info p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .carousel-controls {
+    padding: 0 5px;
+  }
+
   .carousel-control {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.9;
+    width: 36px;
+    height: 36px;
+    background-color: var(--light-bg, rgba(255, 255, 255, 0.9));
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .carousel-control.prev {
@@ -321,45 +355,49 @@
   .carousel-control.next {
     right: 5px;
   }
+}
 
-  /* Prevent control buttons from being squished */
-  .carousel-controls {
-    padding: 0;
+@media (max-width: 480px) {
+  .product-card {
+    min-width: 100%;
+    flex: 0 0 100%;
+    padding: 0 8px;
   }
 
-  /* Fix product info to prevent layout shifts */
-  .product-info {
-    height: 140px;
-    padding: 15px;
+  .product-card-inner {
+    min-height: 400px;
   }
 
-  /* Ensure product image consistency */
   .product-img {
-    height: 250px;
+    height: 200px;
   }
 
-  /* Active card styling adjustments for mobile */
-  .product-card.active .product-img {
-    transform: none;
-  }
-
-  .auto-scroll-indicator {
-    bottom: 10px;
-    right: 10px;
+  .product-info {
+    padding: 15px 12px;
+    min-height: 160px;
   }
 
   .product-info h3 {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 
   .product-info p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
-  /* No size difference on mobile */
-  .product-card.active .product-info h3,
-  .product-card.active .product-info p {
-    font-size: inherit;
+  .carousel-control {
+    width: 32px;
+    height: 32px;
+  }
+
+  .carousel-dots {
+    margin-top: 15px;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
   }
 }
 
