@@ -11,10 +11,11 @@
 /* Carousel Wrapper */
 .carousel-wrapper {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: transform 0.5s ease;
   width: 100%;
   will-change: transform;
   align-items: stretch;
+  transform-style: flat;
 }
 
 /* Disable transition for instant position jumps */
@@ -27,14 +28,14 @@
 .product-card {
   min-width: 33.333%;
   padding: 0 15px;
-  transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
-  opacity: 0.4;
-  transform: scale(0.8);
+  transition: opacity 0.5s ease;
+  opacity: 0.7;
+  transform: none !important; /* Force no transform */
   transform-origin: center;
   user-select: none;
-  filter: blur(1px);
+  filter: blur(0);
   position: relative;
-  will-change: transform, opacity, filter;
+  will-change: opacity;
   flex: 0 0 33.333%;
 }
 
@@ -42,17 +43,19 @@
   background-color: var(--card-bg, #fff);
   border-radius: 12px;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: box-shadow 0.5s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 500px;
+  min-height: 560px;
+  padding: 0;
+  margin: 0;
 }
 
 .product-card.active {
   opacity: 1;
-  transform: scale(1.05);
+  transform: none !important;
   z-index: 5;
   filter: blur(0);
 }
@@ -62,6 +65,7 @@
   opacity: 0.7;
   z-index: 2;
   filter: blur(0);
+  transform: none !important;
 }
 
 .product-card.active .product-card-inner {
@@ -71,35 +75,72 @@
 /* Card Content */
 .product-img {
   width: 100%;
-  height: 300px;
+  height: 400px;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: none !important;
   background-color: transparent;
   display: block;
   flex: none;
+  transform: none !important;
+  margin: 0;
+  padding: 0;
 }
 
-/* Disable hover effects from global styles */
+/* Add styling for app-optimized-image */
+app-optimized-image.product-img {
+  display: block;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+app-optimized-image.product-img ::ng-deep .image-container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+app-optimized-image.product-img ::ng-deep img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Disable ALL hover and active effects */
 .carousel-container .product-img:hover,
-.carousel-container .product-img:active {
-  transform: none;
+.carousel-container .product-img:active,
+.carousel-container .product-img:focus,
+.product-card .product-img,
+.product-card.active .product-img,
+.product-card.left .product-img,
+.product-card.right .product-img,
+.product-card:hover .product-img,
+.product-card:hover,
+.product-card:active,
+.product-card:focus,
+.product-card.active,
+.product-card.left,
+.product-card.right {
+  transform: none !important;
+  scale: none !important;
+  transition: none !important;
 }
 
 .product-info {
-  padding: 25px;
+  padding: 15px;
   text-align: center;
   display: flex;
   flex-direction: column;
   background-color: transparent;
   flex: 1;
   transition: all 0.3s ease;
-  min-height: 200px;
+  min-height: 160px;
   position: relative;
 }
 
 .product-info h3 {
   font-family: 'Alex Brush', cursive;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   transition: all 0.3s ease;
   font-size: 1.3rem;
   color: var(--pastel-green-dark, #91b478);
@@ -115,16 +156,18 @@
 .product-card.active .product-info h3 {
   font-size: 1.6rem;
   color: var(--dark-pink, #d14d72);
+  transform: none !important;
 }
 
 /* Smaller text for side cards */
 .product-card.left .product-info h3,
 .product-card.right .product-info h3 {
   font-size: 1.1rem;
+  transform: none !important;
 }
 
 .product-info p {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   font-size: 0.9rem;
   line-height: 1.5;
   transition: all 0.3s ease;
@@ -201,7 +244,6 @@
 .carousel-control {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
   background-color: var(--light-bg, #fff);
   border: none;
   display: flex;
@@ -216,11 +258,11 @@
 
 .carousel-control:hover {
   background-color: var(--light-pink, #f8d7da);
-  transform: scale(1.1);
+  transform: none;
 }
 
 .carousel-control:active {
-  transform: scale(0.95);
+  transform: none;
 }
 
 .carousel-control.prev {
@@ -250,7 +292,7 @@
 
 .dot.active {
   background-color: var(--dark-pink, #d14d72);
-  transform: scale(1.2);
+  transform: none;
 }
 
 :host-context(body.dark-mode) .product-card-inner {
@@ -274,11 +316,6 @@
   background-color: var(--dark-pink-dark, #a63b59);
 }
 
-/* Active card product image zoom effect */
-.product-card.active .product-img {
-  transform: scale(1.03);
-}
-
 /* Active card title color enhancement */
 .product-card.active .product-info h3 {
   color: var(--dark-pink, #d14d72);
@@ -294,6 +331,8 @@
     min-width: 100%;
     padding: 0 10px;
     flex: 0 0 100%;
+    opacity: 1;
+    transform: none !important;
   }
 
   .carousel-wrapper {
@@ -308,22 +347,30 @@
 
   .product-card.active {
     opacity: 1;
-    transform: scale(1);
+    transform: none !important;
     z-index: 5;
   }
 
   .product-card-inner {
-    min-height: 450px;
+    min-height: 540px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
   .product-img {
-    height: 250px;
+    height: 350px;
+  }
+
+  app-optimized-image.product-img {
+    height: 350px;
+  }
+  
+  app-optimized-image.product-img ::ng-deep .image-container {
+    height: 100%;
   }
 
   .product-info {
-    padding: 20px 15px;
-    min-height: 180px;
+    padding: 15px 10px;
+    min-height: 160px;
   }
 
   .product-info h3 {
@@ -365,16 +412,24 @@
   }
 
   .product-card-inner {
-    min-height: 400px;
+    min-height: 490px;
   }
 
   .product-img {
-    height: 200px;
+    height: 300px;
+  }
+
+  app-optimized-image.product-img {
+    height: 300px;
+  }
+  
+  app-optimized-image.product-img ::ng-deep .image-container {
+    height: 100%;
   }
 
   .product-info {
-    padding: 15px 12px;
-    min-height: 160px;
+    padding: 12px 10px;
+    min-height: 150px;
   }
 
   .product-info h3 {
@@ -405,17 +460,15 @@
 @keyframes fadeInScale {
   0% {
     opacity: 0;
-    transform: scale(0.9);
   }
-
   100% {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
 .animate-item.animated .product-card {
   animation: fadeInScale 0.8s forwards;
+  transform: none !important;
 }
 
 /* Create a gradient overlay at carousel edges */
@@ -478,5 +531,90 @@
   .product-section>p {
     font-size: 1rem;
     padding: 0 1rem;
+  }
+}
+
+/* Special class to prevent any transformations */
+.no-transform {
+  transform: none !important;
+  scale: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.no-transform:hover,
+.no-transform:active,
+.no-transform:focus,
+.no-transform.active {
+  transform: none !important;
+  scale: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Ensure all animations are controlled */
+* {
+  backface-visibility: hidden;
+}
+
+/* Completely disable transforms for product cards and images */
+.product-card, 
+.product-card *, 
+.product-img, 
+.product-card-inner {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  transform-style: flat !important;
+}
+
+/* Remove animation for elements when they become active */
+.product-card.active, 
+.product-card.active .product-img,
+.product-card.active .product-info,
+.product-card.active .product-info * {
+  animation: none !important;
+  transition: none !important; 
+  transform: none !important;
+}
+
+/* Disable scaling in info section */
+.product-info h3,
+.product-info p {
+  transform: none !important;
+  transition: color 0.3s ease !important;
+}
+
+/* Remove text size changes */
+.product-card.active .product-info h3 {
+  /* Keep the color change but remove size change */
+  color: var(--dark-pink, #d14d72);
+  font-size: 1.3rem !important; /* Same as non-active */
+}
+
+.product-card.left .product-info h3,
+.product-card.right .product-info h3 {
+  font-size: 1.3rem !important; /* Same as non-active */
+}
+
+.product-card.active .product-info p {
+  font-size: 0.9rem !important; /* Same as non-active */
+}
+
+.product-card.left .product-info p,
+.product-card.right .product-info p {
+  font-size: 0.9rem !important; /* Same as non-active */
+}
+
+/* Force mobile styles to have no transforms */
+@media (max-width: 768px) {
+  .product-card,
+  .product-card.active,
+  .product-card-inner,
+  .product-img,
+  .product-info,
+  .product-info * {
+    transform: none !important;
+    transition: none !important;
   }
 }

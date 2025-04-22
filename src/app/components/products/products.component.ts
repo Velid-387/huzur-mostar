@@ -8,6 +8,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { OptimizedImageComponent } from '../shared/optimized-image/optimized-image.component';
 
 interface Product {
   imgSrc: string;
@@ -34,7 +35,7 @@ interface CarouselState {
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OptimizedImageComponent],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
