@@ -45,6 +45,7 @@ function moveFilesToParent(sourceDir, targetDir) {
     }
     
     const files = fs.readdirSync(sourceDir);
+    let movedFiles = 0;
     
     for (const file of files) {
       const sourcePath = path.join(sourceDir, file);
@@ -66,15 +67,23 @@ function moveFilesToParent(sourceDir, targetDir) {
         // Verify the copy
         if (fs.existsSync(targetPath)) {
           console.log(`Successfully moved ${file}`);
+          movedFiles++;
         } else {
           console.error(`Failed to move ${file}`);
         }
       }
     }
     
-    // Optionally delete the source directory after moving files
-    // fs.rmdirSync(sourceDir, { recursive: true });
-    // console.log(`Removed source directory: ${sourceDir}`);
+    // Delete the source directory if we moved files
+    if (movedFiles > 0) {
+      try {
+        // Use recursive option for Node.js 12+
+        fs.rmSync(sourceDir, { recursive: true, force: true });
+        console.log(`Removed source directory: ${sourceDir}`);
+      } catch (error) {
+        console.error(`Error removing directory ${sourceDir}:`, error);
+      }
+    }
   } catch (error) {
     console.error(`Error moving files from ${sourceDir}:`, error);
   }
