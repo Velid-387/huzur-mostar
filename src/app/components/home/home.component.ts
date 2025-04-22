@@ -1,17 +1,20 @@
 import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
+import { ImageService } from '../../services/image.service';
+import { OptimizedImageComponent } from '../shared/optimized-image/optimized-image.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OptimizedImageComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
+  private imageService = inject(ImageService);
   
   showScrollIndicator: boolean = true;
   backgroundImages = [
@@ -22,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     'assets/img/home/huzur-home-4.jpg',
     'assets/img/home/huzur-home-5.jpg'
   ];
+  optimizedBackgroundImages: string[] = [];
   currentImageIndex = 0;
   private slideInterval: any;
   
@@ -29,6 +33,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      // Optimize background images
+      this.optimizedBackgroundImages = this.backgroundImages.map(img => 
+        this.imageService.getOptimizedImageUrl(img)
+      );
+      
       this.startSlideshow();
       // Initialize with scroll indicator visible
       this.showScrollIndicator = true;

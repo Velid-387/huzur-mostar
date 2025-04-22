@@ -18,7 +18,12 @@
                         [class.active]="isActive('freshFlowers', i)" [class.left]="isLeftProduct('freshFlowers', i)"
                         [class.right]="isRightProduct('freshFlowers', i)">
                         <div class="product-card-inner">
-                            <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
+                            <app-optimized-image 
+                                [src]="product.imgSrc"
+                                [alt]="product.imgAlt"
+                                [width]="768"
+                                class="product-img">
+                            </app-optimized-image>
                             <div class="product-info">
                                 <h3>{{ product.title }}</h3>
                                 <p>{{ product.description }}</p>
@@ -70,7 +75,12 @@
                         [class.active]="isActive('driedFlowers', i)" [class.left]="isLeftProduct('driedFlowers', i)"
                         [class.right]="isRightProduct('driedFlowers', i)">
                         <div class="product-card-inner">
-                            <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
+                            <app-optimized-image 
+                                [src]="product.imgSrc"
+                                [alt]="product.imgAlt"
+                                [width]="768"
+                                class="product-img">
+                            </app-optimized-image>
                             <div class="product-info">
                                 <h3>{{ product.title }}</h3>
                                 <p>{{ product.description }}</p>
@@ -122,7 +132,12 @@
                         [class.active]="isActive('magnets', i)" [class.left]="isLeftProduct('magnets', i)"
                         [class.right]="isRightProduct('magnets', i)">
                         <div class="product-card-inner">
-                            <img [src]="product.imgSrc" [alt]="product.imgAlt" class="product-img">
+                            <app-optimized-image 
+                                [src]="product.imgSrc"
+                                [alt]="product.imgAlt"
+                                [width]="768"
+                                class="product-img">
+                            </app-optimized-image>
                             <div class="product-info">
                                 <h3>{{ product.title }}</h3>
                                 <p>{{ product.description }}</p>

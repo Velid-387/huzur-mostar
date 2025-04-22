@@ -25,6 +25,11 @@
     # HSTS (Strict Transport Security) - Uncomment if you have HTTPS enabled
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
+[[headers]]
+  for = "/assets/img-optimized/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Handle SPA routing - ensure all paths serve the index.html
 [[redirects]]
   from = "/*"
