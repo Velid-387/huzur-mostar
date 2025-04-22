@@ -44,15 +44,16 @@ export class ImageService {
   private checkOptimizedImagesAvailability(): void {
     // For simplicity, we'll explicitly disable this for now
     // This can be enabled once the image optimization process is complete
-    this.useOptimizedImages = false;
+    this.useOptimizedImages = true;
     
-    console.log(`Using optimized images: ${this.useOptimizedImages}`);
-    
-    // In production, assume optimized images exist
+    // In production, always use optimized images
     if (window.location.hostname !== 'localhost' && 
         window.location.hostname !== '127.0.0.1') {
       this.useOptimizedImages = true;
+      console.log('Production environment detected, enabling optimized images');
     }
+    
+    console.log(`Using optimized images: ${this.useOptimizedImages}`);
   }
 
   /**
@@ -80,20 +81,31 @@ export class ImageService {
       // Extract path parts
       const pathParts = originalPath.split('.');
       const extension = pathParts.pop()?.toLowerCase() || '';
-      const basePath = pathParts.join('.').replace('assets/img', 'assets/img-optimized');
+      const basePath = pathParts.join('.');
+      const filename = basePath.split('/').pop() || '';
+      
+      // Create the optimized path, placing the file inside a directory with original filename+extension
+      const optimizedDir = basePath.replace('assets/img', 'assets/img-optimized');
       
       // If width is not provided, use screen width for responsive sizing
       const targetWidth = width || this.getTargetWidth();
-      
-      // If WebP is supported and the source isn't already WebP
-      if (this.supportedFormats['webp'] && extension !== 'webp') {
-        // The naming convention here assumes you'll have images like: 
-        // image-500w.webp, image-800w.webp, etc.
-        return `${basePath}-${targetWidth}w.webp`;
-      }
-      
-      // If WebP not supported or already WebP, just use responsive width
-      return `${basePath}-${targetWidth}w.${extension}`;
+
+      // Construct various possible paths to handle different directory structures
+      const possiblePaths = [
+        // Path format with subdirectory: assets/img-optimized/products/bouquets/buket-1.jpg/buket-1-768w.webp
+        `${optimizedDir}.${extension}/${filename}-${targetWidth}w.${this.supportedFormats['webp'] ? 'webp' : extension}`,
+        
+        // Path format without subdirectory: assets/img-optimized/products/bouquets/buket-1-768w.webp
+        `${optimizedDir}-${targetWidth}w.${this.supportedFormats['webp'] ? 'webp' : extension}`
+      ];
+
+      // For debugging - will help identify the correct path format
+      console.debug(`Optimized image paths to try:`, possiblePaths);
+
+      // Check if the file exists using Image.src onerror/onload
+      // Note: We can't check file existence directly in browser, so we'll return the first format
+      // and let the component's error handler try alternatives if needed
+      return possiblePaths[0];
     } catch (error) {
       console.error('Error generating optimized image URL:', error);
       return originalPath;

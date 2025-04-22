@@ -18,12 +18,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   showScrollIndicator: boolean = true;
   backgroundImages = [
-    'assets/img/home/huzur-home.jpg',
     'assets/img/home/huzur-home-1.jpg',
-    'assets/img/home/huzur-home-2.jpg',
-    'assets/img/home/huzur-home-3.jpg',
     'assets/img/home/huzur-home-4.jpg',
-    'assets/img/home/huzur-home-5.jpg'
+    'assets/img/home/huzur-home-5.jpg',
+    'assets/img/home/huzur-home-6.jpg',
+    'assets/img/home/huzur-home-7.jpg'
   ];
   optimizedBackgroundImages: string[] = [];
   currentImageIndex = 0;
