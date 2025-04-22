@@ -9,7 +9,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:huzur-mostar": "node dist/huzur-mostar/server/server.mjs",
-    "optimize-images": "node scripts/optimize-images.js"
+    "optimize-images": "node scripts/optimize-images.js",
+    "fix-image-structure": "node scripts/fix-image-structure.js",
+    "fix-image-optimization": "./scripts/fix-image-optimization.sh"
   },
   "private": true,
   "dependencies": {

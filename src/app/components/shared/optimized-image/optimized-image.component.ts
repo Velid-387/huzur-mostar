@@ -111,6 +111,7 @@ export class OptimizedImageComponent implements OnInit {
   currentSrc: string = ''; // The current src being used
   loading: boolean = true;
   fallbackAttempted: boolean = false;
+  alternatePathAttempted: boolean = false;
   
   private imageService = inject(ImageService);
   private platformId = inject(PLATFORM_ID);
@@ -125,6 +126,13 @@ export class OptimizedImageComponent implements OnInit {
       
       // Use the optimized path if available
       this.currentSrc = this.optimizedSrc;
+      
+      // Log for debugging purposes (remove in production)
+      if (this.currentSrc !== this.src) {
+        console.debug(`Image path transformed: 
+          Original: ${this.src}
+          Optimized: ${this.currentSrc}`);
+      }
     } else {
       // On server, use original path to avoid 404s during SSR
       this.currentSrc = this.src;
@@ -136,7 +144,54 @@ export class OptimizedImageComponent implements OnInit {
   }
   
   onImageError(): void {
-    // If optimized image fails to load, try the original
+    // Try alternative path format first
+    if (!this.alternatePathAttempted && this.currentSrc !== this.src) {
+      this.alternatePathAttempted = true;
+      
+      // If the current path has a structure with subdirectory like:
+      // assets/img-optimized/products/bouquets/buket-1.jpg/buket-1-768w.webp
+      // Try the alternative format without subdirectory:
+      // assets/img-optimized/products/bouquets/buket-1-768w.webp
+      
+      const pathParts = this.currentSrc.split('.');
+      const extension = pathParts.pop() || '';
+      const basePath = pathParts.join('.');
+      
+      if (basePath.includes('/')) {
+        // Check if we're using the subdirectory format
+        const parts = basePath.split('/');
+        const filenameWithSize = parts.pop() || '';
+        const dirPath = parts.join('/');
+        
+        if (dirPath.endsWith(filenameWithSize.split('-')[0])) {
+          // We're using the subdirectory format, try the alternate format
+          const pathWithoutSubdir = dirPath + '/' + filenameWithSize + '.' + extension;
+          console.debug(`Trying alternate path format: ${pathWithoutSubdir}`);
+          this.currentSrc = pathWithoutSubdir;
+          return;
+        }
+      }
+      
+      // If this is already the second format, or we couldn't parse the path,
+      // try converting to the alternate format
+      try {
+        // Try to convert to flat format
+        let alternatePath = this.optimizedSrc;
+        const match = alternatePath.match(/(.*)\/(.*)\/(.*)-(\d+)w\.(.*)/);
+        
+        if (match) {
+          const [, prefix, baseFile, filename, size, ext] = match;
+          alternatePath = `${prefix}/${filename}-${size}w.${ext}`;
+          console.debug(`Trying alternate flattened path: ${alternatePath}`);
+          this.currentSrc = alternatePath;
+          return;
+        }
+      } catch (e) {
+        console.error('Error creating alternate path:', e);
+      }
+    }
+
+    // If optimized image fails to load or we already tried alternates, try the original
     if (!this.fallbackAttempted && this.currentSrc !== this.src) {
       console.warn(`Optimized image failed to load: ${this.currentSrc}, falling back to original`);
       this.fallbackAttempted = true;

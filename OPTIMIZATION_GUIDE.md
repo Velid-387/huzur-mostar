@@ -69,4 +69,27 @@ Once implemented, you can test the performance improvement:
 
 - If images don't appear, check browser console for errors
 - Ensure path references are correct
-- Verify that image directory permissions allow the script to write files 
+- Verify that image directory permissions allow the script to write files
+
+### Fixing Directory Structure Issues
+
+If you encounter errors like `Optimized image failed to load: assets/img-optimized/products/bouquets/buket-1-768w.webp, falling back to original`, it may be due to the directory structure created by the optimization script. Run the fix script:
+
+```bash
+npm run fix-image-optimization
+```
+
+This will:
+1. Reorganize the optimized image directory structure
+2. Ensure the ImageService is set to use optimized images
+3. Rebuild the application
+
+For manual fixes, you can also run the individual commands:
+
+```bash
+# Fix just the directory structure
+npm run fix-image-structure
+
+# Build the application
+npm run build
+``` 
