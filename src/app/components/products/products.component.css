@@ -48,7 +48,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 600px;
+  min-height: 560px;
+  padding: 0;
+  margin: 0;
 }
 
 .product-card.active {
@@ -80,6 +82,28 @@
   display: block;
   flex: none;
   transform: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Add styling for app-optimized-image */
+app-optimized-image.product-img {
+  display: block;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+app-optimized-image.product-img ::ng-deep .image-container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+app-optimized-image.product-img ::ng-deep img {
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Disable ALL hover and active effects */
@@ -103,20 +127,20 @@
 }
 
 .product-info {
-  padding: 25px;
+  padding: 15px;
   text-align: center;
   display: flex;
   flex-direction: column;
   background-color: transparent;
   flex: 1;
   transition: all 0.3s ease;
-  min-height: 200px;
+  min-height: 160px;
   position: relative;
 }
 
 .product-info h3 {
   font-family: 'Alex Brush', cursive;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   transition: all 0.3s ease;
   font-size: 1.3rem;
   color: var(--pastel-green-dark, #91b478);
@@ -143,7 +167,7 @@
 }
 
 .product-info p {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   font-size: 0.9rem;
   line-height: 1.5;
   transition: all 0.3s ease;
@@ -329,7 +353,7 @@
   }
 
   .product-card-inner {
-    min-height: 580px;
+    min-height: 540px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
@@ -337,9 +361,17 @@
     height: 350px;
   }
 
+  app-optimized-image.product-img {
+    height: 350px;
+  }
+  
+  app-optimized-image.product-img ::ng-deep .image-container {
+    height: 100%;
+  }
+
   .product-info {
-    padding: 20px 15px;
-    min-height: 200px;
+    padding: 15px 10px;
+    min-height: 160px;
   }
 
   .product-info h3 {
@@ -381,16 +413,24 @@
   }
 
   .product-card-inner {
-    min-height: 530px;
+    min-height: 490px;
   }
 
   .product-img {
     height: 300px;
   }
 
+  app-optimized-image.product-img {
+    height: 300px;
+  }
+  
+  app-optimized-image.product-img ::ng-deep .image-container {
+    height: 100%;
+  }
+
   .product-info {
-    padding: 15px 12px;
-    min-height: 180px;
+    padding: 12px 10px;
+    min-height: 150px;
   }
 
   .product-info h3 {
