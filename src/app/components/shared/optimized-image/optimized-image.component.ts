@@ -16,15 +16,16 @@ import { ImageService } from '../../../services/image.service';
         [height]="height"
         [attr.alt]="alt"
         [appLazyLoad]="currentSrc"
+        (imageLoaded)="onImageLoaded()"
+        (imageError)="onImageError()"
         loading="lazy"
-        (load)="onImageLoaded()"
-        (error)="onImageError()"
       >
       <ng-template #backgroundTemplate>
         <div 
           class="background-image"
           [appLazyLoad]="currentSrc"
-          (load)="onImageLoaded()"
+          (imageLoaded)="onImageLoaded()"
+          (imageError)="onImageError()"
         >
           <ng-content></ng-content>
         </div>
@@ -48,6 +49,8 @@ import { ImageService } from '../../../services/image.service';
       opacity: 0;
       transition: opacity 0.3s ease-in;
       z-index: 1;
+      transform: none !important; /* Prevent any transforms */
+      max-height: 100%;
     }
     
     .image-container:not(.loading) .optimized-image {

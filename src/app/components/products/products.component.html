@@ -13,7 +13,7 @@
             <div class="carousel-container">
                 <div class="carousel-wrapper" [ngClass]="getCarouselWrapperClass('freshFlowers')"
                     [style.transform]="'translateX(' + carouselStates['freshFlowers'].translateX + 'px)'">
-                    <div class="product-card"
+                    <div class="product-card no-transform"
                         *ngFor="let product of carouselStates['freshFlowers'].products; let i = index"
                         [class.active]="isActive('freshFlowers', i)" [class.left]="isLeftProduct('freshFlowers', i)"
                         [class.right]="isRightProduct('freshFlowers', i)">
@@ -22,7 +22,7 @@
                                 [src]="product.imgSrc"
                                 [alt]="product.imgAlt"
                                 [width]="768"
-                                class="product-img">
+                                class="product-img no-transform">
                             </app-optimized-image>
                             <div class="product-info">
                                 <h3>{{ product.title }}</h3>
@@ -70,7 +70,7 @@
             <div class="carousel-container">
                 <div class="carousel-wrapper" [ngClass]="getCarouselWrapperClass('driedFlowers')"
                     [style.transform]="'translateX(' + carouselStates['driedFlowers'].translateX + 'px)'">
-                    <div class="product-card"
+                    <div class="product-card no-transform"
                         *ngFor="let product of carouselStates['driedFlowers'].products; let i = index"
                         [class.active]="isActive('driedFlowers', i)" [class.left]="isLeftProduct('driedFlowers', i)"
                         [class.right]="isRightProduct('driedFlowers', i)">
@@ -79,7 +79,7 @@
                                 [src]="product.imgSrc"
                                 [alt]="product.imgAlt"
                                 [width]="768"
-                                class="product-img">
+                                class="product-img no-transform">
                             </app-optimized-image>
                             <div class="product-info">
                                 <h3>{{ product.title }}</h3>
@@ -128,7 +128,7 @@
             <div class="carousel-container">
                 <div class="carousel-wrapper" [ngClass]="getCarouselWrapperClass('magnets')"
                     [style.transform]="'translateX(' + carouselStates['magnets'].translateX + 'px)'">
-                    <div class="product-card" *ngFor="let product of carouselStates['magnets'].products; let i = index"
+                    <div class="product-card no-transform" *ngFor="let product of carouselStates['magnets'].products; let i = index"
                         [class.active]="isActive('magnets', i)" [class.left]="isLeftProduct('magnets', i)"
                         [class.right]="isRightProduct('magnets', i)">
                         <div class="product-card-inner">
@@ -136,7 +136,7 @@
                                 [src]="product.imgSrc"
                                 [alt]="product.imgAlt"
                                 [width]="768"
-                                class="product-img">
+                                class="product-img no-transform">
                             </app-optimized-image>
                             <div class="product-info">
                                 <h3>{{ product.title }}</h3>

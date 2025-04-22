@@ -434,22 +434,22 @@ section#home::after {
 }
 
 .product-img {
-    height: 200px;
+    height: 250px;
     width: 100%;
     object-fit: contain;
     transition: transform 0.2s ease-in-out;
 }
 
 .product-img:active {
-    transform: scale(1.1);
+    transform: none;
 }
 
 .product-img:hover {
-    transform: scale(2.2);
+    transform: none;
 }
 
 .product-img.enlarged {
-    transform: scale(1.1);
+    transform: none;
 }
 
 .product-info {

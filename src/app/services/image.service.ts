@@ -33,6 +33,7 @@ export class ImageService {
         this.supportedFormats['webp'] = false;
       }
       
+      console.log(`Browser WebP support: ${this.supportedFormats['webp']}`);
       // You can add more format detection here (AVIF, etc.)
     }
   }
@@ -41,9 +42,11 @@ export class ImageService {
    * Check if optimized images are available
    */
   private checkOptimizedImagesAvailability(): void {
-    // For simplicity, we'll set this false by default in development
-    // In a real app, you could do a test request to check if the directory exists
+    // For simplicity, we'll explicitly disable this for now
+    // This can be enabled once the image optimization process is complete
     this.useOptimizedImages = false;
+    
+    console.log(`Using optimized images: ${this.useOptimizedImages}`);
     
     // In production, assume optimized images exist
     if (window.location.hostname !== 'localhost' && 
@@ -73,23 +76,28 @@ export class ImageService {
       return originalPath;
     }
     
-    // Extract path parts
-    const pathParts = originalPath.split('.');
-    const extension = pathParts.pop()?.toLowerCase() || '';
-    const basePath = pathParts.join('.').replace('assets/img', 'assets/img-optimized');
-    
-    // If width is not provided, use screen width for responsive sizing
-    const targetWidth = width || this.getTargetWidth();
-    
-    // If WebP is supported and the source isn't already WebP
-    if (this.supportedFormats['webp'] && extension !== 'webp') {
-      // The naming convention here assumes you'll have images like: 
-      // image-500w.webp, image-800w.webp, etc.
-      return `${basePath}-${targetWidth}w.webp`;
+    try {
+      // Extract path parts
+      const pathParts = originalPath.split('.');
+      const extension = pathParts.pop()?.toLowerCase() || '';
+      const basePath = pathParts.join('.').replace('assets/img', 'assets/img-optimized');
+      
+      // If width is not provided, use screen width for responsive sizing
+      const targetWidth = width || this.getTargetWidth();
+      
+      // If WebP is supported and the source isn't already WebP
+      if (this.supportedFormats['webp'] && extension !== 'webp') {
+        // The naming convention here assumes you'll have images like: 
+        // image-500w.webp, image-800w.webp, etc.
+        return `${basePath}-${targetWidth}w.webp`;
+      }
+      
+      // If WebP not supported or already WebP, just use responsive width
+      return `${basePath}-${targetWidth}w.${extension}`;
+    } catch (error) {
+      console.error('Error generating optimized image URL:', error);
+      return originalPath;
     }
-    
-    // If WebP not supported or already WebP, just use responsive width
-    return `${basePath}-${targetWidth}w.${extension}`;
   }
   
   /**

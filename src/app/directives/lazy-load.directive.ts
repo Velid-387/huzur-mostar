@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2, NgZone } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2, NgZone, Output, EventEmitter } from '@angular/core';
 
 @Directive({
   selector: '[appLazyLoad]',
@@ -6,6 +6,10 @@ import { Directive, ElementRef, Input, OnInit, Renderer2, NgZone } from '@angula
 })
 export class LazyLoadDirective implements OnInit {
   @Input() appLazyLoad: string = '';
+  @Output() imageLoaded = new EventEmitter<void>();
+  @Output() imageError = new EventEmitter<void>();
+  
+  private isLoaded: boolean = false;
   private isErrorHandled: boolean = false;
   private observer: IntersectionObserver | undefined;
   
@@ -34,19 +38,26 @@ export class LazyLoadDirective implements OnInit {
   }
   
   private loadImage() {
-    if (this.appLazyLoad && !this.isErrorHandled) {
+    if (this.appLazyLoad && !this.isErrorHandled && !this.isLoaded) {
       // If this is an img element
       if (this.el.nativeElement.nodeName === 'IMG') {
         // Create a load event handler
         const handleLoad = () => {
-          this.dispatchLoadEvent();
+          if (!this.isLoaded) {
+            this.isLoaded = true;
+            this.ngZone.run(() => {
+              this.imageLoaded.emit();
+            });
+          }
           this.el.nativeElement.removeEventListener('load', handleLoad);
         };
         
         const handleError = () => {
           if (!this.isErrorHandled) {
             this.isErrorHandled = true;
-            this.dispatchErrorEvent();
+            this.ngZone.run(() => {
+              this.imageError.emit();
+            });
           }
           this.el.nativeElement.removeEventListener('error', handleError);
         };
@@ -69,29 +80,24 @@ export class LazyLoadDirective implements OnInit {
         // For background images, we can't rely on load events
         // so we'll use an Image object to preload and dispatch events
         const img = new Image();
-        img.onload = () => this.dispatchLoadEvent();
+        img.onload = () => {
+          if (!this.isLoaded) {
+            this.isLoaded = true;
+            this.ngZone.run(() => {
+              this.imageLoaded.emit();
+            });
+          }
+        };
         img.onerror = () => {
           if (!this.isErrorHandled) {
             this.isErrorHandled = true;
-            this.dispatchErrorEvent();
+            this.ngZone.run(() => {
+              this.imageError.emit();
+            });
           }
         };
         img.src = this.appLazyLoad;
       }
     }
-  }
-  
-  private dispatchLoadEvent() {
-    this.ngZone.run(() => {
-      // Dispatch a custom load event
-      this.el.nativeElement.dispatchEvent(new CustomEvent('load', { bubbles: true }));
-    });
-  }
-  
-  private dispatchErrorEvent() {
-    this.ngZone.run(() => {
-      // Dispatch a custom error event
-      this.el.nativeElement.dispatchEvent(new CustomEvent('error', { bubbles: true }));
-    });
   }
 } 
