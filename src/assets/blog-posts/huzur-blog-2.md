@@ -26,14 +26,14 @@ Huzur kao iskonska sreća, jer čovjek može biti miran iako nije sretan, ali ne
 
 ### Upoznavanje
 
-Spoznajom bilo čega u životu ispisuju se listovi nove priče, ispunjene svim osobinama, težnjama i željama, koje posjeduje onaj koji čita tu priču. Huzur priča je priča ispunjena radošću, bojama, kreativnošću, inspiracijom i sretnim ljudima. Svako onaj ko na bilo koji način poželi svojim bićem postati dio huzur priče, ostavlja svoj lični trag na njenim stranicama, svjesno ili nesvjesno. A ljepota u cijeloj priči leži u trenutcima kada svako biće osjeti svoj momenat sreće, bilo da ga izgovori riječima, pokaže osmijehom ili zagrljajem ili ga jednostavno odluči zadržati za sebe. 
+Spoznajom bilo čega u životu ispisuju se listovi nove priče, ispunjene svim osobinama, težnjama i željama, koje posjeduje onaj koji čita tu priču. Huzur priča je priča ispunjena radošću, bojama, kreativnošću, inspiracijom i sretnim ljudima. Svako onaj ko na bilo koji način poželi svojim bićem postati dio huzur priče, ostavlja svoj lični trag na njenim stranicama, svjesno ili nesvjesno. A ljepota u cijeloj priči leži u trenucima kada svako biće osjeti svoj momenat sreće, bilo da ga izgovori riječima, pokaže osmijehom ili zagrljajem ili ga jednostavno odluči zadržati za sebe. 
 Da svako huzur biće ima, osjeti i prepozna svoj trenutak sreće u svakom danu.
 
 ### Sreća
 
 Pored zahvalnosti postoji još jedna riječ koja svojim šarenim spektrom boji dosadašnju huzur priču, a ime joj je sreća.
 Mnogo toga je rečeno i napisano o sreći, a svako na svom putu traži svoju ličnu.
-Ono što je huzur priča do sada uspjela ispričati i spoznati o sreći, a da se može riječima prenijeti onima koji čitaju ovu priču jeste da je sreća znati uživati u procesu. Ma koliko izgledali (ne) bitni i (ne) veliki svakodnevnicu ispunjavaju raznorazni procesi, od ustajanja i kretanja u novi dan, kalkulisanja dnevnih obaveza, ispijanje kahve, šetnje, i svega onoga što stane u svakodnevnicu.
+Ono što je huzur priča do sada uspjela ispričati i spoznati o sreći, a da se može riječima prenijeti onima koji čitaju ovu priču jeste da je sreća znati uživati u procesu. Ma koliko izgledali (ne) bitni i (ne) veliki, svakodnevnicu ispunjavaju raznorazni procesi, od ustajanja i kretanja u novi dan, kalkulisanja dnevnih obaveza, ispijanje kahve, šetnje i svega onoga što stane u svakodnevnicu.
 Tragati za trenutkom sreće, u bilo kom dijelu svakodnevnih procesa čijim smo dijelom, znači biti sretan.
 
 ---

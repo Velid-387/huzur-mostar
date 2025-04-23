@@ -18,7 +18,7 @@ export class FaqComponent implements OnInit {
     },
     {
       question: 'Kada je pravo vrijeme za narudžbu buketa?',
-      answer: 'Svaki dan je divan dan za obradovati dragu osobu. Ali ukoliko u životu postoji prilika za koju je datum poznat i već postoji jasna želja kakav se cvijetni aranžman planira pokloniti onda je preiod od 5-7 dana unaprijed najbolji za narudžbu aranžamana. U slučajevima kada se radi o bidermajeru, onda je to poželjno uraditi 10-15 dana ranije.'
+      answer: 'Svaki dan je divan dan za obradovati dragu osobu. Ali ukoliko u životu postoji prilika za koju je datum poznat i već postoji jasna želja kakav se cvjetni aranžman planira pokloniti onda je preiod od 5-7 dana unaprijed najbolji za narudžbu aranžamana. U slučajevima kada se radi o bidermajeru, onda je to poželjno uraditi 10-15 dana ranije.'
     },
     {
       question: 'Kako se kreću cijene buketa?',
