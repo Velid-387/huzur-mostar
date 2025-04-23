@@ -187,7 +187,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       imgAlt: 'Decorative Magnet',
       title: 'Calathea',
       description:
-        'Biljka molitve čiji se listovi pomjeraju u toku dana svakodnevno nudeći novi pogled na rast biljaka.',
+        'Biljka molitve čiji se listovi pomjeraju u toku dana svakodnevno nudeći dinamičnu sliku rasta ove zanimljive biljke',
     },
     {
       imgSrc: 'assets/img/products/potted-plants/loncanica-3.jpg',
