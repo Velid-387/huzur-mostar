@@ -106,9 +106,22 @@ nav {
 }
 
 .nav-links a.active {
-    color: var(--text-dark);
-    background-color: var(--pastel-pink);
-    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
+    color: var(--dark-pink);
+    background-color: transparent;
+    box-shadow: none;
+    font-weight: 600;
+    position: relative;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background-color: var(--dark-pink);
+    animation: nav-glow 1.5s infinite;
 }
 
 @keyframes nav-glow {
@@ -124,13 +137,7 @@ nav {
 }
 
 .nav-links a:hover {
-    animation: nav-glow 1.5s infinite;
-}
-
-.nav-links a.active {
-    animation: nav-glow 1.5s infinite;
-    color: var(--text-dark);
-    font-weight: 600;
+    animation: none;
 }
 
 .nav-links a.selected {
@@ -1047,6 +1054,7 @@ input:checked ~ .toggle-icon:hover .moon-mask {
 
 .mobile-nav-menu li {
     margin-bottom: 10px;
+    border-bottom: none;
 }
 
 .mobile-nav-menu a {
@@ -1083,14 +1091,22 @@ input:checked ~ .toggle-icon:hover .moon-mask {
 }
 
 .mobile-nav-menu a.active {
-    color: var(--text-dark);
-    background-color: var(--pastel-pink);
-    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
-    animation: nav-glow 1.5s infinite;
+    color: var(--dark-pink);
+    background-color: transparent;
+    box-shadow: none;
+    animation: none;
     font-weight: 600;
+    position: relative;
 }
 
-.mobile-nav-menu a:hover {
+.mobile-nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: var(--dark-pink);
     animation: nav-glow 1.5s infinite;
 }
 
@@ -1100,16 +1116,19 @@ body.dark-mode .mobile-nav-menu a:before {
 
 body.dark-mode .mobile-nav-menu a:hover {
     color: var(--dark-pink);
-}
-
-body.dark-mode .mobile-nav-menu a.active {
-    color: var(--text-dark);
-    background-color: var(--pastel-pink);
-    box-shadow: 0 4px 8px rgba(245, 192, 192, 0.4);
     animation: nav-glow 1.5s infinite;
 }
 
-body.dark-mode .mobile-nav-menu a:hover {
+body.dark-mode .mobile-nav-menu a.active {
+    color: var(--primary-color-light, #ff6b98);
+    background-color: transparent;
+    box-shadow: none;
+    animation: none;
+    position: relative;
+}
+
+body.dark-mode .mobile-nav-menu a.active::after {
+    background-color: var(--primary-color-light, #ff6b98);
     animation: nav-glow 1.5s infinite;
 }
 

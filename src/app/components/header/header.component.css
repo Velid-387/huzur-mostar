@@ -186,6 +186,18 @@
 .mobile-nav-menu .dropdown-menu a.active {
     color: var(--primary-color, #d14d72);
     background-color: transparent;
+    position: relative;
+}
+
+.mobile-nav-menu .dropdown-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 35px;
+    right: 20px;
+    height: 2px;
+    background-color: var(--primary-color, #d14d72);
+    animation: nav-glow 1.5s infinite;
 }
 
 /* Dark mode adjustments */
@@ -206,6 +218,11 @@
 
 :host-context(body.dark-mode) .mobile-nav-menu .dropdown-menu a.active {
     color: var(--primary-color-light, #ff6b98);
+    background-color: transparent;
+}
+
+:host-context(body.dark-mode) .mobile-nav-menu .dropdown-menu a.active::after {
+    background-color: var(--primary-color-light, #ff6b98);
 }
 
 :host-context(body.dark-mode) .logo a {
@@ -297,7 +314,7 @@
 
     .mobile-nav-menu li {
         margin: 0;
-        border-bottom: 1px solid var(--border-color, #e0e0e0);
+        border-bottom: none;
     }
 
     .mobile-nav-menu li:last-child {
@@ -320,7 +337,7 @@
     }
 
     :host-context(body.dark-mode) .mobile-nav-menu li {
-        border-color: var(--dark-border-color, #2d2d2d);
+        border-color: transparent;
     }
 
     .mobile-nav-menu .contact-number {

@@ -47,12 +47,21 @@ body.dark-mode .nav-links a:hover {
 }
 
 body.dark-mode .nav-links a.active {
-    color: var(--text-light);
-    background-color: var(--pastel-pink-dark);
-    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
+    color: var(--pastel-pink-dark);
+    background-color: transparent;
+    box-shadow: none;
+    font-weight: 600;
+    position: relative;
 }
 
-body.dark-mode .nav-links a:hover {
+body.dark-mode .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background-color: var(--pastel-pink-dark);
     animation: dark-nav-glow 1.5s infinite;
 }
 
@@ -66,6 +75,10 @@ body.dark-mode .nav-links a:hover {
     100% {
         box-shadow: 0 0 5px rgba(192, 154, 154, 0.3);
     }
+}
+
+body.dark-mode .nav-links a:hover {
+    animation: none;
 }
 
 body.dark-mode .nav-links a.selected {
@@ -92,14 +105,27 @@ body.dark-mode .mobile-nav-menu a:hover {
 }
 
 body.dark-mode .mobile-nav-menu a.active {
-    color: var(--text-light);
-    background-color: var(--pastel-pink-dark);
-    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
+    color: var(--primary-color-light, #ff6b98);
+    background-color: transparent;
+    box-shadow: none;
+    animation: none;
+    position: relative;
+}
+
+body.dark-mode .mobile-nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: var(--primary-color-light, #ff6b98);
     animation: dark-nav-glow 1.5s infinite;
 }
 
 body.dark-mode .mobile-nav-menu a:hover {
-    animation: dark-nav-glow 1.5s infinite;
+    color: var(--pastel-pink-dark);
+    animation: none;
 }
 
 body.dark-mode .hamburger-menu span {
