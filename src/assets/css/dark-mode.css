@@ -102,6 +102,7 @@ body.dark-mode .mobile-nav-menu a {
 
 body.dark-mode .mobile-nav-menu a:hover {
     color: var(--pastel-pink-dark);
+    transform: translateY(-3px);
 }
 
 body.dark-mode .mobile-nav-menu a.active {

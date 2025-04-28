@@ -1083,7 +1083,7 @@ input:checked ~ .toggle-icon:hover .moon-mask {
 
 .mobile-nav-menu a:hover {
     color: var(--dark-pink);
-    transform: translateX(5px);
+    transform: translateY(-3px);
 }
 
 .mobile-nav-menu a:hover:before {
