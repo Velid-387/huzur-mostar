@@ -149,7 +149,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       imgAlt: 'Fresh Flower Bouquet',
       title: 'Buket Esma',
       description:
-        'Kombinacija nijansiranog rozog cvijeća odiše romantikom i poštovanjem dok bijelo cvijeće odiše nežnošću i čistoćom. Rozo pakovanje upotpunjava ljepotu poruke koju šalje buket Esma.',
+        'Kombinacija nijansiranog rozog cvijeća odiše romantikom i poštovanjem dok bijelo cvijeće odiše nježnošću i čistoćom. Rozo pakovanje upotpunjava ljepotu poruke koju šalje buket Esma.',
     },
     {
       imgSrc: 'assets/img/products/bouquets/buket-9.jpg',
