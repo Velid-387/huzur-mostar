@@ -1,0 +1,42 @@
+name: Pre-merge Angular Build Check
+
+on:
+  pull_request:
+    branches:
+      - master  # triggers on PRs targeting master
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # 3. Install dependencies with retry and registry fallback
+      - name: Install dependencies
+        run: |
+          npm config set registry https://registry.npmjs.org/
+          npm ci --retry 3 --fetch-timeout 60000 --fetch-retries 3 || \
+          (npm config set registry https://registry.yarnpkg.com/ && npm ci --retry 3) || \
+          (npm config set registry https://skimdb.npmjs.com/registry/ && npm ci --retry 3)
+
+      # 4. Run Angular build
+      - name: Build Angular
+        run: npx ng build --configuration production --base-href /
+
+      # 5. Upload build as an artifact
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-build-preview
+          path: dist/huzur-mostar
+          retention-days: 5
