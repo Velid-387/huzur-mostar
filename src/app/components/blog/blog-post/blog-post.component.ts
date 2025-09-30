@@ -114,13 +114,12 @@ export class BlogPostComponent implements OnInit {
     if (!isPlatformBrowser(this.platformId) || !this.post) {
       return;
     }
-
+    
     // Get the current URL
     const url = window.location.href;
-
-    // Check if Web Share API is available and can be used
-    // Note: navigator.share requires HTTPS and user gesture
-    if (navigator.share && typeof navigator.share === 'function') {
+    
+    // If Web Share API is available, use it
+    if (navigator.share) {
       navigator.share({
         title: this.post.title,
         text: this.post.excerpt || 'Provjerite ovaj članak na Huzur Mostar blogu!',
@@ -132,60 +131,23 @@ export class BlogPostComponent implements OnInit {
       .catch((error) => {
         // Don't show error if user just canceled
         if (error.name !== 'AbortError') {
-          // If share failed, try clipboard fallback
-          this.fallbackToCopyLink(url);
+          this.showShareResult(false, 'Došlo je do greške prilikom dijeljenja.');
         }
       });
-    }
-    // Fallback to clipboard if Web Share API is not available
-    else {
-      this.fallbackToCopyLink(url);
-    }
-  }
-
-  /**
-   * Fallback method to copy link to clipboard
-   */
-  private fallbackToCopyLink(url: string): void {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
+    } 
+    // Fallback to clipboard
+    else if (navigator.clipboard) {
       navigator.clipboard.writeText(url)
         .then(() => {
           this.showShareResult(true, 'Link kopiran u međuspremnik!');
         })
         .catch(() => {
-          // Final fallback: create a temporary input element
-          this.copyToClipboardFallback(url);
+          this.showShareResult(false, 'Nije moguće kopirati link.');
         });
-    } else {
-      // Use old-school copy method
-      this.copyToClipboardFallback(url);
     }
-  }
-
-  /**
-   * Old-school clipboard copy method that works even without HTTPS
-   */
-  private copyToClipboardFallback(url: string): void {
-    try {
-      const textArea = document.createElement('textarea');
-      textArea.value = url;
-      textArea.style.position = 'fixed';
-      textArea.style.left = '-9999px';
-      textArea.style.top = '0';
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-
-      const successful = document.execCommand('copy');
-      document.body.removeChild(textArea);
-
-      if (successful) {
-        this.showShareResult(true, 'Link kopiran u međuspremnik!');
-      } else {
-        this.showShareResult(false, 'Molimo ručno kopirajte link iz adresne trake.');
-      }
-    } catch (err) {
-      this.showShareResult(false, 'Molimo ručno kopirajte link iz adresne trake.');
+    // Show message if neither is available
+    else {
+      this.showShareResult(false, 'Dijeljenje nije podržano na ovom uređaju.');
     }
   }
   

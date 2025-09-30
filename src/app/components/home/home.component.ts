@@ -2,11 +2,12 @@ import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy } from 
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
 import { ImageService } from '../../services/image.service';
+import { OptimizedImageComponent } from '../shared/optimized-image/optimized-image.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OptimizedImageComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
