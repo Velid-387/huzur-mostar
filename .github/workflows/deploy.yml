@@ -42,6 +42,4 @@ jobs:
             **/.git*/**
             **/node_modules/**
             **/.DS_Store
-            **/assets/docs/**
-            **/assets/images/**
           dry-run: false  # testing mode - change to false for actual deployment
