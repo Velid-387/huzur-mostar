@@ -1,0 +1,21 @@
+# Disable PageSpeed JavaScript optimization to prevent breaking Angular
+<IfModule pagespeed_module>
+    # Keep PageSpeed enabled but disable JS modifications
+    ModPagespeed on
+
+    # Disable JavaScript minification and rewriting
+    ModPagespeedDisableFilters rewrite_javascript
+    ModPagespeedDisableFilters js_defer
+    ModPagespeedDisableFilters js_inline
+    ModPagespeedDisableFilters js_combine
+    ModPagespeedDisableFilters js_minify
+
+    # Keep other optimizations enabled
+    ModPagespeedEnableFilters collapse_whitespace
+    ModPagespeedEnableFilters combine_css
+    ModPagespeedEnableFilters rewrite_css
+    ModPagespeedEnableFilters rewrite_images
+    ModPagespeedEnableFilters convert_jpeg_to_webp
+    ModPagespeedEnableFilters convert_png_to_jpeg
+    ModPagespeedEnableFilters resize_images
+</IfModule>
