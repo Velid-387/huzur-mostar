@@ -1,10 +1,9 @@
-name: Deploy site
+name: Deploy
 
 on:
   push:
     branches:
       - master  # or main
-      - move-page-to-globalhost  # temporary for testing
 
 jobs:
   build-and-deploy:
@@ -45,4 +44,4 @@ jobs:
             **/.DS_Store
             **/assets/docs/**
             **/assets/images/**
-          dry-run: true  # testing mode - change to false for actual deployment
+          dry-run: false  # testing mode - change to false for actual deployment

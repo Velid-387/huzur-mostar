@@ -1,4 +1,4 @@
-name: Angular Tests
+name: Angular tests
 
 on:
   push:
@@ -138,15 +138,3 @@ jobs:
     
     - name: Build
       run: ng build
-      
-    # Add your deployment step here, such as:
-    # - name: Deploy to Netlify
-    #   uses: nwtgck/actions-netlify@v2.0
-    #   with:
-    #     publish-dir: './dist/huzur-mostar/browser'
-    #     production-branch: main
-    #     github-token: ${{ secrets.GITHUB_TOKEN }}
-    #     deploy-message: "Deploy from GitHub Actions"
-    #   env:
-    #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-    #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }} 

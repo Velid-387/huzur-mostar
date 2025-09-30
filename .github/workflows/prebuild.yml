@@ -1,4 +1,4 @@
-name: Pre-merge Angular Build Check
+name: Pre-merge Angular build check
 
 on:
   pull_request:
