@@ -6,6 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AnimationService {
   private platformId = inject(PLATFORM_ID);
+  private observer: IntersectionObserver | null = null;
 
   constructor() { }
 
@@ -14,19 +15,30 @@ export class AnimationService {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
-    
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
+
+    // Clean up existing observer if any
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      // Intersection Observer for scroll animations
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // Observe all animate-item elements
+      const items = document.querySelectorAll('.animate-item');
+      items.forEach(item => {
+        if (this.observer) {
+          this.observer.observe(item);
         }
       });
-    }, { threshold: 0.1 });
-
-    // Observe all animate-item elements
-    document.querySelectorAll('.animate-item').forEach(item => {
-      observer.observe(item);
     });
   }
 }

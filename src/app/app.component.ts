@@ -1,5 +1,5 @@
-import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser, ViewportScroller } from '@angular/common';
+import { Component, OnInit, inject, PLATFORM_ID, afterNextRender } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import { AnimationService } from './services/animation.service';
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterOutlet,
     HeaderComponent,
     FooterComponent
@@ -24,16 +24,19 @@ export class AppComponent implements OnInit {
   private animationService = inject(AnimationService);
   private platformId = inject(PLATFORM_ID);
   private router = inject(Router);
-  private viewportScroller = inject(ViewportScroller);
-  
-  ngOnInit(): void {
-    // Initialize animations after view is loaded, but only in browser
-    if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
+
+  constructor() {
+    // Use afterNextRender to ensure animations initialize after hydration completes
+    afterNextRender(() => {
+      if (isPlatformBrowser(this.platformId)) {
         this.animationService.initAnimations();
-      }, 100);
-      
-      // Handle navigation end events
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    // Handle navigation end events
+    if (isPlatformBrowser(this.platformId)) {
       this.router.events.pipe(
         filter(event => event instanceof NavigationEnd)
       ).subscribe(() => {

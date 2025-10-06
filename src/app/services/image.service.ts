@@ -99,9 +99,6 @@ export class ImageService {
         `${optimizedDir}-${targetWidth}w.${this.supportedFormats['webp'] ? 'webp' : extension}`
       ];
 
-      // For debugging - will help identify the correct path format
-      console.debug(`Optimized image paths to try:`, possiblePaths);
-
       // Check if the file exists using Image.src onerror/onload
       // Note: We can't check file existence directly in browser, so we'll return the first format
       // and let the component's error handler try alternatives if needed

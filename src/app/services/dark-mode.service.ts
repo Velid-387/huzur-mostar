@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, afterNextRender } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
@@ -12,14 +12,16 @@ export class DarkModeService {
   private document = inject(DOCUMENT);
 
   constructor() {
-    // Only access localStorage in browser environments
-    if (isPlatformBrowser(this.platformId)) {
-      // Check for saved theme preference
-      const savedMode = localStorage.getItem('darkMode');
-      if (savedMode === 'enabled') {
-        this.enableDarkMode();
+    // Use afterNextRender to ensure DOM is ready and hydration is complete
+    afterNextRender(() => {
+      if (isPlatformBrowser(this.platformId)) {
+        // Check for saved theme preference
+        const savedMode = localStorage.getItem('darkMode');
+        if (savedMode === 'enabled') {
+          this.enableDarkMode();
+        }
       }
-    }
+    });
   }
 
   toggleDarkMode(): void {
