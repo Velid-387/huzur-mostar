@@ -33,7 +33,7 @@ export class ImageService {
         this.supportedFormats['webp'] = false;
       }
       
-      console.log(`Browser WebP support: ${this.supportedFormats['webp']}`);
+      // console.log(`Browser WebP support: ${this.supportedFormats['webp']}`);
       // You can add more format detection here (AVIF, etc.)
     }
   }
@@ -50,10 +50,10 @@ export class ImageService {
     if (window.location.hostname !== 'localhost' && 
         window.location.hostname !== '127.0.0.1') {
       this.useOptimizedImages = true;
-      console.log('Production environment detected, enabling optimized images');
+      // console.log('Production environment detected, enabling optimized images');
     }
     
-    console.log(`Using optimized images: ${this.useOptimizedImages}`);
+    // console.log(`Using optimized images: ${this.useOptimizedImages}`);
   }
 
   /**
