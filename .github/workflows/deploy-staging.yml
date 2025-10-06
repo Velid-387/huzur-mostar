@@ -1,0 +1,57 @@
+name: Deploy to Staging
+
+on:
+  # Manual trigger from GitHub UI
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'fix-loading-animations-and-images-1'
+
+  # Or auto-deploy when pushing to specific branches
+  push:
+    branches:
+      - fix-loading-animations-and-images-1
+      - staging
+      - develop
+
+jobs:
+  build-and-deploy-staging:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Build Angular app for staging
+      - name: Build Angular
+        run: npx ng build --configuration production --base-href /
+
+      # 5. Deploy to staging subdomain via FTP
+      - name: FTP Deploy to Staging
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/huzur-mostar/browser/
+          # Deploy to staging document root
+          server-dir: ./stage_public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+          dry-run: false
