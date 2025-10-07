@@ -34,6 +34,10 @@ jobs:
       - name: Build Angular
         run: npx ng build --configuration production --base-href /
 
+      # 4.5. Copy .htaccess to dist
+      - name: Copy .htaccess
+        run: cp .htaccess dist/huzur-mostar/browser/
+
       # 5. Deploy to staging subdomain via FTP
       - name: FTP Deploy to Staging
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
