@@ -42,8 +42,6 @@ jobs:
           username: ${{ secrets.STAGE_FTP_USERNAME }}
           password: ${{ secrets.STAGE_FTP_PASSWORD }}
           local-dir: dist/huzur-mostar/browser/
-          # Deploy to staging document root
-          server-dir: ./
           exclude: |
             **/.git*
             **/.git*/**
