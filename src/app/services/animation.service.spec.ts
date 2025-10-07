@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { PLATFORM_ID } from '@angular/core';
 
 import { AnimationService } from './animation.service';
@@ -61,29 +61,34 @@ describe('AnimationService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should add animated class to intersecting elements', () => {
+  it('should add animated class to intersecting elements', (done) => {
     // Create elements to animate
     const element1 = document.createElement('div');
     const element2 = document.createElement('div');
-    
+
     element1.classList.add('animate-item');
     element2.classList.add('animate-item');
-    
+
     document.body.appendChild(element1);
     document.body.appendChild(element2);
-    
+
     // Spy on querySelectorAll to return our test elements
     spyOn(document, 'querySelectorAll').and.returnValue([element1, element2] as any);
-    
+
     // Call the method
     service.initAnimations();
-    
-    // Verify elements received 'animated' class
-    expect(element1.classList.contains('animated')).toBeTrue();
-    expect(element2.classList.contains('animated')).toBeTrue();
-    
-    // Clean up
-    document.body.removeChild(element1);
-    document.body.removeChild(element2);
+
+    // Wait for requestAnimationFrame to complete
+    requestAnimationFrame(() => {
+      // Verify elements received 'animated' class
+      expect(element1.classList.contains('animated')).toBeTrue();
+      expect(element2.classList.contains('animated')).toBeTrue();
+
+      // Clean up
+      document.body.removeChild(element1);
+      document.body.removeChild(element2);
+
+      done();
+    });
   });
 });
