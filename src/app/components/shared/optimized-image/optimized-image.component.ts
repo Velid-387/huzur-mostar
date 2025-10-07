@@ -9,8 +9,8 @@ import { ImageService } from '../../../services/image.service';
   imports: [CommonModule, LazyLoadDirective],
   template: `
     <div class="image-container {{class}}" [class.loading]="loading">
-      <img 
-        *ngIf="!isBackground; else backgroundTemplate"
+      <img
+        *ngIf="!isBackground && currentSrc; else backgroundTemplate"
         class="optimized-image"
         [width]="width"
         [height]="height"
@@ -21,7 +21,8 @@ import { ImageService } from '../../../services/image.service';
         loading="lazy"
       >
       <ng-template #backgroundTemplate>
-        <div 
+        <div
+          *ngIf="currentSrc"
           class="background-image"
           [appLazyLoad]="currentSrc"
           (imageLoaded)="onImageLoaded()"
@@ -106,9 +107,9 @@ export class OptimizedImageComponent implements OnInit {
   @Input() height: number = 0;
   @Input() class: string = '';
   @Input() isBackground: boolean = false;
-  
+
   optimizedSrc: string = '';
-  currentSrc: string = ''; // The current src being used
+  currentSrc: string | null = null; // The current src being used
   loading: boolean = true;
   fallbackAttempted: boolean = false;
   alternatePathAttempted: boolean = false;
@@ -126,13 +127,6 @@ export class OptimizedImageComponent implements OnInit {
       
       // Use the optimized path if available
       this.currentSrc = this.optimizedSrc;
-      
-      // Log for debugging purposes (remove in production)
-      if (this.currentSrc !== this.src) {
-        console.debug(`Image path transformed: 
-          Original: ${this.src}
-          Optimized: ${this.currentSrc}`);
-      }
     } else {
       // On server, use original path to avoid 404s during SSR
       this.currentSrc = this.src;
@@ -145,14 +139,14 @@ export class OptimizedImageComponent implements OnInit {
   
   onImageError(): void {
     // Try alternative path format first
-    if (!this.alternatePathAttempted && this.currentSrc !== this.src) {
+    if (!this.alternatePathAttempted && this.currentSrc && this.currentSrc !== this.src) {
       this.alternatePathAttempted = true;
-      
+
       // If the current path has a structure with subdirectory like:
       // assets/img-optimized/products/bouquets/buket-1.jpg/buket-1-768w.webp
       // Try the alternative format without subdirectory:
       // assets/img-optimized/products/bouquets/buket-1-768w.webp
-      
+
       const pathParts = this.currentSrc.split('.');
       const extension = pathParts.pop() || '';
       const basePath = pathParts.join('.');
@@ -166,7 +160,6 @@ export class OptimizedImageComponent implements OnInit {
         if (dirPath.endsWith(filenameWithSize.split('-')[0])) {
           // We're using the subdirectory format, try the alternate format
           const pathWithoutSubdir = dirPath + '/' + filenameWithSize + '.' + extension;
-          console.debug(`Trying alternate path format: ${pathWithoutSubdir}`);
           this.currentSrc = pathWithoutSubdir;
           return;
         }
@@ -177,12 +170,11 @@ export class OptimizedImageComponent implements OnInit {
       try {
         // Try to convert to flat format
         let alternatePath = this.optimizedSrc;
-        const match = alternatePath.match(/(.*)\/(.*)\/(.*)-(\d+)w\.(.*)/);
-        
+        const match = alternatePath.match(/(.*)\/(.*)-(\d+)w\.(.*)/);
+
         if (match) {
-          const [, prefix, baseFile, filename, size, ext] = match;
+          const [, prefix, filename, size, ext] = match;
           alternatePath = `${prefix}/${filename}-${size}w.${ext}`;
-          console.debug(`Trying alternate flattened path: ${alternatePath}`);
           this.currentSrc = alternatePath;
           return;
         }
@@ -192,13 +184,11 @@ export class OptimizedImageComponent implements OnInit {
     }
 
     // If optimized image fails to load or we already tried alternates, try the original
-    if (!this.fallbackAttempted && this.currentSrc !== this.src) {
-      console.warn(`Optimized image failed to load: ${this.currentSrc}, falling back to original`);
+    if (!this.fallbackAttempted && this.currentSrc && this.currentSrc !== this.src) {
       this.fallbackAttempted = true;
       this.currentSrc = this.src;
     } else if (this.fallbackAttempted) {
       // Even the original failed to load
-      console.error(`Image failed to load: ${this.src}`);
       this.loading = false; // Stop showing loading state for missing images
     }
   }

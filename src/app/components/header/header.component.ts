@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, PLATFORM_ID, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, inject, PLATFORM_ID, HostListener, OnDestroy, afterNextRender } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { DarkModeService } from '../../services/dark-mode.service';
@@ -30,18 +30,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { id: 'driedFlowers', name: 'Suho cvijeće' },
     { id: 'magnets', name: 'Lončanice' }
   ];
-  
+
+  constructor() {
+    // Use afterNextRender to ensure proper initialization after hydration
+    afterNextRender(() => {
+      if (isPlatformBrowser(this.platformId)) {
+        // Set dark mode state after render
+        this.isDarkMode = this.darkModeService.isDark();
+      }
+    });
+  }
+
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       // Set Home as initial active section
       this.activeSection = 'home';
-      
+
       // Then check which section should actually be active
       this.checkActiveSection();
-      
+
       // Set dark mode state
       this.isDarkMode = this.darkModeService.isDark();
-      
+
       // Subscribe to router events to handle page changes
       this.routerSubscription = this.router.events.pipe(
         filter(event => event instanceof NavigationEnd)

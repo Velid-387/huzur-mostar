@@ -33,7 +33,7 @@ export class ImageService {
         this.supportedFormats['webp'] = false;
       }
       
-      console.log(`Browser WebP support: ${this.supportedFormats['webp']}`);
+      // console.log(`Browser WebP support: ${this.supportedFormats['webp']}`);
       // You can add more format detection here (AVIF, etc.)
     }
   }
@@ -50,10 +50,10 @@ export class ImageService {
     if (window.location.hostname !== 'localhost' && 
         window.location.hostname !== '127.0.0.1') {
       this.useOptimizedImages = true;
-      console.log('Production environment detected, enabling optimized images');
+      // console.log('Production environment detected, enabling optimized images');
     }
     
-    console.log(`Using optimized images: ${this.useOptimizedImages}`);
+    // console.log(`Using optimized images: ${this.useOptimizedImages}`);
   }
 
   /**
@@ -98,9 +98,6 @@ export class ImageService {
         // Path format without subdirectory: assets/img-optimized/products/bouquets/buket-1-768w.webp
         `${optimizedDir}-${targetWidth}w.${this.supportedFormats['webp'] ? 'webp' : extension}`
       ];
-
-      // For debugging - will help identify the correct path format
-      console.debug(`Optimized image paths to try:`, possiblePaths);
 
       // Check if the file exists using Image.src onerror/onload
       // Note: We can't check file existence directly in browser, so we'll return the first format
