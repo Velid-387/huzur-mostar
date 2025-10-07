@@ -43,7 +43,7 @@ jobs:
           password: ${{ secrets.STAGE_FTP_PASSWORD }}
           local-dir: dist/huzur-mostar/browser/
           # Deploy to staging document root
-          server-dir: ./stage_public_html/
+          server-dir: ./
           exclude: |
             **/.git*
             **/.git*/**
