@@ -41,8 +41,8 @@ jobs:
           server: ${{ secrets.STAGE_FTP_SERVER }}
           username: ${{ secrets.STAGE_FTP_USERNAME }}
           password: ${{ secrets.STAGE_FTP_PASSWORD }}
-          local-dir: ./dist/huzur-mostar/browser/
-          server-dir: /
+          local-dir: dist/huzur-mostar/browser/
+          server-dir: ./stage_public_html/
           exclude: |
             **/.git*
             **/.git*/**
