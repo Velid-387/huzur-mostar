@@ -1,29 +1,24 @@
 name: Deploy to Staging
 
 on:
-  # Manual trigger from GitHub UI
+  # Manual trigger only - you must specify which branch to deploy
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Branch to deploy'
+        description: 'Branch to deploy to staging'
         required: true
-        default: 'fix-loading-animations-and-images-1'
-
-  # Or auto-deploy when pushing to specific branches
-  push:
-    branches:
-      - fix-loading-animations-and-images-1
-      - staging
-      - develop
+        type: string
 
 jobs:
   build-and-deploy-staging:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
+      # 1. Checkout the specified branch
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch || github.ref }}
 
       # 2. Setup Node.js
       - name: Setup Node.js
@@ -43,9 +38,9 @@ jobs:
       - name: FTP Deploy to Staging
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.STAGE_FTP_SERVER }}
+          username: ${{ secrets.STAGE_FTP_USERNAME }}
+          password: ${{ secrets.STAGE_FTP_PASSWORD }}
           local-dir: dist/huzur-mostar/browser/
           # Deploy to staging document root
           server-dir: ./stage_public_html/
