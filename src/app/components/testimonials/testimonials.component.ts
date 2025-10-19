@@ -13,7 +13,7 @@ export class TestimonialsComponent implements OnInit {
   
   testimonials = [
     {
-      content: 'Hvala vama što se nam ukrasili ovaj dan. Baš mi je bilo lagano komunicirati s vama, još jedna od mnogih dokaza u nizu da su žene sjajne u poslu!',
+      content: 'Hvala vama što ste nam ukrasili ovaj dan. Baš mi je bilo lagano komunicirati s vama, još jedna od mnogih dokaza u nizu da su žene sjajne u poslu!',
       name: '#huzurljudi',
       imagePath: 'assets/img/testimonials/recenzija-1.jpg',
       flipped: false,
