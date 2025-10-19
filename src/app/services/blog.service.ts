@@ -31,7 +31,7 @@ export class BlogService {
       excerpt: 'Čitav je život jedan proces',
       date: 'Apr 14, 2025',
       image: '/assets/img/blog/huzur-blog-1.jpg',
-      slug: 'kako-pravilno-njegovati-suho-cvijece',
+      slug: 'sreca-je-znati-uivati-u-procesu',
       fileName: 'huzur-blog-2.md',
       readingTime: ''
     },
@@ -41,8 +41,18 @@ export class BlogService {
       excerpt: 'Krug se zatvara da se novi otvori',
       date: 'Apr 15, 2025',
       image: '/assets/img/blog/huzur-blog-2.jpg',
-      slug: 'najbolje-biljke-za-vas-dom',
+      slug: 'krug-se-zatvara-da-se-novi-otvori',
       fileName: 'huzur-blog-1.md',
+      readingTime: ''
+    },
+    {
+      id: 3,
+      title: 'Ono što je tvoje, pronaći će put do tebe',
+      excerpt: 'Putnici',
+      date: 'Okt 19, 2025',
+      image: '/assets/img/blog/huzur-blog-3.jpg',
+      slug: 'ono-sto-je-tvoje-pronaci-ce-put-do-tebe',
+      fileName: 'huzur-blog-3.md',
       readingTime: ''
     }
   ];
