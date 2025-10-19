@@ -4,11 +4,12 @@ import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { DarkModeService } from '../../services/dark-mode.service';
 import { ScrollService } from '../../services/scroll.service';
 import { Subscription, filter } from 'rxjs';
+import { OptimizedImageComponent } from '../shared/optimized-image/optimized-image.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, OptimizedImageComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
