@@ -479,8 +479,20 @@ body.dark-mode .faq-item.animate-item {
     border-left: 5px solid var(--dark-pink-dark);
 }
 
-body.dark-mode .faq-item.animate-item .faq-question {
-    color: var(--pastel-green-dark);
+body.dark-mode .faq-item.animate-item {
+    color: var(--text-light);
+}
+
+body.dark-mode .faq-answer {
+    color: var(--text-light);
+}
+
+body.dark-mode .faq-icon {
+    color: var(--pastel-pink-dark);
+}
+
+body.dark-mode .faq-item.active {
+    border-left-color: var(--dark-pink-dark);
 }
 
 /* Contact form input fields in dark mode */
