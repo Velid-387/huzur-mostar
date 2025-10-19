@@ -83,11 +83,9 @@ export class BlogService {
       )
     );
 
-    // Combine all observables and sort by date
+    // Combine all observables and reverse to show last added first
     return forkJoin(postObservables).pipe(
-      map(posts => posts.sort((a, b) => 
-        new Date(b.date).getTime() - new Date(a.date).getTime()
-      ))
+      map(posts => posts.reverse())
     );
   }
 
