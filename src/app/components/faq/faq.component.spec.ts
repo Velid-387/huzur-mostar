@@ -46,63 +46,90 @@ describe('FaqComponent', () => {
   });
 
   it('should toggle FAQ item when clicked', fakeAsync(() => {
-    // Find a FAQ question element
-    const faqQuestion = fixture.debugElement.query(By.css('.faq-question'));
-    if (!faqQuestion) {
+    // Find the first FAQ item element
+    const faqItem = fixture.debugElement.query(By.css('.faq-item'));
+    if (!faqItem) {
       // Skip if we can't find the element
       return;
     }
-    
+
     // Initial state should not have active class
-    const faqItem = faqQuestion.parent;
-    expect(faqItem?.classes['active']).toBeFalsy();
-    
-    // Click the question
-    faqQuestion.triggerEventHandler('click', {
-      currentTarget: faqQuestion.nativeElement
-    });
+    expect(faqItem.classes['active']).toBeFalsy();
+
+    // Click the item
+    faqItem.triggerEventHandler('click', {});
     fixture.detectChanges();
-    
-    // Allow the timeout in setupFaqToggle to execute
-    tick(10);
-    
+
     // After click, the item should have active class
-    expect(faqItem?.classes['active']).toBeTruthy();
-    
+    expect(faqItem.classes['active']).toBeTruthy();
+
     // Click again to toggle off
-    faqQuestion.triggerEventHandler('click', {
-      currentTarget: faqQuestion.nativeElement
-    });
+    faqItem.triggerEventHandler('click', {});
     fixture.detectChanges();
-    
+
     // After second click, the active class should be removed
-    expect(faqItem?.classes['active']).toBeFalsy();
+    expect(faqItem.classes['active']).toBeFalsy();
   }));
 
-  it('should call toggleFaq method when question is clicked', () => {
+  it('should call toggleFaq method when item is clicked', () => {
     // Spy on the toggleFaq method
     spyOn(component, 'toggleFaq');
-    
-    // Find and click a FAQ question
-    const faqQuestion = fixture.debugElement.query(By.css('.faq-question'));
-    if (faqQuestion) {
-      faqQuestion.triggerEventHandler('click', {
-        currentTarget: faqQuestion.nativeElement
-      });
-      
-      // Verify toggleFaq was called
-      expect(component.toggleFaq).toHaveBeenCalled();
+
+    // Find and click a FAQ item
+    const faqItem = fixture.debugElement.query(By.css('.faq-item'));
+    if (faqItem) {
+      faqItem.triggerEventHandler('click', {});
+
+      // Verify toggleFaq was called with the correct index
+      expect(component.toggleFaq).toHaveBeenCalledWith(0);
     }
   });
 
-  it('should initialize with FAQ toggle setup on browser platform', fakeAsync(() => {
-    // Spy on setupFaqToggle method
-    spyOn(component, 'setupFaqToggle');
-    
-    // Call ngOnInit manually
-    component.ngOnInit();
-    
-    // Verify setupFaqToggle was called
-    expect(component.setupFaqToggle).toHaveBeenCalled();
+  it('should auto-close FAQ item after 7 seconds', fakeAsync(() => {
+    // Open an FAQ item
+    component.toggleFaq(0);
+    expect(component.faqItems[0].isOpen).toBe(true);
+
+    // Fast-forward 7 seconds
+    tick(7000);
+
+    // Item should now be closed
+    expect(component.faqItems[0].isOpen).toBe(false);
+  }));
+
+  it('should clear timeout when manually closing before auto-close', fakeAsync(() => {
+    // Open an FAQ item
+    component.toggleFaq(0);
+    expect(component.faqItems[0].isOpen).toBe(true);
+
+    // Manually close it before 7 seconds
+    tick(3000);
+    component.toggleFaq(0);
+    expect(component.faqItems[0].isOpen).toBe(false);
+
+    // Fast-forward past the original 7 seconds
+    tick(5000);
+
+    // Item should still be closed
+    expect(component.faqItems[0].isOpen).toBe(false);
+  }));
+
+  it('should clear all timeouts on component destruction', fakeAsync(() => {
+    // Open multiple FAQ items
+    component.toggleFaq(0);
+    component.toggleFaq(1);
+
+    expect(component.faqItems[0].isOpen).toBe(true);
+    expect(component.faqItems[1].isOpen).toBe(true);
+
+    // Destroy the component
+    component.ngOnDestroy();
+
+    // Fast-forward past auto-close time
+    tick(8000);
+
+    // Items should still be open since timeouts were cleared
+    expect(component.faqItems[0].isOpen).toBe(true);
+    expect(component.faqItems[1].isOpen).toBe(true);
   }));
 });
