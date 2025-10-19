@@ -35,6 +35,11 @@
                 "glob": "huzur-logo.png",
                 "input": "public",
                 "output": "/"
+              },
+              {
+                "glob": ".htaccess",
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
