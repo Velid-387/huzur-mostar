@@ -32,7 +32,7 @@ export class BlogService {
       date: 'Apr 14, 2025',
       image: '/assets/img/blog/huzur-blog-1.jpg',
       slug: 'sreca-je-znati-uivati-u-procesu',
-      fileName: 'huzur-blog-2.md',
+      fileName: 'huzur-blog-1.md',
       readingTime: ''
     },
     {
@@ -42,7 +42,7 @@ export class BlogService {
       date: 'Apr 15, 2025',
       image: '/assets/img/blog/huzur-blog-2.jpg',
       slug: 'krug-se-zatvara-da-se-novi-otvori',
-      fileName: 'huzur-blog-1.md',
+      fileName: 'huzur-blog-2.md',
       readingTime: ''
     },
     {
