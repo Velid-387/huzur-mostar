@@ -1,5 +1,12 @@
-import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+interface FaqItem {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  timeoutId?: any;
+}
 
 @Component({
   selector: 'app-faq',
@@ -8,60 +15,62 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.css']
 })
-export class FaqComponent implements OnInit {
-  private platformId = inject(PLATFORM_ID);
-  
-  faqItems = [
+export class FaqComponent implements OnDestroy {
+  faqItems: FaqItem[] = [
     {
       question: 'Šta znači riječ Huzur?',
-      answer: 'Jednom riječju znači mir. Huzur predstavlja mir u svim dimenzijama života. Huzur kao ravnoteža duše, osjećanja, ravnoteža želja i stvarnosti, mašte i realnosti.'
+      answer: 'Jednom riječju znači mir. Huzur predstavlja mir u svim dimenzijama života. Huzur kao ravnoteža duše, osjećanja, ravnoteža želja i stvarnosti, mašte i realnosti.',
+      isOpen: false
     },
     {
       question: 'Kada je pravo vrijeme za narudžbu buketa?',
-      answer: 'Svaki dan je divan dan za obradovati dragu osobu. Ali ukoliko u životu postoji prilika za koju je datum poznat i već postoji jasna želja kakav se cvjetni aranžman planira pokloniti onda je preiod od 5-7 dana unaprijed najbolji za narudžbu aranžamana. U slučajevima kada se radi o bidermajeru, onda je to poželjno uraditi 10-15 dana ranije.'
+      answer: 'Svaki dan je divan dan za obradovati dragu osobu. Ali ukoliko u životu postoji prilika za koju je datum poznat i već postoji jasna želja kakav se cvjetni aranžman planira pokloniti onda je preiod od 5-7 dana unaprijed najbolji za narudžbu aranžamana. U slučajevima kada se radi o bidermajeru, onda je to poželjno uraditi 10-15 dana ranije.',
+      isOpen: false
     },
     {
       question: 'Kako se kreću cijene buketa?',
-      answer: 'Cijene buketa variraju od želje kupaca:<ul><li>Buketi veličine S: 15-25KM</li><li>Buketi veličine M: 30-45KM</li><li>Buketi veličine L: 50-70KM</li><li>Buketi veličine XL: 75-95KM</li><li>Buketi veličine XXL: &gt;100KM</li></ul>'
+      answer: 'Cijene buketa variraju od želje kupaca:<ul><li>Buketi veličine S: 15-25KM</li><li>Buketi veličine M: 30-45KM</li><li>Buketi veličine L: 50-70KM</li><li>Buketi veličine XL: 75-95KM</li><li>Buketi veličine XXL: &gt;100KM</li></ul>',
+      isOpen: false
     },
     {
       question: 'Koji su načini plaćanja?',
-      answer: 'Dostupne opcije plaćanja su gotovinsko i elektronsko/žiralno plaćanje.'
+      answer: 'Dostupne opcije plaćanja su gotovinsko i elektronsko/žiralno plaćanje.',
+      isOpen: false
     },
     {
       question: 'Da li u ponudi imate dostavu?',
-      answer: 'Trenutno u našoj ponudi još uvijek nemamo dostavu na kućnu adresu.'
+      answer: 'Trenutno u našoj ponudi još uvijek nemamo dostavu na kućnu adresu.',
+      isOpen: false
     }
   ];
 
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.setupFaqToggle();
+  toggleFaq(index: number): void {
+    const item = this.faqItems[index];
+
+    // Clear any existing timeout for this item
+    if (item.timeoutId) {
+      clearTimeout(item.timeoutId);
+      item.timeoutId = undefined;
+    }
+
+    // Toggle the open state
+    item.isOpen = !item.isOpen;
+
+    // If item is now open, set a timeout to close it after 7 seconds
+    if (item.isOpen) {
+      item.timeoutId = setTimeout(() => {
+        item.isOpen = false;
+        item.timeoutId = undefined;
+      }, 7000);
     }
   }
 
-  setupFaqToggle(): void {
-    // This will be executed after Angular has rendered the template
-    setTimeout(() => {
-      const faqQuestions = document.querySelectorAll('.faq-question');
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-          const parent = question.parentElement;
-          if (parent) {
-            parent.classList.toggle('active');
-          }
-        });
-      });
-    }, 0);
-  }
-  
-  toggleFaq(event: Event): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const target = event.currentTarget as HTMLElement;
-      const parent = target.parentElement;
-      if (parent) {
-        parent.classList.toggle('active');
+  ngOnDestroy(): void {
+    // Clear all timeouts when component is destroyed
+    this.faqItems.forEach(item => {
+      if (item.timeoutId) {
+        clearTimeout(item.timeoutId);
       }
-    }
+    });
   }
 }

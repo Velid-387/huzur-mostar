@@ -2,8 +2,14 @@
     <div class="container">
         <h2 class="animate-item">Najčešće postavljena pitanja</h2>
         <div class="faq-container">
-            <div class="faq-item animate-item" *ngFor="let item of faqItems">
-                <div class="faq-question" (click)="toggleFaq($event)">{{ item.question }}</div>
+            <div class="faq-item animate-item animated"
+                 *ngFor="let item of faqItems; let i = index"
+                 [class.active]="item.isOpen"
+                 (click)="toggleFaq(i)">
+                <div class="faq-question">
+                    <span>{{ item.question }}</span>
+                    <span class="faq-icon">{{ item.isOpen ? '−' : '+' }}</span>
+                </div>
                 <div class="faq-answer" [innerHTML]="item.answer"></div>
             </div>
         </div>
