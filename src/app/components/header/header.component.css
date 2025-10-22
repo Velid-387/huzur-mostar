@@ -53,12 +53,33 @@
   align-items: center;
   text-decoration: none;
   color: inherit;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo a img {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.scrolled .logo a {
+  transform: scale(0.95);
+}
+
+header.scrolled .logo a img {
+  max-height: 35px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+}
+
+.nav-links a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.scrolled .nav-links a {
+  font-size: 0.95rem;
 }
 
 /* Mobile styles to ensure nav links stack properly */
@@ -251,10 +272,24 @@
         width: 100%;
         height: 100%;
     }
-    
+
     /* Update header z-index for mobile to be higher than desktop */
     header {
         z-index: 1001;
+    }
+
+    /* Mobile scrolled state - less dramatic effect */
+    header.scrolled {
+        top: 8px;
+        left: 8px;
+        width: calc(100% - 16px);
+        right: 8px;
+        border-radius: 20px;
+        height: 56px;
+    }
+
+    header.scrolled nav {
+        padding: 0 10px;
     }
     
     nav {
@@ -295,10 +330,14 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         z-index: 999;
         transform: translateX(-100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
         overflow-y: auto;
+    }
+
+    header.scrolled ~ .mobile-nav-menu {
+        top: 72px; /* Adjust for scrolled header position */
     }
 
     .mobile-nav-menu.active {
@@ -484,17 +523,50 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 0.5rem 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   height: 70px;
+  border-radius: 0;
+}
+
+/* Scrolled state - Apple-style floating navbar */
+header.scrolled {
+  top: 12px;
+  left: 16px;
+  width: calc(100% - 32px);
+  max-width: 1200px;
+  margin: 0 auto;
+  right: 16px;
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+              0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  height: 60px;
+  padding: 0.25rem 0;
 }
 
 :host-context(body.dark-mode) header {
-  background-color: var(--dark-background, #1a1a1a);
+  background-color: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+:host-context(body.dark-mode) header.scrolled {
+  background-color: rgba(26, 26, 26, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+              0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 nav {
@@ -505,6 +577,11 @@ nav {
   align-items: center;
   padding: 0 2rem;
   height: 100%;
+  transition: padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.scrolled nav {
+  padding: 0 1.5rem;
 }
 
 /* Add padding to main content to account for fixed header */

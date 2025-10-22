@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   mobileMenuOpen: boolean = false;
   isDarkMode: boolean = false;
   isProductsDropdownOpen: boolean = false;
+  isScrolled: boolean = false;
   
   productSections = [
     { id: 'freshFlowers', name: 'Svježe cvijeće' },
@@ -93,8 +94,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    if (isPlatformBrowser(this.platformId) && !this.isOnBlogPage() && !this.isOnLegalPage()) {
-      this.checkActiveSection();
+    if (isPlatformBrowser(this.platformId)) {
+      // Update scroll state for navbar styling
+      this.isScrolled = window.scrollY > 20;
+
+      // Check active section only if not on blog or legal pages
+      if (!this.isOnBlogPage() && !this.isOnLegalPage()) {
+        this.checkActiveSection();
+      }
     }
   }
 
