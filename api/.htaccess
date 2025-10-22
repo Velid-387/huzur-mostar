@@ -1,0 +1,17 @@
+# Ensure PHP files are executed, not downloaded
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Allow CORS
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "POST, GET, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, X-Requested-With"
+</IfModule>
+
+# Don't show directory listings
+Options -Indexes
+
+# Disable output buffering for PHP
+php_flag output_buffering Off

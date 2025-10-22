@@ -20,19 +20,36 @@
                     </p>
                     <div class="form-group">
                         <label for="name">Ime i prezime</label>
-                        <input type="text" id="name" name="name" formControlName="name">
+                        <input type="text" id="name" name="name" formControlName="name"
+                            [class.error]="contactForm.get('name')?.invalid && (contactForm.get('name')?.dirty || contactForm.get('name')?.touched || submitted)">
+                        <div class="error-message" *ngIf="contactForm.get('name')?.invalid && (contactForm.get('name')?.dirty || contactForm.get('name')?.touched || submitted)">
+                            <span *ngIf="contactForm.get('name')?.errors?.['required']">Ime i prezime je obavezno</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email adresa</label>
-                        <input type="email" id="email" name="email" formControlName="email">
+                        <input type="email" id="email" name="email" formControlName="email"
+                            [class.error]="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched || submitted)">
+                        <div class="error-message" *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched || submitted)">
+                            <span *ngIf="contactForm.get('email')?.errors?.['required']">Email adresa je obavezna</span>
+                            <span *ngIf="contactForm.get('email')?.errors?.['email']">Unesite validnu email adresu</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="subject">Naslov poruke</label>
-                        <input type="text" id="subject" name="subject" formControlName="subject">
+                        <input type="text" id="subject" name="subject" formControlName="subject"
+                            [class.error]="contactForm.get('subject')?.invalid && (contactForm.get('subject')?.dirty || contactForm.get('subject')?.touched || submitted)">
+                        <div class="error-message" *ngIf="contactForm.get('subject')?.invalid && (contactForm.get('subject')?.dirty || contactForm.get('subject')?.touched || submitted)">
+                            <span *ngIf="contactForm.get('subject')?.errors?.['required']">Naslov poruke je obavezan</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="message">Poruka</label>
-                        <textarea id="message" name="message" formControlName="message"></textarea>
+                        <textarea id="message" name="message" formControlName="message"
+                            [class.error]="contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched || submitted)"></textarea>
+                        <div class="error-message" *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched || submitted)">
+                            <span *ngIf="contactForm.get('message')?.errors?.['required']">Poruka je obavezna</span>
+                        </div>
                     </div>
                     <button type="submit" class="btn" [disabled]="contactForm.invalid || isSubmitting">
                         {{ isSubmitting ? 'Slanje...' : 'Pošalji poruku' }}

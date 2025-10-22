@@ -16,6 +16,7 @@ export class ContactComponent {
   contactForm: FormGroup;
   formStatus: string = '';
   isSubmitting: boolean = false;
+  submitted: boolean = false;
   private isNetlify: boolean = false;
 
   constructor(
@@ -51,6 +52,8 @@ export class ContactComponent {
   }
 
   onSubmit() {
+    this.submitted = true;
+
     if (this.contactForm.valid) {
       this.isSubmitting = true;
       this.formStatus = 'Slanje poruke...';
@@ -63,7 +66,11 @@ export class ContactComponent {
         this.submitToPhpApi();
       }
     } else {
-      this.formStatus = 'Molimo popunite sva polja.';
+      // Mark all fields as touched to show validation errors
+      Object.keys(this.contactForm.controls).forEach(key => {
+        this.contactForm.get(key)?.markAsTouched();
+      });
+      this.formStatus = 'Molimo popunite sva obavezna polja.';
     }
   }
 
@@ -117,6 +124,7 @@ export class ContactComponent {
           if (response.success) {
             this.formStatus = 'Poruka uspješno poslana!';
             this.contactForm.reset();
+            this.submitted = false; // Reset submitted state
             // Navigate to success page after a short delay
             setTimeout(() => {
               this.router.navigate(['/form-success']);
