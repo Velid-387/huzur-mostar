@@ -5,6 +5,8 @@ header('Content-Type: application/json');
 // Allow requests from both production domain and localhost for development
 $allowed_origins = [
     'https://huzurmostar.ba',
+    'https://stage.huzurmostar.ba',  // STAGE subdomain
+    'http://stage.huzurmostar.ba',   // STAGE subdomain (HTTP)
     'http://localhost:4200',
     'http://localhost'
 ];
