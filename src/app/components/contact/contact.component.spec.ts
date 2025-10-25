@@ -3,6 +3,8 @@ import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ContactComponent } from './contact.component';
 import { Router } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -13,12 +15,14 @@ describe('ContactComponent', () => {
 
   beforeEach(async () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-    
+
     await TestBed.configureTestingModule({
       imports: [ContactComponent, ReactiveFormsModule],
       providers: [
         FormBuilder,
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
+        provideHttpClient(),
+        provideHttpClientTesting()
       ]
     }).compileComponents();
 
@@ -51,7 +55,7 @@ describe('ContactComponent', () => {
     expect(component.contactForm.get('message')?.valid).toBeFalse();
     
     // Check that the correct error message is displayed
-    expect(component.formStatus).toBe('Molimo popunite sva polja.');
+    expect(component.formStatus).toBe('Molimo popunite sva obavezna polja ispravno.');
   });
 
   it('should detect invalid email format', () => {
@@ -70,7 +74,7 @@ describe('ContactComponent', () => {
     component.onSubmit();
     
     // Check that the correct error message is displayed
-    expect(component.formStatus).toBe('Molimo popunite sva polja.');
+    expect(component.formStatus).toBe('Molimo popunite sva obavezna polja ispravno.');
   });
 
   it('should accept form with valid data', fakeAsync(() => {
