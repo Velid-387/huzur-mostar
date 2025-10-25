@@ -137,70 +137,127 @@ $emailBody = "
 <head>
     <meta charset='UTF-8'>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:wght@300;400;500;600&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
         }
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #4A5568;
+            background: linear-gradient(135deg, #d14d72 0%, #ff6b98 100%);
             color: white;
-            padding: 10px;
-            border-radius: 5px 5px 0 0;
+            padding: 30px 20px;
             text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-family: 'Alex Brush', cursive;
+            font-size: 36px;
+            font-weight: normal;
+        }
+        .header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
         }
         .content {
             background-color: white;
-            padding: 20px;
-            border-radius: 0 0 5px 5px;
+            padding: 30px;
         }
         .field {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
         }
-        .field strong {
-            display: inline-block;
-            width: 100px;
-            color: #4A5568;
+        .field:last-of-type {
+            border-bottom: none;
+        }
+        .field-label {
+            display: block;
+            font-weight: 600;
+            color: #d14d72;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .field-value {
+            color: #333;
+            font-size: 16px;
         }
         .message-content {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-left: 4px solid #4A5568;
-            margin-top: 10px;
+            background-color: #fef5f8;
+            padding: 20px;
+            border-left: 4px solid #d14d72;
+            border-radius: 5px;
+            margin-top: 8px;
             white-space: pre-wrap;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #d14d72;
+        }
+        .footer p {
+            color: #666;
+            font-size: 13px;
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #d14d72;
+            text-decoration: none;
+        }
+        .flower-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class='container'>
         <div class='header'>
-            <h2>Dobili ste novu poruku</h2>
+            <div class='flower-icon'>🌸</div>
+            <h1>Huzur Mostar</h1>
+            <p>Nova poruka sa kontakt forme</p>
         </div>
         <div class='content'>
             <div class='field'>
-                <strong>Ime:</strong> {$name}
+                <span class='field-label'>Ime i prezime</span>
+                <div class='field-value'>{$name}</div>
             </div>
             <div class='field'>
-                <strong>Email:</strong> {$email}
+                <span class='field-label'>Email adresa</span>
+                <div class='field-value'>{$email}</div>
             </div>
             <div class='field'>
-                <strong>Naslov:</strong> {$subject}
+                <span class='field-label'>Naslov poruke</span>
+                <div class='field-value'>{$subject}</div>
             </div>
             <div class='field'>
-                <strong>Poruka:</strong>
+                <span class='field-label'>Poruka</span>
                 <div class='message-content'>{$message}</div>
             </div>
-            <hr>
-            <p style='color: #666; font-size: 12px;'>
-                Ova poruka je poslata sa kontakt forme na sajtu www.huzurmostar.ba
+        </div>
+        <div class='footer'>
+            <p>🌸 Ova poruka je poslata sa kontakt forme 🌸</p>
+            <p><a href='https://www.huzurmostar.ba'>www.huzurmostar.ba</a></p>
+            <p style='color: #999; font-size: 12px; margin-top: 10px;'>
+                Maršala Tita 134, Mostar | +387 60 33 52 011
             </p>
         </div>
     </div>
@@ -210,18 +267,26 @@ $emailBody = "
 
 // Plain text version as fallback
 $emailBodyPlain = "
-Dobili ste novu poruku
+🌸 HUZUR MOSTAR 🌸
+Nova poruka sa kontakt forme
 =============================
 
-Ime: {$name}
-Email: {$email}
-Naslov: {$subject}
+IME I PREZIME
+{$name}
 
-Poruka:
+EMAIL ADRESA
+{$email}
+
+NASLOV PORUKE
+{$subject}
+
+PORUKA
 {$message}
 
 ---
-Ova poruka je poslata sa kontakt forme na sajtu www.huzurmostar.ba
+🌸 Ova poruka je poslata sa kontakt forme 🌸
+www.huzurmostar.ba
+Maršala Tita 134, Mostar | +387 60 33 52 011
 ";
 
 /**
