@@ -182,7 +182,7 @@ $emailBody = "
 <body>
     <div class='container'>
         <div class='header'>
-            <h2>Nova Poruka sa Kontakt Forme</h2>
+            <h2>Dobili ste novu poruku</h2>
         </div>
         <div class='content'>
             <div class='field'>
@@ -200,7 +200,7 @@ $emailBody = "
             </div>
             <hr>
             <p style='color: #666; font-size: 12px;'>
-                Ova poruka je poslata sa kontakt forme na sajtu huzurmostar.ba
+                Ova poruka je poslata sa kontakt forme na sajtu www.huzurmostar.ba
             </p>
         </div>
     </div>
@@ -210,7 +210,7 @@ $emailBody = "
 
 // Plain text version as fallback
 $emailBodyPlain = "
-Nova Poruka sa Kontakt Forme
+Dobili ste novu poruku
 =============================
 
 Ime: {$name}
@@ -221,7 +221,7 @@ Poruka:
 {$message}
 
 ---
-Ova poruka je poslata sa kontakt forme na sajtu huzurmostar.ba
+Ova poruka je poslata sa kontakt forme na sajtu www.huzurmostar.ba
 ";
 
 /**
