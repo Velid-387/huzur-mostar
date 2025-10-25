@@ -99,11 +99,11 @@ export class ContactComponent {
     // Append to body, submit the form
     document.body.appendChild(form);
 
-    // Submit the form
+    // Show loader for 2 seconds before submitting
     setTimeout(() => {
       form.submit();
       // Note: The page will navigate to the success page due to the form action
-    }, 100);
+    }, 2000);
   }
 
   /**
@@ -124,16 +124,17 @@ export class ContactComponent {
       }
     }).subscribe({
       next: (response: any) => {
-        this.isSubmitting = false;
         if (response.success) {
           this.formStatus = 'Poruka uspješno poslata!';
           this.contactForm.reset();
 
-          // Redirect to form-success page after a brief delay
+          // Keep loader visible for a moment, then redirect
           setTimeout(() => {
+            this.isSubmitting = false;
             this.router.navigate(['/form-success']);
-          }, 1000);
+          }, 1500);
         } else {
+          this.isSubmitting = false;
           this.formStatus = 'Greška pri slanju poruke. Molimo pokušajte ponovo.';
         }
       },

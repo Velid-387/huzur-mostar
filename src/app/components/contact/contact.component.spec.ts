@@ -145,9 +145,9 @@ describe('ContactComponent', () => {
     expect(formNameField).toBeTruthy();
     expect(formNameField.value).toBe('contact');
     
-    // Simulate setTimeout callback
-    tick(100);
-    
+    // Simulate setTimeout callback (2 seconds for loader display)
+    tick(2000);
+
     // Check that form was submitted
     expect(mockForm.submit).toHaveBeenCalled();
   }));

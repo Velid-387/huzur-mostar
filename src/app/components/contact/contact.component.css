@@ -130,3 +130,130 @@ button.btn:disabled:hover::after {
   font-weight: 500;
   color: #333;
 }
+
+/* Loader overlay */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+.loader-text {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  color: #333;
+  font-weight: 500;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Flower loader animation */
+.flower-loader {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  animation: rotate 3s linear infinite;
+}
+
+/* Center of the flower */
+.flower-center {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #ffeb3b, #ffc107);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4);
+}
+
+/* Petals */
+.petal {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  background: linear-gradient(135deg, #e91e63, #f06292);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  top: 50%;
+  left: 50%;
+  transform-origin: 50% 100%;
+  opacity: 0;
+  animation: petalBloom 1.5s ease-in-out infinite;
+}
+
+/* Position each petal around the center */
+.petal:nth-child(1) {
+  transform: translate(-50%, -100%) rotate(0deg);
+  animation-delay: 0s;
+}
+
+.petal:nth-child(2) {
+  transform: translate(-50%, -100%) rotate(60deg);
+  animation-delay: 0.25s;
+}
+
+.petal:nth-child(3) {
+  transform: translate(-50%, -100%) rotate(120deg);
+  animation-delay: 0.5s;
+}
+
+.petal:nth-child(4) {
+  transform: translate(-50%, -100%) rotate(180deg);
+  animation-delay: 0.75s;
+}
+
+.petal:nth-child(5) {
+  transform: translate(-50%, -100%) rotate(240deg);
+  animation-delay: 1s;
+}
+
+.petal:nth-child(6) {
+  transform: translate(-50%, -100%) rotate(300deg);
+  animation-delay: 1.25s;
+}
+
+/* Petal bloom animation */
+@keyframes petalBloom {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+}
+
+/* Flower rotation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Text pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
