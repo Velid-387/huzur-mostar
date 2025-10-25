@@ -4,6 +4,8 @@
   [build.environment]
     NODE_OPTIONS = "--max-old-space-size=4096"
     NODE_VERSION = "20.11.1"
+  # Ignore PHP files during build (they're for GlobalHost deployment only)
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF . ':(exclude)public/send-email.php'"
 
 [[headers]]
   for = "/*"

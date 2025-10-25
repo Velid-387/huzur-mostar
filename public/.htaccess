@@ -19,6 +19,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Allow direct access to send-email.php (contact form API)
+    RewriteCond %{REQUEST_URI} ^/send-email\.php$
+    RewriteRule ^ - [L]
+
     # Don't rewrite files or directories that exist
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
