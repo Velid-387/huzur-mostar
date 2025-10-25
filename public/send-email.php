@@ -38,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 /**
  * Configuration
  */
-// TODO: Replace with your actual email address
-$recipientEmail = 'info@huzurmostar.ba'; // Change this to your email
+// Multiple recipients: separate email addresses with commas
+$recipientEmail = 'info@huzurmostar.ba, huzur.mostar@gmail.com'; // Add multiple emails separated by commas
 $fromEmail = 'noreply@huzurmostar.ba';
 $fromName = 'Huzur Mostar Contact Form';
 
