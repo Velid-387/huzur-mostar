@@ -18,6 +18,7 @@
 # Redirect all requests to index.html for client-side routing
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteBase /
 
     # Don't rewrite files or directories that exist
     RewriteCond %{REQUEST_FILENAME} -f [OR]

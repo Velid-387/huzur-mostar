@@ -1,4 +1,20 @@
 <section id="contact" class="animate-section">
+    <!-- Loading overlay with flower animation -->
+    <div class="loader-overlay" *ngIf="isSubmitting">
+        <div class="loader-content">
+            <div class="flower-loader">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
+            </div>
+            <div class="loader-text">Šaljemo vašu poruku...</div>
+        </div>
+    </div>
+
     <div class="container">
         <h2 class="animate-item">Kontaktirajte nas</h2>
         <div class="contact-container">
@@ -19,20 +35,41 @@
                         <label>Don't fill this out if you're human: <input name="bot-field" /></label>
                     </p>
                     <div class="form-group">
-                        <label for="name">Ime i prezime</label>
-                        <input type="text" id="name" name="name" formControlName="name">
+                        <label for="name">Ime i prezime <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" formControlName="name"
+                               [class.invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+                               placeholder="Unesite vaše ime i prezime">
+                        <div class="error-message" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+                            Ime i prezime je obavezno polje.
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email adresa</label>
-                        <input type="email" id="email" name="email" formControlName="email">
+                        <label for="email">Email adresa <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" formControlName="email"
+                               [class.invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                               placeholder="vas.email@primjer.com">
+                        <div class="error-message" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+                            <span *ngIf="contactForm.get('email')?.errors?.['required']">Email adresa je obavezna.</span>
+                            <span *ngIf="contactForm.get('email')?.errors?.['email']">Unesite validnu email adresu.</span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Naslov poruke</label>
-                        <input type="text" id="subject" name="subject" formControlName="subject">
+                        <label for="subject">Naslov poruke <span class="required">*</span></label>
+                        <input type="text" id="subject" name="subject" formControlName="subject"
+                               [class.invalid]="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched"
+                               placeholder="Ukratko opišite razlog kontakta">
+                        <div class="error-message" *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
+                            Naslov poruke je obavezan.
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="message">Poruka</label>
-                        <textarea id="message" name="message" formControlName="message"></textarea>
+                        <label for="message">Poruka <span class="required">*</span></label>
+                        <textarea id="message" name="message" formControlName="message"
+                                  [class.invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+                                  placeholder="Unesite vašu poruku ovdje..."></textarea>
+                        <div class="error-message" *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
+                            Poruka je obavezna.
+                        </div>
                     </div>
                     <button type="submit" class="btn" [disabled]="contactForm.invalid || isSubmitting">
                         {{ isSubmitting ? 'Slanje...' : 'Pošalji poruku' }}
