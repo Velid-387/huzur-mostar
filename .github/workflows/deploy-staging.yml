@@ -34,7 +34,13 @@ jobs:
       - name: Build Angular
         run: npx ng build --configuration production --base-href /
 
-      # 5. Deploy to staging subdomain via FTP
+      # 5. Copy PHP backend files to build output
+      - name: Copy backend files to build directory
+        run: |
+          cp public/send-email.php dist/huzur-mostar/browser/
+          cp public/.htaccess dist/huzur-mostar/browser/
+
+      # 6. Deploy to staging subdomain via FTP
       - name: FTP Deploy to Staging
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
