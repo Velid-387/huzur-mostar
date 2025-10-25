@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
  * Configuration
  */
 // TODO: Replace with your actual email address
-$recipientEmail = 'your-email@example.com'; // Change this to your email
+$recipientEmail = 'info@huzurmostar.ba'; // Change this to your email
 $fromEmail = 'noreply@huzurmostar.ba';
 $fromName = 'Huzur Mostar Contact Form';
 
