@@ -125,11 +125,10 @@ export class ContactComponent {
           this.formStatus = 'Poruka uspješno poslata!';
           this.contactForm.reset();
 
-          // Redirect to success page after 2 seconds
+          // Redirect to form-success page after a brief delay
           setTimeout(() => {
-            this.router.navigate(['/'], { fragment: 'contact' });
-            this.formStatus = '';
-          }, 2000);
+            this.router.navigate(['/form-success']);
+          }, 1000);
         } else {
           this.formStatus = 'Greška pri slanju poruke. Molimo pokušajte ponovo.';
         }
