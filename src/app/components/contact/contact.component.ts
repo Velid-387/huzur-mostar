@@ -60,7 +60,11 @@ export class ContactComponent {
         this.submitToPhpBackend();
       }
     } else {
-      this.formStatus = 'Molimo popunite sva polja.';
+      // Mark all fields as touched to show validation errors
+      Object.keys(this.contactForm.controls).forEach(key => {
+        this.contactForm.get(key)?.markAsTouched();
+      });
+      this.formStatus = 'Molimo popunite sva obavezna polja ispravno.';
     }
   }
 
