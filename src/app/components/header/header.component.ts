@@ -18,14 +18,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private router = inject(Router);
   private routerSubscription: Subscription | null = null;
-  
+
+  // Cache for section positions to prevent forced reflows
+  private sectionPositions: Map<string, { top: number; height: number }> = new Map();
+  private rafId: number | null = null;
+  private lastScrollCheck: number = 0;
+  private readonly scrollThrottle = 100; // ms
+
   activeSection: string = 'home';
   sections: string[] = ['home', 'about', 'products', 'faq', 'testimonials', 'contact'];
   mobileMenuOpen: boolean = false;
   isDarkMode: boolean = false;
   isProductsDropdownOpen: boolean = false;
   isScrolled: boolean = false;
-  
+
   productSections = [
     { id: 'freshFlowers', name: 'Svježe cvijeće' },
     { id: 'driedFlowers', name: 'Suho cvijeće' },
@@ -36,13 +42,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       // Set Home as initial active section
       this.activeSection = 'home';
-      
+
+      // Cache section positions after a brief delay to ensure DOM is ready
+      setTimeout(() => this.cacheSectionPositions(), 100);
+
+      // Recache positions on window resize
+      window.addEventListener('resize', () => {
+        clearTimeout(this.rafId || undefined);
+        this.rafId = window.setTimeout(() => this.cacheSectionPositions(), 200);
+      });
+
       // Then check which section should actually be active
       this.checkActiveSection();
-      
+
       // Set dark mode state
       this.isDarkMode = this.darkModeService.isDark();
-      
+
       // Subscribe to router events to handle page changes
       this.routerSubscription = this.router.events.pipe(
         filter(event => event instanceof NavigationEnd)
@@ -53,6 +68,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         } else {
           this.handleNavigationToHome();
         }
+        // Recache positions after navigation
+        setTimeout(() => this.cacheSectionPositions(), 100);
       });
     }
   }
@@ -99,89 +116,110 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.isScrolled = window.scrollY > 20;
 
       // Check active section only if not on blog or legal pages
-      if (!this.isOnBlogPage() && !this.isOnLegalPage()) {
+      // Use throttling to prevent excessive checks
+      const now = Date.now();
+      if (!this.isOnBlogPage() && !this.isOnLegalPage() && (now - this.lastScrollCheck > this.scrollThrottle)) {
+        this.lastScrollCheck = now;
         this.checkActiveSection();
       }
     }
   }
 
+  // Cache section positions to avoid forced reflows during scroll
+  private cacheSectionPositions(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    this.sectionPositions.clear();
+
+    // Cache main sections
+    this.sections.forEach(section => {
+      const element = document.getElementById(section);
+      if (element) {
+        this.sectionPositions.set(section, {
+          top: element.offsetTop,
+          height: element.offsetHeight
+        });
+      }
+    });
+
+    // Cache product subsections
+    this.productSections.forEach(section => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        this.sectionPositions.set(section.id, {
+          top: element.offsetTop,
+          height: element.offsetHeight
+        });
+      }
+    });
+  }
+
   checkActiveSection(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    if (this.isOnBlogPage() || this.isOnLegalPage()) return; // Skip if on blog or legal page
-    
+    if (this.isOnBlogPage() || this.isOnLegalPage()) return;
+
     const scrollPosition = window.scrollY;
-    let foundActiveSection = false; // Track if we found an active section
-    
+    let foundActiveSection = false;
+
     // Check if we're at the top of the page - make Home active
     if (scrollPosition < 100) {
       this.activeSection = 'home';
       return;
     }
-    
-    // First check main sections in reverse order (to prioritize sections that appear first)
-    for (let i = this.sections.length - 1; i >= 0; i--) {
-      const section = this.sections[i];
-      const element = document.getElementById(section);
-      if (element) {
-        const offsetTop = element.offsetTop - 100; // Add some buffer to detect earlier
-        const offsetHeight = element.offsetHeight;
-        
-        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-          this.activeSection = section;
-          foundActiveSection = true;
-          break;
-        }
-      }
-    }
-    
-    // Then check product subsections if no main section was found active
-    if (!foundActiveSection) {
-      for (const section of this.productSections) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const offsetTop = element.offsetTop - 100;
-          const offsetHeight = element.offsetHeight;
-          
+
+    // Use cached positions if available, otherwise fall back to DOM reads
+    if (this.sectionPositions.size > 0) {
+      // Check main sections in reverse order using cached positions
+      for (let i = this.sections.length - 1; i >= 0; i--) {
+        const section = this.sections[i];
+        const pos = this.sectionPositions.get(section);
+        if (pos) {
+          const offsetTop = pos.top - 100;
+          const offsetHeight = pos.height;
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            this.activeSection = section.id;
+            this.activeSection = section;
             foundActiveSection = true;
             break;
           }
         }
       }
-    }
-    
-    // If still no active section was found, use a simpler approach
-    if (!foundActiveSection) {
-      // Try to determine which section is closest to the current scroll position
-      let closestSection = 'home';
-      let minDistance = Number.MAX_VALUE;
-      
-      // Check main sections first
-      for (const section of this.sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const distance = Math.abs(scrollPosition - element.offsetTop);
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestSection = section;
+
+      // Check product subsections if no main section was found
+      if (!foundActiveSection) {
+        for (const section of this.productSections) {
+          const pos = this.sectionPositions.get(section.id);
+          if (pos) {
+            const offsetTop = pos.top - 100;
+            const offsetHeight = pos.height;
+
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              this.activeSection = section.id;
+              foundActiveSection = true;
+              break;
+            }
           }
         }
       }
-      
-      // Check product subsections
-      for (const section of this.productSections) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const distance = Math.abs(scrollPosition - element.offsetTop);
+
+      // Find closest section if still not found
+      if (!foundActiveSection) {
+        let closestSection = 'home';
+        let minDistance = Number.MAX_VALUE;
+
+        this.sectionPositions.forEach((pos, sectionId) => {
+          const distance = Math.abs(scrollPosition - pos.top);
           if (distance < minDistance) {
             minDistance = distance;
-            closestSection = section.id;
+            closestSection = sectionId;
           }
-        }
+        });
+
+        this.activeSection = closestSection;
       }
-      
-      this.activeSection = closestSection;
+    } else {
+      // Fallback: recache positions if cache is empty
+      this.cacheSectionPositions();
     }
   }
 
