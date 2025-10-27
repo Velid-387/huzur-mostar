@@ -55,9 +55,9 @@ export class TestimonialsComponent implements OnInit {
       cardFlipping: false
     }
   ];
-  
+
   ngOnInit(): void {
-    // Add any initialization logic here if needed
+    // No initialization needed
   }
 
   toggleCardFlip(testimonial: any): void {
@@ -85,8 +85,8 @@ export class TestimonialsComponent implements OnInit {
   }
   
   private isMobileDevice(): boolean {
-    if (!isPlatformBrowser(this.platformId)) return false;
-    
+    if (!isPlatformBrowser(this.platformId) || typeof window === 'undefined') return false;
+
     return window.innerWidth <= 768;
   }
 }

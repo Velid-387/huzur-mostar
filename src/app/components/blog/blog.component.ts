@@ -139,7 +139,7 @@ export class BlogComponent implements OnInit, OnDestroy {
       this.blogPosts = posts;
       
       // Only scroll to top when explicitly changing pages, not during initial load
-      if (isPlatformBrowser(this.platformId) && document.activeElement instanceof HTMLElement) {
+      if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined' && document.activeElement instanceof HTMLElement) {
         const isPageButton = document.activeElement.closest('.pagination-btn');
         if (isPageButton) {
           window.scrollTo({ top: 0, behavior: 'smooth' });

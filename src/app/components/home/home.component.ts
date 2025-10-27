@@ -1,5 +1,5 @@
-import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy, Renderer2, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
 import { ImageService } from '../../services/image.service';
 
@@ -14,7 +14,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
   private imageService = inject(ImageService);
-  
+  private renderer = inject(Renderer2);
+  private document = inject(DOCUMENT);
+
   showScrollIndicator: boolean = true;
   backgroundImages = [
     'assets/img/home/huzur-home-1.jpg',
@@ -28,19 +30,32 @@ export class HomeComponent implements OnInit, OnDestroy {
   optimizedBackgroundImages: string[] = [];
   currentImageIndex = 0;
   private slideInterval: any;
-  
+
   constructor() { }
   
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       // Optimize background images
-      this.optimizedBackgroundImages = this.backgroundImages.map(img => 
+      this.optimizedBackgroundImages = this.backgroundImages.map(img =>
         this.imageService.getOptimizedImageUrl(img)
       );
-      
+
+      // Preload the first image (LCP) with high priority
+      if (this.optimizedBackgroundImages.length > 0 && typeof document !== 'undefined') {
+        const preloadLink = this.renderer.createElement('link');
+        this.renderer.setAttribute(preloadLink, 'rel', 'preload');
+        this.renderer.setAttribute(preloadLink, 'as', 'image');
+        this.renderer.setAttribute(preloadLink, 'href', this.optimizedBackgroundImages[0]);
+        this.renderer.setAttribute(preloadLink, 'fetchpriority', 'high');
+        this.renderer.appendChild(this.document.head, preloadLink);
+      }
+
       this.startSlideshow();
       // Initialize with scroll indicator visible
       this.showScrollIndicator = true;
+    } else {
+      // For SSR, use original paths
+      this.optimizedBackgroundImages = this.backgroundImages;
     }
   }
   
@@ -52,9 +67,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
       const scrollPosition = window.scrollY;
-      
+
       // Hide scroll indicator after scrolling down a bit
       if (scrollPosition > 50 && this.showScrollIndicator) {
         this.showScrollIndicator = false;

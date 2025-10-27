@@ -25,10 +25,10 @@ export class FooterComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   checkScrollPosition(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
       const homeSection = document.getElementById('home');
       const homeSectionHeight = homeSection ? homeSection.offsetHeight : 500;
-      
+
       this.isScrollButtonVisible = window.scrollY > homeSectionHeight;
     }
   }
@@ -38,10 +38,10 @@ export class FooterComponent implements OnInit {
   }
   
   navigateWithScrollToTop(path: string): void {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
       // Prevent default behavior
       event?.preventDefault();
-      
+
       // Manually navigate and scroll
       this.router.navigateByUrl(path).then(() => {
         window.scrollTo(0, 0);

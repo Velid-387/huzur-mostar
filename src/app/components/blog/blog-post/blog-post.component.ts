@@ -32,10 +32,10 @@ export class BlogPostComponent implements OnInit {
   shareResult: { success: boolean; message: string } | null = null;
   
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
       // Check if Web Share API is supported
       this.shareSupported = !!navigator.share;
-      
+
       // Store the current page number from URL or default to 1
       const urlParams = new URLSearchParams(window.location.search);
       const currentPage = urlParams.get('page') || '1';
@@ -111,10 +111,10 @@ export class BlogPostComponent implements OnInit {
    * with fallback to copying the URL to clipboard
    */
   sharePost(): void {
-    if (!isPlatformBrowser(this.platformId) || !this.post) {
+    if (!isPlatformBrowser(this.platformId) || typeof window === 'undefined' || !this.post) {
       return;
     }
-    
+
     // Get the current URL
     const url = window.location.href;
     

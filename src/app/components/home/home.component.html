@@ -1,6 +1,6 @@
 <section id="home" class="animate-section">
     <div class="slideshow-container">
-        <div class="slide" *ngFor="let image of optimizedBackgroundImages; let i = index" 
+        <div class="slide" *ngFor="let image of optimizedBackgroundImages; let i = index"
              [ngClass]="{'active': currentImageIndex === i}"
              [style.backgroundImage]="'url(' + image + ')'">
         </div>

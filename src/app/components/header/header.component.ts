@@ -94,7 +94,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
       // Update scroll state for navbar styling
       this.isScrolled = window.scrollY > 20;
 
@@ -106,9 +106,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   checkActiveSection(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
+    if (!isPlatformBrowser(this.platformId) || typeof window === 'undefined') return;
     if (this.isOnBlogPage() || this.isOnLegalPage()) return; // Skip if on blog or legal page
-    
+
     const scrollPosition = window.scrollY;
     let foundActiveSection = false; // Track if we found an active section
     
@@ -255,7 +255,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // When the router navigates back to home route, manually trigger section check
   private handleNavigationToHome(): void {
-    if (isPlatformBrowser(this.platformId) && this.router.url === '/') {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined' && this.router.url === '/') {
       // First determine which section should be active based on scroll position
       const scrollPosition = window.scrollY;
       

@@ -9,7 +9,10 @@
                         <p class="testimonial-name">{{ testimonial.name }}</p>
                     </div>
                     <div class="testimonial-card-back">
-                        <img [src]="testimonial.imagePath" [alt]="'Flowers for ' + testimonial.name">
+                        <img
+                            [src]="testimonial.imagePath"
+                            [alt]="'Flowers for ' + testimonial.name"
+                            loading="lazy">
                     </div>
                 </div>
             </div>

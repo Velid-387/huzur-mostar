@@ -321,7 +321,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:resize')
   checkScreenSize(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
       this.isMobile = window.innerWidth < 768;
       Object.keys(this.carouselStates).forEach((key) => {
         this.calculateDimensions(key);
