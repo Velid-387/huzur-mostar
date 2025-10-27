@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LWXMC49L0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-4LWXMC49L0');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Huzur Mostar</title>
@@ -51,24 +60,6 @@
 
 <body>
   <app-root></app-root>
-
-  <!-- Google Analytics loaded after page content to prevent render blocking and forced reflows -->
-  <script>
-    // Defer gtag loading until after initial page load
-    window.addEventListener('load', function() {
-      // Load gtag.js script
-      var script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-4LWXMC49L0';
-      document.head.appendChild(script);
-
-      // Initialize dataLayer
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4LWXMC49L0');
-    });
-  </script>
 </body>
 
 </html>
