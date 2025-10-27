@@ -36,6 +36,24 @@
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></noscript>
 
+  <!-- Override Font Awesome font-display to swap for better performance -->
+  <style>
+    @font-face {
+      font-family: 'Font Awesome 5 Free';
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-solid-900.woff2) format('woff2');
+    }
+    @font-face {
+      font-family: 'Font Awesome 5 Brands';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-brands-400.woff2) format('woff2');
+    }
+  </style>
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" href="huzur-logo.jpg">
 </head>
