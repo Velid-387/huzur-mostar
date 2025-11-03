@@ -70,8 +70,20 @@
                 }
               ],
               "outputHashing": "all",
-              "optimization": true,
-              "sourceMap": false,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": true
+              },
+              "sourceMap": {
+                "scripts": true,
+                "styles": false,
+                "vendor": false,
+                "hidden": true
+              },
               "extractLicenses": true,
               "fileReplacements": [
                 {
