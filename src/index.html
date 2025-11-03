@@ -2,15 +2,6 @@
 <html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LWXMC49L0"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-4LWXMC49L0');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Huzur Mostar</title>
@@ -28,6 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
   <!-- Load fonts with display=swap for better FCP -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap">
@@ -60,6 +52,24 @@
 
 <body>
   <app-root></app-root>
+
+  <!-- Google tag (gtag.js) - Deferred loading for better performance -->
+  <script>
+    // Defer Google Analytics loading until after page load
+    window.addEventListener('load', function() {
+      // Create script element for gtag.js
+      var gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4LWXMC49L0';
+      document.head.appendChild(gtagScript);
+
+      // Initialize dataLayer
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-4LWXMC49L0');
+    });
+  </script>
 </body>
 
 </html>
