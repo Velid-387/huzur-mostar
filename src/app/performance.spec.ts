@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,12 +8,24 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AnimationService } from './services/animation.service';
+import { BannerConfig } from './services/announcement-banner.service';
 
 describe('Performance Tests', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
+  let httpMock: HttpTestingController;
   let performanceObserver: PerformanceObserver;
   let performanceEntries: PerformanceEntry[] = [];
+
+  const mockConfig: BannerConfig = {
+    enabled: true,
+    message: 'Test message',
+    startDate: '2025-01-01',
+    endDate: '2026-12-31',
+    type: 'info',
+    dismissible: true,
+    persistDismissalHours: 24
+  };
 
   // Helper function to measure time
   const measureTime = async (callback: () => Promise<void>): Promise<number> => {
@@ -25,7 +39,7 @@ describe('Performance Tests', () => {
     performanceObserver = new PerformanceObserver((list) => {
       performanceEntries = performanceEntries.concat(list.getEntries());
     });
-    
+
     performanceObserver.observe({
       entryTypes: ['navigation', 'resource', 'paint', 'largest-contentful-paint']
     });
@@ -39,18 +53,29 @@ describe('Performance Tests', () => {
         FooterComponent
       ],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         AnimationService
       ]
     }).compileComponents();
 
+    httpMock = TestBed.inject(HttpTestingController);
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
+
+    // Respond to the banner config request
+    const req = httpMock.match('/banner-config.json');
+    if (req.length > 0) {
+      req[0].flush(mockConfig);
+    }
+
     fixture.detectChanges();
   });
 
   afterEach(() => {
     performanceObserver.disconnect();
     performanceEntries = [];
+    httpMock.verify();
   });
 
   it('should measure initial page load time', fakeAsync(async () => {
