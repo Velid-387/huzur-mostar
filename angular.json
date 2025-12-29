@@ -40,6 +40,11 @@
                 "glob": ".htaccess",
                 "input": "public",
                 "output": "/"
+              },
+              {
+                "glob": "banner-config.json",
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
@@ -124,6 +129,11 @@
               },
               {
                 "glob": "huzur-logo.png",
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "banner-config.json",
                 "input": "public",
                 "output": "/"
               }

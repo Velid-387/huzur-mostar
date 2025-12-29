@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AnnouncementBannerComponent } from './components/shared/announcement-banner/announcement-banner.component';
 
 import { AnimationService } from './services/animation.service';
 
@@ -12,10 +13,11 @@ import { AnimationService } from './services/animation.service';
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterOutlet,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AnnouncementBannerComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

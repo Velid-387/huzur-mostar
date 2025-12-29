@@ -1,0 +1,61 @@
+<!-- Modal Backdrop -->
+<div
+  *ngIf="bannerMode === 'full'"
+  class="modal-backdrop"
+  [class.animating-out]="isAnimatingOut"
+  (click)="onDismiss()">
+</div>
+
+<!-- Modal Dialog -->
+<div
+  *ngIf="bannerMode === 'full'"
+  class="announcement-modal"
+  [class.animating-out]="isAnimatingOut"
+  [ngClass]="getBannerTypeClass()"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="announcement-title">
+
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-icon" aria-hidden="true">{{ getBannerIcon() }}</div>
+      <button
+        *ngIf="config.dismissible"
+        class="modal-close"
+        (click)="onDismiss()"
+        aria-label="Close announcement"
+        type="button">
+        <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <h2 id="announcement-title" class="modal-title">Važno obavještenje</h2>
+      <p class="modal-message">{{ config.message }}</p>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        class="modal-button"
+        (click)="onDismiss()"
+        type="button">
+        Uživajte
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Button (Compact Mode) -->
+<button
+  *ngIf="bannerMode === 'compact'"
+  class="floating-button"
+  [class.animating-out]="isAnimatingOut"
+  [ngClass]="getBannerTypeClass()"
+  (click)="onExpandFromCompact()"
+  aria-label="View announcement"
+  type="button">
+  <span class="floating-icon" aria-hidden="true">{{ getBannerIcon() }}</span>
+  <span class="floating-badge">1</span>
+</button>
