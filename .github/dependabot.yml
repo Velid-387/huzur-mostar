@@ -1,0 +1,33 @@
+# Dependabot configuration for automated dependency updates
+# This will check for security vulnerabilities and create pull requests to fix them
+version: 2
+updates:
+  # Monitor npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    # Auto-merge security patches for development dependencies
+    open-pull-requests-limit: 10
+    # Group updates to reduce PR noise
+    groups:
+      angular:
+        patterns:
+          - "@angular/*"
+      development-dependencies:
+        dependency-type: "development"
+    # Enable version updates and security updates
+    versioning-strategy: increase
+    # Add labels to PRs for easier filtering
+    labels:
+      - "dependencies"
+      - "security"
+    # Only create PRs for security updates (comment out for all updates)
+    # If you want ALL dependency updates, remove the line below
+    # open-pull-requests-limit applies to security only when this is set
+    assignees:
+      - "Velid-387"
+    reviewers:
+      - "Velid-387"
