@@ -1,0 +1,134 @@
+name: Security Vulnerability Scan
+
+on:
+  # Run on every push to main branches
+  push:
+    branches: [master, main]
+  # Run on pull requests
+  pull_request:
+    branches: [master, main]
+  # Schedule weekly scans every Monday at 9 AM UTC
+  schedule:
+    - cron: '0 9 * * 1'
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    name: NPM Security Audit
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        id: audit
+        # Continue even if vulnerabilities are found so we can report them
+        continue-on-error: true
+        run: |
+          echo "Running npm audit..."
+          npm audit --json > audit-report.json || true
+          npm audit > audit-report.txt || true
+          cat audit-report.txt
+
+      - name: Check for vulnerabilities
+        id: check
+        run: |
+          # Parse the audit report
+          MODERATE=$(jq '.metadata.vulnerabilities.moderate' audit-report.json)
+          HIGH=$(jq '.metadata.vulnerabilities.high' audit-report.json)
+          CRITICAL=$(jq '.metadata.vulnerabilities.critical' audit-report.json)
+          TOTAL=$(jq '.metadata.vulnerabilities.total' audit-report.json)
+
+          echo "moderate=$MODERATE" >> $GITHUB_OUTPUT
+          echo "high=$HIGH" >> $GITHUB_OUTPUT
+          echo "critical=$CRITICAL" >> $GITHUB_OUTPUT
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+
+          # Fail if there are high or critical vulnerabilities
+          if [ "$CRITICAL" -gt 0 ] || [ "$HIGH" -gt 0 ]; then
+            echo "❌ Found $CRITICAL critical and $HIGH high severity vulnerabilities!"
+            exit 1
+          elif [ "$TOTAL" -gt 0 ]; then
+            echo "⚠️  Found $TOTAL vulnerabilities (moderate or low severity)"
+            exit 0
+          else
+            echo "✅ No vulnerabilities found!"
+            exit 0
+          fi
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report
+          path: |
+            audit-report.json
+            audit-report.txt
+          retention-days: 30
+
+      - name: Create Issue on Security Failure
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('audit-report.txt', 'utf8');
+            const moderate = '${{ steps.check.outputs.moderate }}';
+            const high = '${{ steps.check.outputs.high }}';
+            const critical = '${{ steps.check.outputs.critical }}';
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Security Vulnerabilities Detected',
+              body: `## Security Scan Failed
+
+              **Critical:** ${critical}
+              **High:** ${high}
+              **Moderate:** ${moderate}
+
+              ### NPM Audit Report
+              \`\`\`
+              ${report}
+              \`\`\`
+
+              ### Recommended Actions
+              1. Run \`npm audit\` locally to see details
+              2. Run \`npm audit fix\` to automatically fix vulnerabilities
+              3. If that doesn't work, try \`ng update @angular/core @angular/cli\`
+              4. For stubborn issues, check if updates are available for specific packages
+
+              ---
+              *This issue was automatically created by the Security Scan workflow.*`,
+              labels: ['security', 'dependencies', 'automated']
+            });
+
+  # Optional: Check for outdated dependencies
+  dependency-review:
+    runs-on: ubuntu-latest
+    name: Dependency Review
+    # Only run on pull requests
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          # Fail on high or critical vulnerabilities
+          fail-on-severity: high
+          # Allow licenses
+          allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC
