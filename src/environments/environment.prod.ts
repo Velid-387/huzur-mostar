@@ -7,7 +7,7 @@ export const environment = {
 
   // Announcement banner configuration
   announcementBanner: {
-    enabled: false, // Set to true to display the banner
+    enabled: true, // Set to true to display the banner
     message: `Huzur tim uzima mali odmor 🤍
 Nakon dvije godine intenzivnog rada vrijeme je da ovaj tim malo odmori.
 Od 29.12. do 14.01. naši cvjetovi miruju, a mi punimo srca, ideje i tišinu novom snagom.
