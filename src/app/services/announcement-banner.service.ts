@@ -1,6 +1,7 @@
 import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 export interface BannerConfig {
@@ -20,7 +21,9 @@ export type BannerMode = 'full' | 'compact' | 'hidden';
 })
 export class AnnouncementBannerService {
   private platformId = inject(PLATFORM_ID);
+  private http = inject(HttpClient);
   private readonly STORAGE_KEY = 'announcement_banner_dismissed';
+  private readonly CONFIG_URL = '/banner-config.json';
 
   private bannerModeSubject = new BehaviorSubject<BannerMode>('hidden');
   public bannerMode$: Observable<BannerMode> = this.bannerModeSubject.asObservable();
@@ -28,7 +31,33 @@ export class AnnouncementBannerService {
   private config: BannerConfig = environment.announcementBanner;
 
   constructor() {
-    this.initializeBannerState();
+    this.loadConfigAndInitialize();
+  }
+
+  /**
+   * Load configuration from JSON file and initialize banner state
+   */
+  private async loadConfigAndInitialize(): Promise<void> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    try {
+      // Fetch runtime config from JSON file
+      const runtimeConfig = await firstValueFrom(
+        this.http.get<BannerConfig>(this.CONFIG_URL)
+      );
+
+      // Use runtime config if available, otherwise fallback to environment
+      if (runtimeConfig) {
+        this.config = runtimeConfig;
+      }
+    } catch (error) {
+      // If fetching fails, use environment config as fallback
+      console.warn('Failed to load banner config from JSON, using environment config:', error);
+    } finally {
+      this.initializeBannerState();
+    }
   }
 
   /**

@@ -1,14 +1,43 @@
 import { TestBed } from '@angular/core/testing';
-import { AnnouncementBannerService } from './announcement-banner.service';
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { AnnouncementBannerService, BannerConfig } from './announcement-banner.service';
 
 describe('AnnouncementBannerService', () => {
   let service: AnnouncementBannerService;
+  let httpMock: HttpTestingController;
+
+  const mockConfig: BannerConfig = {
+    enabled: true,
+    message: 'Test message',
+    startDate: '2025-01-01',
+    endDate: '2026-12-31',
+    type: 'info',
+    dismissible: true,
+    persistDismissalHours: 24
+  };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
+    });
     service = TestBed.inject(AnnouncementBannerService);
+    httpMock = TestBed.inject(HttpTestingController);
     // Clear localStorage before each test
     localStorage.clear();
+
+    // Respond to the config request
+    const req = httpMock.match('/banner-config.json');
+    if (req.length > 0) {
+      req[0].flush(mockConfig);
+    }
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('should be created', () => {
