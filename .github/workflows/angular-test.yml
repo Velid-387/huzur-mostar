@@ -34,7 +34,7 @@ jobs:
       run: npm ci
     
     - name: Install Angular CLI
-      run: npm install -g @angular/cli
+      run: npm install -g @angular/cli@19.2.19
     
     - name: Verify Angular CLI installation
       run: ng version
@@ -146,7 +146,7 @@ jobs:
       run: npm ci
       
     - name: Install Angular CLI
-      run: npm install -g @angular/cli
+      run: npm install -g @angular/cli@19.2.19
     
     - name: Build
       run: ng build
