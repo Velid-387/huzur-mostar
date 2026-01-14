@@ -2,11 +2,12 @@ import { Component, OnInit, inject, PLATFORM_ID, HostListener } from '@angular/c
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { ScrollService } from '../../services/scroll.service';
+import { OptimizedImageComponent } from '../shared/optimized-image/optimized-image.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, OptimizedImageComponent],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
