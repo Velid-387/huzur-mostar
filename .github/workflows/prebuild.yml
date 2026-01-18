@@ -21,13 +21,9 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # 3. Install dependencies with retry and registry fallback
+      # 3. Install dependencies
       - name: Install dependencies
-        run: |
-          npm config set registry https://registry.npmjs.org/
-          npm ci --retry 3 --fetch-timeout 60000 --fetch-retries 3 || \
-          (npm config set registry https://registry.yarnpkg.com/ && npm ci --retry 3) || \
-          (npm config set registry https://skimdb.npmjs.com/registry/ && npm ci --retry 3)
+        run: npm ci
 
       # 4. Run Angular build
       - name: Build Angular
