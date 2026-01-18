@@ -18,21 +18,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      # 3. Clean npm cache
-      - name: Clean npm cache
-        run: npm cache clean --force
-
-      # 4. Install dependencies
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # 5. Run Angular build
+      # 4. Run Angular build
       - name: Build Angular
         run: npx ng build --configuration production --base-href /
 
-      # 6. Upload build as an artifact
+      # 5. Upload build as an artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
