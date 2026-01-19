@@ -261,13 +261,32 @@ footer {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
   z-index: 100;
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
   font-weight: bold;
   font-size: 20px;
+  /* Progress ring using conic-gradient */
+  --scroll-progress: 0;
+  background-image:
+    conic-gradient(
+      var(--pastel-pink-dark, #c09a9a) calc(var(--scroll-progress) * 360deg),
+      transparent calc(var(--scroll-progress) * 360deg)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  padding: 3px;
+}
+
+#scrollToTop::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background-color: var(--pastel-green, #c8e4b2);
+  z-index: -1;
 }
 
 #scrollToTop.visible {
@@ -278,8 +297,11 @@ footer {
 
 #scrollToTop:hover {
   transform: translateY(-5px);
-  background-color: var(--pastel-pink, #f5c0c0);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+#scrollToTop:hover::before {
+  background-color: var(--pastel-pink, #f5c0c0);
 }
 
 #scrollToTop.visible:hover {
@@ -440,24 +462,38 @@ footer {
 }
 
 :host-context(body.dark-mode) #scrollToTop {
-  background-color: var(--pastel-pink-dark, #c09a9a);
   color: var(--text-light, #e9e9e9);
   box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
+  background-image:
+    conic-gradient(
+      var(--pastel-green, #c8e4b2) calc(var(--scroll-progress) * 360deg),
+      transparent calc(var(--scroll-progress) * 360deg)
+    );
+}
+
+:host-context(body.dark-mode) #scrollToTop::before {
+  background-color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) #scrollToTop:hover {
-  background-color: var(--pastel-green-dark, #91b478);
   color: var(--text-light, #e9e9e9);
   box-shadow: 0 0 20px rgba(145, 180, 120, 0.8);
   animation: dark-button-glow 1.5s infinite;
 }
 
+:host-context(body.dark-mode) #scrollToTop:hover::before {
+  background-color: var(--pastel-green-dark, #91b478);
+}
+
 :host-context(body.dark-mode) #scrollToTop:active {
-  background-color: var(--dark-pink-dark, #b56c82);
   color: var(--text-light, #e9e9e9);
   box-shadow: 0 0 25px rgba(181, 108, 130, 0.9);
   transform: translateY(1px);
   animation: dark-button-click-glow 0.5s;
+}
+
+:host-context(body.dark-mode) #scrollToTop:active::before {
+  background-color: var(--dark-pink-dark, #b56c82);
 }
 
 :host-context(body.dark-mode) .flower-decoration.left {

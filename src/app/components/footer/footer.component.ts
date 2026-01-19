@@ -13,6 +13,7 @@ import { ScrollService } from '../../services/scroll.service';
 export class FooterComponent implements OnInit {
   currentYear = new Date().getFullYear();
   isScrollButtonVisible = false;
+  scrollProgress = 0;
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
   private router = inject(Router);
@@ -28,8 +29,13 @@ export class FooterComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       const homeSection = document.getElementById('home');
       const homeSectionHeight = homeSection ? homeSection.offsetHeight : 500;
-      
+
       this.isScrollButtonVisible = window.scrollY > homeSectionHeight;
+
+      // Calculate scroll progress (0 to 1)
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      this.scrollProgress = Math.min(scrollTop / docHeight, 1);
     }
   }
 

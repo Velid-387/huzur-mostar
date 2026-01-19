@@ -56,10 +56,11 @@
         </div>
     </div>
     
-    <button 
-      id="scrollToTop" 
+    <button
+      id="scrollToTop"
       [class.visible]="isScrollButtonVisible"
-      title="Scroll to top" 
+      [style.--scroll-progress]="scrollProgress"
+      title="Scroll to top"
       (click)="scrollToTop()"
       aria-label="Scroll to top"
     >↑</button>
