@@ -19,9 +19,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
 
-      # 3. Install dependencies
+      # 3. Clear npm cache and install dependencies
+      - name: Clear npm cache
+        run: npm cache clean --force
+
       - name: Install dependencies
         run: npm ci
 
