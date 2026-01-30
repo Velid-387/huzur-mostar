@@ -26,10 +26,7 @@ jobs:
         with:
           node-version: 22
 
-      # 3. Upgrade npm and install dependencies
-      - name: Upgrade npm
-        run: npm install -g npm@11
-
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm ci
 
