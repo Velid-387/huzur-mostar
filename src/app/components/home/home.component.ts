@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
   
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll(): void {
     if (isPlatformBrowser(this.platformId)) {
       const scrollPosition = window.scrollY;
