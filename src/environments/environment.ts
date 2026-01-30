@@ -19,4 +19,4 @@ Vidimo se uskoro 🌹`,
     dismissible: true, // Allow users to dismiss the banner
     persistDismissalHours: 24 // Hours to remember dismissal (24 = show again next day)
   }
-}; 
+};

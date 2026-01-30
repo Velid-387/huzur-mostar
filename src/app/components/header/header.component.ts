@@ -92,7 +92,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isDarkMode = this.darkModeService.isDark();
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll() {
     if (isPlatformBrowser(this.platformId)) {
       // Update scroll state for navbar styling
