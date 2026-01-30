@@ -59,7 +59,7 @@ This website is automatically deployed and maintained through a modern CI/CD pip
 - **Automatic Deployments**: Every merge to the main branch triggers a new production deployment
 - **Preview Deployments**: Pull requests get their own preview URLs for review
 
-The site is live at: **[huzurmostar.com](https://huzurmostar-in-progress.netlify.app)**
+The site is live at: **[huzurmostar.ba](https://huzurmostar.ba/)**
 
 ---
 
