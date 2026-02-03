@@ -65,17 +65,7 @@ The site is live at: **[huzurmostar.ba](https://huzurmostar.ba/)**
 
 <div align="center">
 
-### Built with love in Mostar
-
-<br/>
-
-```
-    🌸
-   🌷🌷
-  🌹🌺🌹
- 🌻🌼🌻🌼
-━━━━━━━━━━━
-```
+### Built with ❤️ in Mostar
 
 <sub>
   <strong>Huzur Mostar</strong> — Where every petal tells a story
