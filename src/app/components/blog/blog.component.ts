@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, PLATFORM_ID, ChangeDetectorRef, afterNextRender } from '@angular/core';
 import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
-import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { AnimationService } from '../../services/animation.service';
 import { BlogService, BlogPostMetadata } from '../../services/blog.service';
 import { TitleService } from '../../services/title.service';
-import { filter, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-blog',
@@ -21,88 +21,92 @@ export class BlogComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private titleService = inject(TitleService);
   private location = inject(Location);
-  
+  private cdr = inject(ChangeDetectorRef);
+
   // Subscriptions
-  private routerSubscription?: Subscription;
-  private locationSubscription = new Subscription();
-  
+  private queryParamsSubscription?: Subscription;
+
   // Pagination variables
   currentPage: number = 1;
   itemsPerPage: number = 6;
   totalPages: number = 1;
-  
+
+  // Track whether initial load has happened to avoid navigation loop
+  private initialLoadDone = false;
+
   // Posts to display on current page
   blogPosts: BlogPostMetadata[] = [];
-  
+
+  constructor() {
+    afterNextRender(() => {
+      // Initialize animations after hydration
+      this.animationService.initAnimations();
+    });
+  }
+
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      // Set page title
-      this.titleService.setTitle('Blog');
-      
-      // Get the page from query parameters
-      this.route.queryParams.subscribe(params => {
-        const pageParam = params['page'];
-        let requestedPage: number;
-        
-        if (pageParam) {
-          // If there's a page parameter in the URL, use that
-          requestedPage = parseInt(pageParam, 10);
-        } else {
-          // If no page parameter, check session storage
-          const storedPage = sessionStorage.getItem('blogCurrentPage');
-          requestedPage = storedPage ? parseInt(storedPage, 10) : 1;
-          
-          // Clear the stored page after using it
-          sessionStorage.removeItem('blogCurrentPage');
+    // Set page title (safe for SSR)
+    this.titleService.setTitle('Blog');
+
+    // Get the page from query parameters and load blog posts
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
+      const pageParam = params['page'];
+      let requestedPage: number;
+
+      if (pageParam) {
+        requestedPage = parseInt(pageParam, 10);
+      } else if (isPlatformBrowser(this.platformId)) {
+        // Session storage only available in browser
+        const storedPage = sessionStorage.getItem('blogCurrentPage');
+        requestedPage = storedPage ? parseInt(storedPage, 10) : 1;
+        sessionStorage.removeItem('blogCurrentPage');
+      } else {
+        requestedPage = 1;
+      }
+
+      // Ensure the page number is valid
+      if (isNaN(requestedPage) || requestedPage < 1) {
+        requestedPage = 1;
+      }
+
+      // Get total pages and then load the requested page
+      this.blogService.getTotalPages(this.itemsPerPage).subscribe(totalPages => {
+        this.totalPages = totalPages;
+
+        // Make sure we don't try to access a page beyond what's available
+        if (requestedPage > totalPages) {
+          requestedPage = totalPages;
         }
-        
-        // Ensure the page number is valid
-        if (isNaN(requestedPage) || requestedPage < 1) {
-          requestedPage = 1;
-        }
-        
-        // Get total pages and then load the requested page
-        this.blogService.getTotalPages(this.itemsPerPage).subscribe(totalPages => {
-          this.totalPages = totalPages;
-          
-          // Make sure we don't try to access a page beyond what's available
-          if (requestedPage > totalPages) {
-            requestedPage = totalPages;
-          }
-          
-          // Update URL and load content
+
+        // Only update URL on initial load, not on subsequent queryParam emissions
+        if (!this.initialLoadDone && isPlatformBrowser(this.platformId)) {
+          this.initialLoadDone = true;
           this.updateUrlWithPage(requestedPage);
-          this.loadPageContent(requestedPage);
-        });
+        }
+
+        this.loadPageContent(requestedPage);
       });
-      
-      // Initialize animations
-      setTimeout(() => {
-        this.animationService.initAnimations();
-      }, 100);
-    }
+    });
   }
   
   ngOnDestroy(): void {
-    // Clean up subscriptions
-    if (this.routerSubscription) {
-      this.routerSubscription.unsubscribe();
+    if (this.queryParamsSubscription) {
+      this.queryParamsSubscription.unsubscribe();
     }
-    this.locationSubscription.unsubscribe();
   }
   
   /**
-   * Navigate to a specific page and update the URL
+   * Navigate to a specific page and update the URL (user-initiated)
    */
   loadPage(pageNumber: number): void {
     // Validate page number
     if (pageNumber < 1) pageNumber = 1;
     if (pageNumber > this.totalPages) pageNumber = this.totalPages;
-    
+
     // Update URL with the new page parameter
     this.updateUrlWithPage(pageNumber);
-    
-    // Also load the page content immediately to prevent empty page issues
+
+    // Load the page content immediately
     this.loadPageContent(pageNumber);
   }
   
@@ -133,11 +137,11 @@ export class BlogComponent implements OnInit, OnDestroy {
   private loadPageContent(pageNumber: number): void {
     // Update current page
     this.currentPage = pageNumber;
-    
+
     // Get posts for current page from service
     this.blogService.getPostsForPage(pageNumber, this.itemsPerPage).subscribe(posts => {
       this.blogPosts = posts;
-      
+
       // Only scroll to top when explicitly changing pages, not during initial load
       if (isPlatformBrowser(this.platformId) && document.activeElement instanceof HTMLElement) {
         const isPageButton = document.activeElement.closest('.pagination-btn');
@@ -145,11 +149,14 @@ export class BlogComponent implements OnInit, OnDestroy {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
-      
-      // Initialize animations for new content
-      setTimeout(() => {
-        this.animationService.initAnimations();
-      }, 100);
+
+      // Ensure Angular renders the new posts before initializing animations
+      if (isPlatformBrowser(this.platformId)) {
+        this.cdr.detectChanges();
+        requestAnimationFrame(() => {
+          this.animationService.initAnimations();
+        });
+      }
     });
   }
   

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, inject, PLATFORM_ID, ChangeDetectorRef, afterNextRender } from '@angular/core';
 import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { AnimationService } from '../../../services/animation.service';
@@ -20,66 +20,72 @@ export class BlogPostComponent implements OnInit {
   private blogService = inject(BlogService);
   private location = inject(Location);
   private titleService = inject(TitleService);
-  
+  private cdr = inject(ChangeDetectorRef);
+
   post: BlogPost | null = null;
   loading: boolean = true;
   error: boolean = false;
   // Store the referrer page information
   private referrerPage: string | null = null;
-  
+
   // To track if sharing is supported and show result messages
   shareSupported: boolean = false;
   shareResult: { success: boolean; message: string } | null = null;
-  
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      // Check if Web Share API is supported
+
+  constructor() {
+    afterNextRender(() => {
+      // Browser-only: check Web Share API support
       this.shareSupported = !!navigator.share;
-      
+
       // Store the current page number from URL or default to 1
       const urlParams = new URLSearchParams(window.location.search);
       const currentPage = urlParams.get('page') || '1';
       sessionStorage.setItem('blogCurrentPage', currentPage);
-      
+
       // Store referrer page information
       this.storeReferrerPage();
-      
-      // Get the post slug from the route parameters
-      this.route.paramMap.subscribe(params => {
-        const slug = params.get('id');
-        
-        if (slug) {
-          // Try to fetch the post by slug
-          this.loading = true;
-          this.blogService.getPostBySlug(slug).subscribe({
-            next: (post) => {
-              this.post = post;
-              this.loading = false;
-              
-              if (post) {
-                // Set page title
-                this.titleService.setTitle(post.title);
-                
-                // Initialize animations after a short delay to ensure content is rendered
-                setTimeout(() => {
+    });
+  }
+
+  ngOnInit(): void {
+    // Get the post slug from the route parameters (works in both SSR and browser)
+    this.route.paramMap.subscribe(params => {
+      const slug = params.get('id');
+
+      if (slug) {
+        // Try to fetch the post by slug
+        this.loading = true;
+        this.blogService.getPostBySlug(slug).subscribe({
+          next: (post) => {
+            this.post = post;
+            this.loading = false;
+
+            if (post) {
+              // Set page title
+              this.titleService.setTitle(post.title);
+
+              // Ensure Angular renders the post content before initializing animations
+              if (isPlatformBrowser(this.platformId)) {
+                this.cdr.detectChanges();
+                requestAnimationFrame(() => {
                   this.animationService.initAnimations();
-                }, 100);
-              } else {
-                this.error = true;
-                this.titleService.setTitle('Post Not Found');
+                });
               }
-            },
-            error: () => {
-              this.loading = false;
+            } else {
               this.error = true;
-              this.titleService.setTitle('Error');
+              this.titleService.setTitle('Post Not Found');
             }
-          });
-        } else {
-          this.router.navigate(['/blog']);
-        }
-      });
-    }
+          },
+          error: () => {
+            this.loading = false;
+            this.error = true;
+            this.titleService.setTitle('Error');
+          }
+        });
+      } else {
+        this.router.navigate(['/blog']);
+      }
+    });
   }
   
   /**

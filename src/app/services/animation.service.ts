@@ -6,27 +6,32 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AnimationService {
   private platformId = inject(PLATFORM_ID);
-
-  constructor() { }
+  private observer: IntersectionObserver | null = null;
+  private observedElements = new WeakSet<Element>();
 
   initAnimations(): void {
     // Only run in browser environment
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
-    
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-        }
-      });
-    }, { threshold: 0.1 });
 
-    // Observe all animate-item elements
+    // Create a single persistent IntersectionObserver
+    if (!this.observer) {
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+          }
+        });
+      }, { threshold: 0.1 });
+    }
+
+    // Observe any new animate-item elements that haven't been observed yet
     document.querySelectorAll('.animate-item').forEach(item => {
-      observer.observe(item);
+      if (!this.observedElements.has(item)) {
+        this.observedElements.add(item);
+        this.observer!.observe(item);
+      }
     });
   }
 }
