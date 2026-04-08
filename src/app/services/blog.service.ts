@@ -177,7 +177,7 @@ export class BlogService {
    * Load the Markdown content from a file
    */
   private loadMarkdownContent(fileName: string): Observable<string> {
-    return this.http.get(`assets/blog-posts/${fileName}`, { responseType: 'text' });
+    return this.http.get(`/assets/blog-posts/${fileName}`, { responseType: 'text' });
   }
   
   /**
