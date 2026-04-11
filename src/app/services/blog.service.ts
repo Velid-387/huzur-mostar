@@ -54,6 +54,16 @@ export class BlogService {
       slug: 'ono-sto-je-tvoje-pronaci-ce-put-do-tebe',
       fileName: 'huzur-blog-3.md',
       readingTime: ''
+    },
+    {
+      id: 4,
+      title: 'Ono što je tvoje, pronaći će put do tebe',
+      excerpt: 'Određenje',
+      date: 'Apr 15, 2026',
+      image: '/assets/img/blog/huzur-blog-3.jpg',
+      slug: 'vjerujem-da-nista-nije-prividenje',
+      fileName: 'huzur-blog-4.md',
+      readingTime: ''
     }
   ];
 
