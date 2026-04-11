@@ -57,7 +57,7 @@ export class BlogService {
     },
     {
       id: 4,
-      title: 'Ono što je tvoje, pronaći će put do tebe',
+      title: 'Ja vjerujem u Boga i Božije određenje',
       excerpt: 'Određenje',
       date: 'Apr 15, 2026',
       image: '/assets/img/blog/huzur-blog-3.jpg',
