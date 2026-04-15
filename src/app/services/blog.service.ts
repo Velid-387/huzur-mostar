@@ -60,7 +60,7 @@ export class BlogService {
       title: 'Ja vjerujem u Boga i Božije određenje',
       excerpt: 'Određenje',
       date: 'Apr 15, 2026',
-      image: '/assets/img/blog/huzur-blog-3.jpg',
+      image: '/assets/img/blog/huzur-blog-4.jpg',
       slug: 'vjerujem-da-nista-nije-prividenje',
       fileName: 'huzur-blog-4.md',
       readingTime: ''
