@@ -64,6 +64,16 @@ export class BlogService {
       slug: 'vjerujem-da-nista-nije-prividenje',
       fileName: 'huzur-blog-4.md',
       readingTime: ''
+    },
+    {
+      id: 5,
+      title: 'Iskreno sa Mostarskih Šehitluka',
+      excerpt: 'Iskreno',
+      date: 'Jun 08, 2026',
+      image: '/assets/img/blog/huzur-blog-5.jpg',
+      slug: 'iskreno-sa-mostarskih-sehitluka',
+      fileName: 'huzur-blog-5.md',
+      readingTime: ''
     }
   ];
 
