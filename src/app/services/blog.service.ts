@@ -80,7 +80,7 @@ export class BlogService {
       title: 'Planetom se širi miris ljiljana',
       excerpt: 'Miris ljiljana',
       date: 'Jun 25, 2026',
-      image: '/assets/img/blog/huzur-blog-6.jpg',
+      image: '/assets/img/blog/huzur-blog-5.jpg',
       slug: 'planetom-se-širi-miris-ljiljana',
       fileName: 'huzur-blog-6.md',
       readingTime: ''
