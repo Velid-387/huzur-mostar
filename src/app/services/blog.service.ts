@@ -74,6 +74,16 @@ export class BlogService {
       slug: 'iskreno-sa-mostarskih-sehitluka',
       fileName: 'huzur-blog-5.md',
       readingTime: ''
+    },
+    {
+      id: 6,
+      title: 'Planetom se širi miris ljiljana',
+      excerpt: 'Miris ljiljana',
+      date: 'Jun 25, 2026',
+      image: '/assets/img/blog/huzur-blog-6.jpg',
+      slug: 'planetom-se-širi-miris-ljiljana',
+      fileName: 'huzur-blog-6.md',
+      readingTime: ''
     }
   ];
 
