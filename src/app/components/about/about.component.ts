@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
+import { OptimizedImageComponent } from '../shared/optimized-image/optimized-image.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OptimizedImageComponent],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })

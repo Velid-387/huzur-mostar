@@ -33,11 +33,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Optimize background images
-      this.optimizedBackgroundImages = this.backgroundImages.map(img => 
-        this.imageService.getOptimizedImageUrl(img)
-      );
-      
+      // Use the compressed original images directly (already optimized)
+      this.optimizedBackgroundImages = this.backgroundImages;
+
       this.startSlideshow();
       // Initialize with scroll indicator visible
       this.showScrollIndicator = true;

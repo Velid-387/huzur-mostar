@@ -42,17 +42,21 @@ export class ImageService {
    * Check if optimized images are available
    */
   private checkOptimizedImagesAvailability(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     // For simplicity, we'll explicitly disable this for now
     // This can be enabled once the image optimization process is complete
     this.useOptimizedImages = true;
-    
+
     // In production, always use optimized images
-    if (window.location.hostname !== 'localhost' && 
+    if (window.location.hostname !== 'localhost' &&
         window.location.hostname !== '127.0.0.1') {
       this.useOptimizedImages = true;
       console.log('Production environment detected, enabling optimized images');
     }
-    
+
     console.log(`Using optimized images: ${this.useOptimizedImages}`);
   }
 
@@ -66,9 +70,11 @@ export class ImageService {
     if (!isPlatformBrowser(this.platformId)) {
       return originalPath; // On server, return original path
     }
-    
+
     // Don't process external URLs
-    if (originalPath.startsWith('http') && !originalPath.includes(window.location.hostname)) {
+    if (originalPath.startsWith('http') &&
+        isPlatformBrowser(this.platformId) &&
+        !originalPath.includes(window.location.hostname)) {
       return originalPath;
     }
     
@@ -116,8 +122,12 @@ export class ImageService {
    * Gets appropriate image width based on screen size
    */
   private getTargetWidth(): number {
+    if (!isPlatformBrowser(this.platformId)) {
+      return 1024; // Default for SSR
+    }
+
     const screenWidth = window.innerWidth;
-    
+
     // Return a width based on device screen size
     if (screenWidth <= 640) return 640;
     if (screenWidth <= 768) return 768;
