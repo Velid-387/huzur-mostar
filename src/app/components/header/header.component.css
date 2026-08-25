@@ -659,44 +659,202 @@ header.scrolled nav {
   border-radius: 50%;
 }
 
-/* Sticky call pill (phones only) */
-.mobile-call-pill {
+/* Quick contact (phones only): a pill that opens into two actions */
+.quick-contact {
   display: none;
 }
 
 @media (max-width: 768px) {
-  .mobile-call-pill {
+  .quick-contact {
     position: fixed;
     left: 50%;
     bottom: 16px;
     transform: translateX(-50%);
     z-index: 998;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    transition: opacity 0.3s ease;
+  }
+
+  .quick-contact.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .quick-contact-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
     padding: 0.7rem 1.4rem;
+    border: none;
     border-radius: 20px;
     background: linear-gradient(135deg, var(--dark-pink, #df7b99) 0%, var(--pastel-pink, #f5c0c0) 100%);
     color: #fff;
     font-family: poppins, sans-serif;
     font-weight: 600;
     font-size: 1rem;
-    text-decoration: none;
     box-shadow: 0 6px 18px rgba(223, 123, 153, 0.35);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+    animation: none;
+    transition: background 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease;
   }
 
-  .mobile-call-pill:active {
-    transform: translateX(-50%) translateY(1px);
+  .quick-contact-toggle:hover,
+  .quick-contact-toggle:active {
+    background: linear-gradient(135deg, var(--dark-pink, #df7b99) 0%, var(--pastel-pink, #f5c0c0) 100%);
+    color: #fff;
+    transform: none;
+    box-shadow: 0 6px 18px rgba(223, 123, 153, 0.35);
+    animation: none;
   }
 
-  .mobile-call-pill.hidden {
+  .quick-contact-toggle:active {
+    transform: translateY(1px);
+  }
+
+  .quick-contact-toggle:focus-visible {
+    outline: 2px solid var(--dark-pink, #df7b99);
+    outline-offset: 3px;
+  }
+
+  .quick-contact.open .quick-contact-toggle {
+    background: var(--text-dark, #4a5759);
+    box-shadow: 0 6px 18px rgba(74, 87, 89, 0.3);
+  }
+
+  /* Icon swap: chat bubble turns into a cross */
+  .quick-contact-toggle-icon {
+    position: relative;
+    width: 1.1em;
+    height: 1.1em;
+    display: inline-block;
+  }
+
+  .quick-contact-toggle-icon i {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+  }
+
+  .quick-contact-icon-close {
     opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+
+  .quick-contact.open .quick-contact-icon-open {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+
+  .quick-contact.open .quick-contact-icon-close {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Options rise out of the pill */
+  .quick-contact-options {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
     pointer-events: none;
   }
 
-  :host-context(body.dark-mode) .mobile-call-pill {
+  .quick-contact.open .quick-contact-options {
+    pointer-events: auto;
+  }
+
+  .quick-contact-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.45rem 1.1rem 0.45rem 0.45rem;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid var(--pastel-pink, #f5c0c0);
+    color: var(--text-dark, #4a5759);
+    font-family: poppins, sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 10px 24px rgba(74, 87, 89, 0.16);
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+    transition: opacity 0.35s ease var(--d, 0s), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s);
+  }
+
+  .quick-contact.open .quick-contact-option {
+    opacity: 1;
+    transform: none;
+  }
+
+  .quick-contact-option:active {
+    transform: translateY(1px);
+  }
+
+  .quick-contact-option:focus-visible {
+    outline: 2px solid var(--dark-pink, #df7b99);
+    outline-offset: 3px;
+  }
+
+  .quick-contact-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .quick-contact-icon-phone {
+    background: var(--pastel-green, #c8e4b2);
+    color: var(--sage-ink, #4f7d53);
+  }
+
+  .quick-contact-icon-ig {
+    background: var(--pastel-pink, #f5c0c0);
+    color: var(--rose-ink, #a85a72);
+  }
+
+  :host-context(body.dark-mode) .quick-contact-toggle {
     background: linear-gradient(135deg, var(--dark-pink-dark, #b56c82) 0%, var(--pastel-pink-dark, #c09a9a) 100%);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  }
+
+  :host-context(body.dark-mode) .quick-contact.open .quick-contact-toggle {
+    background: #1e1e1e;
+  }
+
+  :host-context(body.dark-mode) .quick-contact-option {
+    background: #2a3032;
+    border-color: rgba(192, 154, 154, 0.45);
+    color: var(--text-light, #e9e9e9);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  :host-context(body.dark-mode) .quick-contact-icon-phone {
+    background: var(--pastel-green-dark, #91b478);
+    color: #1e1e1e;
+  }
+
+  :host-context(body.dark-mode) .quick-contact-icon-ig {
+    background: var(--pastel-pink-dark, #c09a9a);
+    color: #1e1e1e;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-contact,
+  .quick-contact-toggle,
+  .quick-contact-toggle-icon i,
+  .quick-contact-option {
+    transition: none;
   }
 }

@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isDarkMode: boolean = false;
   isProductsDropdownOpen: boolean = false;
   isScrolled: boolean = false;
+  /** Floating quick-contact button on phones: call or Instagram message. */
+  quickContactOpen: boolean = false;
   
   productSections = [
     { id: 'freshFlowers', name: 'Svježe cvijeće' },
@@ -73,6 +75,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       this.mobileMenuOpen = !this.mobileMenuOpen;
       this.isProductsDropdownOpen = false;
+      this.quickContactOpen = false;
       
       // Toggle body class to prevent scrolling
       if (this.mobileMenuOpen) {
@@ -225,7 +228,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   closeDropdown(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.isProductsDropdownOpen = false;
+      this.quickContactOpen = false;
     }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.quickContactOpen = false;
+  }
+
+  toggleQuickContact(): void {
+    this.quickContactOpen = !this.quickContactOpen;
+  }
+
+  closeQuickContact(): void {
+    this.quickContactOpen = false;
   }
 
   scrollToSection(sectionId: string, event?: Event): void {

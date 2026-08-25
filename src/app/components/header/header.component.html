@@ -103,7 +103,23 @@
     </div>
 </div>
 
-<!-- One-tap call on phones: the phone is the checkout -->
-<a class="mobile-call-pill" href="tel:+387603352011" [class.hidden]="mobileMenuOpen">
-    <i class="fas fa-phone" aria-hidden="true"></i> Pozovi
-</a>
+<!-- Quick contact on phones: one button that opens into call or Instagram message -->
+<div class="quick-contact" [class.open]="quickContactOpen" [class.hidden]="mobileMenuOpen" (click)="$event.stopPropagation()">
+    <div class="quick-contact-options" id="quickContactOptions" [attr.inert]="quickContactOpen ? null : ''">
+        <a class="quick-contact-option" href="https://ig.me/m/huzur.mostar" target="_blank" rel="noopener" style="--d: 0.08s" (click)="closeQuickContact()">
+            <span class="quick-contact-icon quick-contact-icon-ig"><i class="fab fa-instagram" aria-hidden="true"></i></span>
+            Instagram poruka
+        </a>
+        <a class="quick-contact-option" href="tel:+387603352011" style="--d: 0s" (click)="closeQuickContact()">
+            <span class="quick-contact-icon quick-contact-icon-phone"><i class="fas fa-phone" aria-hidden="true"></i></span>
+            Pozovi
+        </a>
+    </div>
+    <button type="button" class="quick-contact-toggle" aria-controls="quickContactOptions" [attr.aria-expanded]="quickContactOpen" (click)="toggleQuickContact()">
+        <span class="quick-contact-toggle-icon" aria-hidden="true">
+            <i class="fas fa-comment-dots quick-contact-icon-open"></i>
+            <i class="fas fa-times quick-contact-icon-close"></i>
+        </span>
+        <span class="quick-contact-label">{{ quickContactOpen ? 'Zatvori' : 'Javite se' }}</span>
+    </button>
+</div>
