@@ -19,7 +19,7 @@
         </div>
 
         <div class="hero-collage">
-            <figure class="photo" *ngFor="let frame of frames; let f = index" [class.photo-1]="f === 0" [class.photo-2]="f === 1" [class.photo-3]="f === 2">
+            <figure class="photo" *ngFor="let frame of frames(); let f = index" [class.photo-1]="f === 0" [class.photo-2]="f === 1" [class.photo-3]="f === 2">
                 <img *ngFor="let src of frame.images; let s = index"
                      [src]="src"
                      [alt]="s === frame.index ? frame.alt : ''"

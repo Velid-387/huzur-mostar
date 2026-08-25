@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy } from '@angular/core';
+import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy, signal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
 import { ImageService } from '../../services/image.service';
@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
   optimizedBackgroundImages: string[] = [];
 
-  /** Three photo frames; each one cycles through its own share of the shop photos, staggered. */
-  frames: PhotoFrame[] = [];
+  /** Three photo frames; each one cycles through its own share of the shop photos, staggered. A signal, so timer-driven swaps schedule change detection cleanly. */
+  frames = signal<PhotoFrame[]>([]);
   private readonly frameCount = 3;
   private readonly frameAlts = [
     'Unutrašnjost cvjećare Huzur Mostar',
@@ -97,28 +97,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   /** Swap a frame image for its original when the optimized file is missing. */
   onFrameImageError(frame: PhotoFrame, slideIndex: number): void {
     const original = frame.originals[slideIndex];
-    if (frame.images[slideIndex] !== original) {
-      frame.images[slideIndex] = original;
-    }
+    if (frame.images[slideIndex] === original) return;
+    this.frames.update((list) => list.map((f) =>
+      f === frame ? { ...f, images: f.images.map((src, i) => (i === slideIndex ? original : src)) } : f
+    ));
   }
 
   private buildFrames(): void {
-    this.frames = Array.from({ length: this.frameCount }, (_, f) => ({
+    this.frames.set(Array.from({ length: this.frameCount }, (_, f) => ({
       images: this.optimizedBackgroundImages.filter((_, i) => i % this.frameCount === f),
       originals: this.backgroundImages.filter((_, i) => i % this.frameCount === f),
       index: 0,
       alt: this.frameAlts[f]
-    }));
+    })));
   }
 
   /** One frame advances every 2.5s, so each frame changes every 7.5s and never together with its neighbours. */
   private startSlideshow() {
     if (isPlatformBrowser(this.platformId)) {
       this.slideInterval = setInterval(() => {
-        const frame = this.frames[this.tick % this.frameCount];
-        if (frame && frame.images.length > 1) {
-          frame.index = (frame.index + 1) % frame.images.length;
-        }
+        const turn = this.tick % this.frameCount;
+        this.frames.update((list) => list.map((f, i) =>
+          i === turn && f.images.length > 1 ? { ...f, index: (f.index + 1) % f.images.length } : f
+        ));
         this.tick++;
       }, 2500);
     }

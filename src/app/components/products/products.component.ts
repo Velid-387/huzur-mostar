@@ -6,12 +6,13 @@ import {
   inject,
   PLATFORM_ID,
   AfterViewInit,
+  signal,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { OptimizedImageComponent } from '../shared/optimized-image/optimized-image.component';
 import { Product, FRESH_FLOWERS, DRIED_FLOWERS, POTTED_PLANTS } from '../../data/products.data';
-
 import { BotanicalComponent } from '../shared/botanical/botanical.component';
+
 interface ProductCategory {
   /** Also the element id the header dropdown links to. */
   key: 'freshFlowers' | 'driedFlowers' | 'magnets';
@@ -78,6 +79,8 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   autoScrollDelay: number = 5000;
   /** Autoplay stops for good once the visitor takes over, and never starts under reduced motion. */
   autoplayStopped: boolean = false;
+  /** Which carousels are currently autoplaying; a signal so the ring can appear from a timer without NG0100. */
+  private autoplayRunning = signal<Record<string, boolean>>({});
   private hoverPaused: boolean = false;
 
   private initializeCarouselState(products: Product[]): CarouselState {
@@ -219,6 +222,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     state.carouselInterval = setInterval(() => {
       this.nextProduct(category);
     }, this.autoScrollDelay);
+    this.autoplayRunning.update((running) => ({ ...running, [category]: true }));
   }
 
   stopAutoScroll(category: string): void {
@@ -227,6 +231,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       clearInterval(state.carouselInterval);
       state.carouselInterval = null;
     }
+    this.autoplayRunning.update((running) => ({ ...running, [category]: false }));
   }
 
   resetAutoScroll(category: string): void {
@@ -359,6 +364,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** True while this category's autoplay is running, so the template can show its ring. */
   isAutoplaying(category: string): boolean {
-    return !this.autoplayStopped && !!this.carouselStates[category].carouselInterval;
+    return !this.autoplayStopped && !!this.autoplayRunning()[category];
   }
 }
