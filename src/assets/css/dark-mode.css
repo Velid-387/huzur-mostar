@@ -84,50 +84,6 @@ body.dark-mode .nav-links a.selected {
     color: var(--pastel-pink-dark) !important;
 }
 
-body.dark-mode .mobile-nav-menu {
-    background-color: var(--dark-background, #1a1a1a);
-    color: var(--text-light, #fff);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .mobile-nav-menu .contact-number {
-    background-color: var(--dark-background, #1a1a1a);
-    border-top-color: var(--dark-border-color, #2d2d2d);
-}
-
-body.dark-mode .mobile-nav-menu a {
-    color: var(--text-light, #fff);
-}
-
-body.dark-mode .mobile-nav-menu a:hover {
-    color: var(--pastel-pink-dark);
-    transform: translateY(-3px);
-}
-
-body.dark-mode .mobile-nav-menu a.active {
-    color: var(--pastel-pink-dark, #c09a9a);
-    background-color: transparent;
-    box-shadow: none;
-    animation: none;
-    position: relative;
-}
-
-body.dark-mode .mobile-nav-menu a.active::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background-color: var(--pastel-pink-dark, #c09a9a);
-    animation: dark-nav-glow 1.5s infinite;
-}
-
-body.dark-mode .mobile-nav-menu a:hover {
-    color: var(--pastel-pink-dark);
-    animation: none;
-}
-
 body.dark-mode .hamburger-menu span {
     background-color: #fff;
 }
