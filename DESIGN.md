@@ -163,7 +163,7 @@ Density is generous. Sections are full-viewport (`min-height: 100vh`) with 6rem 
 A pastel florist's palette: six tissue-paper washes, two deeper "ink" tones for contrast, slate for text, paper and linen for surfaces.
 
 ### Primary
-- **Rose Deep** (`rose-deep`, #df7b99): the pen ink. Hero title, section headings (h2), logo wordmark, active nav link and its underline, FAQ left border, testimonial card base line, active carousel dot, pressed-button state. This is the canonical primary accent; the deeper `#d14d72` / `#ff6b98` pair found in the header dropdown, blog pagination, and mobile call button is legacy drift to be migrated onto `rose-deep`.
+- **Rose Deep** (`rose-deep`, #df7b99): the pen ink. Hero title, section headings (h2), logo wordmark, active nav link and its underline, FAQ left border, testimonial card base line, active carousel dot, pressed-button state. This is the canonical primary accent everywhere, including the header dropdown, blog titles and pagination, and the mobile call button.
 - **Tissue Pink** (`tissue-pink`, #f5c0c0): the default button and social-icon fill, nav hover halo (at 20% alpha), input focus border and glow, FAQ open-state border. The most-used pastel; it reads as "this is something you can touch".
 
 ### Secondary
@@ -200,8 +200,7 @@ Bootstrap-derived and only in the contact form and share toast: success `#d4edda
 ## Typography
 
 **Display Font:** Alex Brush (Google Fonts; fallback `cursive`)
-**Body Font:** Poppins (fallback `sans-serif`) — **declared everywhere but not loaded** in `src/index.html`; visitors currently see the system sans. Loading Poppins (400/500/600, Google Fonts, plus a `netlify.toml` CSP entry) is a known gap to close.
-**Secondary Sans:** Montserrat 400/600, imported only in the footer for the "Huzur*Mostar*" wordmark. Treat as legacy; consolidate onto Poppins.
+**Body Font:** Poppins 400/500/600 (Google Fonts, loaded in `src/index.html` alongside Alex Brush; fallback `sans-serif`).
 
 **Character:** A florist's handwriting over a tidy price list. The script is large, light, and loose (letter-spacing 0.5px); the sans is calm, medium-weight, and never shouts. Contrast between the two families *is* the hierarchy — weight and size changes inside one family are secondary.
 
@@ -217,7 +216,7 @@ Bootstrap-derived and only in the contact form and share toast: success `#d4edda
 ### Named Rules
 **The Script-Is-Not-For-Reading Rule.** Alex Brush sets names and titles of at most ~6 words. Never set body copy, FAQ answers, form labels, prices, hours, or error messages in script.
 
-**The One-Sans Rule.** Poppins is the only sans. Remove Montserrat when the footer is next touched.
+**The One-Sans Rule.** Poppins is the only sans; no second sans family is imported anywhere.
 
 ## Layout
 
@@ -271,7 +270,7 @@ Soft pill, glowing on touch. Every `<button>` and `.btn` shares one style.
 - **Active/press:** fill → Rose Deep, white text, `translateY(1px)`, rose flash 0.5s.
 - **Disabled:** `#6c757d` grey fill (contact form only; consider a pastel-muted alternative when revisited).
 - **Hero CTA:** same button with a perpetual `bounce` (−15px, 1.5s) — the one button allowed to move unprompted.
-- **Outline (blog "back"):** transparent, 1px `rose-deep` border and text, 8px radius, Poppins 600; hover shifts to the light pink `#ff6b98` (drift → use `rose-deep` at 80% instead).
+- **Outline (blog "back"):** transparent, 1px `rose-deep` border and text, 8px radius, Poppins 600.
 - **Icon round (social, scroll-to-top, carousel controls):** 38–50px circles with the same pink → mint → rose sequence; carousel controls are white with `#f8d7da` hover.
 - **Dark:** pink-dark / mint-dark / rose-dark fills, `night-text` text.
 
@@ -285,7 +284,7 @@ Soft pill, glowing on touch. Every `<button>` and `.btn` shares one style.
 
 ### Inputs / Fields
 - **Style:** white fill, 1px Sky Wash border, 4px radius, `padding: 0.8rem`, 1rem Poppins; textarea 150px, vertical resize; italic `#6c757d` placeholder.
-- **Focus:** border → Tissue Pink, `0 0 8px rgba(245,192,192,0.4)` glow, no outline ring.
+- **Focus:** border → Tissue Pink, `0 0 8px rgba(245,192,192,0.4)` glow; keyboard focus (`:focus-visible`) adds a 2px `rose-deep` outline, 2px offset — the same ring every link and button gets.
 - **Valid:** border `#28a745`. **Invalid (touched):** border `#dc3545`, `#fff5f5` fill, 0.2rem red ring on focus; error message 0.875rem red sliding down 0.3s.
 - **Label:** Poppins 500 `charcoal-text`, required mark in `danger`.
 - **Submit:** primary button; while sending, a full-screen 95% white overlay with a rotating six-petal flower loader (pink petals `#e91e63→#f06292`, amber center) and pulsing "Šaljemo vašu poruku…".
@@ -296,7 +295,7 @@ Soft pill, glowing on touch. Every `<button>` and `.btn` shares one style.
 - **Hover:** text → `rose-deep`, `translateY(-3px)`, a 20%-alpha pink pill scales in behind the link.
 - **Active:** `rose-deep` 600 with a 2px underline that pulses a pink glow (`nav-glow` 1.5s).
 - **Products dropdown:** white 8px panel, hairline border, `0 4px 15px` shadow, 10px 16px items; active item inverts to primary fill with white text.
-- **Mobile (≤768px):** hamburger (20px, three 2px bars morphing to an X); header shrinks to a 56px pill when scrolled; menu is a full-height white sheet, links 1.25rem at 15px 20px, staggered fade-in; a full-width gradient "call" pill (`#d14d72→#ff6b98` at 70%, pulsing) with a heartbeat heart at the bottom.
+- **Mobile (≤768px):** hamburger (20px, three 2px bars morphing to an X); header shrinks to a 56px pill when scrolled; menu is a full-height white sheet, links 1.25rem at 15px 20px, staggered fade-in; a full-width `rose-deep` gradient "call" pill with a heartbeat heart at the bottom.
 - **Theme toggle:** 30px SVG sun (`rose-deep`) morphing to a crescent moon (`#e6dcab`) with an overshoot ease `cubic-bezier(0.68,-0.55,0.27,1.55)` 0.5s.
 - **Dark:** header `rgba(18,18,18,0.9)`, links `night-text`, active/hover `tissue-pink-dark`.
 
@@ -308,7 +307,7 @@ Gradient from transparent to Footer Mist with a faint upward shadow and two 200p
 - **Hover:** `translateY(-3px)` links/buttons, `-5px` cards/FAQ/social, `-10px` legacy grid cards; all `0.3s ease`.
 - **Signature loops:** hero CTA bounce, three pink chevrons drifting down (3s), heartbeat heart (1.5s), carousel auto-advance with ring timer, active-nav glow pulse, hover glow pulse. Add no new infinite loops.
 - **Easing:** `ease` at 0.3s is the default; 0.5s for carousel and image zoom; 0.8s for reveals and the card flip; overshoot bezier only on the theme toggle.
-- **Reduced motion:** no `prefers-reduced-motion` handling exists yet; new work should add it (PRODUCT.md accessibility note).
+- **Reduced motion:** `animations.css` ends with a `prefers-reduced-motion: reduce` block — reveals render visible immediately, loops stop, transitions collapse. Keep new motion inside that contract.
 
 ### Signature Component: the Flip Testimonial
 The one piece a competitor would not have: a linen card carrying a real customer message that turns over to show the actual Instagram DM. It embodies "the customer's handwriting", so keep it — never replace the screenshot with a generic avatar or star rating.
@@ -327,8 +326,8 @@ The one piece a competitor would not have: a linen card carrying a real customer
 
 ### Don't:
 - **Don't** use Alex Brush for body copy, labels, prices, hours, or anything longer than a short title.
-- **Don't** introduce `#d14d72` / `#ff6b98` in new code; they are drift — use `rose-deep` and its dark twin.
-- **Don't** import Montserrat or any additional font family; Poppins + Alex Brush only (and load Poppins).
+- **Don't** introduce `#d14d72` / `#ff6b98` (removed legacy pinks) in new code; use `rose-deep` and `tissue-pink-dark` in dark mode.
+- **Don't** import any additional font family; Poppins + Alex Brush only.
 - **Don't** fill large areas with `rose-deep` or `sage-deep`; inks color text and thin lines only.
 - **Don't** add new infinite animations; the signature loops (hero bounce, chevrons, heartbeat, glow pulses, carousel timer) are the full budget.
 - **Don't** use hard, dark, or offset drop shadows; shadows are diffuse black ≤0.2 alpha on surfaces, or the element's own pastel as a glow on interactives.

@@ -40,7 +40,7 @@
       "headline": { "displayName": "Headline", "purpose": "Section h2 and blog titles. Alex Brush, rose-deep." },
       "title": { "displayName": "Title", "purpose": "h3, category names, bouquet names, #huzurljudi signature, footer headings. Alex Brush, sage-deep." },
       "subtitle": { "displayName": "Subtitle", "purpose": "FAQ questions and blog card titles. Poppins 600." },
-      "body": { "displayName": "Body", "purpose": "Paragraphs, testimonials, blog body (800px measure). Poppins 400. Poppins is declared but not yet loaded — see Typography." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs, testimonials, blog body (800px measure). Poppins 400. Loaded from Google Fonts with Alex Brush." },
       "label": { "displayName": "Label", "purpose": "Nav links, buttons, form labels, footer meta. Poppins 500, never uppercase." }
     },
     "shadows": [
@@ -153,7 +153,7 @@
       { "name": "The Pink-to-Mint Rule", "body": "Interactive elements rest in Tissue Pink and reward hover with Mint Leaf. Press is Rose Deep with white text. Do not invent a fourth interactive color.", "section": "colors" },
       { "name": "The Alternating-Paper Rule", "body": "Landing sections alternate paper-white → linen-off-white → paper-white …; cards take the opposite tone of their section so they read as a second sheet of paper.", "section": "colors" },
       { "name": "The Script-Is-Not-For-Reading Rule", "body": "Alex Brush sets names and titles of at most ~6 words. Never set body copy, FAQ answers, form labels, prices, hours, or error messages in script.", "section": "typography" },
-      { "name": "The One-Sans Rule", "body": "Poppins is the only sans. Remove Montserrat when the footer is next touched.", "section": "typography" },
+      { "name": "The One-Sans Rule", "body": "Poppins is the only sans; no second sans family is imported anywhere.", "section": "typography" },
       { "name": "The Glow-Means-Touchable Rule", "body": "Colored glow appears only on elements you can click or tap. Cards, sections, and images use neutral shadows.", "section": "elevation" },
       { "name": "The Sheet-of-Paper Rule", "body": "Non-interactive surfaces never exceed the Paper hover shadow; the only thing allowed to float higher is a modal.", "section": "elevation" }
     ],
@@ -169,8 +169,8 @@
     ],
     "donts": [
       "Don't use Alex Brush for body copy, labels, prices, hours, or anything longer than a short title.",
-      "Don't introduce #d14d72 / #ff6b98 in new code; they are drift — use rose-deep and its dark twin.",
-      "Don't import Montserrat or any additional font family; Poppins + Alex Brush only (and load Poppins).",
+      "Don't introduce #d14d72 / #ff6b98 (removed legacy pinks) in new code; use rose-deep and tissue-pink-dark in dark mode.",
+      "Don't import any additional font family; Poppins + Alex Brush only.",
       "Don't fill large areas with rose-deep or sage-deep; inks color text and thin lines only.",
       "Don't add new infinite animations; the signature loops (hero bounce, chevrons, heartbeat, glow pulses, carousel timer) are the full budget.",
       "Don't use hard, dark, or offset drop shadows; shadows are diffuse black ≤0.2 alpha on surfaces, or the element's own pastel as a glow on interactives.",

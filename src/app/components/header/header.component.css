@@ -17,7 +17,7 @@
   height: 2px;
   width: 100%;
   border-radius: 2px;
-  background-color: var(--primary-color, #333);
+  background-color: var(--text-dark, #333);
   transition: all 0.3s ease;
   position: absolute;
 }
@@ -157,11 +157,11 @@ header.scrolled .nav-links a {
 
 .nav-links .dropdown-menu a:hover {
     background-color: var(--hover-color, rgba(0, 0, 0, 0.05));
-    color: var(--primary-color, #d14d72);
+    color: var(--dark-pink, #df7b99);
 }
 
 .nav-links .dropdown-menu a.active {
-    background-color: var(--primary-color, #d14d72);
+    background-color: var(--dark-pink, #df7b99);
     color: white;
 }
 
@@ -205,7 +205,7 @@ header.scrolled .nav-links a {
 }
 
 .mobile-nav-menu .dropdown-menu a.active {
-    color: var(--primary-color, #d14d72);
+    color: var(--dark-pink, #df7b99);
     background-color: transparent;
     position: relative;
 }
@@ -217,7 +217,7 @@ header.scrolled .nav-links a {
     left: 35px;
     right: 20px;
     height: 2px;
-    background-color: var(--primary-color, #d14d72);
+    background-color: var(--dark-pink, #df7b99);
     animation: nav-glow 1.5s infinite;
 }
 
@@ -234,34 +234,20 @@ header.scrolled .nav-links a {
 
 :host-context(body.dark-mode) .nav-links .dropdown-menu a:hover {
     background-color: var(--dark-hover-color, rgba(255, 255, 255, 0.1));
-    color: var(--primary-color-light, #ff6b98);
+    color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) .mobile-nav-menu .dropdown-menu a.active {
-    color: var(--primary-color-light, #ff6b98);
+    color: var(--pastel-pink-dark, #c09a9a);
     background-color: transparent;
 }
 
 :host-context(body.dark-mode) .mobile-nav-menu .dropdown-menu a.active::after {
-    background-color: var(--primary-color-light, #ff6b98);
+    background-color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) .logo a {
   color: var(--pastel-green, #c8e4b2);
-}
-
-/* CSS Variables */
-:root {
-    --hover-color: rgba(0, 0, 0, 0.05);
-    --dark-hover-color: rgba(255, 255, 255, 0.1);
-    --border-color: #e0e0e0;
-    --dark-border-color: #2d2d2d;
-    --background-color: #fff;
-    --dark-background: #1a1a1a;
-    --text-color: #333;
-    --text-light: #fff;
-    --primary-color: #d14d72;
-    --primary-color-light: #ff6b98;
 }
 
 /* Mobile menu adjustments */
@@ -461,21 +447,21 @@ header.scrolled .nav-links a {
         font-weight: 500;
         text-align: center;
         text-decoration: none;
-        border-radius: 25px;
-        background: linear-gradient(135deg, var(--primary-color, #d14d72) 0%, var(--primary-color-light, #ff6b98) 100%);
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--dark-pink, #df7b99) 0%, var(--dark-pink, #df7b99) 100%);
         color: white;
         border: none;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(209, 77, 114, 0.2);
+        box-shadow: 0 4px 15px rgba(223, 123, 153, 0.2);
         width: 100%;
         max-width: 280px;
     }
 
     .mobile-nav-menu .contact-number a:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(209, 77, 114, 0.3);
-        background: linear-gradient(135deg, var(--primary-color-light, #ff6b98) 0%, var(--primary-color, #d14d72) 100%);
+        box-shadow: 0 6px 20px rgba(223, 123, 153, 0.3);
+        background: linear-gradient(135deg, var(--dark-pink, #df7b99) 0%, var(--dark-pink, #df7b99) 100%);
     }
 
     .mobile-nav-menu .contact-number i {
@@ -499,13 +485,13 @@ header.scrolled .nav-links a {
     }
 
     :host-context(body.dark-mode) .mobile-nav-menu .contact-number a {
-        background: linear-gradient(135deg, var(--primary-color-light, #ff6b98) 0%, var(--primary-color, #d14d72) 100%);
-        box-shadow: 0 4px 15px rgba(255, 107, 152, 0.2);
+        background: linear-gradient(135deg, var(--dark-pink, #df7b99) 0%, var(--dark-pink, #df7b99) 100%);
+        box-shadow: 0 4px 15px rgba(223, 123, 153, 0.2);
     }
 
     :host-context(body.dark-mode) .mobile-nav-menu .contact-number a:hover {
-        background: linear-gradient(135deg, var(--primary-color, #d14d72) 0%, var(--primary-color-light, #ff6b98) 100%);
-        box-shadow: 0 6px 20px rgba(255, 107, 152, 0.3);
+        background: linear-gradient(135deg, var(--dark-pink, #df7b99) 0%, var(--dark-pink, #df7b99) 100%);
+        box-shadow: 0 6px 20px rgba(223, 123, 153, 0.3);
     }
 }
 

@@ -11,7 +11,7 @@
                 <h1>Huzur Mostar</h1>
             </div>
             <p>Priča ispunjena radošću, bojama, kreativnošću, inspiracijom, huzur ljudima i zahvalnošću.</p>
-            <a (click)="scrollToSection('products')" class="btn">Istražite našu ponudu</a>
+            <a href="#products" (click)="scrollToSection('products', $event)" class="btn">Istražite našu ponudu</a>
         </div>
     </div>
     <div class="scroll-indicator-bottom" *ngIf="showScrollIndicator">

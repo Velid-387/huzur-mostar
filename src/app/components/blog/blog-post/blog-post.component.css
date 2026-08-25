@@ -18,7 +18,7 @@
   height: 50px;
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-top-color: var(--primary-color);
+  border-top-color: var(--dark-pink, #df7b99);
   animation: spin 1s ease-in-out infinite;
   margin-bottom: 1.5rem;
 }
@@ -40,7 +40,7 @@
 
 .error-state h2 {
   font-size: 2rem;
-  color: var(--primary-color);
+  color: var(--dark-pink, #df7b99);
   margin-bottom: 1rem;
 }
 
@@ -66,7 +66,7 @@
 .blog-post-title {
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  color: var(--primary-color);
+  color: var(--dark-pink, #df7b99);
   line-height: 1.2;
 }
 
@@ -105,7 +105,7 @@
 .blog-post-content h6 {
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: var(--primary-color);
+  color: var(--dark-pink, #df7b99);
 }
 
 .blog-post-content h1 { font-size: 2.2rem; }
@@ -142,11 +142,11 @@
 }
 
 .blog-post-content strong {
-  color: var(--primary-color);
+  color: var(--dark-pink, #df7b99);
 }
 
 .blog-post-content a {
-  color: var(--primary-color);
+  color: var(--dark-pink, #df7b99);
   text-decoration: underline;
 }
 
@@ -162,7 +162,7 @@
 }
 
 .blog-post-content blockquote {
-  border-left: 4px solid var(--primary-color);
+  border-left: 4px solid var(--dark-pink, #df7b99);
   padding-left: 1.5rem;
   margin: 2rem 0;
   font-style: italic;
@@ -188,8 +188,8 @@
   align-items: center;
   padding: 0.75rem 1.5rem;
   background-color: transparent;
-  border: 1px solid var(--primary-color);
-  color: var(--primary-color);
+  border: 1px solid var(--dark-pink, #df7b99);
+  color: var(--dark-pink, #df7b99);
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
@@ -197,8 +197,8 @@
 }
 
 .back-button:hover {
-  border-color: var(--primary-color-light, #ff6b98);
-  color: var(--primary-color-light, #ff6b98);
+  border-color: var(--dark-pink, #df7b99);
+  color: var(--dark-pink, #df7b99);
 }
 
 .back-button i {
@@ -285,7 +285,7 @@
 
 :host-context(body.dark-mode) .spinner {
   border-color: rgba(255, 255, 255, 0.1);
-  border-top-color: var(--primary-color);
+  border-top-color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) .blog-post-content h1,
@@ -296,12 +296,12 @@
 :host-context(body.dark-mode) .blog-post-content h6,
 :host-context(body.dark-mode) .blog-post-content strong,
 :host-context(body.dark-mode) .error-state h2 {
-  color: var(--primary-color-light, #ff6b98);
+  color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) .blog-post-content blockquote {
   color: #aaa;
-  border-left-color: var(--primary-color-light, #ff6b98);
+  border-left-color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) .blog-post-content hr,
@@ -311,12 +311,12 @@
 
 /* For dark theme, use pink background on hover */
 :host-context(body.dark-mode) .back-button {
-  border-color: var(--primary-color-light, #ff6b98);
-  color: var(--primary-color-light, #ff6b98);
+  border-color: var(--pastel-pink-dark, #c09a9a);
+  color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) .back-button:hover {
-  background-color: var(--primary-color-light, #ff6b98);
+  background-color: var(--pastel-pink-dark, #c09a9a);
   color: #222;
 }
 

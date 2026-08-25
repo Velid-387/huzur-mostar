@@ -182,3 +182,39 @@ header {
         display: none;
     }
 }
+
+/* Reduced motion: content is visible immediately, loops stop, transitions collapse */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .animate-item,
+    .product-card,
+    #home .hero-content {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: none;
+    }
+
+    header,
+    #home .btn,
+    .chevron,
+    .made-with-love i,
+    .nav-links a.active::after,
+    .mobile-nav-menu a.active::after,
+    .btn:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover,
+    .social-links a:hover,
+    #scrollToTop:hover {
+        animation: none !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

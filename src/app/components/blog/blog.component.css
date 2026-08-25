@@ -8,7 +8,7 @@
 .blog-title {
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  color: var(--primary-color);
+  color: var(--dark-pink, #df7b99);
   text-align: center;
 }
 
@@ -106,13 +106,13 @@
 }
 
 .pagination-btn:hover:not(.disabled) {
-  border-color: var(--primary-color-light, #ff6b98);
-  color: var(--primary-color-light, #ff6b98);
+  border-color: var(--dark-pink, #df7b99);
+  color: var(--dark-pink, #df7b99);
 }
 
 .pagination-btn.active {
-  border-color: var(--primary-color-light, #ff6b98);
-  color: var(--primary-color-light, #ff6b98);
+  border-color: var(--dark-pink, #df7b99);
+  color: var(--dark-pink, #df7b99);
 }
 
 .pagination-btn.disabled {
@@ -147,7 +147,7 @@
 
 :host-context(body.dark-mode) .pagination-btn:hover:not(.disabled),
 :host-context(body.dark-mode) .pagination-btn.active {
-  background-color: var(--primary-color);
+  background-color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) .no-posts {

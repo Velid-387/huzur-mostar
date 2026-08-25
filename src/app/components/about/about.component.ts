@@ -12,7 +12,8 @@ import { ScrollService } from '../../services/scroll.service';
 export class AboutComponent {
   private scrollService = inject(ScrollService);
   
-  scrollToSection(sectionId: string): void {
+  scrollToSection(sectionId: string, event?: Event): void {
+    event?.preventDefault();
     this.scrollService.scrollToElementById(sectionId);
   }
 

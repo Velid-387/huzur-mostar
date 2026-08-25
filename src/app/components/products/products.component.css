@@ -155,7 +155,7 @@ app-optimized-image.product-img ::ng-deep img {
 /* Larger title for active card */
 .product-card.active .product-info h3 {
   font-size: 1.6rem;
-  color: var(--dark-pink, #d14d72);
+  color: var(--dark-pink, #df7b99);
   transform: none !important;
 }
 
@@ -291,7 +291,7 @@ app-optimized-image.product-img ::ng-deep img {
 }
 
 .dot.active {
-  background-color: var(--dark-pink, #d14d72);
+  background-color: var(--dark-pink, #df7b99);
   transform: none;
 }
 
@@ -318,7 +318,7 @@ app-optimized-image.product-img ::ng-deep img {
 
 /* Active card title color enhancement */
 .product-card.active .product-info h3 {
-  color: var(--dark-pink, #d14d72);
+  color: var(--dark-pink, #df7b99);
 }
 
 /* Mobile styles - prevent flickering and maintain control appearance */
@@ -588,7 +588,7 @@ app-optimized-image.product-img ::ng-deep img {
 /* Remove text size changes */
 .product-card.active .product-info h3 {
   /* Keep the color change but remove size change */
-  color: var(--dark-pink, #d14d72);
+  color: var(--dark-pink, #df7b99);
   font-size: 1.3rem !important; /* Same as non-active */
 }
 

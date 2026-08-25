@@ -1,7 +1,5 @@
 /* Footer styles */
 
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 footer {
   position: relative;
@@ -70,7 +68,7 @@ footer {
 
 .logo-container span {
   margin-left: 0.75rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: poppins, sans-serif;
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--pastel-green-dark, #91b478);
@@ -119,7 +117,6 @@ footer {
   font-size: 1.5rem;
   margin-bottom: 0.8rem;
   color: var(--pastel-green-dark, #91b478);
-  text-transform: capitalize;
   letter-spacing: 1px;
   font-weight: 600;
   position: relative;

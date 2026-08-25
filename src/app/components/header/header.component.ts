@@ -209,6 +209,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleProductsDropdown(event: Event): void {
+    event.preventDefault();
     if (isPlatformBrowser(this.platformId)) {
       event.stopPropagation();
       this.isProductsDropdownOpen = !this.isProductsDropdownOpen;
@@ -224,6 +225,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   scrollToSection(sectionId: string, event?: Event): void {
     if (event) {
+      event.preventDefault();
       event.stopPropagation();
     }
     

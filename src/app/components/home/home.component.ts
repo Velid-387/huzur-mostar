@@ -65,7 +65,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
   
-  scrollToSection(sectionId: string): void {
+  scrollToSection(sectionId: string, event?: Event): void {
+    event?.preventDefault();
     if (isPlatformBrowser(this.platformId)) {
       this.scrollService.scrollToElementById(sectionId);
     }

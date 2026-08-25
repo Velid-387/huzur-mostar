@@ -66,7 +66,8 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    align-items: center;
+    gap: 1.25rem;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -74,6 +75,8 @@ nav {
     text-decoration: none;
     color: #333;
     font-weight: 500;
+    font-size: 0.95rem;
+    white-space: nowrap;
     position: relative;
     padding: 8px 12px;
     border-radius: 20px;
@@ -149,7 +152,8 @@ section {
     position: relative;
 }
 
-section:first-of-type {
+/* Only the hero sits flush under the fixed header; every other section keeps its 6rem top padding */
+section#home {
     padding-top: 0;
     margin-top: 0;
     border-top: none;
@@ -785,7 +789,7 @@ body.dark-mode .social-links a {
 }
 
 body.dark-mode .social-links a:hover {
-    box-shadow: 0 7px 15px rgba(231, 111, 81, 0.6);
+    box-shadow: 0 7px 15px rgba(145, 180, 120, 0.6);
 }
 
 /* Dark mode toggle */
@@ -884,6 +888,30 @@ input:checked ~ .toggle-icon:hover .moon-mask {
     filter: drop-shadow(0 0 5px rgba(230, 220, 171, 0.8));
 }
 
+@media (min-width: 769px) and (max-width: 1100px) {
+    nav {
+        padding: 0 1rem;
+    }
+
+    .nav-links {
+        gap: 0.25rem;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+        padding: 8px 6px;
+    }
+
+    .nav-links a.active::after {
+        left: 6px;
+        right: 6px;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+}
+
 /* Style the hamburger menu button */
 .hamburger-menu {
     display: none;
@@ -898,6 +926,22 @@ input:checked ~ .toggle-icon:hover .moon-mask {
     .hamburger-menu {
         display: block;
         z-index: 1001;
+    }
+
+    section {
+        padding: 4rem 1rem 3rem;
+    }
+
+    section#home {
+        padding-top: 0;
+    }
+
+    #home .container {
+        padding: 1rem 0;
+    }
+
+    .logo {
+        font-size: 1.5rem;
     }
 
     .mobile-nav-menu {
@@ -1072,7 +1116,7 @@ input:checked ~ .toggle-icon:hover .moon-mask {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(42, 157, 143, 0.1);
+    background-color: rgba(245, 192, 192, 0.2);
     border-radius: 20px;
     transform: scale(0);
     transition: transform 0.3s ease;
@@ -1109,7 +1153,7 @@ input:checked ~ .toggle-icon:hover .moon-mask {
 }
 
 body.dark-mode .mobile-nav-menu a:before {
-    background-color: rgba(42, 157, 143, 0.2);
+    background-color: rgba(192, 154, 154, 0.2);
 }
 
 body.dark-mode .mobile-nav-menu a:hover {
@@ -1118,7 +1162,7 @@ body.dark-mode .mobile-nav-menu a:hover {
 }
 
 body.dark-mode .mobile-nav-menu a.active {
-    color: var(--primary-color-light, #ff6b98);
+    color: var(--pastel-pink-dark, #c09a9a);
     background-color: transparent;
     box-shadow: none;
     animation: none;
@@ -1126,7 +1170,7 @@ body.dark-mode .mobile-nav-menu a.active {
 }
 
 body.dark-mode .mobile-nav-menu a.active::after {
-    background-color: var(--primary-color-light, #ff6b98);
+    background-color: var(--pastel-pink-dark, #c09a9a);
     animation: nav-glow 1.5s infinite;
 }
 
@@ -1150,7 +1194,6 @@ a[routerLink], a[fragment], a[href], a[ng-click], a[click], a.btn, [routerLink],
     z-index: 99;
     font-size: 18px;
     border: none;
-    outline: none;
     background-color: var(--pastel-pink);
     color: var(--text-dark);
     cursor: pointer;
@@ -1264,15 +1307,14 @@ h3 {
     font-weight: 500;
     text-align: center;
     text-decoration: none;
-    border-radius: 25px;
-    background: linear-gradient(135deg, rgba(209, 77, 114, 0.7) 0%, rgba(255, 107, 152, 0.7) 100%);
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--dark-pink) 0%, var(--pastel-pink) 100%);
     color: white;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(209, 77, 114, 0.15);
+    box-shadow: 0 4px 15px rgba(223, 123, 153, 0.25);
     width: 100%;
-    animation: pulse 2s infinite;
 }
 
 .mobile-nav-menu .contact-number .made-with-love {
@@ -1289,4 +1331,38 @@ h3 {
 @keyframes heartbeat {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.15); }
+}
+
+/* Browser surfaces: selection, caret, keyboard focus carry the palette */
+::selection {
+    background-color: var(--pastel-pink);
+    color: var(--text-dark);
+}
+
+input,
+textarea {
+    caret-color: var(--dark-pink);
+}
+
+a:focus-visible,
+button:focus-visible,
+label:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--dark-pink);
+    outline-offset: 3px;
+}
+
+.form-group input:focus-visible,
+.form-group textarea:focus-visible {
+    outline: 2px solid var(--dark-pink);
+    outline-offset: 2px;
+}
+
+body.dark-mode a:focus-visible,
+body.dark-mode button:focus-visible,
+body.dark-mode label:focus-visible,
+body.dark-mode [tabindex]:focus-visible,
+body.dark-mode .form-group input:focus-visible,
+body.dark-mode .form-group textarea:focus-visible {
+    outline-color: var(--pastel-pink-dark);
 }

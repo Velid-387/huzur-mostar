@@ -106,7 +106,7 @@ body.dark-mode .mobile-nav-menu a:hover {
 }
 
 body.dark-mode .mobile-nav-menu a.active {
-    color: var(--primary-color-light, #ff6b98);
+    color: var(--pastel-pink-dark, #c09a9a);
     background-color: transparent;
     box-shadow: none;
     animation: none;
@@ -120,7 +120,7 @@ body.dark-mode .mobile-nav-menu a.active::after {
     left: 20px;
     right: 20px;
     height: 2px;
-    background-color: var(--primary-color-light, #ff6b98);
+    background-color: var(--pastel-pink-dark, #c09a9a);
     animation: dark-nav-glow 1.5s infinite;
 }
 
