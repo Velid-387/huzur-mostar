@@ -626,36 +626,3 @@ app-optimized-image.product-img ::ng-deep img {
     transition: none !important;
   }
 }
-/* Dobro je znati: the practical facts, in the two unused washes */
-.facts {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.75rem;
-  margin: 0 0 2.5rem;
-  padding: 0;
-}
-
-.facts li {
-  background-color: var(--pastel-peach, #f8d6b3);
-  color: var(--text-dark, #4a5759);
-  border-radius: 20px;
-  padding: 0.45rem 1rem;
-  font-family: poppins, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.facts li:nth-child(even) {
-  background-color: var(--pastel-yellow, #f5e6ad);
-}
-
-:host-context(body.dark-mode) .facts li {
-  background-color: var(--pastel-peach-dark, #c7aa8e);
-  color: var(--bg-dark, #333a3c);
-}
-
-:host-context(body.dark-mode) .facts li:nth-child(even) {
-  background-color: var(--pastel-yellow-dark, #c5bb8b);
-}
