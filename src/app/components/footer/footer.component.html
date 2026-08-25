@@ -55,9 +55,19 @@
       id="scrollToTop"
       type="button"
       [class.visible]="isScrollButtonVisible"
-      [style.--scroll-progress]="scrollProgress"
       title="Na vrh stranice"
       (click)="scrollToTop()"
       aria-label="Na vrh stranice"
-    ><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+    >
+      <!-- A flower that blooms as you read: one petal per eighth of the page -->
+      <svg class="bloom" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <g class="petal" *ngFor="let petal of petals; let i = index"
+           [class.petal-alt]="i % 2 === 1"
+           [style.transform]="'rotate(' + petal.angle + 'deg) scale(' + petal.scale + ')'">
+          <path d="M24 24 C 17 19, 17 8, 24 3 C 31 8, 31 19, 24 24 Z" />
+        </g>
+        <circle class="pistil" cx="24" cy="24" r="9" />
+      </svg>
+      <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
 </footer>
