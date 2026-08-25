@@ -1,10 +1,10 @@
 <header [class.scrolled]="isScrolled">
     <nav>
-        <div class="hamburger-menu" id="hamburgerMenu" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+        <button type="button" class="hamburger-menu" id="hamburgerMenu" aria-label="Meni" aria-controls="mobileNavMenu" [attr.aria-expanded]="mobileMenuOpen" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
         <div class="logo">
             <a routerLink="/">
                 <img src="./assets/img/huzur-logo.jpg" alt="" width="30" height="30">
@@ -34,7 +34,7 @@
         </div>
         <div class="theme-switch-wrapper">
             <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode()" />
+                <input type="checkbox" id="checkbox" aria-label="Tamni način rada" [checked]="isDarkMode" (change)="toggleDarkMode()" />
                 <div class="toggle-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                         <!-- Sun circle -->
@@ -89,3 +89,8 @@
         <p class="made-with-love">Cvjećara u <i class="fas fa-heart"></i> Mostara</p>
     </div>
 </div>
+
+<!-- One-tap call on phones: the phone is the checkout -->
+<a class="mobile-call-pill" href="tel:+387603352011" [class.hidden]="mobileMenuOpen">
+    <i class="fas fa-phone" aria-hidden="true"></i> Pozovi
+</a>

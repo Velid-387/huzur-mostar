@@ -143,7 +143,7 @@ app-optimized-image.product-img ::ng-deep img {
   margin-bottom: 10px;
   transition: all 0.3s ease;
   font-size: 1.3rem;
-  color: var(--pastel-green-dark, #91b478);
+  color: var(--dark-green-dark, #5a8d5e);
   text-transform: capitalize;
   letter-spacing: 1px;
   font-weight: 600;
@@ -282,12 +282,20 @@ app-optimized-image.product-img ::ng-deep img {
 }
 
 .dot {
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: var(--dot-inactive, #ddd);
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+/* 26px hit area around a 10px dot */
+.dot::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
 }
 
 .dot.active {
@@ -495,7 +503,7 @@ app-optimized-image.product-img ::ng-deep img {
 .product-section h3 {
   font-family: 'Alex Brush', cursive;
   font-size: 2.2rem;
-  color: var(--pastel-green-dark, #91b478);
+  color: var(--dark-green-dark, #5a8d5e);
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -617,4 +625,37 @@ app-optimized-image.product-img ::ng-deep img {
     transform: none !important;
     transition: none !important;
   }
+}
+/* Dobro je znati: the practical facts, in the two unused washes */
+.facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin: 0 0 2.5rem;
+  padding: 0;
+}
+
+.facts li {
+  background-color: var(--pastel-peach, #f8d6b3);
+  color: var(--text-dark, #4a5759);
+  border-radius: 20px;
+  padding: 0.45rem 1rem;
+  font-family: poppins, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.facts li:nth-child(even) {
+  background-color: var(--pastel-yellow, #f5e6ad);
+}
+
+:host-context(body.dark-mode) .facts li {
+  background-color: var(--pastel-peach-dark, #c7aa8e);
+  color: var(--bg-dark, #333a3c);
+}
+
+:host-context(body.dark-mode) .facts li:nth-child(even) {
+  background-color: var(--pastel-yellow-dark, #c5bb8b);
 }

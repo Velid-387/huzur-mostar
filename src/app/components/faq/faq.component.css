@@ -12,7 +12,6 @@
     margin-bottom: 15px;
     overflow: hidden;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .faq-item:hover {
@@ -25,15 +24,42 @@
     border-left-color: var(--pastel-pink, #f5c0c0);
 }
 
-.faq-question {
+.faq-heading {
+    margin: 0;
+    font-size: inherit;
+    font-family: inherit;
+    letter-spacing: 0;
+}
+
+/* The question is a real button; undo the global pill styling */
+.faq-question,
+.faq-question:hover,
+.faq-question:active {
+    width: 100%;
     padding: 20px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    animation: none;
+    font-family: poppins, sans-serif;
     font-weight: 600;
     font-size: 1.1rem;
-    color: #2c3e50;
+    line-height: 1.4;
+    text-align: left;
+    color: var(--sage-ink, #4f7d53);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    user-select: none;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.faq-question:focus-visible {
+    outline: 2px solid var(--dark-pink, #df7b99);
+    outline-offset: -4px;
+    border-radius: 8px;
 }
 
 .faq-icon {
@@ -46,8 +72,7 @@
 }
 
 .faq-item.active .faq-icon {
-    transform: rotate(180deg);
-    color: #495057;
+    color: var(--dark-pink, #df7b99);
 }
 
 .faq-answer {
@@ -86,7 +111,9 @@
         padding: 10px;
     }
 
-    .faq-question {
+    .faq-question,
+    .faq-question:hover,
+    .faq-question:active {
         padding: 15px;
         font-size: 1rem;
     }
@@ -110,7 +137,9 @@
 }
 
 @media (max-width: 480px) {
-    .faq-question {
+    .faq-question,
+    .faq-question:hover,
+    .faq-question:active {
         padding: 12px;
         font-size: 0.95rem;
     }
@@ -127,4 +156,9 @@
     .faq-item.active .faq-answer {
         padding: 0 12px 12px 12px;
     }
+}
+:host-context(body.dark-mode) .faq-question,
+:host-context(body.dark-mode) .faq-question:hover,
+:host-context(body.dark-mode) .faq-question:active {
+    color: var(--pastel-green-dark, #91b478);
 }

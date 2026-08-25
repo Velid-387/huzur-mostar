@@ -93,28 +93,10 @@ textarea::placeholder {
   font-style: italic;
 }
 
-/* Disabled submit button */
+/* Submit while sending */
 button.btn:disabled {
   opacity: 0.6;
-  cursor: not-allowed;
-  background-color: #6c757d;
-}
-
-/* Tooltip for disabled button (optional enhancement) */
-button.btn:disabled:hover::after {
-  content: "Molimo popunite sva obavezna polja";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  margin-bottom: 0.5rem;
-  z-index: 1000;
+  cursor: progress;
 }
 
 /* Ensure form group has relative positioning */
@@ -256,4 +238,32 @@ button.btn:disabled:hover::after {
   50% {
     opacity: 1;
   }
+}
+
+/* One-tap ways to reach the shop: the real checkout */
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.contact-actions .btn i {
+  margin-right: 0.4rem;
+}
+
+.contact-info a:not(.btn) {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--pastel-pink, #f5c0c0);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-info a:not(.btn):hover {
+  color: var(--rose-ink, #a85a72);
+  border-bottom-color: var(--dark-pink, #df7b99);
+}
+
+:host-context(body.dark-mode) .contact-info a:not(.btn):hover {
+  color: var(--pastel-pink-dark, #c09a9a);
 }

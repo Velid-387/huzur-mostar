@@ -1,11 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface FaqItem {
   question: string;
   answer: string;
   isOpen: boolean;
-  timeoutId?: any;
 }
 
 @Component({
@@ -15,7 +14,7 @@ interface FaqItem {
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.css']
 })
-export class FaqComponent implements OnDestroy {
+export class FaqComponent {
   faqItems: FaqItem[] = [
     {
       question: 'Šta znači riječ Huzur?',
@@ -45,32 +44,7 @@ export class FaqComponent implements OnDestroy {
   ];
 
   toggleFaq(index: number): void {
-    const item = this.faqItems[index];
-
-    // Clear any existing timeout for this item
-    if (item.timeoutId) {
-      clearTimeout(item.timeoutId);
-      item.timeoutId = undefined;
-    }
-
-    // Toggle the open state
-    item.isOpen = !item.isOpen;
-
-    // If item is now open, set a timeout to close it after 7 seconds
-    if (item.isOpen) {
-      item.timeoutId = setTimeout(() => {
-        item.isOpen = false;
-        item.timeoutId = undefined;
-      }, 7000);
-    }
-  }
-
-  ngOnDestroy(): void {
-    // Clear all timeouts when component is destroyed
-    this.faqItems.forEach(item => {
-      if (item.timeoutId) {
-        clearTimeout(item.timeoutId);
-      }
-    });
+    // Stays open until the visitor closes it; the facts inside are read slowly
+    this.faqItems[index].isOpen = !this.faqItems[index].isOpen;
   }
 }

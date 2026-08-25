@@ -66,27 +66,19 @@ export class TestimonialsComponent implements OnInit {
 
       testimonial.cardFlipping = true;
       
+      // Stays flipped until tapped again; the visitor decides when to turn it back
       testimonial.flipped = !testimonial.flipped;
-      
-      if (testimonial.flipped && this.isMobileDevice()) {
-        setTimeout(() => {
-          testimonial.flipped = false;
-          
-          setTimeout(() => {
-            testimonial.cardFlipping = false;
-          }, 600);
-        }, 3000);
-      } else {
-        setTimeout(() => {
-          testimonial.cardFlipping = false;
-        }, 600);
-      }
+
+      setTimeout(() => {
+        testimonial.cardFlipping = false;
+      }, 600);
     }
   }
-  
-  private isMobileDevice(): boolean {
-    if (!isPlatformBrowser(this.platformId)) return false;
-    
-    return window.innerWidth <= 768;
+
+  onCardKey(event: KeyboardEvent, testimonial: any): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.toggleCardFlip(testimonial);
+    }
   }
 }

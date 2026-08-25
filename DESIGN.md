@@ -10,6 +10,8 @@ colors:
   lavender-wash: "#d9c6e0"
   peach-wash: "#f8d6b3"
   butter-wash: "#f5e6ad"
+  rose-ink: "#a85a72"
+  sage-ink: "#4f7d53"
   slate-ink: "#4a5759"
   charcoal-text: "#333333"
   muted-text: "#666666"
@@ -168,7 +170,7 @@ A pastel florist's palette: six tissue-paper washes, two deeper "ink" tones for 
 
 ### Secondary
 - **Mint Leaf** (`mint-leaf`, #c8e4b2): the hover reward. Every pink interactive turns mint on hover with a mint glow. Also the scroll-to-top button fill and the footer's right flower.
-- **Sage Deep** (`sage-deep`, #7cad7f): the second ink. Section subtitles (h3), FAQ question text, testimonial signature (`#huzurljudi`), footer headings and slogan, bouquet names in the product carousel (via its dark twin `#91b478`).
+- **Sage Deep** (`sage-deep`, #7cad7f): the second ink, for script at 2rem and above (section h3 category names). Anything smaller uses a text-safe twin: **Sage Deep Dark** (`sage-deep-dark`, #5a8d5e) for script under 2rem (bouquet names, `#huzurljudi`, footer headings, slogan) and **Sage Ink** (`sage-ink`, #4f7d53) for sage Poppins text (FAQ questions). Likewise **Rose Deep Dark** (`rose-deep-dark`, #b56c82) for the footer wordmark and **Rose Ink** (`rose-ink`, #a85a72) for small rose Poppins text (footer hour labels).
 
 ### Tertiary
 - **Sky Wash** (`sky-wash`, #b5e3eb): resting input border. Quiet, only on forms.
@@ -192,6 +194,8 @@ Bootstrap-derived and only in the contact form and share toast: success `#d4edda
 
 ### Named Rules
 **The Pen-Ink Rule.** `rose-deep` and `sage-deep` are ink, not paint. They color text, thin lines (2–5px borders), dots, and the pressed state — never large fills. Large fills are always a pastel wash.
+
+**The Ink-Size Rule.** `rose-deep` and `sage-deep` are for script ≥2rem only (h1, h2, h3). Script under 2rem takes the `-dark` twin; Poppins text takes `rose-ink` / `sage-ink`. Every text color clears 3:1 (large) or 4.5:1 (small) on paper and linen.
 
 **The Pink-to-Mint Rule.** Interactive elements rest in Tissue Pink and reward hover with Mint Leaf. Press is Rose Deep with white text. Do not invent a fourth interactive color.
 
@@ -223,7 +227,8 @@ Bootstrap-derived and only in the contact form and share toast: success `#d4edda
 - **Container:** `max-width: 1200px`, centered, 2rem side padding (1rem on ≤768px). Reading surfaces (FAQ, blog post body) narrow to **800px**.
 - **Sections:** each landing section is `min-height: 100vh` with `padding: 6rem 2rem 4rem` (the 6rem clears the fixed 64px header with room to breathe); blog pages use `6rem 2rem` → `4rem 1rem` on mobile. Sections are separated by a faint upward shadow (`0 -2px 10px rgba(0,0,0,0.1)`) plus the alternating paper tone — no hard rules.
 - **Two-column split** (about, contact): flex with `gap: 4rem`, collapsing to a single column with `gap: 2rem` at ≤768px. Text column first.
-- **Product carousel:** three cards visible on desktop (`min-width: 33.333%`, 15px gutters), the center card active and enlarged; one card on mobile. Auto-advances with a 24px ring timer; prev/next round controls (40px) and 10px dots.
+- **Product carousel:** three cards visible on desktop (`min-width: 33.333%`, 15px gutters), the center card active and enlarged; one card on mobile. Drifts forward on a 5s ring timer only until the visitor touches, clicks, or focuses anything in the section (then it stops for good), pauses on hover, and never starts under `prefers-reduced-motion`; prev/next round controls (40px) and 10px dots with a 26px hit area.
+- **Fact strip ("Dobro je znati"):** a wrapping row of pill chips under the products intro in alternating Peach and Butter wash, Poppins 500 0.95rem `slate-ink` — the one place the practical truths (price floor, lead times, pickup only, payment) are always visible.
 - **Testimonials:** flex-wrap, `gap: 30px`, cards `calc(30% - 30px)` wide, `min-width: 280px`, fixed 300px height on desktop; full-width auto-height on mobile.
 - **Blog list:** cards in a 2.5rem gap grid (2rem on mobile).
 - **Header:** fixed, 1rem vertical padding, 90% white with a `0 2px 10px` shadow; shrinks on scroll (`header.scrolled`) and on mobile becomes a 56px floating pill (20px radius). Mobile menu is a full-height sheet under the header with staggered link entrance (0.05s increments).
@@ -276,8 +281,8 @@ Soft pill, glowing on touch. Every `<button>` and `.btn` shares one style.
 
 ### Cards / Containers
 - **Product card (carousel):** 12px radius, white inner on 15px gutters, `transition: box-shadow 0.5s`; the active center card lifts to `0 15px 35px rgba(0,0,0,0.2)`. Image on top (`object-fit` contain, transparent bg), then 15px padded info: bouquet name in Alex Brush `sage-deep-dark` (1.3rem; 1.6rem and `rose-deep` when active), poetic line 0.9rem muted.
-- **Testimonial card:** 3D flip (`perspective: 1000px`, `rotateY(180deg)` over 0.8s) on desktop hover / mobile tap (auto-flips back after 3s). Front: linen, 30px/20px padding, 5px `rose-deep` bottom border, quote centered, `#huzurljudi` signature in Alex Brush sage 1.8rem. Back: the real DM screenshot, `object-fit: cover`.
-- **FAQ item:** white (linen in global fallback) 8px card with 1px `#e9ecef` border and a 5px `rose-deep` left border that turns Tissue Pink when open; 20px padding; hover lifts −5px with Paper lift. Question Poppins 600 1.1rem, "+" icon 1.5rem rotating on open; answer collapses via `max-height` 0.4s. Open items auto-close after 7s.
+- **Testimonial card:** 3D flip (`perspective: 1000px`, `rotateY(180deg)` over 0.8s) on desktop hover, or tap / Enter / Space (`role="button"`, `aria-pressed`); stays flipped until toggled again. Front: linen, 30px/20px padding, 5px `rose-deep` bottom border, quote centered, `#huzurljudi` signature in Alex Brush sage 1.8rem. Back: the real DM screenshot, `object-fit: cover`.
+- **FAQ item:** white (linen in global fallback) 8px card with 1px `#e9ecef` border and a 5px `rose-deep` left border that turns Tissue Pink when open; hover lifts −5px with Paper lift. The question is a real `<button>` (`aria-expanded`/`aria-controls`) inside an `h3`, Poppins 600 1.1rem in `sage-ink`, 20px padding, "+" / "−" glyph at 1.5rem turning rose when open; answer collapses via `max-height` 0.4s. Items stay open until the visitor closes them.
 - **Blog card:** white 12px card, Paper lift, hover −5px with Paper hover, image zooms on hover (0.5s). 1.5rem padded content: date 0.85rem `#888`, title 1.4rem, excerpt, small `.blog-btn` (0.6rem 1.2rem).
 - **About image:** 8px radius, Paper lift; hover (desktop) / tap (mobile) dims the photo to 50% and reveals the address in Alex Brush white.
 - **Announcement modal:** white, 16px radius, Modal shadow, 500px max, slides up 0.4s over a 50% black backdrop; 3rem emoji icon header, round close button.
@@ -287,7 +292,7 @@ Soft pill, glowing on touch. Every `<button>` and `.btn` shares one style.
 - **Focus:** border → Tissue Pink, `0 0 8px rgba(245,192,192,0.4)` glow; keyboard focus (`:focus-visible`) adds a 2px `rose-deep` outline, 2px offset — the same ring every link and button gets.
 - **Valid:** border `#28a745`. **Invalid (touched):** border `#dc3545`, `#fff5f5` fill, 0.2rem red ring on focus; error message 0.875rem red sliding down 0.3s.
 - **Label:** Poppins 500 `charcoal-text`, required mark in `danger`.
-- **Submit:** primary button; while sending, a full-screen 95% white overlay with a rotating six-petal flower loader (pink petals `#e91e63→#f06292`, amber center) and pulsing "Šaljemo vašu poruku…".
+- **Submit:** primary button, always pressable (an invalid press reveals the field errors); dims to 60% while sending, a full-screen 95% white overlay with a rotating six-petal flower loader (pink petals `#e91e63→#f06292`, amber center) and pulsing "Šaljemo vašu poruku…".
 - **Dark:** `rgba(51,58,60,0.4)` fill, `sky-wash-dark` border, `night-text`.
 
 ### Navigation
@@ -295,7 +300,7 @@ Soft pill, glowing on touch. Every `<button>` and `.btn` shares one style.
 - **Hover:** text → `rose-deep`, `translateY(-3px)`, a 20%-alpha pink pill scales in behind the link.
 - **Active:** `rose-deep` 600 with a 2px underline that pulses a pink glow (`nav-glow` 1.5s).
 - **Products dropdown:** white 8px panel, hairline border, `0 4px 15px` shadow, 10px 16px items; active item inverts to primary fill with white text.
-- **Mobile (≤768px):** hamburger (20px, three 2px bars morphing to an X); header shrinks to a 56px pill when scrolled; menu is a full-height white sheet, links 1.25rem at 15px 20px, staggered fade-in; a full-width `rose-deep` gradient "call" pill with a heartbeat heart at the bottom.
+- **Mobile (≤768px):** a persistent "Pozovi" call pill (rose→tissue gradient, 20px radius, bottom-center, hidden while the menu is open); hamburger `<button>` (20px, three 2px bars morphing to an X, `aria-expanded`); header shrinks to a 56px pill when scrolled; menu is a full-height white sheet, links 1.25rem at 15px 20px, staggered fade-in; a full-width `rose-deep` gradient "call" pill with a heartbeat heart at the bottom.
 - **Theme toggle:** 30px SVG sun (`rose-deep`) morphing to a crescent moon (`#e6dcab`) with an overshoot ease `cubic-bezier(0.68,-0.55,0.27,1.55)` 0.5s.
 - **Dark:** header `rgba(18,18,18,0.9)`, links `night-text`, active/hover `tissue-pink-dark`.
 
@@ -316,7 +321,8 @@ The one piece a competitor would not have: a linen card carrying a real customer
 
 ### Do:
 - **Do** set every emotional heading — hero, h2, h3, bouquet names, `#huzurljudi`, slogan — in Alex Brush 400 with 0.5px tracking, colored `rose-deep` (h1/h2) or `sage-deep` (h3/names).
-- **Do** keep all practical text (hours, prices, labels, errors, FAQ answers, body) in Poppins ≥0.9rem on white or linen with `charcoal-text` / `muted-text`.
+- **Do** keep all practical text (hours, prices, labels, errors, FAQ answers, body) in Poppins ≥0.9rem on white or linen with `charcoal-text` / `muted-text`, or `rose-ink` / `sage-ink` when it needs brand color.
+- **Do** make every phone number a `tel:` link, every email a `mailto:`, and every address a Maps link — the phone and the DM are the checkout.
 - **Do** use the pink → mint → rose sequence with matching glows for every interactive element, including new ones (chips, tabs, pagination).
 - **Do** alternate `paper-white` and `linen-off-white` for consecutive sections and give cards the opposite tone plus a Paper rest/lift shadow.
 - **Do** round buttons to a 20px pill, cards to 8–12px, inputs to 4px, icon buttons to circles.
@@ -329,6 +335,7 @@ The one piece a competitor would not have: a linen card carrying a real customer
 - **Don't** introduce `#d14d72` / `#ff6b98` (removed legacy pinks) in new code; use `rose-deep` and `tissue-pink-dark` in dark mode.
 - **Don't** import any additional font family; Poppins + Alex Brush only.
 - **Don't** fill large areas with `rose-deep` or `sage-deep`; inks color text and thin lines only.
+- **Don't** let anything close, flip back, or advance on a timer after the visitor has touched it; motion answers the visitor.
 - **Don't** add new infinite animations; the signature loops (hero bounce, chevrons, heartbeat, glow pulses, carousel timer) are the full budget.
 - **Don't** use hard, dark, or offset drop shadows; shadows are diffuse black ≤0.2 alpha on surfaces, or the element's own pastel as a glow on interactives.
 - **Don't** use pure black backgrounds in dark mode; the darkest surface is `night-deep` #121212 with `night-slate` as the body.

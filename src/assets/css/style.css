@@ -523,8 +523,8 @@ section#home::after {
 
 .faq-item.animate-item .faq-question {
     font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--dark-green);
+    font-weight: 600;
+    color: var(--sage-ink);
 }
 
 /* Testimonials section */
@@ -622,7 +622,7 @@ section#home::after {
 }
 
 .testimonial-name {
-    color: var(--dark-green);
+    color: var(--dark-green-dark);
     font-family: 'Alex Brush', cursive;
     font-weight: 400;
     letter-spacing: 0.5px;
@@ -1251,6 +1251,10 @@ footer .social-links a:active {
   --dark-pink: #df7b99;         /* Deeper pink for contrast */
   --dark-green: #7cad7f;        /* Deeper green for contrast */
   --text-dark: #4a5759;         /* Dark slate for text */
+  --dark-pink-dark: #b56c82;    /* Rose twin: script text under 2rem (3.5:1+) */
+  --dark-green-dark: #5a8d5e;   /* Sage twin: script text under 2rem (3.7:1+) */
+  --rose-ink: #a85a72;          /* Rose for small Poppins text (4.5:1 on linen) */
+  --sage-ink: #4f7d53;          /* Sage for small Poppins text (4.5:1 on linen) */
 }
 
 /* Apply Alex Brush to selected elements */
@@ -1289,7 +1293,7 @@ h3 {
     font-family: poppins, sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--dark-green);
+    color: var(--sage-ink);
     margin-bottom: 0.7rem;
 }
 

@@ -75,3 +75,17 @@
     filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
   }
 }
+
+.testimonial-card-inner {
+  cursor: pointer;
+}
+
+.testimonial-card-inner:focus-visible {
+  outline: 2px solid var(--dark-pink, #df7b99);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.testimonial-card-inner.flipped {
+  transform: rotateY(180deg);
+}

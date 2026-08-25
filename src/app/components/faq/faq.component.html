@@ -4,13 +4,14 @@
         <div class="faq-container">
             <div class="faq-item animate-item animated"
                  *ngFor="let item of faqItems; let i = index"
-                 [class.active]="item.isOpen"
-                 (click)="toggleFaq(i)">
-                <div class="faq-question">
-                    <span>{{ item.question }}</span>
-                    <span class="faq-icon">{{ item.isOpen ? '−' : '+' }}</span>
-                </div>
-                <div class="faq-answer" [innerHTML]="item.answer"></div>
+                 [class.active]="item.isOpen">
+                <h3 class="faq-heading">
+                    <button type="button" class="faq-question" [attr.aria-expanded]="item.isOpen" [attr.aria-controls]="'faq-answer-' + i" (click)="toggleFaq(i)">
+                        <span>{{ item.question }}</span>
+                        <span class="faq-icon" aria-hidden="true">{{ item.isOpen ? '−' : '+' }}</span>
+                    </button>
+                </h3>
+                <div class="faq-answer" [id]="'faq-answer-' + i" [innerHTML]="item.answer"></div>
             </div>
         </div>
     </div>

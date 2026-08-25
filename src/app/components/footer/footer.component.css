@@ -71,19 +71,19 @@ footer {
   font-family: poppins, sans-serif;
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--pastel-green-dark, #91b478);
+  color: var(--dark-green-dark, #5a8d5e);
 }
 
 .logo-container span em {
   font-style: normal;
-  color: var(--pastel-pink-dark, #c09a9a);
+  color: var(--dark-pink-dark, #b56c82);
 }
 
 #slogan {
   font-family: 'Alex Brush', cursive;
   font-size: 1.6rem;
   font-weight: normal;
-  color: var(--pastel-green-dark, #91b478);
+  color: var(--dark-green-dark, #5a8d5e);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   letter-spacing: 0.1em;
@@ -92,7 +92,7 @@ footer {
 
 #slogan .highlight {
   font-family: 'Alex Brush', cursive;
-  color: var(--pastel-pink-dark, #c09a9a);
+  color: var(--dark-pink-dark, #b56c82);
   letter-spacing: 0.12em;
 }
 
@@ -116,7 +116,7 @@ footer {
 .contact-section h3, .hours-section h3, .social-container h3 {
   font-size: 1.5rem;
   margin-bottom: 0.8rem;
-  color: var(--pastel-green-dark, #91b478);
+  color: var(--dark-green-dark, #5a8d5e);
   letter-spacing: 1px;
   font-weight: 600;
   position: relative;
@@ -209,8 +209,8 @@ footer {
 
 .hours-section p span {
   font-weight: 600;
+  color: var(--rose-ink, #a85a72);
   margin-right: 5px;
-  color: var(--pastel-pink-dark, #c09a9a);
 }
 
 .footer-bottom {
@@ -553,4 +553,16 @@ footer {
   .footer-legal-links a {
     margin: 5px 0;
   }
+}
+
+.contact-section p a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--pastel-pink, #f5c0c0);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-section p a:hover {
+  color: var(--rose-ink, #a85a72);
+  border-bottom-color: var(--dark-pink, #df7b99);
 }

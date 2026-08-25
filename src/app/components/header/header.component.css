@@ -1,4 +1,16 @@
 /* Hamburger menu animation */
+.hamburger-menu,
+.hamburger-menu:hover,
+.hamburger-menu:active {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+  animation: none;
+  padding: 0;
+}
+
 .hamburger-menu {
   cursor: pointer;
   display: none; /* Hidden by default on desktop */
@@ -10,6 +22,8 @@
   transition: all 0.3s ease;
   position: relative;
   margin-right: 15px;
+  line-height: 0;
+  text-align: left;
 }
 
 .hamburger-menu span {
@@ -20,6 +34,7 @@
   background-color: var(--text-dark, #333);
   transition: all 0.3s ease;
   position: absolute;
+  left: 0;
 }
 
 .hamburger-menu span:nth-child(1) {
@@ -585,4 +600,64 @@ header.scrolled nav {
         padding: 0 15px;
         position: relative;
     }
+}
+
+/* Theme toggle: keep the checkbox in the tab order, visually hidden */
+.theme-switch input {
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.theme-switch input:focus-visible ~ .toggle-icon {
+  outline: 2px solid var(--dark-pink, #df7b99);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+/* Sticky call pill (phones only) */
+.mobile-call-pill {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-call-pill {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    z-index: 998;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--dark-pink, #df7b99) 0%, var(--pastel-pink, #f5c0c0) 100%);
+    color: #fff;
+    font-family: poppins, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(223, 123, 153, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  }
+
+  .mobile-call-pill:active {
+    transform: translateX(-50%) translateY(1px);
+  }
+
+  .mobile-call-pill.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  :host-context(body.dark-mode) .mobile-call-pill {
+    background: linear-gradient(135deg, var(--dark-pink-dark, #b56c82) 0%, var(--pastel-pink-dark, #c09a9a) 100%);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  }
 }
