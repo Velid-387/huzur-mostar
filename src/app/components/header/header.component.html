@@ -63,8 +63,10 @@
 
 <!-- Mobile menu: full-screen sheet under the header -->
 <div class="mobile-nav-menu" id="mobileNavMenu" [class.active]="mobileMenuOpen" [attr.inert]="mobileMenuOpen ? null : ''">
-    <div class="mobile-nav-bloom mobile-nav-bloom-pink" aria-hidden="true"></div>
-    <div class="mobile-nav-bloom mobile-nav-bloom-green" aria-hidden="true"></div>
+    <div class="mobile-nav-blooms" aria-hidden="true">
+        <div class="mobile-nav-bloom mobile-nav-bloom-pink"></div>
+        <div class="mobile-nav-bloom mobile-nav-bloom-green"></div>
+    </div>
     <div class="mobile-nav-inner">
         <p class="mobile-nav-slogan" aria-hidden="true">Huzur nađite,<br>huzur budite</p>
         <ul class="mobile-nav-list">

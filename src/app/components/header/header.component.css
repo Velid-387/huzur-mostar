@@ -259,7 +259,9 @@ header.scrolled .nav-links a {
     z-index: 999;
     display: none;
     flex-direction: column;
+    overflow-x: hidden;
     overflow-y: auto;
+    overscroll-behavior: contain;
     background: #ffffff;
     opacity: 0;
     visibility: hidden;
@@ -280,10 +282,17 @@ header.scrolled .nav-links a {
     transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
 }
 
+/* Blooms live in a clipped layer so they never add scrollable overflow */
+.mobile-nav-blooms {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
 .mobile-nav-bloom {
     position: absolute;
     border-radius: 50%;
-    pointer-events: none;
 }
 
 .mobile-nav-bloom-pink {
