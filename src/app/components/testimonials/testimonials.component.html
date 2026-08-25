@@ -1,15 +1,27 @@
 <section id="testimonials" class="animate-section">
     <div class="container">
-        <h2 class="animate-item">Huzur ljudi o Huzuru</h2>
+        <div class="section-head animate-item">
+            <h2>Huzur ljudi o Huzuru</h2>
+            <p class="section-lead">Poruke koje su nam stigle nakon preuzimanja. Okrenite karticu i pogledajte original.</p>
+        </div>
+
         <div class="testimonials-container">
-            <div class="testimonial-card animate-item" *ngFor="let testimonial of testimonials" [class.card-flipped]="testimonial.flipped">
+            <div class="testimonial-card animate-item"
+                 *ngFor="let testimonial of testimonials; let i = index"
+                 [class.card-flipped]="testimonial.flipped"
+                 [class.featured]="i === 4"
+                 [style.--d]="(i * 0.07) + 's'">
                 <div class="testimonial-card-inner" role="button" tabindex="0" [attr.aria-pressed]="testimonial.flipped" aria-label="Okreni karticu i pogledaj originalnu poruku" [class.flipped]="testimonial.flipped" (click)="toggleCardFlip(testimonial)" (keydown)="onCardKey($event, testimonial)">
                     <div class="testimonial-card-front">
-                        <p>"{{ testimonial.content }}"</p>
-                        <p class="testimonial-name">{{ testimonial.name }}</p>
+                        <p class="testimonial-quote">{{ testimonial.content }}</p>
+                        <div class="testimonial-foot">
+                            <p class="testimonial-name">{{ testimonial.name }}</p>
+                            <span class="testimonial-hint" aria-hidden="true"><i class="fas fa-image"></i> Original</span>
+                        </div>
                     </div>
                     <div class="testimonial-card-back">
                         <img [src]="testimonial.imagePath" [alt]="'Snimak originalne poruke: ' + testimonial.content" loading="lazy">
+                        <span class="testimonial-back-hint" aria-hidden="true"><i class="fas fa-undo"></i> Nazad</span>
                     </div>
                 </div>
             </div>

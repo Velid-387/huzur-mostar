@@ -110,30 +110,10 @@ body.dark-mode #faq {
 }
 
 /* Testimonials Section */
-body.dark-mode #testimonials {
-    background-color: #121212;
-}
-
-body.dark-mode .testimonial-card-front {
-    background-color: #2a3032;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
+/* Testimonials: styled in testimonials.component.css */
 
 body.dark-mode .section-lead {
     color: var(--text-light);
-}
-
-body.dark-mode .testimonial-card-back {
-    background-color: #2a3032;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
-
-body.dark-mode .testimonial-card p:first-of-type {
-    color: var(--text-light);
-}
-
-body.dark-mode .testimonial-name {
-    color: var(--pastel-green-dark);
 }
 
 /* Footer */
@@ -294,8 +274,4 @@ body.dark-mode #slogan .highlight {
 
 /* Dark mode tap to flip indicator */
 @media (max-width: 768px) {
-    body.dark-mode .testimonial-card::after {
-        color: rgba(220, 220, 220, 0.8);
-        background-color: rgba(50, 50, 50, 0.5);
-    }
 }
