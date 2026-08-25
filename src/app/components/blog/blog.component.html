@@ -1,58 +1,62 @@
 <section id="blog" class="animate-section">
   <div class="container">
-    <h1 class="blog-title animate-item">Blog Huzur Mostar</h1>
-    <p class="blog-intro animate-item">
-      Huzur blog je jedna nova dimenzija cvjetnog druženja i nastavak huzur priče. Jedan netipični blog o životnom putu
-      jedne fine poduzetničke priče, priče o cvijeću, o sreći, o nadi i svemu pozitivnom što huzur oči pokušavaju
-      pronaći u svijetu koji ga okružuje.
-      Da svakim novim blogom Huzur budemo i Huzur nađemo.
-    </p>
-
-    <div class="blog-posts-container">
-      <div class="blog-post animate-item" *ngFor="let post of blogPosts">
-        <div class="blog-post-image">
-          <img [src]="post.image" [alt]="post.title">
-        </div>
-        <div class="blog-post-content">
-          <span class="blog-post-date">{{ post.date }} • {{ post.readingTime }}</span>
-          <h2>{{ post.title }}</h2>
-          <p>{{ post.excerpt }}</p>
-          <a [routerLink]="['/blog', post.slug]" class="btn blog-btn">Pročitaj više</a>
-        </div>
-      </div>
+    <div class="section-head blog-head animate-item">
+      <h1 class="blog-title">Blog Huzur Mostar</h1>
+      <p class="section-lead blog-intro">
+        Huzur blog je jedna nova dimenzija cvjetnog druženja i nastavak huzur priče. Jedan netipični blog o životnom putu
+        jedne fine poduzetničke priče, priče o cvijeću, o sreći, o nadi i svemu pozitivnom što huzur oči pokušavaju
+        pronaći u svijetu koji ga okružuje.
+        Da svakim novim blogom Huzur budemo i Huzur nađemo.
+      </p>
     </div>
 
-    <!-- Show message if no posts are available -->
+    <div class="blog-posts-container" [class.has-featured]="currentPage === 1">
+      <article class="blog-post animate-item"
+               *ngFor="let post of blogPosts; let i = index"
+               [class.featured]="currentPage === 1 && i === 0"
+               [style.--d]="(i * 0.08) + 's'">
+        <a [routerLink]="['/blog', post.slug]" class="blog-post-link">
+          <div class="blog-post-image" [class.no-image]="isImageBroken(post)">
+            <img *ngIf="!isImageBroken(post)" [src]="post.image" [alt]="post.title" loading="lazy" decoding="async"
+                 (error)="onImageError(post)">
+            <span *ngIf="isImageBroken(post)" class="blog-post-initial" aria-hidden="true">{{ post.title.charAt(0) }}</span>
+          </div>
+          <div class="blog-post-content">
+            <p class="blog-post-date">{{ post.date }} · {{ post.readingTime }}</p>
+            <h2>{{ post.title }}</h2>
+            <p class="blog-post-excerpt">{{ post.excerpt }}</p>
+            <span class="blog-read-more">Pročitaj više<span class="blog-read-more-dash" aria-hidden="true"></span></span>
+          </div>
+        </a>
+      </article>
+    </div>
+
     <div class="no-posts" *ngIf="blogPosts.length === 0">
       <p>Trenutno nema dostupnih članaka. Molimo vas, provjerite ponovno kasnije.</p>
     </div>
 
-    <!-- Pagination controls -->
-    <div class="pagination" *ngIf="totalPages > 1">
-      <!-- Previous button -->
-      <button class="pagination-btn prev" [class.disabled]="currentPage === 1" (click)="loadPage(currentPage - 1)"
-        [disabled]="currentPage === 1" aria-label="Previous page">
-        <i class="fas fa-chevron-left"></i>
+    <nav class="pagination" *ngIf="totalPages > 1" aria-label="Stranice bloga">
+      <button type="button" class="pagination-btn prev" [class.disabled]="currentPage === 1" (click)="loadPage(currentPage - 1)"
+        [disabled]="currentPage === 1" aria-label="Prethodna stranica">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
       </button>
 
-      <!-- Page numbers -->
       <ng-container *ngFor="let page of getPageNumbers()">
         <ng-container *ngIf="page !== -1; else ellipsis">
-          <button class="pagination-btn" [class.active]="currentPage === page" (click)="loadPage(page)"
-            [attr.aria-current]="currentPage === page ? 'page' : null" [attr.aria-label]="'Page ' + page">
+          <button type="button" class="pagination-btn" [class.active]="currentPage === page" (click)="loadPage(page)"
+            [attr.aria-current]="currentPage === page ? 'page' : null" [attr.aria-label]="'Stranica ' + page">
             {{ page }}
           </button>
         </ng-container>
         <ng-template #ellipsis>
-          <span class="pagination-ellipsis" aria-hidden="true">...</span>
+          <span class="pagination-ellipsis" aria-hidden="true">…</span>
         </ng-template>
       </ng-container>
 
-      <!-- Next button -->
-      <button class="pagination-btn next" [class.disabled]="currentPage === totalPages"
-        (click)="loadPage(currentPage + 1)" [disabled]="currentPage === totalPages" aria-label="Next page">
-        <i class="fas fa-chevron-right"></i>
+      <button type="button" class="pagination-btn next" [class.disabled]="currentPage === totalPages"
+        (click)="loadPage(currentPage + 1)" [disabled]="currentPage === totalPages" aria-label="Sljedeća stranica">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
       </button>
-    </div>
+    </nav>
   </div>
 </section>
