@@ -106,12 +106,7 @@ body.dark-mode #products {
 
 /* FAQ Section */
 body.dark-mode #faq {
-    background-color: #1e1e1e;
-}
-
-body.dark-mode .faq-item {
-    background-color: #1e1e1e;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #2a3032;
 }
 
 /* Testimonials Section */
@@ -280,28 +275,6 @@ body.dark-mode .toggle-icon:hover .moon-mask {
     fill: #f5ecc6;
     filter: drop-shadow(0 0 5px rgba(245, 236, 198, 0.9));
     transform: scale(1);
-}
-
-/* FAQ item border in dark mode */
-body.dark-mode .faq-item {
-    border-color: rgba(192, 154, 154, 0.45);
-    background-color: #2a3032;
-}
-
-body.dark-mode .faq-item.animate-item {
-    color: var(--text-light);
-}
-
-body.dark-mode .faq-answer {
-    color: var(--text-light);
-}
-
-body.dark-mode .faq-icon {
-    color: var(--pastel-pink-dark);
-}
-
-body.dark-mode .faq-item.active {
-    border-color: var(--pastel-pink-dark);
 }
 
 /* Logo color */
