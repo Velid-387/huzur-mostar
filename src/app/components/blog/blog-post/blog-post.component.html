@@ -1,49 +1,65 @@
 <section id="blog-post" class="animate-section">
   <div class="container">
-    <!-- Loading state -->
-    <div class="loading-state animate-item" *ngIf="loading">
-      <div class="spinner"></div>
+    <div class="loading-state animate-item" *ngIf="loading" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
       <p>Učitavanje članka...</p>
     </div>
-    
-    <!-- Error state -->
+
     <div class="error-state animate-item" *ngIf="error">
       <h2>Članak nije pronađen</h2>
       <p>Žao nam je, ali traženi članak nije pronađen ili se dogodila greška.</p>
-      <button class="back-button" (click)="goBack()">
-        <i class="fas fa-arrow-left"></i> Nazad na blog
+      <button type="button" class="btn" (click)="goBack()">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i> Nazad na blog
       </button>
     </div>
-    
-    <!-- Blog post content -->
-    <ng-container *ngIf="post && !loading && !error">
-      
-      <div class="blog-post-featured-image animate-item">
-        <img [src]="post.image" [alt]="post.title">
-      </div>
 
-      <div class="blog-post-header animate-item">
-        <span class="blog-post-date">{{ post.date }} • {{ post.readingTime }}</span>
-      </div>
-      
-      <div class="blog-post-content animate-item" [innerHTML]="post.content"></div>
-      
-      <!-- Share result notification -->
-      <div *ngIf="shareResult" 
-          class="share-notification animate-item"
+    <ng-container *ngIf="post && !loading && !error">
+      <article class="post">
+        <div class="post-header animate-item">
+          <a class="post-back" href="/blog" (click)="goBack($event)">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i> Nazad na blog
+          </a>
+          <h1 class="post-title">{{ post.title }}</h1>
+          <p class="post-meta">{{ post.date }} · {{ post.readingTime }}</p>
+        </div>
+
+        <figure class="post-cover animate-item" style="--d: 0.1s" [class.no-image]="imageBroken">
+          <img *ngIf="!imageBroken" [src]="post.image" [alt]="post.title" (error)="imageBroken = true" decoding="async">
+          <span *ngIf="imageBroken" class="post-cover-initial" aria-hidden="true">{{ post.title.charAt(0) }}</span>
+        </figure>
+
+        <div class="blog-post-content animate-item" style="--d: 0.2s" [innerHTML]="post.content"></div>
+
+        <div class="post-footer animate-item">
+          <div class="post-actions">
+            <button type="button" class="btn share-btn" (click)="sharePost()">
+              <i class="fas fa-share-alt" aria-hidden="true"></i> Podijeli članak
+            </button>
+            <a class="post-back" href="/blog" (click)="goBack($event)">
+              <i class="fas fa-arrow-left" aria-hidden="true"></i> Nazad na blog
+            </a>
+          </div>
+
+          <nav class="post-neighbours" *ngIf="previousPost || nextPost" aria-label="Susjedni članci">
+            <a *ngIf="previousPost" class="post-neighbour prev" [routerLink]="['/blog', previousPost.slug]">
+              <span class="post-neighbour-label">Stariji članak</span>
+              <span class="post-neighbour-title">{{ previousPost.title }}</span>
+            </a>
+            <a *ngIf="nextPost" class="post-neighbour next" [routerLink]="['/blog', nextPost.slug]">
+              <span class="post-neighbour-label">Noviji članak</span>
+              <span class="post-neighbour-title">{{ nextPost.title }}</span>
+            </a>
+          </nav>
+        </div>
+      </article>
+
+      <div *ngIf="shareResult"
+          class="share-notification"
+          role="status" aria-live="polite"
           [ngClass]="{'success': shareResult.success, 'error': !shareResult.success}">
-        <i class="fas" [ngClass]="{'fa-check-circle': shareResult.success, 'fa-exclamation-circle': !shareResult.success}"></i>
+        <i class="fas" aria-hidden="true" [ngClass]="{'fa-check-circle': shareResult.success, 'fa-exclamation-circle': !shareResult.success}"></i>
         {{ shareResult.message }}
-      </div>
-      
-      <div class="blog-post-footer animate-item">
-        <button class="btn share-btn" (click)="sharePost()">
-          <i class="fas fa-share-alt"></i> Podijeli članak
-        </button>
-        <button class="back-button" (click)="goBack()">
-          <i class="fas fa-arrow-left"></i> Nazad na blog
-        </button>
       </div>
     </ng-container>
   </div>
-</section> 
+</section>

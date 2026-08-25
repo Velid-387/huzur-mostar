@@ -2,7 +2,7 @@ import { Component, OnInit, inject, PLATFORM_ID, ChangeDetectorRef, afterNextRen
 import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { AnimationService } from '../../../services/animation.service';
-import { BlogService, BlogPost } from '../../../services/blog.service';
+import { BlogService, BlogPost, BlogPostMetadata } from '../../../services/blog.service';
 import { TitleService } from '../../../services/title.service';
 
 @Component({
@@ -25,6 +25,11 @@ export class BlogPostComponent implements OnInit {
   post: BlogPost | null = null;
   loading: boolean = true;
   error: boolean = false;
+  /** Cover image failed to load; a pastel placeholder is shown instead. */
+  imageBroken: boolean = false;
+  /** Older and newer posts in publishing order, for the footer navigation. */
+  previousPost: BlogPostMetadata | null = null;
+  nextPost: BlogPostMetadata | null = null;
   // Store the referrer page information
   private referrerPage: string | null = null;
 
@@ -55,14 +60,17 @@ export class BlogPostComponent implements OnInit {
       if (slug) {
         // Try to fetch the post by slug
         this.loading = true;
+        this.imageBroken = false;
         this.blogService.getPostBySlug(slug).subscribe({
           next: (post) => {
-            this.post = post;
+            // The markdown opens with the title as an h1; the page header already shows it
+            this.post = post ? { ...post, content: post.content.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/, '') } : post;
             this.loading = false;
 
             if (post) {
               // Set page title
               this.titleService.setTitle(post.title);
+              this.loadNeighbours(post.id);
 
               // Ensure Angular renders the post content before initializing animations
               if (isPlatformBrowser(this.platformId)) {
@@ -88,6 +96,22 @@ export class BlogPostComponent implements OnInit {
     });
   }
   
+  /**
+   * Find the posts published right before and after this one
+   */
+  private loadNeighbours(postId: number): void {
+    this.blogService.getAllPostsMetadata().subscribe(posts => {
+      // List is newest first
+      const index = posts.findIndex(p => p.id === postId);
+      this.nextPost = index > 0 ? posts[index - 1] : null;
+      this.previousPost = index >= 0 && index < posts.length - 1 ? posts[index + 1] : null;
+      if (isPlatformBrowser(this.platformId)) {
+        this.cdr.detectChanges();
+        requestAnimationFrame(() => this.animationService.initAnimations());
+      }
+    });
+  }
+
   /**
    * Store the referrer page information
    */
@@ -172,7 +196,8 @@ export class BlogPostComponent implements OnInit {
   /**
    * Navigate back to the blog page, preserving pagination
    */
-  goBack(): void {
+  goBack(event?: Event): void {
+    event?.preventDefault();
     if (this.referrerPage && isPlatformBrowser(this.platformId)) {
       // Navigate back to the specific page
       this.router.navigate(['/blog'], { 
