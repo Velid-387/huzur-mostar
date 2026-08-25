@@ -11,6 +11,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { OptimizedImageComponent } from '../shared/optimized-image/optimized-image.component';
 import { Product, FRESH_FLOWERS, DRIED_FLOWERS, POTTED_PLANTS } from '../../data/products.data';
 
+import { BotanicalComponent } from '../shared/botanical/botanical.component';
 interface ProductCategory {
   /** Also the element id the header dropdown links to. */
   key: 'freshFlowers' | 'driedFlowers' | 'magnets';
@@ -34,7 +35,7 @@ interface CarouselState {
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, OptimizedImageComponent],
+  imports: [CommonModule, OptimizedImageComponent, BotanicalComponent],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })

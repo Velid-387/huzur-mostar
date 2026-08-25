@@ -1,3 +1,26 @@
+/* A sprig in the section's top corner, out of the way of the copy */
+.products-botanical {
+  position: absolute;
+  top: 3.5rem;
+  right: 2.5rem;
+  width: 110px;
+  color: var(--dark-green, #7cad7f);
+  opacity: 0.4;
+}
+
+:host-context(body.dark-mode) .products-botanical {
+  color: var(--pastel-green-dark, #91b478);
+  opacity: 0.35;
+}
+
+@media (max-width: 900px) {
+  .products-botanical {
+    width: 80px;
+    top: 1.5rem;
+    right: 1rem;
+  }
+}
+
 /* Category blocks */
 .product-section {
   margin-bottom: 5rem;

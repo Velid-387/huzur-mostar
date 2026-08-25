@@ -37,6 +37,7 @@
                 </div>
             </div>
             <div class="contact-form animate-item" style="--d: 0.15s">
+                <app-botanical variant="leaf" class="contact-botanical"></app-botanical>
                 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" name="contact" action="/form-success"
                     data-netlify="true" netlify-honeypot="bot-field" method="POST">
                     <input type="hidden" name="form-name" value="contact" />

@@ -11,6 +11,7 @@
 .faq-aside {
   position: sticky;
   top: 6rem;
+  overflow: hidden;
   padding: 2rem;
   border-radius: 24px;
   background: #ffffff;
@@ -55,6 +56,24 @@
 .faq-aside-link:hover {
   color: var(--dark-pink, #df7b99);
   border-color: var(--dark-pink, #df7b99);
+}
+
+/* Two petals drifting in the aside's corner */
+.faq-botanical {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.5rem;
+  width: 96px;
+  color: var(--dark-pink, #df7b99);
+  opacity: 0.45;
+}
+
+.faq-aside > :not(.faq-botanical) {
+  position: relative;
+}
+
+:host-context(body.dark-mode) .faq-botanical {
+  color: var(--pastel-pink-dark, #c09a9a);
 }
 
 /* Rows */

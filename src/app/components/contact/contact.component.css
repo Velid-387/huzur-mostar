@@ -53,10 +53,30 @@
 
 /* Form card */
 .contact-form {
+  position: relative;
+  overflow: hidden;
   background: #ffffff;
   border-radius: 24px;
   padding: 2.5rem;
   box-shadow: 0 25px 50px rgba(74, 87, 89, 0.08);
+}
+
+/* A leaf tucked behind the form's bottom corner */
+.contact-botanical {
+  position: absolute;
+  right: -1rem;
+  bottom: -1rem;
+  width: 120px;
+  color: var(--dark-green, #7cad7f);
+  opacity: 0.3;
+}
+
+:host-context(body.dark-mode) .contact-botanical {
+  color: var(--pastel-green-dark, #91b478);
+}
+
+.contact-form form {
+  position: relative;
 }
 
 .form-group {

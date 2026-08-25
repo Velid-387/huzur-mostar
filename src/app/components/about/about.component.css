@@ -42,6 +42,8 @@
 }
 
 .about-quote {
+  position: relative;
+  overflow: hidden;
   margin: 5rem 0 0;
   padding: 3.5rem 4rem;
   background: #ffffff;
@@ -79,6 +81,26 @@
   height: 2px;
   background: var(--dark-green);
   flex: none;
+}
+
+/* A stem grows out of the corner while the quote reveals */
+.about-botanical {
+  position: absolute;
+  left: -1.25rem;
+  bottom: -1.5rem;
+  width: 84px;
+  color: var(--dark-green, #7cad7f);
+  opacity: 0.55;
+}
+
+.about-quote p:not(.about-quote-source),
+.about-quote-source {
+  position: relative;
+}
+
+:host-context(body.dark-mode) .about-botanical {
+  color: var(--pastel-green-dark, #91b478);
+  opacity: 0.45;
 }
 
 /* Dark mode */
@@ -120,6 +142,14 @@
     padding: 2.5rem 2rem;
     margin-top: 3.5rem;
     gap: 1.5rem;
+  }
+
+  .about-botanical {
+    width: 70px;
+    left: auto;
+    right: -0.75rem;
+    bottom: -1rem;
+    transform: scaleX(-1);
   }
 
   .about-quote-source {

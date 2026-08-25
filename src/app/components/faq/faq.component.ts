@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BotanicalComponent } from '../shared/botanical/botanical.component';
 
 interface FaqItem {
   question: string;
@@ -10,7 +11,7 @@ interface FaqItem {
 @Component({
   selector: 'app-faq',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BotanicalComponent],
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.css']
 })
