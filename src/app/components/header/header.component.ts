@@ -83,6 +83,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         document.body.classList.remove('mobile-menu-open');
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
+        // A link inside the sheet may still hold focus; the sheet is about to become inert
+        const menu = document.getElementById('mobileNavMenu');
+        if (menu && document.activeElement && menu.contains(document.activeElement)) {
+          document.getElementById('hamburgerMenu')?.focus();
+        }
       }
     }
   }
