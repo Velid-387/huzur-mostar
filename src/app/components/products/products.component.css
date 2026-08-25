@@ -137,15 +137,16 @@ app-optimized-image.product-img ::ng-deep img {
   color: var(--text-dark, #4a5759);
 }
 
-/* Autoplay ring, top-right of the active photo */
+/* Autoplay ring, top-right of the active (centre) photo; CSS-timed, no JS ticking */
 .auto-scroll-indicator {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: calc(1.5rem + 14px);
+  right: calc(33.333% + 12px + 14px);
   width: 26px;
   height: 26px;
-  z-index: 2;
+  z-index: 6;
   opacity: 0.9;
+  pointer-events: none;
 }
 
 .timer-svg {
@@ -165,9 +166,16 @@ app-optimized-image.product-img ::ng-deep img {
   stroke: var(--dark-pink, #df7b99);
   stroke-width: 3;
   stroke-dasharray: 88;
+  stroke-dashoffset: 88;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.1s linear;
+  animation: ring-fill 5s linear forwards;
 }
+
+@keyframes ring-fill {
+  from { stroke-dashoffset: 88; }
+  to { stroke-dashoffset: 0; }
+}
+
 
 /* Controls */
 .carousel-controls {
@@ -376,6 +384,11 @@ app-optimized-image.product-img ::ng-deep img {
   .product-media {
     aspect-ratio: 4 / 5;
     max-height: 520px;
+  }
+
+  .auto-scroll-indicator {
+    top: calc(1rem + 14px);
+    right: calc(8px + 14px);
   }
 
   .carousel-controls {

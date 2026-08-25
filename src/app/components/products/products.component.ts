@@ -25,8 +25,6 @@ interface CarouselState {
   realActiveIndex: number;
   translateX: number;
   carouselInterval: any;
-  timerAnimation: any;
-  timerProgress: number;
   isTransitioning: boolean;
   cardWidth: number;
   containerWidth: number;
@@ -75,11 +73,11 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   numberOfClones: number = 2;
   isMobile: boolean = false;
+  /** Keep in sync with the ring-fill animation duration in products.component.css */
   autoScrollDelay: number = 5000;
   /** Autoplay stops for good once the visitor takes over, and never starts under reduced motion. */
   autoplayStopped: boolean = false;
   private hoverPaused: boolean = false;
-  animationTimestep: number = 50;
 
   private initializeCarouselState(products: Product[]): CarouselState {
     return {
@@ -89,8 +87,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       realActiveIndex: 0,
       translateX: 0,
       carouselInterval: null,
-      timerAnimation: null,
-      timerProgress: 88,
       isTransitioning: false,
       cardWidth: 0,
       containerWidth: 0,
@@ -130,7 +126,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       Object.keys(this.carouselStates).forEach((key) => {
         this.stopAutoScroll(key);
-        this.stopTimerAnimation(key);
       });
     }
   }
@@ -220,7 +215,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.autoplayStopped || this.hoverPaused) return;
     const state = this.carouselStates[category];
     this.stopAutoScroll(category);
-    this.startTimerAnimation(category);
     state.carouselInterval = setInterval(() => {
       this.nextProduct(category);
     }, this.autoScrollDelay);
@@ -230,42 +224,13 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     const state = this.carouselStates[category];
     if (state.carouselInterval) {
       clearInterval(state.carouselInterval);
+      state.carouselInterval = null;
     }
-    this.stopTimerAnimation(category);
   }
 
   resetAutoScroll(category: string): void {
     this.stopAutoScroll(category);
-    this.resetTimerProgress(category);
     this.startAutoScroll(category);
-  }
-
-  startTimerAnimation(category: string): void {
-    const state = this.carouselStates[category];
-    this.stopTimerAnimation(category);
-    this.resetTimerProgress(category);
-
-    let elapsed = 0;
-    state.timerAnimation = setInterval(() => {
-      elapsed += this.animationTimestep;
-      const progress = elapsed / this.autoScrollDelay;
-      state.timerProgress = 88 * (1 - progress);
-
-      if (elapsed >= this.autoScrollDelay) {
-        this.resetTimerProgress(category);
-      }
-    }, this.animationTimestep);
-  }
-
-  stopTimerAnimation(category: string): void {
-    const state = this.carouselStates[category];
-    if (state.timerAnimation) {
-      clearInterval(state.timerAnimation);
-    }
-  }
-
-  resetTimerProgress(category: string): void {
-    this.carouselStates[category].timerProgress = 88;
   }
 
   handleInfiniteLoop(category: string): void {
@@ -391,8 +356,8 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.carouselStates[category].skipTransition ? 'no-transition' : '';
   }
 
-  showTimer(category: string, index: number): boolean {
-    const state = this.carouselStates[category];
-    return index === state.activeIndex;
+  /** True while this category's autoplay is running, so the template can show its ring. */
+  isAutoplaying(category: string): boolean {
+    return !this.autoplayStopped && !!this.carouselStates[category].carouselInterval;
   }
 }
