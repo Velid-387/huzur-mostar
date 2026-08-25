@@ -6,22 +6,20 @@
 
 .faq-item {
     background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-left: 5px solid var(--dark-pink, #df7b99);
-    border-radius: 8px;
+    border: 1px solid rgba(245, 192, 192, 0.7);
+    border-radius: 14px;
     margin-bottom: 15px;
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
 .faq-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: #dee2e6;
-    border-left-color: var(--dark-pink, #df7b99);
+    box-shadow: 0 12px 30px rgba(74, 87, 89, 0.08);
+    border-color: var(--pastel-pink, #f5c0c0);
 }
 
 .faq-item.active {
-    border-left-color: var(--pastel-pink, #f5c0c0);
+    border-color: var(--dark-pink, #df7b99);
 }
 
 .faq-heading {

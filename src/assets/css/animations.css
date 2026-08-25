@@ -97,56 +97,17 @@ header {
     }
 }
 
-#home .hero-content {
-    animation: fadeIn 1s ease 0.3s forwards;
-    opacity: 0;
-}
-
 /* Scroll animations - these will be controlled by JavaScript */
 .animate-item {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0s);
 }
 
 .animate-item.animated {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Staggered card animations */
-.product-card {
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.product-card.animated {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-.product-card:nth-child(1) {
-    animation-delay: 0.1s;
-}
-
-.product-card:nth-child(2) {
-    animation-delay: 0.3s;
-}
-
-.product-card:nth-child(3) {
-    animation-delay: 0.5s;
-}
-
-.product-card:nth-child(4) {
-    animation-delay: 0.7s;
-}
-
-/* About section specific animations */
-#about .about-text.animated {
-    animation: slideInFromLeft 0.8s ease forwards;
-}
-
-#about .about-image.animated {
-    animation: slideInFromRight 0.8s ease forwards;
 }
 
 /* Contact form animation */
@@ -189,9 +150,7 @@ header {
         scroll-behavior: auto;
     }
 
-    .animate-item,
-    .product-card,
-    #home .hero-content {
+    .animate-item {
         opacity: 1;
         transform: none;
         transition: none;
@@ -199,7 +158,6 @@ header {
     }
 
     header,
-    #home .btn,
     .chevron,
     .made-with-love i,
     .nav-links a.active::after,

@@ -1,294 +1,250 @@
-/* Carousel Container */
+/* Category blocks */
+.product-section {
+  margin-bottom: 5rem;
+}
+
+.product-section:last-child {
+  margin-bottom: 1rem;
+}
+
+.product-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.product-section-head h3 {
+  font-family: 'Alex Brush', cursive;
+  font-weight: 400;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--dark-green-dark, #5a8d5e);
+  margin: 0;
+  flex: none;
+}
+
+.product-section-head p {
+  max-width: 46ch;
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dark, #4a5759);
+  text-align: right;
+}
+
+/* Carousel */
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   overflow: hidden;
-  padding: 40px 0;
+  padding: 1.5rem 0 0;
 }
 
-/* Carousel Wrapper */
 .carousel-wrapper {
   display: flex;
-  transition: transform 0.5s ease;
-  width: 100%;
-  will-change: transform;
   align-items: stretch;
-  transform-style: flat;
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
-/* Disable transition for instant position jumps */
 .carousel-wrapper.no-transition,
 .carousel-wrapper.no-transition * {
   transition: none !important;
 }
 
-/* Product Card Styles */
 .product-card {
-  min-width: 33.333%;
-  padding: 0 15px;
-  transition: opacity 0.5s ease;
-  opacity: 0.7;
-  transform: none !important; /* Force no transform */
-  transform-origin: center;
-  user-select: none;
-  filter: blur(0);
-  position: relative;
-  will-change: opacity;
   flex: 0 0 33.333%;
+  min-width: 33.333%;
+  padding: 0 12px;
+  user-select: none;
 }
 
 .product-card-inner {
-  background-color: var(--card-bg, #fff);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: box-shadow 0.5s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
-  min-height: 560px;
-  padding: 0;
-  margin: 0;
-}
-
-.product-card.active {
-  opacity: 1;
-  transform: none !important;
-  z-index: 5;
-  filter: blur(0);
-}
-
-.product-card.left,
-.product-card.right {
-  opacity: 0.7;
-  z-index: 2;
-  filter: blur(0);
-  transform: none !important;
+  opacity: 0.55;
+  transform: scale(0.94);
+  transform-origin: center bottom;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .product-card.active .product-card-inner {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transform: none;
 }
 
-/* Card Content */
-.product-img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  transition: none !important;
-  background-color: transparent;
-  display: block;
-  flex: none;
-  transform: none !important;
-  margin: 0;
-  padding: 0;
+/* Media */
+.product-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #f0f2f3;
+  box-shadow: 0 18px 40px rgba(74, 87, 89, 0.12);
 }
 
-/* Add styling for app-optimized-image */
 app-optimized-image.product-img {
   display: block;
-  height: 400px;
-  margin: 0;
-  padding: 0;
+  position: absolute;
+  inset: 0;
 }
 
 app-optimized-image.product-img ::ng-deep .image-container {
   height: 100%;
-  margin: 0;
-  padding: 0;
-  display: block;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 app-optimized-image.product-img ::ng-deep img {
   height: 100%;
+  width: 100%;
   object-fit: cover;
+  display: block;
 }
 
-/* Disable ALL hover and active effects */
-.carousel-container .product-img:hover,
-.carousel-container .product-img:active,
-.carousel-container .product-img:focus,
-.product-card .product-img,
-.product-card.active .product-img,
-.product-card.left .product-img,
-.product-card.right .product-img,
-.product-card:hover .product-img,
-.product-card:hover,
-.product-card:active,
-.product-card:focus,
-.product-card.active,
-.product-card.left,
-.product-card.right {
-  transform: none !important;
-  scale: none !important;
-  transition: none !important;
+.product-card.active .product-card-inner:hover ::ng-deep .image-container {
+  transform: scale(1.04);
 }
 
+/* Info */
 .product-info {
-  padding: 15px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
+  padding: 1rem 0.25rem 0;
   flex: 1;
-  transition: all 0.3s ease;
-  min-height: 160px;
-  position: relative;
 }
 
-.product-info h3 {
+.product-name {
   font-family: 'Alex Brush', cursive;
-  margin-bottom: 10px;
-  transition: all 0.3s ease;
-  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-size: 2rem;
+  line-height: 1.1;
   color: var(--dark-green-dark, #5a8d5e);
-  text-transform: capitalize;
-  letter-spacing: 1px;
-  font-weight: 600;
-  position: relative;
-  display: inline-block;
-  line-height: 1.3;
+  margin: 0 0 0.35rem;
+  transition: color 0.3s ease;
 }
 
-/* Larger title for active card */
-.product-card.active .product-info h3 {
-  font-size: 1.6rem;
+.product-card.active .product-name {
   color: var(--dark-pink, #df7b99);
-  transform: none !important;
-}
-
-/* Smaller text for side cards */
-.product-card.left .product-info h3,
-.product-card.right .product-info h3 {
-  font-size: 1.1rem;
-  transform: none !important;
 }
 
 .product-info p {
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  transition: all 0.3s ease;
-  max-height: none;
-  overflow: visible;
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-dark, #4a5759);
 }
 
-/* Larger text for active card */
-.product-card.active .product-info p {
-  font-size: 1rem;
-}
-
-/* Smaller text for side cards */
-.product-card.left .product-info p,
-.product-card.right .product-info p {
-  font-size: 0.8rem;
-}
-
-/* Auto-scroll timer indicator */
+/* Autoplay ring, top-right of the active photo */
 .auto-scroll-indicator {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
-  width: 24px;
-  height: 24px;
-  z-index: 6;
-  opacity: 0.8;
-  transition: all 0.3s ease;
+  top: 14px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
+  z-index: 2;
+  opacity: 0.9;
 }
 
 .timer-svg {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   transform: rotate(-90deg);
 }
 
 .timer-background {
-  fill: none;
-  stroke-width: 3;
+  fill: rgba(255, 255, 255, 0.55);
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 2;
 }
 
 .timer-progress {
   fill: none;
-  stroke: var(--dark-pink);
+  stroke: var(--dark-pink, #df7b99);
   stroke-width: 3;
   stroke-dasharray: 88;
-  /* 2 * PI * radius */
   stroke-linecap: round;
   transition: stroke-dashoffset 0.1s linear;
 }
 
-:host-context(body.dark-mode) .timer-background {
-  stroke: rgba(0, 0, 0, 0.3);
-}
-
-:host-context(body.dark-mode) .timer-progress {
-  stroke: var(--dark-pink-dark);
-}
-
-/* Carousel Controls */
+/* Controls */
 .carousel-controls {
   position: absolute;
-  width: 100%;
-  top: 50%;
+  top: 0;
   left: 0;
-  transform: translateY(-50%);
+  width: 100%;
+  /* Centre the arrows on the photo (4:5 of a third of the width) rather than on the card */
+  padding-top: calc(1.5rem + (33.333% - 24px) * 1.25 / 2);
   display: flex;
   justify-content: space-between;
-  padding: 0 30px;
   z-index: 10;
   pointer-events: none;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .carousel-control {
-  width: 40px;
-  height: 40px;
-  background-color: var(--light-bg, #fff);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
   border: none;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
   pointer-events: auto;
-  color: var(--text-dark, #333);
+  background: #ffffff;
+  color: var(--text-dark, #4a5759);
+  box-shadow: 0 8px 20px rgba(74, 87, 89, 0.18);
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  animation: none;
 }
 
 .carousel-control:hover {
-  background-color: var(--light-pink, #f8d7da);
-  transform: none;
+  background: var(--pastel-pink, #f5c0c0);
+  color: var(--text-dark, #4a5759);
+  transform: translateY(-50%);
+  box-shadow: 0 8px 20px rgba(245, 192, 192, 0.6);
+  animation: none;
 }
 
 .carousel-control:active {
-  transform: none;
+  background: var(--pastel-green, #c8e4b2);
+  color: var(--text-dark, #4a5759);
+  transform: translateY(-50%);
+  animation: none;
 }
 
-.carousel-control.prev {
-  left: 10px;
+.carousel-control:focus-visible {
+  outline: 2px solid var(--dark-pink, #df7b99);
+  outline-offset: 3px;
 }
 
-.carousel-control.next {
-  right: 10px;
-}
-
-/* Carousel Navigation Dots */
+/* Dots */
 .carousel-dots {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  flex-wrap: wrap;
   gap: 8px;
+  margin-top: 1.5rem;
 }
 
 .dot {
   position: relative;
   width: 10px;
   height: 10px;
+  padding: 0;
+  border: none;
   border-radius: 50%;
-  background-color: var(--dot-inactive, #ddd);
+  background: var(--pastel-pink, #f5c0c0);
+  box-shadow: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: none;
 }
 
 /* 26px hit area around a 10px dot */
@@ -296,333 +252,162 @@ app-optimized-image.product-img ::ng-deep img {
   content: '';
   position: absolute;
   inset: -8px;
+  border-radius: 50%;
 }
 
-.dot.active {
-  background-color: var(--dark-pink, #df7b99);
-  transform: none;
+.dot:hover {
+  background: var(--dark-green, #7cad7f);
+  transform: scale(1.2);
+  box-shadow: none;
+  animation: none;
 }
 
-:host-context(body.dark-mode) .product-card-inner {
-  background-color: var(--dark-card-bg, #333);
+.dot.active,
+.dot.active:hover {
+  background: var(--dark-pink, #df7b99);
+  transform: scale(1.3);
+}
+
+.dot:active {
+  transform: scale(1.1);
+  box-shadow: none;
+  animation: none;
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--dark-pink, #df7b99);
+  outline-offset: 6px;
+}
+
+/* Dark mode */
+:host-context(body.dark-mode) .product-section-head h3 {
+  color: var(--pastel-green-dark, #91b478);
+}
+
+:host-context(body.dark-mode) .product-section-head p,
+:host-context(body.dark-mode) .product-info p {
+  color: var(--text-light, #e9e9e9);
+}
+
+:host-context(body.dark-mode) .product-media {
+  background: #2a3032;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+:host-context(body.dark-mode) .product-name {
+  color: var(--pastel-green-dark, #91b478);
+}
+
+:host-context(body.dark-mode) .product-card.active .product-name {
+  color: var(--pastel-pink-dark, #c09a9a);
 }
 
 :host-context(body.dark-mode) .carousel-control {
-  background-color: var(--dark-card-bg, #333);
-  color: var(--text-light, #fff);
+  background: #2a3032;
+  color: var(--text-light, #e9e9e9);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 :host-context(body.dark-mode) .carousel-control:hover {
-  background-color: var(--dark-pink-dark, #a63b59);
+  background: var(--pastel-pink-dark, #c09a9a);
+  color: #1e1e1e;
 }
 
 :host-context(body.dark-mode) .dot {
-  background-color: var(--dot-inactive-dark, #555);
+  background: #55605f;
 }
 
-:host-context(body.dark-mode) .dot.active {
-  background-color: var(--dark-pink-dark, #a63b59);
+:host-context(body.dark-mode) .dot:hover {
+  background: var(--pastel-green-dark, #91b478);
 }
 
-/* Active card title color enhancement */
-.product-card.active .product-info h3 {
-  color: var(--dark-pink, #df7b99);
+:host-context(body.dark-mode) .dot.active,
+:host-context(body.dark-mode) .dot.active:hover {
+  background: var(--pastel-pink-dark, #c09a9a);
 }
 
-/* Mobile styles - prevent flickering and maintain control appearance */
-@media (max-width: 768px) {
+:host-context(body.dark-mode) .timer-background {
+  fill: rgba(0, 0, 0, 0.35);
+  stroke: rgba(255, 255, 255, 0.5);
+}
+
+:host-context(body.dark-mode) .timer-progress {
+  stroke: var(--pastel-pink-dark, #c09a9a);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .product-section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .product-section-head p {
+    text-align: left;
+    max-width: 60ch;
+  }
+}
+
+@media (max-width: 899px) {
+  .product-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .product-section-head h3 {
+    font-size: 2.2rem;
+  }
+
   .carousel-container {
-    padding: 20px 0;
+    padding-top: 1rem;
   }
 
   .product-card {
-    min-width: 100%;
-    padding: 0 10px;
     flex: 0 0 100%;
-    opacity: 1;
-    transform: none !important;
-  }
-
-  .carousel-wrapper {
-    align-items: center;
-  }
-
-  .product-card.left,
-  .product-card.right {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .product-card.active {
-    opacity: 1;
-    transform: none !important;
-    z-index: 5;
-  }
-
-  .product-card-inner {
-    min-height: 540px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  .product-img {
-    height: 350px;
-  }
-
-  app-optimized-image.product-img {
-    height: 350px;
-  }
-  
-  app-optimized-image.product-img ::ng-deep .image-container {
-    height: 100%;
-  }
-
-  .product-info {
-    padding: 15px 10px;
-    min-height: 160px;
-  }
-
-  .product-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-  }
-
-  .product-info p {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    margin-bottom: 12px;
-  }
-
-  .carousel-controls {
-    padding: 0 5px;
-  }
-
-  .carousel-control {
-    width: 36px;
-    height: 36px;
-    background-color: var(--light-bg, rgba(255, 255, 255, 0.9));
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
-
-  .carousel-control.prev {
-    left: 5px;
-  }
-
-  .carousel-control.next {
-    right: 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  .product-card {
     min-width: 100%;
-    flex: 0 0 100%;
     padding: 0 8px;
   }
 
   .product-card-inner {
-    min-height: 490px;
+    opacity: 1;
+    transform: none;
   }
 
-  .product-img {
-    height: 300px;
+  .product-media {
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
   }
 
-  app-optimized-image.product-img {
-    height: 300px;
-  }
-  
-  app-optimized-image.product-img ::ng-deep .image-container {
-    height: 100%;
-  }
-
-  .product-info {
-    padding: 12px 10px;
-    min-height: 150px;
-  }
-
-  .product-info h3 {
-    font-size: 1.1rem;
-  }
-
-  .product-info p {
-    font-size: 0.8rem;
+  .carousel-controls {
+    padding-top: calc(1rem + (100% - 16px) * 1.25 / 2);
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .carousel-control {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
   }
 
-  .carousel-dots {
-    margin-top: 15px;
-    gap: 6px;
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-  }
-}
-
-/* For extra small devices */
-@keyframes fadeInScale {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.animate-item.animated .product-card {
-  animation: fadeInScale 0.8s forwards;
-  transform: none !important;
-}
-
-/* Create a gradient overlay at carousel edges */
-.carousel-wrapper::before,
-.carousel-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 80px;
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* Product Sections */
-.product-section {
-  margin-bottom: 4rem;
-}
-
-.product-section:last-child {
-  margin-bottom: 2rem;
-}
-
-.product-section h3 {
-  font-family: 'Alex Brush', cursive;
-  font-size: 2.2rem;
-  color: var(--dark-green-dark, #5a8d5e);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.product-section>p {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  color: var(--text-dark, #666);
-  font-size: 1.1rem;
-  line-height: 1.5;
-}
-
-/* Dark mode adjustments for product sections */
-:host-context(body.dark-mode) .product-section h3 {
-  color: var(--pastel-green, #c8e4b2);
-}
-
-:host-context(body.dark-mode) .product-section>p {
-  color: var(--text-light, #aaa);
-}
-
-/* Mobile styles */
-@media (max-width: 768px) {
-  .product-section {
-    margin-bottom: 3rem;
-  }
-
-  .product-section h3 {
+  .product-name {
     font-size: 1.8rem;
   }
 
-  .product-section>p {
-    font-size: 1rem;
-    padding: 0 1rem;
+  .product-info p {
+    font-size: 0.9rem;
+  }
+
+  .carousel-dots {
+    gap: 6px;
+    margin-top: 1.1rem;
   }
 }
 
-/* Special class to prevent any transformations */
-.no-transform {
-  transform: none !important;
-  scale: none !important;
-  transition: none !important;
-  animation: none !important;
-}
-
-.no-transform:hover,
-.no-transform:active,
-.no-transform:focus,
-.no-transform.active {
-  transform: none !important;
-  scale: none !important;
-  transition: none !important;
-  animation: none !important;
-}
-
-/* Ensure all animations are controlled */
-* {
-  backface-visibility: hidden;
-}
-
-/* Completely disable transforms for product cards and images */
-.product-card, 
-.product-card *, 
-.product-img, 
-.product-card-inner {
-  transform: none !important;
-  transition: none !important;
-  animation: none !important;
-  transform-style: flat !important;
-}
-
-/* Remove animation for elements when they become active */
-.product-card.active, 
-.product-card.active .product-img,
-.product-card.active .product-info,
-.product-card.active .product-info * {
-  animation: none !important;
-  transition: none !important; 
-  transform: none !important;
-}
-
-/* Disable scaling in info section */
-.product-info h3,
-.product-info p {
-  transform: none !important;
-  transition: color 0.3s ease !important;
-}
-
-/* Remove text size changes */
-.product-card.active .product-info h3 {
-  /* Keep the color change but remove size change */
-  color: var(--dark-pink, #df7b99);
-  font-size: 1.3rem !important; /* Same as non-active */
-}
-
-.product-card.left .product-info h3,
-.product-card.right .product-info h3 {
-  font-size: 1.3rem !important; /* Same as non-active */
-}
-
-.product-card.active .product-info p {
-  font-size: 0.9rem !important; /* Same as non-active */
-}
-
-.product-card.left .product-info p,
-.product-card.right .product-info p {
-  font-size: 0.9rem !important; /* Same as non-active */
-}
-
-/* Force mobile styles to have no transforms */
-@media (max-width: 768px) {
-  .product-card,
-  .product-card.active,
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-wrapper,
   .product-card-inner,
-  .product-img,
-  .product-info,
-  .product-info * {
-    transform: none !important;
-    transition: none !important;
+  app-optimized-image.product-img ::ng-deep .image-container {
+    transition: none;
   }
 }
