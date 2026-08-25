@@ -163,7 +163,6 @@ header {
     .nav-links a.active::after,
     .mobile-nav-menu a.active::after,
     .btn:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover,
-    .social-links a:hover,
     #scrollToTop:hover {
         animation: none !important;
     }
