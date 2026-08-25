@@ -11,28 +11,32 @@
                 <div class="petal"></div>
                 <div class="flower-center"></div>
             </div>
-            <div class="loader-text">Šaljemo vašu poruku...</div>
+            <p class="loader-text" role="status" aria-live="polite">Šaljemo vašu poruku...</p>
         </div>
     </div>
 
     <div class="container">
-        <h2 class="animate-item">Kontaktirajte nas</h2>
+        <div class="section-head animate-item">
+            <h2>Kontaktirajte nas</h2>
+            <p class="section-lead">Inspirišu nas različite želje, prijedlozi i upiti koje dobijamo.
+                Bilo da imate pitanja o našim proizvodima, trebate pomoć oko
+                naručivanja ili želite razgovarati o prilagođenom aranžmanu, Huzur tim je tu da vam pomogne.</p>
+        </div>
         <div class="contact-container">
             <div class="contact-info animate-item">
-                <p>Inspirišu nas različite želje, prijedlozi i upiti koje dobijamo.
-                    Bilo da imate pitanja o našim proizvodima, trebate pomoć oko
-                    naručivanja ili želite razgovarati o prilagođenom aranžmanu, Huzur tim je tu da vam pomogne.</p>
                 <div class="contact-actions">
                     <a class="btn" href="tel:+387603352011"><i class="fas fa-phone" aria-hidden="true"></i> Pozovite nas</a>
                     <a class="btn" href="https://ig.me/m/huzur.mostar" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i> Pošaljite DM</a>
                     <a class="btn" href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Otvorite mapu</a>
                 </div>
-                <p><strong>Adresa:</strong><br><a href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank" rel="noopener">Maršala Tita 134<br>Mostar, 88000</a></p>
-                <p><strong>Radno vrijeme:</strong><br>Ponedjeljak-Petak: 9:00-16:30<br>Subota: 9:00-15:00<br>Nedjelja: Zatvoreno</p>
-                <p><strong>Telefon:</strong> <a href="tel:+387603352011">+387 60 33 52 011</a></p>
-                <p><strong>Email:</strong> <a href="mailto:info@huzurmostar.ba">info&#64;huzurmostar.ba</a></p>
+                <div class="contact-facts">
+                    <p><strong>Adresa:</strong><a href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank" rel="noopener">Maršala Tita 134<br>Mostar, 88000</a></p>
+                    <p><strong>Radno vrijeme:</strong>Ponedjeljak-Petak: 9:00-16:30<br>Subota: 9:00-15:00<br>Nedjelja: Zatvoreno</p>
+                    <p><strong>Telefon:</strong><a href="tel:+387603352011">+387 60 33 52 011</a></p>
+                    <p><strong>Email:</strong><a href="mailto:info@huzurmostar.ba">info&#64;huzurmostar.ba</a></p>
+                </div>
             </div>
-            <div class="contact-form animate-item">
+            <div class="contact-form animate-item" style="--d: 0.15s">
                 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" name="contact" action="/form-success"
                     data-netlify="true" netlify-honeypot="bot-field" method="POST">
                     <input type="hidden" name="form-name" value="contact" />

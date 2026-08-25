@@ -185,18 +185,6 @@ body.dark-mode .testimonial-name {
     color: var(--pastel-green-dark);
 }
 
-/* Contact Section */
-body.dark-mode #contact {
-    background-color: #1e1e1e;
-}
-
-body.dark-mode .form-group input,
-body.dark-mode .form-group textarea {
-    background-color: #2d2d2d;
-    color: #e0e0e0;
-    border-color: #444;
-}
-
 /* Footer */
 body.dark-mode #copyright {
     color: #aaaaaa;
@@ -358,20 +346,6 @@ body.dark-mode .faq-icon {
 
 body.dark-mode .faq-item.active {
     border-color: var(--pastel-pink-dark);
-}
-
-/* Contact form input fields in dark mode */
-body.dark-mode .form-group input,
-body.dark-mode .form-group textarea {
-    background-color: rgba(51, 58, 60, 0.4);
-    color: var(--text-light);
-    border: 1px solid var(--pastel-blue-dark);
-}
-
-body.dark-mode .form-group input:focus,
-body.dark-mode .form-group textarea:focus {
-    border-color: var(--pastel-pink-dark);
-    box-shadow: 0 0 8px rgba(192, 154, 154, 0.4);
 }
 
 /* Logo color */

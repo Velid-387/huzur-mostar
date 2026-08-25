@@ -467,78 +467,7 @@ section#home::after {
     }
 }
 
-/* Contact section */
-#contact {
-    background-color: #f8f9fa;
-    transition: background-color 0.3s ease;
-}
-
-.contact-container {
-    display: flex;
-    gap: 4rem;
-}
-
-.contact-info {
-    flex: 1;
-}
-
-.contact-form {
-    flex: 1;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid var(--pastel-blue);
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: #fff;
-    color: #333;
-    transition: all 0.3s ease;
-}
-
-.form-group textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--pastel-pink);
-    box-shadow: 0 0 8px rgba(245, 192, 192, 0.4);
-    outline: none;
-}
-
-.form-status {
-    margin-top: 1rem;
-    padding: 0.8rem;
-    border-radius: 4px;
-    text-align: center;
-    display: none;
-}
-
-.form-status.success {
-    background-color: #d4edda;
-    color: #155724;
-    display: block;
-}
-
-.form-status.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    display: block;
-}
+/* Contact section: styled in contact.component.css */
 
 /* Footer and scroll-to-top button: styled in footer.component.css */
 
