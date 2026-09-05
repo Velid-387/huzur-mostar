@@ -74,11 +74,6 @@
   perspective: 1200px;
 }
 
-/* The short, loud one closes the grid in the brand's hand */
-.testimonial-card.featured {
-  order: 1;
-}
-
 .testimonial-card-inner {
   position: relative;
   width: 100%;
@@ -180,24 +175,6 @@
   color: var(--dark-pink, #df7b99);
 }
 
-/* Featured: script quote on a white card */
-.testimonial-card.featured .testimonial-card-front {
-  padding: 1.8rem 1.8rem 1.3rem;
-  background: #ffffff;
-  border: 1px solid var(--pastel-pink, #f5c0c0);
-  box-shadow: none;
-}
-
-.testimonial-card.featured .testimonial-quote {
-  flex: 0 0 auto;
-  margin: auto 0;
-  font-family: 'Alex Brush', cursive;
-  font-size: clamp(1.9rem, 2.6vw, 2.5rem);
-  line-height: 1.15;
-  color: var(--dark-pink, #df7b99);
-  overflow: hidden;
-}
-
 /* Back: the original message */
 .testimonial-card-back {
   transform: rotateY(180deg);
@@ -234,11 +211,6 @@
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
-:host-context(body.dark-mode) .testimonial-card.featured .testimonial-card-front {
-  background: #2a3032;
-  border-color: rgba(192, 154, 154, 0.35);
-}
-
 :host-context(body.dark-mode) .testimonials-quote {
   background: #2a3032;
 }
@@ -260,7 +232,6 @@
   color: var(--text-light, #e9e9e9);
 }
 
-:host-context(body.dark-mode) .testimonial-card.featured .testimonial-quote,
 :host-context(body.dark-mode) .testimonial-hint i,
 :host-context(body.dark-mode) .testimonial-back-hint i {
   color: var(--pastel-pink-dark, #c09a9a);
@@ -309,14 +280,6 @@
 
   .testimonial-card {
     height: 280px;
-  }
-
-  .testimonial-card.featured {
-    height: 200px;
-  }
-
-  .testimonial-card.featured .testimonial-card-front {
-    padding: 1.5rem;
   }
 }
 

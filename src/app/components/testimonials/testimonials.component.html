@@ -15,7 +15,6 @@
             <div class="testimonial-card animate-item"
                  *ngFor="let testimonial of testimonials; let i = index"
                  [class.card-flipped]="testimonial.flipped"
-                 [class.featured]="i === 4"
                  [style.--d]="(i * 0.07 + 0.1) + 's'">
                 <div class="testimonial-card-inner" role="button" tabindex="0" [attr.aria-pressed]="testimonial.flipped" aria-label="Okreni karticu i pogledaj originalnu poruku" [class.flipped]="testimonial.flipped" (click)="toggleCardFlip(testimonial)" (keydown)="onCardKey($event, testimonial)">
                     <div class="testimonial-card-front">

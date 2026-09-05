@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private routerSubscription: Subscription | null = null;
   
   activeSection: string = 'home';
-  sections: string[] = ['home', 'about', 'products', 'faq', 'testimonials', 'contact'];
+  sections: string[] = ['home', 'about', 'products', 'testimonials', 'faq', 'contact'];
   mobileMenuOpen: boolean = false;
   isDarkMode: boolean = false;
   isProductsDropdownOpen: boolean = false;

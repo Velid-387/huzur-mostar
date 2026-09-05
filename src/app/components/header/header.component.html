@@ -27,8 +27,8 @@
                     </li>
                 </ul>
             </div>
-            <a href="#faq" (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a>
             <a href="#testimonials" (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a>
+            <a href="#faq" (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a>
             <a href="#contact" (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a>
             <a routerLink="/blog" [class.active]="isOnBlogPage()">Blog</a>
         </div>
@@ -85,8 +85,8 @@
                     </li>
                 </ul>
             </li>
-            <li style="--d: 0.23s"><a href="#faq" (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a></li>
-            <li style="--d: 0.28s"><a href="#testimonials" (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a></li>
+            <li style="--d: 0.23s"><a href="#testimonials" (click)="scrollToSection('testimonials', $event)" [class.active]="isActive('testimonials')">Drugi o nama</a></li>
+            <li style="--d: 0.28s"><a href="#faq" (click)="scrollToSection('faq', $event)" [class.active]="isActive('faq')">Najčešća pitanja</a></li>
             <li style="--d: 0.33s"><a href="#contact" (click)="scrollToSection('contact', $event)" [class.active]="isActive('contact')">Kontakt</a></li>
             <li style="--d: 0.38s"><a routerLink="/blog" [class.active]="isOnBlogPage()" (click)="toggleMobileMenu()">Blog</a></li>
         </ul>
