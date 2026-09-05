@@ -6,6 +6,7 @@ import { AboutComponent } from '../about/about.component';
 import { ProductsComponent } from '../products/products.component';
 import { FaqComponent } from '../faq/faq.component';
 import { TestimonialsComponent } from '../testimonials/testimonials.component';
+import { BlogTeaserComponent } from '../blog-teaser/blog-teaser.component';
 import { ContactComponent } from '../contact/contact.component';
 
 import { AnimationService } from '../../services/animation.service';
@@ -21,6 +22,7 @@ import { TitleService } from '../../services/title.service';
     ProductsComponent,
     FaqComponent,
     TestimonialsComponent,
+    BlogTeaserComponent,
     ContactComponent
   ],
   templateUrl: './landing.component.html',

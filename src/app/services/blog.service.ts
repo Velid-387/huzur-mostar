@@ -120,6 +120,28 @@ export class BlogService {
   }
 
   /**
+   * Newest post's metadata (the last entry), with reading time. Loads one file only,
+   * so the landing page teaser does not pull every post.
+   */
+  getLatestPostMetadata(): Observable<BlogPostMetadata | null> {
+    const metadata = this.blogPostsMetadata[this.blogPostsMetadata.length - 1];
+    if (!metadata) {
+      return of(null);
+    }
+
+    return this.loadMarkdownContent(metadata.fileName).pipe(
+      map(content => ({
+        ...metadata,
+        readingTime: this.calculateReadingTime(content)
+      })),
+      catchError(error => {
+        console.error(`Error loading latest blog post ${metadata.id}:`, error);
+        return of(metadata);
+      })
+    );
+  }
+
+  /**
    * Calculate reading time in minutes based on content
    */
   private calculateReadingTime(content: string): string {

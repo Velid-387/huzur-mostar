@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  padding: 6.5rem 2rem 0;
+  padding: 0 2rem 3rem;
   text-align: left;
   background: none;
 }
@@ -44,7 +44,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 3rem;
   align-items: start;
-  padding: 2rem 0 0;
+  padding: 2.5rem 0 0;
   width: 100%;
 }
 
@@ -207,11 +207,11 @@
   z-index: 4;
 }
 
-/* Marquee of bouquet names */
+/* Ribbon of bouquet names, tucked right under the header */
 .name-marquee {
   position: relative;
   z-index: 1;
-  margin: 3.5rem -2rem 0;
+  margin: 0 -2rem;
   border-top: 1px solid var(--pastel-pink);
   border-bottom: 1px solid var(--pastel-pink);
   padding: 0.9rem 0;
@@ -331,14 +331,14 @@
 
 @media (max-width: 900px) {
   #home.hero {
-    padding: 5.5rem 1.25rem 0;
+    padding: 0 1.25rem 1.5rem;
     min-height: 0;
   }
 
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding-top: 1rem;
+    padding-top: 2rem;
   }
 
   .hero-copy {
@@ -401,7 +401,7 @@
   }
 
   .name-marquee {
-    margin: 2rem -1.25rem 0;
+    margin: 0 -1.25rem;
     padding: 0.7rem 0;
   }
 

@@ -1,0 +1,24 @@
+<section id="blog-teaser" class="animate-section" *ngIf="post() as post">
+    <div class="container">
+        <a class="teaser-card animate-item" [routerLink]="['/blog', post.slug]" [attr.aria-label]="'Pročitajte novi tekst: ' + post.title">
+            <app-botanical variant="leaf" class="teaser-botanical draw"></app-botanical>
+
+            <div class="teaser-media" [class.no-image]="imageBroken()">
+                <img *ngIf="!imageBroken()" [src]="post.image" [alt]="post.title" loading="lazy" decoding="async" (error)="onImageError()">
+                <span *ngIf="imageBroken()" class="teaser-initial" aria-hidden="true">{{ post.title.charAt(0) }}</span>
+            </div>
+
+            <div class="teaser-body">
+                <p class="teaser-kicker"><span class="teaser-dot" aria-hidden="true"></span>Novo na huzur blogu</p>
+                <h2 class="teaser-title">{{ post.title }}</h2>
+                <p class="teaser-excerpt">{{ post.excerpt }}</p>
+                <p class="teaser-meta">{{ post.date }}<ng-container *ngIf="post.readingTime"> · {{ post.readingTime }}</ng-container></p>
+                <span class="teaser-cta">Pročitajte tekst<span class="teaser-cta-dash" aria-hidden="true"></span></span>
+            </div>
+        </a>
+
+        <p class="teaser-all animate-item" style="--d: 0.15s">
+            <a routerLink="/blog">Svi tekstovi na blogu <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </p>
+    </div>
+</section>

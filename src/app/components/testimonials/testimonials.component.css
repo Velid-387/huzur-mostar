@@ -5,29 +5,78 @@
   transition: background-color 0.3s ease;
 }
 
+/* The house line opens the section, the six messages follow in two rows of three */
+.testimonials-quote {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 2rem;
+  padding: 3.5rem 4rem;
+  background: #f8f9fa;
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 7fr 4fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.testimonials-quote p:not(.testimonials-quote-source) {
+  font-family: 'Alex Brush', cursive;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  line-height: 1.15;
+  color: var(--dark-pink, #df7b99);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.testimonials-quote-source {
+  font-family: poppins, sans-serif;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--sage-ink, #4f7d53);
+  justify-self: end;
+}
+
+.ink-dash {
+  width: 40px;
+  height: 2px;
+  background: var(--dark-green, #7cad7f);
+  flex: none;
+}
+
+/* A stem grows out of the corner while the quote reveals */
+.testimonials-botanical {
+  position: absolute;
+  left: -1.25rem;
+  bottom: -1.5rem;
+  width: 84px;
+  color: var(--dark-green, #7cad7f);
+  opacity: 0.55;
+}
+
+.testimonials-quote p:not(.testimonials-quote-source),
+.testimonials-quote-source {
+  position: relative;
+}
+
 .testimonials-container {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
 .testimonial-card {
-  grid-column: span 2;
   height: 300px;
   perspective: 1200px;
 }
 
-/* The short, loud one gets the full width and the brand's hand */
+/* The short, loud one closes the grid in the brand's hand */
 .testimonial-card.featured {
-  order: -1;
-  grid-column: 1 / -1;
-  height: 240px;
-}
-
-/* Five regular cards: three on the first row, the last two share the second */
-.testimonial-card:nth-child(4),
-.testimonial-card:nth-child(6) {
-  grid-column: span 3;
+  order: 1;
 }
 
 .testimonial-card-inner {
@@ -131,19 +180,19 @@
   color: var(--dark-pink, #df7b99);
 }
 
-/* Featured: script quote across the band */
+/* Featured: script quote on a white card */
 .testimonial-card.featured .testimonial-card-front {
-  padding: 2rem 2.5rem 1.5rem;
+  padding: 1.8rem 1.8rem 1.3rem;
   background: #ffffff;
   border: 1px solid var(--pastel-pink, #f5c0c0);
   box-shadow: none;
 }
 
 .testimonial-card.featured .testimonial-quote {
-  display: flex;
-  align-items: center;
+  flex: 0 0 auto;
+  margin: auto 0;
   font-family: 'Alex Brush', cursive;
-  font-size: clamp(2rem, 3.6vw, 3rem);
+  font-size: clamp(1.9rem, 2.6vw, 2.5rem);
   line-height: 1.15;
   color: var(--dark-pink, #df7b99);
   overflow: hidden;
@@ -190,6 +239,23 @@
   border-color: rgba(192, 154, 154, 0.35);
 }
 
+:host-context(body.dark-mode) .testimonials-quote {
+  background: #2a3032;
+}
+
+:host-context(body.dark-mode) .testimonials-quote p:not(.testimonials-quote-source) {
+  color: var(--pastel-pink-dark, #c09a9a);
+}
+
+:host-context(body.dark-mode) .testimonials-quote-source {
+  color: var(--pastel-green-dark, #91b478);
+}
+
+:host-context(body.dark-mode) .testimonials-botanical {
+  color: var(--pastel-green-dark, #91b478);
+  opacity: 0.45;
+}
+
 :host-context(body.dark-mode) .testimonial-quote {
   color: var(--text-light, #e9e9e9);
 }
@@ -212,28 +278,36 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .testimonial-card,
-  .testimonial-card:nth-child(4),
-  .testimonial-card:nth-child(6) {
-    grid-column: span 3;
+  .testimonials-quote {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 2rem;
+    gap: 1.5rem;
   }
 
-  .testimonial-card.featured {
-    grid-column: 1 / -1;
-    height: 220px;
+  .testimonials-botanical {
+    width: 70px;
+    left: auto;
+    right: -0.75rem;
+    bottom: -1rem;
+    transform: scaleX(-1);
+  }
+
+  .testimonials-quote-source {
+    justify-self: start;
+  }
+
+  .testimonials-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 600px) {
   .testimonials-container {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .testimonial-card,
-  .testimonial-card:nth-child(4),
-  .testimonial-card:nth-child(6),
-  .testimonial-card.featured {
-    grid-column: 1 / -1;
+  .testimonial-card {
     height: 280px;
   }
 

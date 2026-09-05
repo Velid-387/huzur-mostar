@@ -1,4 +1,11 @@
 <section id="home" class="animate-section hero">
+    <div class="name-marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <ng-container *ngFor="let name of marqueeNames"><span class="marquee-name">{{ name }}</span></ng-container>
+            <ng-container *ngFor="let name of marqueeNames"><span class="marquee-name">{{ name }}</span></ng-container>
+        </div>
+    </div>
+
     <div class="hero-bloom hero-bloom-pink" aria-hidden="true"></div>
     <div class="hero-bloom hero-bloom-green" aria-hidden="true"></div>
 
@@ -32,10 +39,4 @@
         </div>
     </div>
 
-    <div class="name-marquee" aria-hidden="true">
-        <div class="marquee-track">
-            <ng-container *ngFor="let name of marqueeNames"><span class="marquee-name">{{ name }}</span></ng-container>
-            <ng-container *ngFor="let name of marqueeNames"><span class="marquee-name">{{ name }}</span></ng-container>
-        </div>
-    </div>
 </section>

@@ -1,10 +1,11 @@
 import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { BotanicalComponent } from '../shared/botanical/botanical.component';
 
 @Component({
   selector: 'app-testimonials',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BotanicalComponent],
   templateUrl: './testimonials.component.html',
   styleUrls: ['./testimonials.component.css']
 })
