@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-25T15:34:01Z",
+  "title": "Design System: Huzur Mostar",
+  "extensions": {
+    "colorMeta": {
+      "rose-deep": { "role": "primary", "displayName": "Rose Deep", "canonical": "oklch(70% 0.13 355)", "tonalRamp": ["oklch(15% 0.13 355)", "oklch(27% 0.13 355)", "oklch(39% 0.13 355)", "oklch(51% 0.13 355)", "oklch(63% 0.13 355)", "oklch(75% 0.13 355)", "oklch(87% 0.13 355)", "oklch(95% 0.13 355)"] },
+      "tissue-pink": { "role": "primary", "displayName": "Tissue Pink", "canonical": "oklch(85% 0.06 20)", "tonalRamp": ["oklch(15% 0.06 20)", "oklch(27% 0.06 20)", "oklch(39% 0.06 20)", "oklch(51% 0.06 20)", "oklch(63% 0.06 20)", "oklch(75% 0.06 20)", "oklch(87% 0.06 20)", "oklch(95% 0.06 20)"] },
+      "mint-leaf": { "role": "secondary", "displayName": "Mint Leaf", "canonical": "oklch(89% 0.07 130)", "tonalRamp": ["oklch(15% 0.07 130)", "oklch(27% 0.07 130)", "oklch(39% 0.07 130)", "oklch(51% 0.07 130)", "oklch(63% 0.07 130)", "oklch(75% 0.07 130)", "oklch(87% 0.07 130)", "oklch(95% 0.07 130)"] },
+      "sage-deep": { "role": "secondary", "displayName": "Sage Deep", "canonical": "oklch(69% 0.09 148)", "tonalRamp": ["oklch(15% 0.09 148)", "oklch(27% 0.09 148)", "oklch(39% 0.09 148)", "oklch(51% 0.09 148)", "oklch(63% 0.09 148)", "oklch(75% 0.09 148)", "oklch(87% 0.09 148)", "oklch(95% 0.09 148)"] },
+      "sky-wash": { "role": "tertiary", "displayName": "Sky Wash", "canonical": "oklch(89% 0.05 210)", "tonalRamp": ["oklch(15% 0.05 210)", "oklch(27% 0.05 210)", "oklch(39% 0.05 210)", "oklch(51% 0.05 210)", "oklch(63% 0.05 210)", "oklch(75% 0.05 210)", "oklch(87% 0.05 210)", "oklch(95% 0.05 210)"] },
+      "lavender-wash": { "role": "tertiary", "displayName": "Lavender Wash", "canonical": "oklch(84% 0.04 315)", "tonalRamp": ["oklch(15% 0.04 315)", "oklch(27% 0.04 315)", "oklch(39% 0.04 315)", "oklch(51% 0.04 315)", "oklch(63% 0.04 315)", "oklch(75% 0.04 315)", "oklch(87% 0.04 315)", "oklch(95% 0.04 315)"] },
+      "peach-wash": { "role": "tertiary", "displayName": "Peach Wash", "canonical": "oklch(89% 0.06 65)", "tonalRamp": ["oklch(15% 0.06 65)", "oklch(27% 0.06 65)", "oklch(39% 0.06 65)", "oklch(51% 0.06 65)", "oklch(63% 0.06 65)", "oklch(75% 0.06 65)", "oklch(87% 0.06 65)", "oklch(95% 0.06 65)"] },
+      "butter-wash": { "role": "tertiary", "displayName": "Butter Wash", "canonical": "oklch(92% 0.08 95)", "tonalRamp": ["oklch(15% 0.08 95)", "oklch(27% 0.08 95)", "oklch(39% 0.08 95)", "oklch(51% 0.08 95)", "oklch(63% 0.08 95)", "oklch(75% 0.08 95)", "oklch(87% 0.08 95)", "oklch(95% 0.08 95)"] },
+      "rose-ink": { "role": "primary", "displayName": "Rose Ink", "canonical": "oklch(52% 0.11 355)", "tonalRamp": ["oklch(15% 0.11 355)", "oklch(27% 0.11 355)", "oklch(39% 0.11 355)", "oklch(51% 0.11 355)", "oklch(63% 0.11 355)", "oklch(75% 0.11 355)", "oklch(87% 0.11 355)", "oklch(95% 0.11 355)"] },
+      "sage-ink": { "role": "secondary", "displayName": "Sage Ink", "canonical": "oklch(52% 0.08 148)", "tonalRamp": ["oklch(15% 0.08 148)", "oklch(27% 0.08 148)", "oklch(39% 0.08 148)", "oklch(51% 0.08 148)", "oklch(63% 0.08 148)", "oklch(75% 0.08 148)", "oklch(87% 0.08 148)", "oklch(95% 0.08 148)"] },
+      "slate-ink": { "role": "neutral", "displayName": "Slate Ink", "canonical": "oklch(43% 0.02 205)", "tonalRamp": ["oklch(15% 0.02 205)", "oklch(27% 0.02 205)", "oklch(39% 0.02 205)", "oklch(51% 0.02 205)", "oklch(63% 0.02 205)", "oklch(75% 0.02 205)", "oklch(87% 0.02 205)", "oklch(95% 0.02 205)"] },
+      "charcoal-text": { "role": "neutral", "displayName": "Charcoal Text", "canonical": "oklch(32% 0 0)", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"] },
+      "muted-text": { "role": "neutral", "displayName": "Muted Text", "canonical": "oklch(50% 0 0)", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"] },
+      "paper-white": { "role": "neutral", "displayName": "Paper White", "canonical": "oklch(100% 0 0)", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(100% 0 0)"] },
+      "linen-off-white": { "role": "neutral", "displayName": "Linen Off-White", "canonical": "oklch(98% 0.003 250)", "tonalRamp": ["oklch(15% 0.003 250)", "oklch(27% 0.003 250)", "oklch(39% 0.003 250)", "oklch(51% 0.003 250)", "oklch(63% 0.003 250)", "oklch(75% 0.003 250)", "oklch(87% 0.003 250)", "oklch(98% 0.003 250)"] },
+      "footer-mist": { "role": "neutral", "displayName": "Footer Mist", "canonical": "oklch(97% 0 0)", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(97% 0 0)"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "oklch(90% 0 0)", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"] },
+      "rose-deep-dark": { "role": "primary", "displayName": "Rose Deep (dark twin)", "canonical": "oklch(60% 0.1 355)", "tonalRamp": ["oklch(15% 0.1 355)", "oklch(27% 0.1 355)", "oklch(39% 0.1 355)", "oklch(51% 0.1 355)", "oklch(63% 0.1 355)", "oklch(75% 0.1 355)", "oklch(87% 0.1 355)", "oklch(95% 0.1 355)"] },
+      "tissue-pink-dark": { "role": "primary", "displayName": "Tissue Pink (dark twin)", "canonical": "oklch(70% 0.04 20)", "tonalRamp": ["oklch(15% 0.04 20)", "oklch(27% 0.04 20)", "oklch(39% 0.04 20)", "oklch(51% 0.04 20)", "oklch(63% 0.04 20)", "oklch(75% 0.04 20)", "oklch(87% 0.04 20)", "oklch(95% 0.04 20)"] },
+      "mint-leaf-dark": { "role": "secondary", "displayName": "Mint Leaf (dark twin)", "canonical": "oklch(73% 0.08 130)", "tonalRamp": ["oklch(15% 0.08 130)", "oklch(27% 0.08 130)", "oklch(39% 0.08 130)", "oklch(51% 0.08 130)", "oklch(63% 0.08 130)", "oklch(75% 0.08 130)", "oklch(87% 0.08 130)", "oklch(95% 0.08 130)"] },
+      "sage-deep-dark": { "role": "secondary", "displayName": "Sage Deep (dark twin)", "canonical": "oklch(58% 0.08 148)", "tonalRamp": ["oklch(15% 0.08 148)", "oklch(27% 0.08 148)", "oklch(39% 0.08 148)", "oklch(51% 0.08 148)", "oklch(63% 0.08 148)", "oklch(75% 0.08 148)", "oklch(87% 0.08 148)", "oklch(95% 0.08 148)"] },
+      "sky-wash-dark": { "role": "tertiary", "displayName": "Sky Wash (dark twin)", "canonical": "oklch(73% 0.05 210)", "tonalRamp": ["oklch(15% 0.05 210)", "oklch(27% 0.05 210)", "oklch(39% 0.05 210)", "oklch(51% 0.05 210)", "oklch(63% 0.05 210)", "oklch(75% 0.05 210)", "oklch(87% 0.05 210)", "oklch(95% 0.05 210)"] },
+      "lavender-wash-dark": { "role": "tertiary", "displayName": "Lavender Wash (dark twin)", "canonical": "oklch(70% 0.04 315)", "tonalRamp": ["oklch(15% 0.04 315)", "oklch(27% 0.04 315)", "oklch(39% 0.04 315)", "oklch(51% 0.04 315)", "oklch(63% 0.04 315)", "oklch(75% 0.04 315)", "oklch(87% 0.04 315)", "oklch(95% 0.04 315)"] },
+      "night-slate": { "role": "neutral", "displayName": "Night Slate", "canonical": "oklch(33% 0.01 210)", "tonalRamp": ["oklch(15% 0.01 210)", "oklch(27% 0.01 210)", "oklch(39% 0.01 210)", "oklch(51% 0.01 210)", "oklch(63% 0.01 210)", "oklch(75% 0.01 210)", "oklch(87% 0.01 210)", "oklch(95% 0.01 210)"] },
+      "night-surface": { "role": "neutral", "displayName": "Night Surface", "canonical": "oklch(22% 0 0)", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"] },
+      "night-deep": { "role": "neutral", "displayName": "Night Deep", "canonical": "oklch(16% 0 0)", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"] },
+      "night-text": { "role": "neutral", "displayName": "Night Text", "canonical": "oklch(93% 0 0)", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"] },
+      "success-bg": { "role": "feedback", "displayName": "Success Wash", "canonical": "oklch(93% 0.04 150)", "tonalRamp": ["oklch(15% 0.04 150)", "oklch(27% 0.04 150)", "oklch(39% 0.04 150)", "oklch(51% 0.04 150)", "oklch(63% 0.04 150)", "oklch(75% 0.04 150)", "oklch(87% 0.04 150)", "oklch(95% 0.04 150)"] },
+      "success-text": { "role": "feedback", "displayName": "Success Ink", "canonical": "oklch(35% 0.08 150)", "tonalRamp": ["oklch(15% 0.08 150)", "oklch(27% 0.08 150)", "oklch(39% 0.08 150)", "oklch(51% 0.08 150)", "oklch(63% 0.08 150)", "oklch(75% 0.08 150)", "oklch(87% 0.08 150)", "oklch(95% 0.08 150)"] },
+      "error-bg": { "role": "feedback", "displayName": "Error Wash", "canonical": "oklch(91% 0.04 15)", "tonalRamp": ["oklch(15% 0.04 15)", "oklch(27% 0.04 15)", "oklch(39% 0.04 15)", "oklch(51% 0.04 15)", "oklch(63% 0.04 15)", "oklch(75% 0.04 15)", "oklch(87% 0.04 15)", "oklch(95% 0.04 15)"] },
+      "error-text": { "role": "feedback", "displayName": "Error Ink", "canonical": "oklch(38% 0.12 15)", "tonalRamp": ["oklch(15% 0.12 15)", "oklch(27% 0.12 15)", "oklch(39% 0.12 15)", "oklch(51% 0.12 15)", "oklch(63% 0.12 15)", "oklch(75% 0.12 15)", "oklch(87% 0.12 15)", "oklch(95% 0.12 15)"] },
+      "danger": { "role": "feedback", "displayName": "Danger Red", "canonical": "oklch(58% 0.2 25)", "tonalRamp": ["oklch(15% 0.2 25)", "oklch(27% 0.2 25)", "oklch(39% 0.2 25)", "oklch(51% 0.2 25)", "oklch(63% 0.2 25)", "oklch(75% 0.2 25)", "oklch(87% 0.2 25)", "oklch(95% 0.2 25)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero 'Huzur Mostar' only. Alex Brush, rose-deep." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2 and blog titles. Alex Brush, rose-deep." },
+      "title": { "displayName": "Title", "purpose": "h3, category names, bouquet names, #huzurljudi signature, footer headings. Alex Brush, sage-deep." },
+      "subtitle": { "displayName": "Subtitle", "purpose": "FAQ questions and blog card titles. Poppins 600." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs, testimonials, blog body (800px measure). Poppins 400. Loaded from Google Fonts with Alex Brush." },
+      "label": { "displayName": "Label", "purpose": "Nav links, buttons, form labels, footer meta. Poppins 500, never uppercase." }
+    },
+    "shadows": [
+      { "name": "paper-rest", "value": "0 5px 15px rgba(0,0,0,0.05)", "purpose": "Product cards and FAQ items at rest." },
+      { "name": "paper-lift", "value": "0 5px 15px rgba(0,0,0,0.1)", "purpose": "About image, blog cards, testimonial faces, FAQ hover." },
+      { "name": "paper-hover", "value": "0 10px 25px rgba(0,0,0,0.15)", "purpose": "Blog card hover; active carousel card uses 0 15px 35px rgba(0,0,0,0.2)." },
+      { "name": "chrome", "value": "0 2px 10px rgba(0,0,0,0.1)", "purpose": "Header, carousel controls, dropdown panel." },
+      { "name": "modal", "value": "0 20px 60px rgba(0,0,0,0.3)", "purpose": "Announcement modal only." },
+      { "name": "glow-pink-rest", "value": "0 4px 8px rgba(245,192,192,0.4)", "purpose": "Buttons, social icons, scroll-to-top at rest." },
+      { "name": "glow-mint-hover", "value": "0 0 20px rgba(200,228,178,0.8)", "purpose": "All pink interactives on hover; pulses 10→20px over 1.5s." },
+      { "name": "glow-rose-press", "value": "0 0 25px rgba(223,123,153,0.9)", "purpose": "Pressed state, 0.5s flash." },
+      { "name": "glow-focus", "value": "0 0 8px rgba(245,192,192,0.4)", "purpose": "Input focus." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "0.3s ease", "purpose": "Default for hover lifts, color shifts, nav halos." },
+      { "name": "ease-carousel", "value": "0.5s ease", "purpose": "Carousel slide, image zoom, product card shadow." },
+      { "name": "ease-reveal", "value": "0.8s ease", "purpose": "Scroll-in fade-and-rise (.animate-item), testimonial flip." },
+      { "name": "ease-overshoot", "value": "0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)", "purpose": "Theme toggle sun/moon morph only." },
+      { "name": "loop-bounce", "value": "bounce 1.5s ease-in-out infinite (translateY -15px)", "purpose": "Hero CTA only." },
+      { "name": "loop-glow", "value": "button-glow / nav-glow 1.5s infinite", "purpose": "Hover glow pulse and active nav underline." },
+      { "name": "loop-heartbeat", "value": "heartbeat 1.5s infinite (scale 1→1.15)", "purpose": "Footer and mobile-menu heart icon." },
+      { "name": "loop-chevron", "value": "move-chevron 3s ease-out infinite, delays 0/0.5/1s", "purpose": "Hero scroll indicator." },
+      { "name": "reveal-offset", "value": "translateY(30px) → 0, opacity 0 → 1", "purpose": ".animate-item entrance." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "480px" },
+      { "name": "tablet", "value": "768px" },
+      { "name": "container", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Soft pill in Tissue Pink; mint with glow on hover; rose with white text on press.",
+      "html": "<button class=\"ds-btn-primary\">Istražite našu ponudu</button>",
+      "css": ".ds-btn-primary { display: inline-block; background-color: var(--pastel-pink, #f5c0c0); color: var(--text-dark, #4a5759); padding: 0.8rem 1.5rem; border-radius: 20px; border: none; font-family: Poppins, sans-serif; font-weight: 500; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 8px rgba(245,192,192,0.4); transition: all 0.3s ease; } .ds-btn-primary:hover { background-color: var(--pastel-green, #c8e4b2); transform: translateY(-3px); box-shadow: 0 0 20px rgba(200,228,178,0.8); } .ds-btn-primary:focus-visible { outline: 2px solid var(--dark-pink, #df7b99); outline-offset: 3px; } .ds-btn-primary:active { background-color: var(--dark-pink, #df7b99); color: #fff; transform: translateY(1px); box-shadow: 0 0 25px rgba(223,123,153,0.9); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action (blog 'back'): transparent with a 1px rose border, 8px radius.",
+      "html": "<button class=\"ds-btn-outline\">← Nazad na blog</button>",
+      "css": ".ds-btn-outline { display: inline-block; background: transparent; color: var(--dark-pink, #df7b99); border: 1px solid var(--dark-pink, #df7b99); padding: 0.75rem 1.5rem; border-radius: 8px; font-family: Poppins, sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; } .ds-btn-outline:hover { background: rgba(245,192,192,0.2); transform: translateY(-2px); } .ds-btn-outline:focus-visible { outline: 2px solid var(--dark-pink, #df7b99); outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "White field with a Sky Wash border; focus turns the border Tissue Pink with a soft glow.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-label\" for=\"ds-name\">Ime i prezime <span class=\"ds-req\">*</span></label><input class=\"ds-input\" id=\"ds-name\" type=\"text\" placeholder=\"Unesite vaše ime i prezime\"></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 0.5rem; max-width: 360px; font-family: Poppins, sans-serif; } .ds-label { font-weight: 500; color: #333; } .ds-req { color: #dc3545; font-weight: bold; } .ds-input { width: 100%; padding: 0.8rem; border: 1px solid var(--pastel-blue, #b5e3eb); border-radius: 4px; font-size: 1rem; font-family: Poppins, sans-serif; background: #fff; color: #333; transition: all 0.3s ease; } .ds-input::placeholder { color: #6c757d; font-style: italic; } .ds-input:focus { border-color: var(--pastel-pink, #f5c0c0); box-shadow: 0 0 8px rgba(245,192,192,0.4); outline: none; }"
+    },
+    {
+      "name": "Navigation Links",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Poppins links with a pink pill halo on hover and a pulsing rose underline when active.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Početna</a><a class=\"ds-nav-link\" href=\"#\">O nama</a><a class=\"ds-nav-link\" href=\"#\">Naša ponuda</a><a class=\"ds-nav-link\" href=\"#\">Kontakt</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 2rem; font-family: Poppins, sans-serif; } .ds-nav-link { position: relative; color: #333; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 20px; transition: all 0.3s ease; } .ds-nav-link::before { content: ''; position: absolute; inset: 0; background: rgba(245,192,192,0.2); border-radius: 20px; transform: scale(0); transition: transform 0.3s ease; z-index: -1; } .ds-nav-link:hover { color: var(--dark-pink, #df7b99); transform: translateY(-3px); } .ds-nav-link:hover::before { transform: scale(1); } .ds-nav-link:focus-visible { outline: 2px solid var(--dark-pink, #df7b99); outline-offset: 2px; } .ds-nav-link--active { color: var(--dark-pink, #df7b99); font-weight: 600; } .ds-nav-link--active::after { content: ''; position: absolute; bottom: 0; left: 12px; right: 12px; height: 2px; background: var(--dark-pink, #df7b99); animation: ds-nav-glow 1.5s infinite; } @keyframes ds-nav-glow { 0%,100% { box-shadow: 0 0 5px rgba(245,192,192,0.4); } 50% { box-shadow: 0 0 15px rgba(245,192,192,0.6); } }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "card-elevated",
+      "description": "White 12px card: photo on top, bouquet name in Alex Brush sage, one poetic line beneath.",
+      "html": "<article class=\"ds-product\"><div class=\"ds-product-img\" role=\"img\" aria-label=\"Buket Amna\"></div><div class=\"ds-product-info\"><h3 class=\"ds-product-title\">Buket Amna</h3><p class=\"ds-product-line\">…kao radost, kao snaga…</p></div></article>",
+      "css": ".ds-product { width: 260px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: box-shadow 0.5s ease, transform 0.3s ease; font-family: Poppins, sans-serif; } .ds-product:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.2); transform: translateY(-5px); } .ds-product-img { height: 180px; background: linear-gradient(135deg, #f5c0c0 0%, #d9c6e0 50%, #c8e4b2 100%); } .ds-product-info { padding: 15px; text-align: center; } .ds-product-title { margin: 0 0 0.25rem; font-family: 'Alex Brush', cursive; font-weight: 400; font-size: 1.6rem; color: var(--pastel-green-dark, #91b478); letter-spacing: 0.5px; } .ds-product:hover .ds-product-title { color: var(--dark-pink, #df7b99); } .ds-product-line { margin: 0; font-size: 0.9rem; color: #666; }"
+    },
+    {
+      "name": "FAQ Item",
+      "kind": "custom",
+      "refersTo": "faq-item",
+      "description": "8px card with a 5px rose left border; question in Poppins 600 sage, plus icon rotates on open.",
+      "html": "<details class=\"ds-faq\" open><summary class=\"ds-faq-q\"><span>Šta znači riječ Huzur?</span><span class=\"ds-faq-icon\" aria-hidden=\"true\">+</span></summary><div class=\"ds-faq-a\">Jednom riječju znači mir. Huzur predstavlja mir u svim dimenzijama života.</div></details>",
+      "css": ".ds-faq { max-width: 520px; background: #fff; border: 1px solid #e9ecef; border-left: 5px solid var(--dark-pink, #df7b99); border-radius: 8px; font-family: Poppins, sans-serif; transition: all 0.3s ease; } .ds-faq:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); } .ds-faq[open] { border-left-color: var(--pastel-pink, #f5c0c0); } .ds-faq-q { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 20px; font-weight: 600; font-size: 1.1rem; color: var(--dark-green, #7cad7f); cursor: pointer; list-style: none; } .ds-faq-q::-webkit-details-marker { display: none; } .ds-faq-icon { font-size: 1.5rem; font-weight: 400; color: #6c757d; transition: transform 0.3s ease; } .ds-faq[open] .ds-faq-icon { transform: rotate(45deg); color: #495057; } .ds-faq-a { padding: 0 20px 20px; color: #495057; font-size: 1rem; line-height: 1.6; }"
+    },
+    {
+      "name": "Social Icon Button",
+      "kind": "button",
+      "refersTo": "social-icon",
+      "description": "50px pink circle; mint with glow on hover, rose on press. Instagram glyph inline.",
+      "html": "<a class=\"ds-social\" href=\"#\" aria-label=\"Instagram\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\" ry=\"5\"></rect><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"></path><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"></line></svg></a>",
+      "css": ".ds-social { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: var(--pastel-pink, #f5c0c0); color: var(--text-dark, #4a5759); text-decoration: none; box-shadow: 0 4px 8px rgba(245,192,192,0.4); transition: all 0.3s ease; } .ds-social:hover { background: var(--pastel-green, #c8e4b2); transform: translateY(-5px); box-shadow: 0 0 20px rgba(200,228,178,0.8); } .ds-social:focus-visible { outline: 2px solid var(--dark-pink, #df7b99); outline-offset: 3px; } .ds-social:active { background: var(--dark-pink, #df7b99); color: #fff; transform: translateY(-2px); box-shadow: 0 0 25px rgba(223,123,153,0.9); }"
+    },
+    {
+      "name": "Flip Testimonial",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Signature component: linen card with a real customer quote and #huzurljudi signature; hover flips to the DM screenshot.",
+      "html": "<div class=\"ds-testi\"><div class=\"ds-testi-inner\"><div class=\"ds-testi-front\"><p class=\"ds-testi-quote\">Wow, koje ste vi osvježenje u ovom gradu.</p><p class=\"ds-testi-name\">#huzurljudi</p></div><div class=\"ds-testi-back\"><span>DM screenshot</span></div></div></div>",
+      "css": ".ds-testi { width: 280px; height: 300px; perspective: 1000px; font-family: Poppins, sans-serif; } .ds-testi-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; } .ds-testi:hover .ds-testi-inner { transform: rotateY(180deg); } .ds-testi-front, .ds-testi-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); background: #f8f9fa; display: flex; flex-direction: column; } .ds-testi-front { padding: 30px 20px; border-bottom: 5px solid var(--dark-pink, #df7b99); text-align: center; } .ds-testi-quote { flex: 1; display: flex; align-items: center; justify-content: center; margin: 0; font-size: 0.95rem; line-height: 1.6; color: #333; } .ds-testi-name { margin: 0; height: 60px; display: flex; align-items: center; justify-content: center; font-family: 'Alex Brush', cursive; font-size: 1.8rem; color: var(--dark-green, #7cad7f); letter-spacing: 0.5px; } .ds-testi-back { transform: rotateY(180deg); align-items: center; justify-content: center; background: linear-gradient(160deg, #d9c6e0, #b5e3eb); color: #4a5759; font-size: 0.85rem; overflow: hidden; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Handwritten Bouquet Card",
+    "overview": "Every bouquet at Huzur leaves the shop with a small card carrying a name and a line written by hand. The website is that card, enlarged: Alex Brush script does the talking for anything that carries feeling (the name of the shop, section titles, bouquet names, the slogan), while a clean geometric sans (Poppins) does the practical work of hours, prices, and forms. Colors are tissue-paper wraps — blush pink, mint, sky, lavender, peach — laid over white and linen paper. Nothing is saturated; the one deeper rose (rose-deep) is the ink of the pen.\n\nThe system is soft and pastel, warm and personal, and deliberately unhurried — huzur means peace, and the page should feel like the shop does on a quiet weekday morning. It is also playful: buttons glow when touched, the hero call-to-action bounces, testimonial cards flip to reveal a real customer message, product carousels drift forward on their own with a small ring-timer. The rule is that playfulness lives in response to the visitor (hover, tap, arrival in the viewport) and in a few signature moments (hero, testimonials), never as ambient noise across the whole page.\n\nDensity is generous. Sections are full-viewport (min-height: 100vh) with 6rem of top breathing room, content sits in a 1200px container, and copy is set large (1.1rem body, 3.2rem headings). Dark mode is a first-class twin: every pastel has a muted, desaturated \"-dark\" partner and surfaces move to slate/charcoal rather than pure black.",
+    "keyCharacteristics": [
+      "Script for feeling, sans for facts — Alex Brush never sets a form label, Poppins never sets a section title.",
+      "Tissue-paper pastels on paper white; one rose ink accent used sparingly.",
+      "Pill-shaped buttons and links (20px radius) that shift pink → mint on hover with a soft glow, rose on press.",
+      "Gently rounded cards (8–12px) with soft ambient shadows on alternating white / linen sections.",
+      "Motion answers the visitor: fade-and-rise on scroll, lift on hover, flip on tap; a few signature loops (hero bounce, chevrons, heart) and nothing else runs unprompted.",
+      "Complete dark-mode twin with muted pastels on slate."
+    ],
+    "rules": [
+      { "name": "The Pen-Ink Rule", "body": "rose-deep and sage-deep are ink, not paint. They color text, thin lines (2–5px borders), dots, and the pressed state — never large fills. Large fills are always a pastel wash.", "section": "colors" },
+      { "name": "The Ink-Size Rule", "body": "rose-deep and sage-deep are for script ≥2rem only (h1, h2, h3). Script under 2rem takes the -dark twin; Poppins text takes rose-ink / sage-ink. Every text color clears 3:1 (large) or 4.5:1 (small) on paper and linen.", "section": "colors" },
+      { "name": "The Pink-to-Mint Rule", "body": "Interactive elements rest in Tissue Pink and reward hover with Mint Leaf. Press is Rose Deep with white text. Do not invent a fourth interactive color.", "section": "colors" },
+      { "name": "The Alternating-Paper Rule", "body": "Landing sections alternate paper-white → linen-off-white → paper-white …; cards take the opposite tone of their section so they read as a second sheet of paper.", "section": "colors" },
+      { "name": "The Script-Is-Not-For-Reading Rule", "body": "Alex Brush sets names and titles of at most ~6 words. Never set body copy, FAQ answers, form labels, prices, hours, or error messages in script.", "section": "typography" },
+      { "name": "The One-Sans Rule", "body": "Poppins is the only sans; no second sans family is imported anywhere.", "section": "typography" },
+      { "name": "The Glow-Means-Touchable Rule", "body": "Colored glow appears only on elements you can click or tap. Cards, sections, and images use neutral shadows.", "section": "elevation" },
+      { "name": "The Sheet-of-Paper Rule", "body": "Non-interactive surfaces never exceed the Paper hover shadow; the only thing allowed to float higher is a modal.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set every emotional heading — hero, h2, h3, bouquet names, #huzurljudi, slogan — in Alex Brush 400 with 0.5px tracking, colored rose-deep (h1/h2) or sage-deep (h3/names).",
+      "Do keep all practical text (hours, prices, labels, errors, FAQ answers, body) in Poppins ≥0.9rem on white or linen with charcoal-text / muted-text, or rose-ink / sage-ink when it needs brand color.",
+      "Do make every phone number a tel: link, every email a mailto:, and every address a Maps link — the phone and the DM are the checkout.",
+      "Do use the pink → mint → rose sequence with matching glows for every interactive element, including new ones (chips, tabs, pagination).",
+      "Do alternate paper-white and linen-off-white for consecutive sections and give cards the opposite tone plus a Paper rest/lift shadow.",
+      "Do round buttons to a 20px pill, cards to 8–12px, inputs to 4px, icon buttons to circles.",
+      "Do ship a dark-mode twin for every new surface using the -dark pastels on night-surface / night-deep.",
+      "Do reveal content with the 0.8s fade-and-rise on viewport entry, and lift 3–5px on hover.",
+      "Do keep the 1200px container and the 800px reading measure; keep 768px as the structural breakpoint."
+    ],
+    "donts": [
+      "Don't use Alex Brush for body copy, labels, prices, hours, or anything longer than a short title.",
+      "Don't introduce #d14d72 / #ff6b98 (removed legacy pinks) in new code; use rose-deep and tissue-pink-dark in dark mode.",
+      "Don't import any additional font family; Poppins + Alex Brush only.",
+      "Don't fill large areas with rose-deep or sage-deep; inks color text and thin lines only.",
+      "Don't let anything close, flip back, or advance on a timer after the visitor has touched it; motion answers the visitor.",
+      "Don't add new infinite animations; the signature loops (hero bounce, chevrons, heartbeat, glow pulses, carousel timer) are the full budget.",
+      "Don't use hard, dark, or offset drop shadows; shadows are diffuse black ≤0.2 alpha on surfaces, or the element's own pastel as a glow on interactives.",
+      "Don't use pure black backgrounds in dark mode; the darkest surface is night-deep #121212 with night-slate as the body.",
+      "Don't replace real testimonial screenshots with stock imagery, avatars, or star ratings.",
+      "Don't use uppercase tracking-out labels, sharp corners, outlined ghost buttons as the primary action, or urgency devices (badges, countdowns) — none exist in the system and they contradict huzur."
+    ]
+  }
+}

@@ -48,7 +48,7 @@ describe('HomeComponent', () => {
       scrollButton.triggerEventHandler('click', null);
       
       // Verify scrollToSection was called with 'products'
-      expect(component.scrollToSection).toHaveBeenCalledWith('products');
+      expect(component.scrollToSection).toHaveBeenCalledWith('products', jasmine.falsy());
     } else {
       // If button not found in template, test the method directly
       component.scrollToSection('products');

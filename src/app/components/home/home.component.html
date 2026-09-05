@@ -1,22 +1,42 @@
-<section id="home" class="animate-section">
-    <div class="slideshow-container">
-        <div class="slide" *ngFor="let image of optimizedBackgroundImages; let i = index" 
-             [ngClass]="{'active': currentImageIndex === i}"
-             [style.backgroundImage]="'url(' + image + ')'">
+<section id="home" class="animate-section hero">
+    <div class="name-marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <ng-container *ngFor="let name of marqueeNames"><span class="marquee-name">{{ name }}</span></ng-container>
+            <ng-container *ngFor="let name of marqueeNames"><span class="marquee-name">{{ name }}</span></ng-container>
         </div>
     </div>
-    <div class="container">
-        <div class="hero-content animate-item">
-            <div class="animated-text-container">
-                <h1>Huzur Mostar</h1>
+
+    <div class="hero-bloom hero-bloom-pink" aria-hidden="true"></div>
+    <div class="hero-bloom hero-bloom-green" aria-hidden="true"></div>
+
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <h1 class="rise" style="--d: 0.1s">Huzur<br>Mostar</h1>
+            <div class="ink-rule" aria-hidden="true"></div>
+            <p class="hero-lead rise" style="--d: 0.3s">Priča ispunjena radošću, bojama, kreativnošću, inspiracijom, huzur ljudima i zahvalnošću.</p>
+            <div class="hero-actions rise" style="--d: 0.45s">
+                <a href="#products" (click)="scrollToSection('products', $event)" class="btn">Istražite našu ponudu</a>
+                <a href="#contact" (click)="scrollToSection('contact', $event)" class="hero-link">Kontaktirajte nas</a>
             </div>
-            <p>Priča ispunjena radošću, bojama, kreativnošću, inspiracijom, huzur ljudima i zahvalnošću.</p>
-            <a (click)="scrollToSection('products')" class="btn">Istražite našu ponudu</a>
+            <dl class="hero-facts rise" style="--d: 0.6s">
+                <div><dt>Ponedjeljak–Petak</dt><dd>9:00–16:30</dd></div>
+                <div><dt>Subota</dt><dd>9:00–15:00</dd></div>
+                <div><dt>Adresa</dt><dd><a href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank" rel="noopener">Maršala Tita 134, Mostar</a></dd></div>
+            </dl>
+        </div>
+
+        <div class="hero-collage">
+            <figure class="photo" *ngFor="let frame of frames(); let f = index" [class.photo-1]="f === 0" [class.photo-2]="f === 1" [class.photo-3]="f === 2">
+                <img *ngFor="let src of frame.images; let s = index"
+                     [src]="src"
+                     [alt]="s === frame.index ? frame.alt : ''"
+                     [class.active]="s === frame.index"
+                     (error)="onFrameImageError(frame, s)"
+                     [attr.loading]="s === 0 ? 'eager' : 'lazy'"
+                     decoding="async">
+            </figure>
+            <p class="hero-slogan rise" style="--d: 0.9s" aria-hidden="true">Huzur nađite,<br>huzur budite</p>
         </div>
     </div>
-    <div class="scroll-indicator-bottom" *ngIf="showScrollIndicator">
-        <div class="chevron"></div>
-        <div class="chevron"></div>
-        <div class="chevron"></div>
-    </div>
+
 </section>

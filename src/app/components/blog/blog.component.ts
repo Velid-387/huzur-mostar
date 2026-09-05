@@ -37,6 +37,9 @@ export class BlogComponent implements OnInit, OnDestroy {
   // Posts to display on current page
   blogPosts: BlogPostMetadata[] = [];
 
+  /** Slugs whose cover image failed to load; the card shows a pastel placeholder instead of a broken image. */
+  private brokenImages = new Set<string>();
+
   constructor() {
     afterNextRender(() => {
       // Initialize animations after hydration
@@ -160,6 +163,14 @@ export class BlogComponent implements OnInit, OnDestroy {
     });
   }
   
+  onImageError(post: BlogPostMetadata): void {
+    this.brokenImages.add(post.slug);
+  }
+
+  isImageBroken(post: BlogPostMetadata): boolean {
+    return this.brokenImages.has(post.slug);
+  }
+
   // Helper function to generate an array for pagination
   getPageNumbers(): number[] {
     // Create an array of page numbers to display

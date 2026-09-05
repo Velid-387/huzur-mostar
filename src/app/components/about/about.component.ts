@@ -11,18 +11,9 @@ import { ScrollService } from '../../services/scroll.service';
 })
 export class AboutComponent {
   private scrollService = inject(ScrollService);
-  
-  scrollToSection(sectionId: string): void {
-    this.scrollService.scrollToElementById(sectionId);
-  }
 
-  toggleImageOverlay(event: Event): void {
-    const target = event.currentTarget as HTMLElement;
-    if (window.innerWidth <= 768) { // Only for mobile devices
-      target.classList.add('active');
-      setTimeout(() => {
-        target.classList.remove('active');
-      }, 3000); // Remove effect after 3 seconds
-    }
+  scrollToSection(sectionId: string, event?: Event): void {
+    event?.preventDefault();
+    this.scrollService.scrollToElementById(sectionId);
   }
 }

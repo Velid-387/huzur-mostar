@@ -1,14 +1,15 @@
 import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser, ViewportScroller } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AnimationService } from '../../services/animation.service';
 
 @Component({
   selector: 'app-terms',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './terms.component.html',
-  styleUrls: ['./terms.component.css']
+  styleUrls: ['../shared/legal-page.css']
 })
 export class TermsComponent implements OnInit {
   private titleService = inject(Title);
@@ -29,4 +30,5 @@ export class TermsComponent implements OnInit {
       }, 100);
     }
   }
-} 
+
+}

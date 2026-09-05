@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BotanicalComponent } from '../shared/botanical/botanical.component';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +9,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, BotanicalComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })

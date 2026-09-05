@@ -1,10 +1,17 @@
 <section id="about" class="animate-section">
     <div class="container">
-        <h2 class="animate-item">O nama</h2>
+        <div class="section-head animate-item">
+            <h2>O nama</h2>
+            <p class="section-lead">Huzur Mostar je cvjećara smještena u srcu Mostara. Nije to samo cvjećara to je jedna čitava cvjetna
+                priča čiji se uvod tek piše i čita.</p>
+        </div>
+
         <div class="about-content">
-            <div class="about-text animate-item">
-                <p>Huzur Mostar je cvjećara smještena u srcu Mostara. Nije to samo cvjećara to je jedna čitava cvjetna
-                    priča čiji se uvod tek piše i čita. </p>
+            <figure class="about-image animate-item">
+                <img src="assets/img/huzur-radnja.jpg" alt="Cvjećara Huzur Mostar, Maršala Tita 134" class="image" width="1440" height="1800" loading="lazy">
+                <figcaption>Maršala Tita 134, Mostar</figcaption>
+            </figure>
+            <div class="about-text animate-item" style="--d: 0.15s">
                 <p>Pomoću prirodne cvjetne blagodati prenosimo priču najrazličitijih cvjetnih aranžmana spremljenih od
                     svježeg rezanog cvijeća, sadnica, lončanica, suhog cvijeća ili pak umjetnog. </p>
                 <p>Misao vodilja u huzur priči jeste da je sreća zapravo znati uživati u procesu. Proces kreće
@@ -18,11 +25,7 @@
                     Huzur kao ravnoteža duše, osjećanja, ravnoteža želja i stvarnosti, mašte i realnosti.
                     Huzur kao iskonska sreća, jer čovjek može biti miran iako nije sretan, ali ne može biti sretan ako
                     nije miran.</p>
-                <a (click)="scrollToSection('contact')" class="btn">Kontaktirajte nas</a>
-            </div>
-            <div class="about-image animate-item" (click)="toggleImageOverlay($event)">
-                <img src="assets/img/huzur-radnja.jpg" alt="Our flower shop" class="image">
-                <div class="image-overlay">Maršala Tita 134</div>
+                <a href="#contact" (click)="scrollToSection('contact', $event)" class="btn">Kontaktirajte nas</a>
             </div>
         </div>
     </div>

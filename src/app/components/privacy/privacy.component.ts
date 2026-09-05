@@ -1,14 +1,15 @@
 import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser, ViewportScroller } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AnimationService } from '../../services/animation.service';
 
 @Component({
   selector: 'app-privacy',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './privacy.component.html',
-  styleUrls: ['./privacy.component.css']
+  styleUrls: ['../shared/legal-page.css']
 })
 export class PrivacyComponent implements OnInit {
   private titleService = inject(Title);
@@ -29,4 +30,5 @@ export class PrivacyComponent implements OnInit {
       }, 100);
     }
   }
-} 
+
+}

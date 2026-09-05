@@ -1,68 +1,73 @@
-<footer>
-    <div class="flower-decoration left"></div>
-    <div class="flower-decoration right"></div>
-    
+<footer class="site-footer">
     <div class="container">
-        <div class="footer-content">
+        <div class="footer-top">
             <div class="footer-brand">
-                <div class="logo-container">
-                    <img src="./assets/img/huzur-logo.jpg" alt="Huzur Mostar Logo">
+                <a routerLink="/" class="footer-wordmark" aria-label="Huzur Mostar, početna">
+                    <img src="./assets/img/huzur-logo.jpg" alt="" width="44" height="44">
                     <span>Huzur<em>Mostar</em></span>
-                </div>
-                <p id="slogan">
-                    <span class="highlight">Huzur</span> nađite, 
-                    <span class="highlight">huzur</span> budite
-                </p>
+                </a>
+                <p id="slogan">Huzur nađite,<br>huzur budite</p>
             </div>
-            
-            <div class="footer-links">
-                <div class="contact-section">
+
+            <div class="footer-columns">
+                <div class="footer-column contact-section">
                     <h3>Kontakt</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Maršala Tita 134, Mostar</p>
-                    <p><i class="fas fa-phone"></i> +387 60 33 52 011</p>
-                    <p><i class="fas fa-envelope"></i> info&#64;huzurmostar.ba</p>
+                    <p><a href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank" rel="noopener">Maršala Tita 134, Mostar</a></p>
+                    <p><a href="tel:+387603352011">+387 60 33 52 011</a></p>
+                    <p><a href="mailto:info@huzurmostar.ba">info&#64;huzurmostar.ba</a></p>
                 </div>
-                
-                <div class="hours-section">
+
+                <div class="footer-column hours-section">
                     <h3>Radno vrijeme</h3>
-                    <p><span>Ponedjeljak - Petak:</span> 9:00 - 16:30</p>
-                    <p><span>Subota:</span> 9:00 - 15:00</p>
-                    <p><span>Nedjelja:</span> Zatvoreno</p>
+                    <p><span>Ponedjeljak - Petak</span>9:00 - 16:30</p>
+                    <p><span>Subota</span>9:00 - 15:00</p>
+                    <p><span>Nedjelja</span>Zatvoreno</p>
+                </div>
+
+                <div class="footer-column social-section">
+                    <h3>Pratite nas</h3>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/huzur.mostar/" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+                        </a>
+                        <a href="https://www.facebook.com/huzur.mostar" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i> Facebook
+                        </a>
+                        <a href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank" rel="noopener">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Google Maps
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="social-container">
-            <h3>Pratite nas</h3>
-            <div class="social-links">
-                <a href="https://www.instagram.com/huzur.mostar/" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.facebook.com/huzur.mostar" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://maps.app.goo.gl/hL1ufk8A72UMajRF7" target="_blank" aria-label="Google Maps">
-                    <i class="fa fa-map-marker-alt"></i>
-                </a>
-            </div>
-        </div>
-        
+
         <div class="footer-bottom">
             <p id="copyright">&copy; {{ currentYear }} Huzur Mostar. Sva prava pridržana.</p>
-            <p class="made-with-love">Cvjećara u <i class="fas fa-heart"></i> Mostara</p>
+            <p class="made-with-love">Cvjećara u <i class="fas fa-heart" aria-hidden="true"></i><span class="visually-hidden">srcu</span> Mostara</p>
             <div class="footer-legal-links">
                 <a routerLink="/terms" (click)="navigateWithScrollToTop('/terms')">Uslovi korištenja</a>
                 <a routerLink="/privacy" (click)="navigateWithScrollToTop('/privacy')">Politika privatnosti</a>
             </div>
         </div>
     </div>
-    
+
     <button
       id="scrollToTop"
+      type="button"
       [class.visible]="isScrollButtonVisible"
-      [style.--scroll-progress]="scrollProgress"
-      title="Scroll to top"
+      title="Na vrh stranice"
       (click)="scrollToTop()"
-      aria-label="Scroll to top"
-    >↑</button>
+      aria-label="Na vrh stranice"
+    >
+      <!-- A flower that blooms as you read: one petal per eighth of the page -->
+      <svg class="bloom" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <g class="petal" *ngFor="let petal of petals; let i = index"
+           [class.petal-alt]="i % 2 === 1"
+           [style.transform]="'rotate(' + petal.angle + 'deg) scale(' + petal.scale + ')'">
+          <path d="M24 24 C 17 19, 17 8, 24 3 C 31 8, 31 19, 24 24 Z" />
+        </g>
+        <circle class="pistil" cx="24" cy="24" r="9" />
+      </svg>
+      <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
 </footer>

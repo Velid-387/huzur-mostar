@@ -1,7 +1,17 @@
-import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy } from '@angular/core';
+import { Component, inject, OnInit, HostListener, PLATFORM_ID, OnDestroy, signal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../services/scroll.service';
 import { ImageService } from '../../services/image.service';
+import { FRESH_FLOWERS, DRIED_FLOWERS, POTTED_PLANTS } from '../../data/products.data';
+
+interface PhotoFrame {
+  /** Optimized URLs this frame cycles through. */
+  images: string[];
+  /** Original (unoptimized) paths, used as a fallback when the optimized file is missing. */
+  originals: string[];
+  index: number;
+  alt: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -14,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private scrollService = inject(ScrollService);
   private platformId = inject(PLATFORM_ID);
   private imageService = inject(ImageService);
-  
+
   showScrollIndicator: boolean = true;
   backgroundImages = [
     'assets/img/home/huzur-home-1.jpg',
@@ -26,56 +36,92 @@ export class HomeComponent implements OnInit, OnDestroy {
     'assets/img/home/huzur-home-8.jpg'
   ];
   optimizedBackgroundImages: string[] = [];
-  currentImageIndex = 0;
+
+  /** Three photo frames; each one cycles through its own share of the shop photos, staggered. A signal, so timer-driven swaps schedule change detection cleanly. */
+  frames = signal<PhotoFrame[]>([]);
+  private readonly frameCount = 3;
+  private readonly frameAlts = [
+    'Unutrašnjost cvjećare Huzur Mostar',
+    'Buket iz ponude cvjećare',
+    'Police sa cvijećem u radnji'
+  ];
+  /** Names that scroll under the hero, drawn from the real offer. */
+  marqueeNames: string[] = [
+    ...FRESH_FLOWERS.map((p) => p.title),
+    ...DRIED_FLOWERS.map((p) => p.title),
+    ...POTTED_PLANTS.map((p) => p.title)
+  ];
   private slideInterval: any;
-  
+  private tick = 0;
+
   constructor() { }
-  
+
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Optimize background images
-      this.optimizedBackgroundImages = this.backgroundImages.map(img => 
-        this.imageService.getOptimizedImageUrl(img)
+      this.optimizedBackgroundImages = this.backgroundImages.map(img =>
+        this.imageService.getOptimizedImageUrl(img, 768)
       );
-      
-      this.startSlideshow();
-      // Initialize with scroll indicator visible
+      this.buildFrames();
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        this.startSlideshow();
+      }
       this.showScrollIndicator = true;
     }
   }
-  
+
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId)) {
       this.stopSlideshow();
     }
   }
-  
+
   @HostListener('window:scroll')
   onWindowScroll(): void {
     if (isPlatformBrowser(this.platformId)) {
       const scrollPosition = window.scrollY;
-      
-      // Hide scroll indicator after scrolling down a bit
       if (scrollPosition > 50 && this.showScrollIndicator) {
         this.showScrollIndicator = false;
       } else if (scrollPosition <= 10 && !this.showScrollIndicator) {
-        // Show it again if user scrolls back to top
         this.showScrollIndicator = true;
       }
     }
   }
-  
-  scrollToSection(sectionId: string): void {
+
+  scrollToSection(sectionId: string, event?: Event): void {
+    event?.preventDefault();
     if (isPlatformBrowser(this.platformId)) {
       this.scrollService.scrollToElementById(sectionId);
     }
   }
 
+  /** Swap a frame image for its original when the optimized file is missing. */
+  onFrameImageError(frame: PhotoFrame, slideIndex: number): void {
+    const original = frame.originals[slideIndex];
+    if (frame.images[slideIndex] === original) return;
+    this.frames.update((list) => list.map((f) =>
+      f === frame ? { ...f, images: f.images.map((src, i) => (i === slideIndex ? original : src)) } : f
+    ));
+  }
+
+  private buildFrames(): void {
+    this.frames.set(Array.from({ length: this.frameCount }, (_, f) => ({
+      images: this.optimizedBackgroundImages.filter((_, i) => i % this.frameCount === f),
+      originals: this.backgroundImages.filter((_, i) => i % this.frameCount === f),
+      index: 0,
+      alt: this.frameAlts[f]
+    })));
+  }
+
+  /** One frame advances every 2.5s, so each frame changes every 7.5s and never together with its neighbours. */
   private startSlideshow() {
     if (isPlatformBrowser(this.platformId)) {
       this.slideInterval = setInterval(() => {
-        this.currentImageIndex = (this.currentImageIndex + 1) % this.backgroundImages.length;
-      }, 5000);
+        const turn = this.tick % this.frameCount;
+        this.frames.update((list) => list.map((f, i) =>
+          i === turn && f.images.length > 1 ? { ...f, index: (f.index + 1) % f.images.length } : f
+        ));
+        this.tick++;
+      }, 2500);
     }
   }
 

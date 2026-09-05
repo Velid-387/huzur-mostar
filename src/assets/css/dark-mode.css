@@ -16,9 +16,8 @@ body.dark-mode {
 }
 
 body.dark-mode .animate-section {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #333);
-    border-top: 1px solid #555;
-    box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.1);
+    border-top: none;
+    box-shadow: none;
 }
 
 /* Exception for home section */
@@ -85,104 +84,11 @@ body.dark-mode .nav-links a.selected {
     color: var(--pastel-pink-dark) !important;
 }
 
-body.dark-mode .mobile-nav-menu {
-    background-color: var(--dark-background, #1a1a1a);
-    color: var(--text-light, #fff);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .mobile-nav-menu .contact-number {
-    background-color: var(--dark-background, #1a1a1a);
-    border-top-color: var(--dark-border-color, #2d2d2d);
-}
-
-body.dark-mode .mobile-nav-menu a {
-    color: var(--text-light, #fff);
-}
-
-body.dark-mode .mobile-nav-menu a:hover {
-    color: var(--pastel-pink-dark);
-    transform: translateY(-3px);
-}
-
-body.dark-mode .mobile-nav-menu a.active {
-    color: var(--primary-color-light, #ff6b98);
-    background-color: transparent;
-    box-shadow: none;
-    animation: none;
-    position: relative;
-}
-
-body.dark-mode .mobile-nav-menu a.active::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background-color: var(--primary-color-light, #ff6b98);
-    animation: dark-nav-glow 1.5s infinite;
-}
-
-body.dark-mode .mobile-nav-menu a:hover {
-    color: var(--pastel-pink-dark);
-    animation: none;
-}
-
 body.dark-mode .hamburger-menu span {
     background-color: #fff;
 }
 
-/* Home Section */
-body.dark-mode #home {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    transition: background 0.3s ease;
-    width: 100%;
-    position: relative;
-    min-height: 100vh;
-    margin-top: 0;
-    border-top: none;
-}
-
-body.dark-mode #home .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    padding: 2rem;
-}
-
-body.dark-mode .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-body.dark-mode .hero-content h1 {
-    color: var(--pastel-pink-dark);
-    text-align: center;
-}
-
-body.dark-mode .hero-content p {
-    color: #e0e0e0;
-    text-align: center;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
+/* Home Section: styled in home.component.css */
 
 /* About Section */
 body.dark-mode #about {
@@ -198,103 +104,19 @@ body.dark-mode #products {
     background-color: #121212;
 }
 
-body.dark-mode .product-card {
-    background-color: #1e1e1e;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-body.dark-mode .product-info h3 {
-    color: #e0e0e0;
-}
-
-body.dark-mode .product-info p {
-    color: #aaa;
-}
-
 /* FAQ Section */
 body.dark-mode #faq {
-    background-color: #1e1e1e;
-}
-
-body.dark-mode .faq-item {
-    background-color: #1e1e1e;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #2a3032;
 }
 
 /* Testimonials Section */
-body.dark-mode #testimonials {
-    background-color: #121212;
-}
+/* Testimonials: styled in testimonials.component.css */
 
-body.dark-mode .testimonial-card-front {
-    background-color: rgba(51, 58, 60, 0.6);
-    border-bottom: 5px solid var(--dark-pink-dark);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .testimonial-card-back {
-    background-color: rgba(51, 58, 60, 0.6);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .testimonial-card p:first-of-type {
+body.dark-mode .section-lead {
     color: var(--text-light);
-}
-
-body.dark-mode .testimonial-name {
-    color: var(--pastel-green-dark);
-}
-
-/* Contact Section */
-body.dark-mode #contact {
-    background-color: #1e1e1e;
-}
-
-body.dark-mode .form-group input,
-body.dark-mode .form-group textarea {
-    background-color: #2d2d2d;
-    color: #e0e0e0;
-    border-color: #444;
 }
 
 /* Footer */
-body.dark-mode footer {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #333);
-    border-top: 1px solid #555;
-    box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode {
-    color: var(--pastel-pink-dark);
-}
-
-body.dark-mode .social-links a {
-    background-color: var(--pastel-pink-dark);
-    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
-}
-
-body.dark-mode .social-links i {
-    color: var(--text-light);
-}
-
-body.dark-mode .social-links a:hover {
-    background-color: var(--pastel-green-dark);
-    box-shadow: 0 0 20px rgba(145, 180, 120, 0.8);
-    transform: translateY(-5px);
-    animation: dark-button-glow 1.5s infinite;
-}
-
-body.dark-mode .social-links a:hover i {
-    color: var(--text-light);
-}
-
-body.dark-mode .social-links a:active {
-    background-color: var(--dark-pink-dark);
-    box-shadow: 0 0 25px rgba(181, 108, 130, 0.9);
-    transform: translateY(-2px);
-    animation: dark-button-click-glow 0.5s;
-}
-
 body.dark-mode #copyright {
     color: #aaaaaa;
 }
@@ -312,19 +134,6 @@ body.dark-mode #copyright {
         min-height: calc(100vh - 60px);
     }
     
-    body.dark-mode .hero-content {
-        width: 100%;
-        text-align: center;
-    }
-    
-    body.dark-mode .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    body.dark-mode .hero-content p {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-    }
 }
 
 /* Button styles for dark mode */
@@ -403,27 +212,6 @@ body.dark-mode #home .btn:hover {
 }
 
 /* Scroll to top button dark mode */
-body.dark-mode #scrollToTop {
-    background-color: var(--pastel-pink-dark);
-    color: var(--text-light);
-    box-shadow: 0 4px 8px rgba(192, 154, 154, 0.3);
-}
-
-body.dark-mode #scrollToTop:hover {
-    background-color: var(--pastel-green-dark);
-    color: var(--text-light);
-    box-shadow: 0 0 20px rgba(145, 180, 120, 0.8);
-    animation: dark-button-glow 1.5s infinite;
-}
-
-body.dark-mode #scrollToTop:active {
-    background-color: var(--dark-pink-dark);
-    color: var(--text-light);
-    box-shadow: 0 0 25px rgba(181, 108, 130, 0.9);
-    transform: translateY(1px);
-    animation: dark-button-click-glow 0.5s;
-}
-
 /* Dark mode heading colors */
 body.dark-mode h2 {
     color: var(--pastel-pink-dark);
@@ -469,46 +257,6 @@ body.dark-mode .toggle-icon:hover .moon-mask {
     transform: scale(1);
 }
 
-/* FAQ item border in dark mode */
-body.dark-mode .faq-item {
-    border-left: 4px solid var(--pastel-pink-dark);
-    background-color: rgba(51, 58, 60, 0.6);
-}
-
-body.dark-mode .faq-item.animate-item {
-    border-left: 5px solid var(--dark-pink-dark);
-}
-
-body.dark-mode .faq-item.animate-item {
-    color: var(--text-light);
-}
-
-body.dark-mode .faq-answer {
-    color: var(--text-light);
-}
-
-body.dark-mode .faq-icon {
-    color: var(--pastel-pink-dark);
-}
-
-body.dark-mode .faq-item.active {
-    border-left-color: var(--dark-pink-dark);
-}
-
-/* Contact form input fields in dark mode */
-body.dark-mode .form-group input,
-body.dark-mode .form-group textarea {
-    background-color: rgba(51, 58, 60, 0.4);
-    color: var(--text-light);
-    border: 1px solid var(--pastel-blue-dark);
-}
-
-body.dark-mode .form-group input:focus,
-body.dark-mode .form-group textarea:focus {
-    border-color: var(--pastel-pink-dark);
-    box-shadow: 0 0 8px rgba(192, 154, 154, 0.4);
-}
-
 /* Logo color */
 body.dark-mode .logo span {
     color: var(--pastel-pink-dark);
@@ -526,8 +274,4 @@ body.dark-mode #slogan .highlight {
 
 /* Dark mode tap to flip indicator */
 @media (max-width: 768px) {
-    body.dark-mode .testimonial-card::after {
-        color: rgba(220, 220, 220, 0.8);
-        background-color: rgba(50, 50, 50, 0.5);
-    }
 }
